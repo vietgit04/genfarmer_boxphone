@@ -4,7 +4,8 @@ on:
   push:
     branches: [main]
     paths:
-      - "index.html"
+      - "*.html"
+      - "anh/**"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -28,7 +29,8 @@ jobs:
       - name: Prepare site
         run: |
           mkdir _site
-          cp index.html _site/index.html
+          cp index.html vi.html es.html ja.html _site/
+          cp -r anh _site/anh
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

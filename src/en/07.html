@@ -1,0 +1,324 @@
+
+<!-- ==================== PKG-FACEBOOK ==================== -->
+<section class="page" id="p-pkg-facebook" data-title="Facebook package" data-crumb="Reference" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Reference</a></div>
+    <h1 class="title">Facebook package</h1>
+    <p class="lede">Trust and Boost for Facebook: what is in the package, the figures to run it by, and what to watch for.</p>
+
+    <div class="doc">
+<h2 id="pkg-facebook-h1">What is in the package</h2>
+<p>Facebook is the platform with the most ground covered: <strong>Trust</strong> rebuilds the account itself, <strong>Boost</strong> does the seeding.</p>
+<h3>Trust - growing the account</h3>
+<ul>
+<li><strong>Keeps the profile looking lived-in.</strong> Profile picture and cover, bio, interests and occupation, the friend list and auto-adding friends, even the location and activity region - all updated automatically, because an empty profile is what gets checkpointed.</li>
+<li><strong>AI-powered posting.</strong> Posts on a schedule with varied, natural content, shares from pages and groups to generate interaction, mixes content formats, and follows patterns taken from how real users actually post rather than a fixed loop.</li>
+</ul>
+<h3>Boost - seeding and reach</h3>
+<ul>
+<li><strong>AI auto-seeding for pages and profiles.</strong> Reactions and comments on the posts you target, written by AI from the context, with several accounts creating the community effect, and the wording varied so nothing repeats.</li>
+<li><strong>Auto-join groups by keyword.</strong> Finds groups in your field, joins them with secondary accounts, and posts related content into them.</li>
+<li><strong>Livestream engagement.</strong> Raises viewers and reactions during a live, sends hearts, comments in context, and reshares the stream to profiles and groups.</li>
+<li><strong>Content spinning.</strong> Dozens of variants from one base text, so Facebook does not read the posts as spam or duplicate.</li>
+<li><strong>Auto-sharing</strong> to profiles and groups for wider reach.</li>
+</ul>
+<h2 id="pkg-facebook-h2">Operating figures</h2>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>The last row is still waiting on the technical team. The rest are the recommended settings, not hard limits.</p></div>
+</div>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Question</th><th>Answer</th></tr></thead>
+<tbody><tr><td>How long to warm up before running for real</td><td><strong>2-4 weeks</strong> of Trust</td></tr><tr><td>How many accounts per device</td><td><strong>1 per platform per device</strong> is safest; 3 is the recommended maximum</td></tr><tr><td>Maximum phones on one router</td><td><strong>30</strong> on a GenRouter H3000, <strong>200</strong> on a mini PC - see <a href="#/router">Router &amp; proxy</a></td></tr><tr><td>Maximum boxes on one internet line</td><td><strong>5</strong>, at roughly 100 Mbps per box - see <a href="#/router">Router &amp; proxy</a></td></tr><tr><td>How often to change the information tied to the link</td><td><strong>every 7 to 14 days</strong></td></tr><tr><td>How long to run before resting the accounts</td><td><strong>4-6 hours on, 1-2 hours off</strong>, or several separate windows through the day. <strong>Never 24/7</strong> - no real person scrolls all night</td></tr><tr><td>Suggested settings for a beginner</td><td><span class="todo">To be confirmed</span></td></tr></tbody>
+</table></div>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p><strong>Why change the information tied to the link every week or two.</strong> Change it every day and nobody keeps up; leave it untouched for months and you are hammering the same list of links over and over, which is exactly the pattern the platforms sweep for.</p></div>
+</div>
+<h2 id="pkg-facebook-h3">Notes specific to Facebook</h2>
+<ul>
+<li>Facebook is the platform where accounts are asked to verify soonest, so log in by hand first and watch what happens before handing it to a script - <a href="#/a5">Day 2</a>.</li>
+<li>Automatic commenting needs a <strong>vilao.ai API key</strong>.</li>
+</ul>
+<p>The Facebook chapter of the User Manual is <em>p. 51-77, 27 pages</em>.</p>
+<div class="hint danger">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-danger"/></svg>
+<div><p><strong>Do not download the Facebook APK from the links in the User Manual.</strong> Those links currently point to the TikTok file. Use the official folder listed in <a href="#/a5">Day 2 &middot; step 3</a>.</p></div>
+</div>
+<h2 id="pkg-facebook-h4">Signs that mean stop</h2>
+<ol>
+<li>Accounts are asked for verification more often than usual.</li>
+<li>Posts suddenly lose all their views.</li>
+<li>The number of running phones keeps dropping for no clear reason.</li>
+</ol>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>If any account is banned overnight, <strong>do not scale up</strong>. Go back and check the proxies and the running speed first.</p></div>
+</div>
+<h2 id="pkg-facebook-h5">Common problems with this package</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>What you see</th><th>Usual cause</th><th>What to do</th></tr></thead>
+<tbody><tr><td>The script runs but the numbers do not move</td><td>Warming up has not reached 2-4 weeks, or the content niche is set wrong</td><td><a href="#/a7">Day 4-5</a>, configuration section</td></tr><tr><td>A different app opens after installing</td><td>The APK came from the User Manual links</td><td>Reinstall from the official folder - <a href="#/a5">Day 2 &middot; step 3</a></td></tr><tr><td>Accounts are asked to verify as soon as the script starts</td><td>The same thing happens when you log in by hand; the script only repeats it faster</td><td>Change account supplier or proxies, then retry - <a href="#/a5">Day 2</a></td></tr><tr><td>Automatic commenting stops halfway</td><td>No vilao.ai API key, or the provider's model is down</td><td><a href="#/a3">Day 0</a> for how to get the key</td></tr><tr><td>Accounts get banned in clusters</td><td>Several accounts sharing one address</td><td><a href="#/router">Router &amp; proxy</a></td></tr><tr><td>Everything is configured right but the farm stutters</td><td>Usually the proxies rather than the line</td><td><a href="#/router">Router &amp; proxy</a></td></tr></tbody>
+</table></div>
+<h2 id="pkg-facebook-h6">Where to go next</h2>
+<ul>
+<li>The procedure for running it: <a href="#/a6">Day 3 - Basic automation</a></li>
+<li>All packages side by side: <a href="#/package">Automation packages</a></li>
+</ul>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/pkg-tiktok"><span class="k">Previous</span><span class="v">TikTok package</span></a>
+      <a class="next" href="#/pkg-instagram"><span class="k">Next</span><span class="v">Instagram package</span></a>
+    </div>
+    <p class="updated">Last updated 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== PKG-INSTAGRAM ==================== -->
+<section class="page" id="p-pkg-instagram" data-title="Instagram package" data-crumb="Reference" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Reference</a></div>
+    <h1 class="title">Instagram package</h1>
+    <p class="lede">Trust and Boost for Instagram: what is in the package, the figures to run it by, and what to watch for.</p>
+
+    <div class="doc">
+<h2 id="pkg-instagram-h1">What is in the package</h2>
+<p><strong>Trust</strong> grows the account on real devices; <strong>Boost</strong> handles publishing and community management across the accounts you own.</p>
+<h3>Trust - growing the account</h3>
+<ul>
+<li><strong>Login, logout and account management.</strong> Many accounts at once, each with its status visible, so the manual slips disappear.</li>
+<li><strong>Keyword search and AI nurturing.</strong> The system looks up content and hashtags around your keywords, the account interacts with what it finds the way a real user would, and it follows at random by keyword or by link.</li>
+<li><strong>Randomised actions.</strong> Browsing the feed, watching reels, liking and commenting on relevant content, with the mix deliberately randomised. The like, comment and view ratios are adjustable per growth phase, and the behaviour is spread across the day to keep checkpoints away.</li>
+<li><strong>AI posting.</strong> Images and captions generated from the topic you choose, which keeps the account active and consistent.</li>
+</ul>
+<h3>Boost - running the accounts</h3>
+<ul>
+<li><strong>Posts, reels and stories from images you already have</strong>, with AI writing the captions, in bulk, on a steady daily schedule.</li>
+<li><strong>Community management on your own posts.</strong> Comments from every account in one place, with AI drafting replies to genuine questions for you to approve, and resharing your posts to stories.</li>
+<li><strong>Reels at scale.</strong> Bulk upload and scheduling, captions and hashtags per market, publishing at the right local time.</li>
+<li><strong>Profile upkeep.</strong> Bios, links and profile details kept consistent across brand accounts, avatars and highlight covers updated in bulk, login health visible on one dashboard, and reel performance tracked across all accounts.</li>
+</ul>
+<h2 id="pkg-instagram-h2">Operating figures</h2>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>The last row is still waiting on the technical team. The rest are the recommended settings, not hard limits.</p></div>
+</div>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Question</th><th>Answer</th></tr></thead>
+<tbody><tr><td>How long to warm up before running for real</td><td><strong>2-4 weeks</strong> of Trust</td></tr><tr><td>How many accounts per device</td><td><strong>1 per platform per device</strong> is safest; 3 is the recommended maximum</td></tr><tr><td>Maximum phones on one router</td><td><strong>30</strong> on a GenRouter H3000, <strong>200</strong> on a mini PC - see <a href="#/router">Router &amp; proxy</a></td></tr><tr><td>Maximum boxes on one internet line</td><td><strong>5</strong>, at roughly 100 Mbps per box - see <a href="#/router">Router &amp; proxy</a></td></tr><tr><td>How often to change the information tied to the link</td><td><strong>every 7 to 14 days</strong></td></tr><tr><td>How long to run before resting the accounts</td><td><strong>4-6 hours on, 1-2 hours off</strong>, or several separate windows through the day. <strong>Never 24/7</strong> - no real person scrolls all night</td></tr><tr><td>Suggested settings for a beginner</td><td><span class="todo">To be confirmed</span></td></tr></tbody>
+</table></div>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p><strong>Why change the information tied to the link every week or two.</strong> Change it every day and nobody keeps up; leave it untouched for months and you are hammering the same list of links over and over, which is exactly the pattern the platforms sweep for.</p></div>
+</div>
+<h2 id="pkg-instagram-h3">Notes specific to Instagram</h2>
+<ul>
+<li>Instagram remembers an account's history. One that has run junk engagement is very hard to recover, while one warmed up properly from the start gets noticeably more reach on exactly the same content. <strong>Trust before Boost is not optional here.</strong></li>
+<li>Trust includes posting, so decide your content niche before you start - a wrongly set niche means the account is warmed up as somebody interested in something else.</li>
+<li>Automatic commenting needs a <strong>vilao.ai API key</strong>.</li>
+</ul>
+<p>The Instagram chapter of the User Manual is <em>p. 78-101, 24 pages</em>.</p>
+<div class="hint danger">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-danger"/></svg>
+<div><p><strong>Do not download the Instagram APK from the links in the User Manual.</strong> Those links currently point to the TikTok file. Use the official folder listed in <a href="#/a5">Day 2 &middot; step 3</a>.</p></div>
+</div>
+<h2 id="pkg-instagram-h4">Signs that mean stop</h2>
+<ol>
+<li>Accounts are asked for verification more often than usual.</li>
+<li>Posts suddenly lose all their views.</li>
+<li>The number of running phones keeps dropping for no clear reason.</li>
+</ol>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>If any account is banned overnight, <strong>do not scale up</strong>. Go back and check the proxies and the running speed first.</p></div>
+</div>
+<h2 id="pkg-instagram-h5">Common problems with this package</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>What you see</th><th>Usual cause</th><th>What to do</th></tr></thead>
+<tbody><tr><td>The script runs but the numbers do not move</td><td>Warming up has not reached 2-4 weeks, or the content niche is set wrong</td><td><a href="#/a7">Day 4-5</a>, configuration section</td></tr><tr><td>A different app opens after installing</td><td>The APK came from the User Manual links</td><td>Reinstall from the official folder - <a href="#/a5">Day 2 &middot; step 3</a></td></tr><tr><td>Accounts are asked to verify as soon as the script starts</td><td>The same thing happens when you log in by hand; the script only repeats it faster</td><td>Change account supplier or proxies, then retry - <a href="#/a5">Day 2</a></td></tr><tr><td>Automatic commenting stops halfway</td><td>No vilao.ai API key, or the provider's model is down</td><td><a href="#/a3">Day 0</a> for how to get the key</td></tr><tr><td>Accounts get banned in clusters</td><td>Several accounts sharing one address</td><td><a href="#/router">Router &amp; proxy</a></td></tr><tr><td>Everything is configured right but the farm stutters</td><td>Usually the proxies rather than the line</td><td><a href="#/router">Router &amp; proxy</a></td></tr></tbody>
+</table></div>
+<h2 id="pkg-instagram-h6">Where to go next</h2>
+<ul>
+<li>The procedure for running it: <a href="#/a6">Day 3 - Basic automation</a></li>
+<li>All packages side by side: <a href="#/package">Automation packages</a></li>
+</ul>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/pkg-facebook"><span class="k">Previous</span><span class="v">Facebook package</span></a>
+      <a class="next" href="#/pkg-spotify"><span class="k">Next</span><span class="v">Spotify package</span></a>
+    </div>
+    <p class="updated">Last updated 09/2026</p>
+  </div>
+</section>
+
+
+<!-- ==================== PKG-SPOTIFY ==================== -->
+<section class="page" id="p-pkg-spotify" data-title="Spotify package" data-crumb="Reference" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Reference</a></div>
+    <h1 class="title">Spotify package</h1>
+    <p class="lede">The Spotify package: increasing stream counts, and the checklist to clear before the first run.</p>
+
+    <div class="doc">
+<h2 id="pkg-spotify-h1">What is in the package</h2>
+<p>Spotify is a single package rather than a Trust and Boost pair: it farms accounts with a real listening history and turns that into plays for the tracks you point it at.</p>
+<ul>
+<li><strong>Plays around the clock.</strong> The system searches out songs and artists at random the way a listener would, varies how long each track is listened to, and builds playlists itself when there are none yet - so the listening history looks like a person's rather than a script's.</li>
+<li><strong>Songs chosen to fit the pattern.</strong> Tracks are picked to match what that account has been listening to, not dropped in at random.</li>
+<li><strong>Seeding songs and playlists.</strong> Liking, listening through to the end, skipping - the ordinary mix of actions, performed automatically.</li>
+<li><strong>Scale without the pattern.</strong> Hundreds of accounts running at once, each on its own device and address, which is what keeps the behaviour from clustering.</li>
+</ul>
+<h2 id="pkg-spotify-h2">What counts as a valid stream</h2>
+<p>A play only counts if all of these are true, which is why a browser cannot do this job and a phone farm can:</p>
+<ul>
+<li>Listened to for <strong>more than 30 seconds</strong></li>
+<li>Natural behaviour, no repeated identical actions</li>
+<li>The device is <strong>not rooted</strong> and <strong>ADB is hidden</strong> - see <a href="#/change">What is Change / SuperChange</a></li>
+<li>The IP and network check out - see <a href="#/router">Router &amp; proxy</a></li>
+<li>The account is <strong>Premium</strong></li>
+</ul>
+<h2 id="pkg-spotify-h3">Operating figures</h2>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>The last row is still waiting on the technical team. The rest are the recommended settings, not hard limits.</p></div>
+</div>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Question</th><th>Answer</th></tr></thead>
+<tbody><tr><td>How long to warm up before running for real</td><td><strong>2-4 weeks</strong> of Trust</td></tr><tr><td>How many accounts per device</td><td><strong>1 per platform per device</strong> is safest; 3 is the recommended maximum</td></tr><tr><td>Maximum phones on one router</td><td><strong>30</strong> on a GenRouter H3000, <strong>200</strong> on a mini PC - see <a href="#/router">Router &amp; proxy</a></td></tr><tr><td>Maximum boxes on one internet line</td><td><strong>5</strong>, at roughly 100 Mbps per box - see <a href="#/router">Router &amp; proxy</a></td></tr><tr><td>Minimum listening time for a stream to count</td><td><strong>over 30 seconds</strong></td></tr><tr><td>Account type the package expects</td><td><strong>Premium</strong></td></tr><tr><td>How often to change the information tied to the link</td><td><strong>every 7 to 14 days</strong></td></tr><tr><td>How long to run before resting the accounts</td><td>Music is the exception: listening for hours on end is normal behaviour, so these can run longer than the social packages. Still not 24/7</td></tr><tr><td>Suggested settings for a beginner</td><td><span class="todo">To be confirmed</span></td></tr></tbody>
+</table></div>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p><strong>Why change the information tied to the link every week or two.</strong> Change it every day and nobody keeps up; leave it untouched for months and you are hammering the same list of links over and over, which is exactly the pattern the platforms sweep for.</p></div>
+</div>
+<h2 id="pkg-spotify-h4">Notes specific to Spotify</h2>
+<ul>
+<li>The Spotify chapter of the manual has a <strong>pre-run checklist</strong> - go through it before the first run rather than after the first problem.</li>
+<li>The system favours <strong>Premium</strong> accounts, because free listening is worth less and behaves less predictably.</li>
+<li>Music is the one place where long sessions are normal. Hours of continuous listening is what a real person does, so these packages can run longer than the social ones - though still not around the clock.</li>
+</ul>
+<p>The Spotify chapter of the User Manual is <em>p. 124-134, 11 pages, and it includes a pre-run checklist</em>.</p>
+<div class="hint danger">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-danger"/></svg>
+<div><p><strong>Do not download the Spotify APK from the links in the User Manual.</strong> Those links currently point to the TikTok file. Use the official folder listed in <a href="#/a5">Day 2 &middot; step 3</a>.</p></div>
+</div>
+<h2 id="pkg-spotify-h5">Signs that mean stop</h2>
+<p>The platform reads these as fraud, and the penalties are the streams being deleted, the account closed, the track taken down and the royalties withheld.</p>
+<ol>
+<li>Stream counts spiking abnormally.</li>
+<li>The same track repeating for too long, or actions firing one after another at machine speed.</li>
+<li>Repeated IPs or repeated device information across accounts.</li>
+</ol>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>If any account is banned overnight, <strong>do not scale up</strong>. Go back and check the proxies and the running speed first.</p></div>
+</div>
+<h2 id="pkg-spotify-h6">Common problems with this package</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>What you see</th><th>Usual cause</th><th>What to do</th></tr></thead>
+<tbody><tr><td>The script runs but the numbers do not move</td><td>Warming up has not reached 2-4 weeks, or the content niche is set wrong</td><td><a href="#/a7">Day 4-5</a>, configuration section</td></tr><tr><td>A different app opens after installing</td><td>The APK came from the User Manual links</td><td>Reinstall from the official folder - <a href="#/a5">Day 2 &middot; step 3</a></td></tr><tr><td>Accounts are asked to verify as soon as the script starts</td><td>The same thing happens when you log in by hand; the script only repeats it faster</td><td>Change account supplier or proxies, then retry - <a href="#/a5">Day 2</a></td></tr><tr><td>Automatic commenting stops halfway</td><td>No vilao.ai API key, or the provider's model is down</td><td><a href="#/a3">Day 0</a> for how to get the key</td></tr><tr><td>Accounts get banned in clusters</td><td>Several accounts sharing one address</td><td><a href="#/router">Router &amp; proxy</a></td></tr><tr><td>Everything is configured right but the farm stutters</td><td>Usually the proxies rather than the line</td><td><a href="#/router">Router &amp; proxy</a></td></tr></tbody>
+</table></div>
+<h2 id="pkg-spotify-h7">Where to go next</h2>
+<ul>
+<li>The procedure for running it: <a href="#/a6">Day 3 - Basic automation</a></li>
+<li>All packages side by side: <a href="#/package">Automation packages</a></li>
+</ul>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/pkg-instagram"><span class="k">Previous</span><span class="v">Instagram package</span></a>
+      <a class="next" href="#/pkg-tidal"><span class="k">Next</span><span class="v">Tidal package</span></a>
+    </div>
+    <p class="updated">Last updated 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== PKG-TIDAL ==================== -->
+<section class="page" id="p-pkg-tidal" data-title="Tidal package" data-crumb="Reference" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Reference</a></div>
+    <h1 class="title">Tidal package</h1>
+    <p class="lede">The Tidal package: increasing stream counts on a platform the User Manual does not cover yet.</p>
+
+    <div class="doc">
+<h2 id="pkg-tidal-h1">What is in the package</h2>
+<p>Tidal works the same way as the Spotify package: it produces valid streams for the tracks you point it at.</p>
+<ul>
+<li><strong>Fully automated:</strong> search, click, play, pause, save to library.</li>
+<li><strong>Listens like a person:</strong> random playlists, pauses and skips, and the plays spread across other tracks in the playlist so nothing gets flagged.</li>
+<li><strong>Managed in bulk:</strong> a mini-app drives large numbers of devices in a few clicks.</li>
+<li><strong>Multi-country:</strong> streams can come from several countries through GenRouter.</li>
+</ul>
+<h2 id="pkg-tidal-h2">What counts as a valid stream</h2>
+<ul>
+<li>Listened to for <strong>more than 30 seconds</strong></li>
+<li>Natural behaviour, no repeated identical actions</li>
+<li>The device is <strong>not rooted</strong> and <strong>ADB is hidden</strong> - see <a href="#/change">What is Change / SuperChange</a></li>
+<li>The IP and network check out - see <a href="#/router">Router &amp; proxy</a></li>
+<li>The account is <strong>Premium or HiFi</strong></li>
+</ul>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Tidal inspects device fingerprint, OS, network and user behaviour more closely than the other music platforms. That is exactly why it needs a real device farm rather than anything simulated.</p></div>
+</div>
+<h2 id="pkg-tidal-h3">Operating figures</h2>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>The last row is still waiting on the technical team. The rest are the recommended settings, not hard limits.</p></div>
+</div>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Question</th><th>Answer</th></tr></thead>
+<tbody><tr><td>How long to warm up before running for real</td><td><strong>2-4 weeks</strong> of Trust</td></tr><tr><td>How many accounts per device</td><td><strong>1 per platform per device</strong> is safest; 3 is the recommended maximum</td></tr><tr><td>Maximum phones on one router</td><td><strong>30</strong> on a GenRouter H3000, <strong>200</strong> on a mini PC - see <a href="#/router">Router &amp; proxy</a></td></tr><tr><td>Maximum boxes on one internet line</td><td><strong>5</strong>, at roughly 100 Mbps per box - see <a href="#/router">Router &amp; proxy</a></td></tr><tr><td>Minimum listening time for a stream to count</td><td><strong>over 30 seconds</strong></td></tr><tr><td>Account type the package expects</td><td><strong>Premium</strong></td></tr><tr><td>How often to change the information tied to the link</td><td><strong>every 7 to 14 days</strong></td></tr><tr><td>How long to run before resting the accounts</td><td>Music is the exception: listening for hours on end is normal behaviour, so these can run longer than the social packages. Still not 24/7</td></tr><tr><td>Suggested settings for a beginner</td><td><span class="todo">To be confirmed</span></td></tr></tbody>
+</table></div>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p><strong>Why change the information tied to the link every week or two.</strong> Change it every day and nobody keeps up; leave it untouched for months and you are hammering the same list of links over and over, which is exactly the pattern the platforms sweep for.</p></div>
+</div>
+<h2 id="pkg-tidal-h4">Notes specific to Tidal</h2>
+<ul>
+<li>Tidal is a newer package. It is <strong>not covered by the 141-page User Manual</strong> and does not have its own page on the GenFarmer website yet, so ask <a href="#/support">support</a> when something is unclear.</li>
+<li>As with Spotify, long listening sessions are normal behaviour, so it can run longer than the social packages.</li>
+</ul>
+<div class="hint danger">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-danger"/></svg>
+<div><p><strong>Do not download the Tidal APK from the links in the User Manual.</strong> Those links currently point to the TikTok file. Use the official folder listed in <a href="#/a5">Day 2 &middot; step 3</a>.</p></div>
+</div>
+<h2 id="pkg-tidal-h5">Signs that mean stop</h2>
+<p>The platform reads these as fraud, and the penalties are the streams being deleted, the account closed, the track taken down and the royalties withheld.</p>
+<ol>
+<li>Stream counts spiking abnormally.</li>
+<li>The same track repeating for too long, or actions firing one after another at machine speed.</li>
+<li>Repeated IPs or repeated device information across accounts.</li>
+</ol>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>If any account is banned overnight, <strong>do not scale up</strong>. Go back and check the proxies and the running speed first.</p></div>
+</div>
+<h2 id="pkg-tidal-h6">Common problems with this package</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>What you see</th><th>Usual cause</th><th>What to do</th></tr></thead>
+<tbody><tr><td>The script runs but the numbers do not move</td><td>Warming up has not reached 2-4 weeks, or the content niche is set wrong</td><td><a href="#/a7">Day 4-5</a>, configuration section</td></tr><tr><td>A different app opens after installing</td><td>The APK came from the User Manual links</td><td>Reinstall from the official folder - <a href="#/a5">Day 2 &middot; step 3</a></td></tr><tr><td>Accounts are asked to verify as soon as the script starts</td><td>The same thing happens when you log in by hand; the script only repeats it faster</td><td>Change account supplier or proxies, then retry - <a href="#/a5">Day 2</a></td></tr><tr><td>Automatic commenting stops halfway</td><td>No vilao.ai API key, or the provider's model is down</td><td><a href="#/a3">Day 0</a> for how to get the key</td></tr><tr><td>Accounts get banned in clusters</td><td>Several accounts sharing one address</td><td><a href="#/router">Router &amp; proxy</a></td></tr><tr><td>Everything is configured right but the farm stutters</td><td>Usually the proxies rather than the line</td><td><a href="#/router">Router &amp; proxy</a></td></tr></tbody>
+</table></div>
+<h2 id="pkg-tidal-h7">Where to go next</h2>
+<ul>
+<li>The procedure for running it: <a href="#/a6">Day 3 - Basic automation</a></li>
+<li>All packages side by side: <a href="#/package">Automation packages</a></li>
+</ul>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/pkg-spotify"><span class="k">Previous</span><span class="v">Spotify package</span></a>
+      <a class="next" href="#/troubleshoot"><span class="k">Next</span><span class="v">Troubleshoot by symptom</span></a>
+    </div>
+    <p class="updated">Last updated 09/2026</p>
+  </div>
+</section>

@@ -1,0 +1,249 @@
+<script>
+(function(){
+  "use strict";
+
+  var PAGES = ["home","contents","a1","boxphone","change","a2","a3","a4","a5","a6","a7","req","buttons","usb","otg","apk","adb","backup","cc","account","devices","apps","automation","settings","api","router","package","pkg-tiktok","pkg-facebook","pkg-instagram","pkg-spotify","pkg-tidal","troubleshoot","err-license","err-unauth","err-light","faq","glossary","support"];
+  var TABOF = {"home":"start","contents":"start","a1":"start","boxphone":"start","change":"start","a2":"roadmap","a3":"roadmap","a4":"roadmap","a5":"roadmap","a6":"roadmap","a7":"roadmap","req":"setup","buttons":"setup","usb":"setup","otg":"setup","apk":"setup","adb":"setup","backup":"setup","cc":"software","account":"software","devices":"software","apps":"software","automation":"software","settings":"software","api":"software","router":"reference","package":"reference","pkg-tiktok":"reference","pkg-facebook":"reference","pkg-instagram":"reference","pkg-spotify":"reference","pkg-tidal":"reference","troubleshoot":"reference","err-license":"reference","err-unauth":"reference","err-light":"reference","faq":"reference","glossary":"reference","support":"reference"};
+
+  /* ---------- theme ---------- */
+  var root = document.documentElement;
+  var sun = document.querySelector("#themeBtn .ic-sun");
+  var moon = document.querySelector("#themeBtn .ic-moon");
+  function paintTheme(){
+    var dark = root.getAttribute("data-theme") !== "light";
+    sun.hidden = !dark ? true : false;
+    moon.hidden = dark ? true : false;
+  }
+  try{
+    var saved = localStorage.getItem("gf-theme");
+    if(saved === "light" || saved === "dark") root.setAttribute("data-theme", saved);
+  }catch(e){}
+  paintTheme();
+  document.getElementById("themeBtn").addEventListener("click", function(){
+    var next = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+    root.setAttribute("data-theme", next);
+    try{ localStorage.setItem("gf-theme", next); }catch(e){}
+    paintTheme();
+  });
+
+  /* ---------- mobile drawer ---------- */
+  var burger = document.getElementById("burger");
+  var scrim = document.getElementById("scrim");
+  function closeNav(){ document.body.classList.remove("nav-open"); }
+  burger.addEventListener("click", function(){ document.body.classList.toggle("nav-open"); });
+  scrim.addEventListener("click", closeNav);
+
+  /* ---------- tabs ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll("[data-tabs]"), function(box){
+    var btns = box.querySelectorAll(".tab-btn");
+    var panels = box.querySelectorAll(".tab-panel");
+    Array.prototype.forEach.call(btns, function(b, i){
+      b.addEventListener("click", function(){
+        Array.prototype.forEach.call(btns, function(x, j){ x.setAttribute("aria-selected", j === i ? "true" : "false"); });
+        Array.prototype.forEach.call(panels, function(p, j){ p.hidden = j !== i; });
+      });
+    });
+  });
+
+  /* ---------- toc ---------- */
+  var tocList = document.getElementById("tocList");
+  var tocHead = document.querySelector(".toc-h");
+  var tocLinks = [];
+  function buildToc(page){
+    tocList.innerHTML = "";
+    tocLinks = [];
+    var hs = page.querySelectorAll(".doc h2[id]");
+    tocHead.hidden = hs.length === 0;
+    Array.prototype.forEach.call(hs, function(h){
+      var a = document.createElement("a");
+      a.href = "#" + h.id;
+      a.textContent = h.textContent;
+      a.addEventListener("click", function(ev){
+        ev.preventDefault();
+        h.scrollIntoView({behavior:"smooth", block:"start"});
+        history.replaceState(null, "", location.hash.split("#")[1] ? location.hash : location.hash);
+      });
+      tocList.appendChild(a);
+      tocLinks.push({a:a, h:h});
+    });
+    spy();
+  }
+  function spy(){
+    if(!tocLinks.length) return;
+    var best = 0;
+    for(var i=0;i<tocLinks.length;i++){
+      if(tocLinks[i].h.getBoundingClientRect().top <= 140) best = i;
+    }
+    for(var j=0;j<tocLinks.length;j++) tocLinks[j].a.classList.toggle("on", j === best);
+  }
+  var ticking = false;
+  window.addEventListener("scroll", function(){
+    if(ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){ spy(); ticking = false; });
+  }, {passive:true});
+
+  /* ---------- router ---------- */
+  function currentId(){
+    var h = location.hash || "";
+    var m = h.match(/^#\/([a-z0-9-]+)/i);
+    var id = m ? m[1].toLowerCase() : "home";
+    return PAGES.indexOf(id) === -1 ? "home" : id;
+  }
+  function route(){
+    var id = currentId();
+    var active = null;
+    PAGES.forEach(function(p){
+      var el = document.getElementById("p-" + p);
+      if(!el) return;
+      var on = p === id;
+      el.hidden = !on;
+      if(on) active = el;
+    });
+    Array.prototype.forEach.call(document.querySelectorAll(".nav-a[data-nav]"), function(a){
+      a.classList.toggle("on", a.getAttribute("data-nav") === id);
+    });
+    var tab = TABOF[id] || "start";
+    Array.prototype.forEach.call(document.querySelectorAll(".tab-l"), function(t){
+      t.classList.toggle("on", t.getAttribute("data-tab") === tab);
+    });
+    if(active){
+      buildToc(active);
+      document.title = active.getAttribute("data-title") + " | GenFarmer Support Center";
+    }
+    closeNav();
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener("hashchange", route);
+
+  /* ---------- search ---------- */
+  var INDEX = [];
+  PAGES.forEach(function(p){
+    var el = document.getElementById("p-" + p);
+    if(!el) return;
+    var title = el.getAttribute("data-title");
+    var crumb = el.getAttribute("data-crumb");
+    var doc = el.querySelector(".doc");
+    var lede = el.querySelector(".lede");
+    INDEX.push({
+      href:"#/" + p,
+      title:title,
+      path:crumb,
+      text:((lede ? lede.textContent : "") + " " + (doc ? doc.textContent : "")).replace(/\s+/g," ").trim()
+    });
+    if(doc){
+      Array.prototype.forEach.call(doc.querySelectorAll("h2[id]"), function(h){
+        var buf = [];
+        var n = h.nextElementSibling;
+        while(n && n.tagName !== "H2"){ buf.push(n.textContent); n = n.nextElementSibling; }
+        INDEX.push({
+          href:"#/" + p,
+          title:h.textContent,
+          path:crumb + " · " + title,
+          text:buf.join(" ").replace(/\s+/g," ").trim()
+        });
+      });
+    }
+  });
+
+  var ovl = document.getElementById("ovl");
+  var q = document.getElementById("q");
+  var results = document.getElementById("results");
+  var sel = 0;
+
+  function esc(s){ return s.replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]; }); }
+  function hl(s, term){
+    if(!term) return esc(s);
+    var i = s.toLowerCase().indexOf(term);
+    if(i === -1) return esc(s);
+    return esc(s.slice(0,i)) + "<mark>" + esc(s.slice(i, i+term.length)) + "</mark>" + esc(s.slice(i+term.length));
+  }
+  function snippet(text, term){
+    var i = text.toLowerCase().indexOf(term);
+    if(i === -1) return text.slice(0,150);
+    var from = Math.max(0, i - 55);
+    return (from > 0 ? "…" : "") + text.slice(from, from + 170);
+  }
+  function render(term){
+    results.innerHTML = "";
+    sel = 0;
+    var t = term.trim().toLowerCase();
+    var hits;
+    if(!t){
+      hits = INDEX.filter(function(e){ return e.path.indexOf("·") === -1; }).slice(0, 11);
+    }else{
+      hits = INDEX.filter(function(e){
+        return e.title.toLowerCase().indexOf(t) !== -1 || e.text.toLowerCase().indexOf(t) !== -1;
+      }).sort(function(a,b){
+        var at = a.title.toLowerCase().indexOf(t) !== -1 ? 0 : 1;
+        var bt = b.title.toLowerCase().indexOf(t) !== -1 ? 0 : 1;
+        return at - bt;
+      }).slice(0, 24);
+    }
+    if(!hits.length){
+      results.innerHTML = '<div class="res-empty">No result for &ldquo;' + esc(term) + '&rdquo;</div>';
+      return;
+    }
+    hits.forEach(function(e, i){
+      var a = document.createElement("a");
+      a.className = "res" + (i === 0 ? " sel" : "");
+      a.href = e.href;
+      a.innerHTML = '<div class="rt">' + hl(e.title, t) + '</div>' +
+                    '<div class="rp">' + esc(e.path) + '</div>' +
+                    (t ? '<div class="rs">' + hl(snippet(e.text, t), t) + '</div>' : "");
+      a.addEventListener("click", closeSearch);
+      results.appendChild(a);
+    });
+  }
+  function move(d){
+    var items = results.querySelectorAll(".res");
+    if(!items.length) return;
+    items[sel].classList.remove("sel");
+    sel = (sel + d + items.length) % items.length;
+    items[sel].classList.add("sel");
+    items[sel].scrollIntoView({block:"nearest"});
+  }
+  function openSearch(){
+    ovl.hidden = false;
+    q.value = "";
+    render("");
+    q.focus();
+  }
+  function closeSearch(){ ovl.hidden = true; }
+
+  document.getElementById("openSearch").addEventListener("click", openSearch);
+  document.getElementById("openSearch2").addEventListener("click", openSearch);
+  ovl.addEventListener("mousedown", function(e){ if(e.target === ovl) closeSearch(); });
+  q.addEventListener("input", function(){ render(q.value); });
+  q.addEventListener("keydown", function(e){
+    if(e.key === "ArrowDown"){ e.preventDefault(); move(1); }
+    else if(e.key === "ArrowUp"){ e.preventDefault(); move(-1); }
+    else if(e.key === "Enter"){
+      var items = results.querySelectorAll(".res");
+      if(items[sel]){ e.preventDefault(); items[sel].click(); }
+    }
+  });
+  document.addEventListener("keydown", function(e){
+    if((e.ctrlKey || e.metaKey) && (e.key === "k" || e.key === "K")){ e.preventDefault(); openSearch(); }
+    else if(e.key === "Escape" && !ovl.hidden){ closeSearch(); }
+  });
+
+  /* ---------- video ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll(".video[data-yt]"), function(vid){
+    vid.querySelector(".vplay").addEventListener("click", function(){
+      var id = vid.getAttribute("data-yt");
+      var local = location.protocol !== "http:" && location.protocol !== "https:";
+      if(local){
+        window.open("https://www.youtube.com/watch?v=" + id, "_blank", "noopener");
+        return;
+      }
+      vid.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1" title="GenFarmer video tutorial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
+    });
+  });
+
+  route();
+})();
+</script>
+
+</body>
+</html>

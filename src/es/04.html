@@ -1,0 +1,476 @@
+
+<!-- ==================== ADB ==================== -->
+<section class="page" id="p-adb" data-title="Comandos ADB" data-crumb="Configuración" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/req">Configuración</a></div>
+    <h1 class="title">Comandos ADB</h1>
+    <p class="lede">Opcional. Ejecuta un comando en todos los dispositivos desde GenFarmer y configura el entorno ADB del que depende la solución de Unauthorized.</p>
+
+    <div class="doc">
+<p>Opcional, y solo útil si te manejas bien con la línea de comandos. Saltarte esta página no cambia nada en el plan, pero la <a href="#/err-unauth">solución de Unauthorized device</a> necesita ADB instalado en tu PC.</p>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Guía en video: <a href="https://youtu.be/uM-Z2nOl63c?si=wa-91Q1dNxnmp9Vi" target="_blank" rel="noopener">Cómo usar comandos ADB en GenFarmer</a></p></div>
+</div>
+<div class="video" data-yt="uM-Z2nOl63c">
+        <img src="anh/yt-uM-Z2nOl63c.jpg" alt="Cómo usar comandos ADB en GenFarmer" loading="lazy">
+        <button class="vplay" type="button" aria-label="Reproducir el video"><span class="disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button>
+        <span class="vnote">Cómo usar comandos ADB en GenFarmer</span>
+      </div>
+<h2 id="adb-h1">Ejecutar un comando</h2>
+<p>Selecciona <strong>ADB Command</strong> en la barra de herramientas.</p>
+<figure class="fig"><img src="anh/eng-adb-01.jpg" alt="ADB Command en la barra de herramientas" loading="lazy"></figure>
+<p>Pega tu comando en el campo de entrada y haz clic en <strong>Execute</strong> (Ejecutar).</p>
+<figure class="fig"><img src="anh/eng-adb-02.jpg" alt="Pegar el comando y hacer clic en Execute" loading="lazy"></figure>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Puedes pedirle a una herramienta de IA como ChatGPT o Gemini que escriba el comando por ti. Por ejemplo, para abrir Chrome en todos los dispositivos, pide <em>"comando ADB para abrir Google Chrome en dispositivos Android"</em>, y luego pega el resultado en el campo y ejecútalo.</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/apk"><span class="k">Anterior</span><span class="v">Control sincronizado e instalación de APK</span></a>
+      <a class="next" href="#/backup"><span class="k">Siguiente</span><span class="v">Change / Backup / Restore</span></a>
+    </div>
+    <p class="updated">Última actualización: 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== BACKUP ==================== -->
+<section class="page" id="p-backup" data-title="Change / Backup / Restore" data-crumb="Configuración" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/req">Configuración</a></div>
+    <h1 class="title">Change / Backup / Restore</h1>
+    <p class="lede">Dale a cada app su propia identidad de dispositivo y conserva datos de cuenta que sobreviven a un reinicio o a un cambio de dispositivo.</p>
+
+    <div class="doc">
+<p>Change le da a un dispositivo una nueva identidad para cada aplicación. Backup y Restore conservan los datos de cuenta de una app para que no tengas que volver a iniciar sesión. La tecnología detrás se explica en <a href="#/change">¿Qué es Change / SuperChange?</a>.</p>
+<div class="video" data-yt="3laZZD16u9I">
+        <img src="anh/yt-3laZZD16u9I.jpg" alt="Change Device - Back Up - Restore en GenFarmer" loading="lazy">
+        <button class="vplay" type="button" aria-label="Reproducir el video"><span class="disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button>
+        <span class="vnote">Change Device - Back Up - Restore en GenFarmer</span>
+      </div>
+<h2 id="backup-h1">Change device</h2>
+<p>Esta función te permite modificar la información del dispositivo que ve cada aplicación. En la práctica, puedes tener dos apps de Telegram en el mismo teléfono y que cada una vea un dispositivo diferente.</p>
+<ol class="stepper">
+<li class="step">
+<h3>Selecciona el dispositivo y abre Change device</h3>
+<p>Selecciona el dispositivo y luego haz clic en <strong>Change device</strong> en el menú lateral. La identidad predeterminada es <strong>Samsung Galaxy S21 Ultra 5G</strong>.</p>
+<figure class="fig"><img src="anh/eng-chg-01.jpg" alt="Change device en el menú lateral" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>Genera los parámetros al azar o configúralos a mano</h3>
+<p>Haz clic en <strong>Random</strong> (Aleatorio) para que el sistema genere al azar todos los parámetros. Para configurarlos tú mismo, marca <strong>Manual</strong> en la esquina superior derecha y ajústalos a tu gusto.</p>
+<figure class="fig"><img src="anh/eng-chg-02.jpg" alt="Parámetros Random o Manual" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>Confirma</h3>
+<p>Haz clic en <strong>Change</strong>. El dispositivo se desconecta y se reinicia brevemente para aplicar la nueva configuración.</p>
+<figure class="fig"><img src="anh/eng-chg-03.jpg" alt="Confirmar el cambio" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-chg-04.jpg" alt="El dispositivo se reinicia para aplicar el cambio" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>Verifica</h3>
+<p>Abre la app <strong>Device Info HW</strong> para comprobar la nueva identidad: después del cambio, el dispositivo puede aparecer como <strong>Realme RMX2030</strong>. La app se descarga gratis desde APKPure.</p>
+<figure class="fig"><img src="anh/eng-chg-05.jpg" alt="Verificar la nueva identidad del dispositivo" loading="lazy"></figure>
+</li>
+</ol>
+<h2 id="backup-h2">Backup: datos de cuentas de redes sociales</h2>
+<ol class="stepper">
+<li class="step">
+<h3>Abre la cuenta que quieres respaldar</h3>
+<p>Ve a la plataforma, abre el perfil de la cuenta y comprueba que todo esté como debe.</p>
+<figure class="fig"><img src="anh/eng-chg-06.jpg" alt="La cuenta que se va a respaldar" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>Haz la copia de seguridad de la app</h3>
+<p>Cierra la app, pasa el cursor sobre ella (TikTok, por ejemplo) y selecciona <strong>Backup App</strong> (copia de seguridad de la app).</p>
+<figure class="fig"><img src="anh/eng-chg-07.jpg" alt="Backup App" loading="lazy"></figure>
+</li>
+</ol>
+<h2 id="backup-h3">Restore: datos de cuentas de redes sociales</h2>
+<ol class="stepper">
+<li class="step">
+<h3>Elige Restore App</h3>
+<p>Con el archivo de copia de seguridad guardado, vuelve a la app y selecciona <strong>Restore App</strong> (restaurar la app).</p>
+</li>
+<li class="step">
+<h3>Elige el archivo de copia de seguridad</h3>
+<p>Elige el archivo que guardaste antes.</p>
+</li>
+<li class="step">
+<h3>Vuelve a abrir la app</h3>
+<p>Cuando veas <strong>Restore successful</strong>, cierra la app y ábrela de nuevo para seguir usándola.</p>
+</li>
+</ol>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Backup y Restore son lo que hace que un cambio sea sencillo: cuando pasas una cuenta a otro dispositivo o reinicias uno, restauras en lugar de volver a iniciar sesión y pasar por la verificación.</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/adb"><span class="k">Anterior</span><span class="v">Comandos ADB</span></a>
+      <a class="next" href="#/cc"><span class="k">Siguiente</span><span class="v">Control Center</span></a>
+    </div>
+    <p class="updated">Última actualización: 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== CC ==================== -->
+<section class="page" id="p-cc" data-title="Control Center" data-crumb="Software" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/cc">Software</a></div>
+    <h1 class="title">Control Center</h1>
+    <p class="lede">La pantalla que usas todos los días: la barra lateral, la vista de transmisión, el control sincronizado y el Inspector.</p>
+
+    <div class="doc">
+<p>Control Center es donde pasas la mayor parte del tiempo: la cuadrícula de teléfonos, la barra de herramientas que ajusta cómo se muestran, la vista de transmisión de un solo dispositivo, el control sincronizado y el Inspector para quien escribe scripts.</p>
+<h2 id="cc-h1">Menú de la barra lateral</h2>
+<p>La barra de herramientas a la izquierda del panel de control reúne las funciones para gestionar los dispositivos y ajustar cómo se ven en pantalla.</p>
+<figure class="fig"><img src="anh/eng-cc-side-01.jpg" alt="El menú de la barra lateral" loading="lazy"></figure>
+<h3>Ajustar la calidad de los dispositivos</h3>
+<ul>
+<li><strong>Big Screen:</strong> el tamaño de la ventana de transmisión de un dispositivo. Mínimo 40%, máximo 100%</li>
+<li><strong>Small Screen:</strong> el tamaño de los mosaicos de dispositivos dentro de Control Devices: Thumbnail, Medium, Large o Extra Large</li>
+<li><strong>Big Quality:</strong> la calidad de imagen de la transmisión: Low, Medium, High o Extra (Extra ofrece la mejor experiencia)</li>
+<li><strong>Small Quality:</strong> la calidad de imagen de los mosaicos en la pantalla general: Low, Medium, High o Extra</li>
+</ul>
+<figure class="fig"><img src="anh/eng-cc-side-02.jpg" alt="Big Screen" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-cc-side-03.jpg" alt="Small Screen" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-cc-side-04.jpg" alt="Big Quality" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-cc-side-05.jpg" alt="Small Quality" loading="lazy"></figure>
+<h3>Gestión de dispositivos</h3>
+<ul>
+<li><strong>Select all:</strong> selecciona todos los dispositivos para instalar APK, detener tareas, etc.</li>
+<li><strong>Select device:</strong> selecciona dispositivos individuales para trabajar con ellos</li>
+</ul>
+<figure class="fig"><img src="anh/eng-cc-side-06.jpg" alt="Seleccionar todos los dispositivos" loading="lazy"></figure>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Para quitar la selección de un dispositivo mientras <strong>Select all</strong> está activo, mantén pulsado <strong>Ctrl</strong> y haz clic en él.</p></div>
+</div>
+<h2 id="cc-h2">Stream Device</h2>
+<p>Stream Device muestra la pantalla de un teléfono al tamaño real del dispositivo y transmite cada acción con fluidez.</p>
+<figure class="fig"><img src="anh/eng-cc-stream-01.jpg" alt="La ventana Stream Device" loading="lazy"></figure>
+<ul>
+<li><strong>Vol+ / Vol-:</strong> sube y baja el volumen</li>
+<li><strong>Screenshot:</strong> captura la pantalla del dispositivo</li>
+<li><strong>Power:</strong> apaga la pantalla</li>
+<li><strong>Rotate:</strong> gira la pantalla</li>
+<li><strong>Install APK:</strong> instala una aplicación directamente desde la transmisión</li>
+<li><strong>ADB Command:</strong> ejecuta <a href="#/adb">comandos ADB</a> adicionales</li>
+<li><strong>Reboot:</strong> reinicia el dispositivo</li>
+<li><strong>Switch Keyboard Method:</strong> abre los ajustes del teclado</li>
+<li><strong>Accessibility Settings:</strong> abre la interfaz de ajustes</li>
+<li><strong>Language:</strong> abre los ajustes de idioma</li>
+<li><strong>Connection Setting:</strong> abre los ajustes de conexión, como Wi-Fi y Bluetooth</li>
+<li><strong>Apps:</strong> muestra las aplicaciones instaladas en el dispositivo</li>
+</ul>
+<h2 id="cc-h3">Group Control</h2>
+<p>Group Control sincroniza los dispositivos: trabajas en un dispositivo y los demás repiten las mismas acciones.</p>
+<p>Selecciona los dispositivos que quieres sincronizar.</p>
+<figure class="fig"><img src="anh/eng-cc-group-01.jpg" alt="Seleccionar todos los dispositivos" loading="lazy"><figcaption>Selecciona los dispositivos que se van a sincronizar.</figcaption></figure>
+<p>Luego abre la transmisión de cualquiera de ellos para convertirlo en el dispositivo principal.</p>
+<figure class="fig"><img src="anh/eng-cc-group-02.jpg" alt="La transmisión del dispositivo principal" loading="lazy"><figcaption>La pantalla de transmisión que se usa para manejar los demás dispositivos.</figcaption></figure>
+<p>Trabaja en ese dispositivo y los demás lo seguirán de forma idéntica.</p>
+<figure class="fig"><img src="anh/eng-cc-group-03.jpg" alt="Acción sincronizada" loading="lazy"><figcaption>Al abrir los ajustes en el dispositivo principal, se abren a la vez en todos los demás.</figcaption></figure>
+<div class="hint ok">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-ok"/></svg>
+<div><p>Group Control es gratuito y no tiene límite de acciones. La versión paso a paso, junto con la instalación de una app en todos los teléfonos, está en <a href="#/apk">Control sincronizado e instalación de APK</a>.</p></div>
+</div>
+<h2 id="cc-h4">Inspector</h2>
+<p>Inspector obtiene información de paquetes y elementos de una aplicación, para usarla al escribir código de automatización. Se abre en una ventana aparte de la app GenFarmer.</p>
+<figure class="fig"><img src="anh/eng-cc-insp-01.jpg" alt="La interfaz del Inspector" loading="lazy"></figure>
+<h3>Barra de herramientas del Inspector</h3>
+<figure class="fig"><img src="anh/eng-cc-insp-02.jpg" alt="La barra de herramientas del Inspector" loading="lazy"></figure>
+<ul>
+<li><strong>Select Devices:</strong> el menú desplegable con todos los dispositivos conectados actualmente a GenFarmer</li>
+<li><strong>Reload:</strong> vuelve a cargar la pantalla actual del dispositivo</li>
+<li><strong>Enable Grid:</strong> muestra la cuadrícula de elementos para identificarlos con precisión</li>
+<li><strong>Enable Swipe:</strong> desliza en el teléfono directamente desde la pantalla del Inspector</li>
+<li><strong>Enable Crop:</strong> captura una imagen y la convierte a Base64 para el nodo Image search</li>
+</ul>
+<figure class="fig"><img src="anh/eng-cc-insp-03.jpg" alt="Elementos mostrados como bloques" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-cc-insp-04.jpg" alt="Recortar una imagen y convertirla a Base64" loading="lazy"></figure>
+<h3>Qué muestra la vista del Inspector</h3>
+<p>Pasa el ratón sobre la interfaz del dispositivo para mostrar los bloques de elementos. Haz clic en un elemento y la columna central se llenará con información sobre ese elemento y la aplicación.</p>
+<figure class="fig"><img src="anh/eng-cc-insp-05.jpg" alt="Seleccionar un elemento" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-cc-insp-06.jpg" alt="Información del elemento" loading="lazy"></figure>
+<p>La columna derecha de la vista de transmisión muestra:</p>
+<ul>
+<li><strong>Activity:</strong> la acción del elemento</li>
+<li><strong>XPathLite:</strong> el XPath que se usa en los scripts</li>
+<li><strong>ClassName:</strong> el nombre de clase del elemento</li>
+<li><strong>Mouse Pos:</strong> las coordenadas de la posición seleccionada</li>
+<li><strong>Click:</strong> hace clic en el elemento y vuelve a cargar la pantalla del dispositivo automáticamente</li>
+<li><strong>Element Rect:</strong> las coordenadas del elemento</li>
+<li><strong>Index:</strong> el orden de prioridad del elemento</li>
+<li><strong>Text:</strong> el texto que contiene el elemento</li>
+<li><strong>Resourceid:</strong> el ID del elemento</li>
+<li><strong>Package:</strong> el ID de paquete de la aplicación</li>
+<li><strong>Description:</strong> la descripción del elemento</li>
+</ul>
+<p>También puedes seleccionar elementos desde la vista de código de la aplicación.</p>
+<figure class="fig"><img src="anh/eng-cc-insp-07.jpg" alt="Seleccionar desde la vista de código" loading="lazy"><figcaption>Un elemento seleccionado se vuelve amarillo.</figcaption></figure>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/backup"><span class="k">Anterior</span><span class="v">Change / Backup / Restore</span></a>
+      <a class="next" href="#/account"><span class="k">Siguiente</span><span class="v">Account Manager</span></a>
+    </div>
+    <p class="updated">Última actualización: 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== ACCOUNT ==================== -->
+<section class="page" id="p-account" data-title="Account Manager" data-crumb="Software" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/cc">Software</a></div>
+    <h1 class="title">Account Manager</h1>
+    <p class="lede">La hoja de cuentas dentro de la app: importar cuentas, asignar dispositivos y elegir qué cuenta ejecuta qué script.</p>
+
+    <div class="doc">
+<p>Account Manager guarda tu hoja de cuentas dentro de la app GenFarmer, así que ya no necesitas Excel ni Google Sheets. En el plan la usas por primera vez el <a href="#/a5">Día 2</a>, y a partir del <a href="#/a6">Día 3</a> también es donde eliges qué cuenta ejecuta qué script.</p>
+<figure class="fig"><img src="anh/eng-acct-01.jpg" alt="La pantalla Account Manager" loading="lazy"></figure>
+<h2 id="account-h1">Agregar cuentas</h2>
+<p><strong>Add Accounts</strong> te permite agregar cuentas a mano.</p>
+<figure class="fig"><img src="anh/eng-acct-02.jpg" alt="Agregar una cuenta" loading="lazy"></figure>
+<ul>
+<li><strong>Please Input:</strong> el UID o nombre de usuario de la cuenta</li>
+<li><strong>Select Format:</strong> una plantilla predefinida por tipo de cuenta, o una personalizada</li>
+<li><strong>Custom Format:</strong> elige tú mismo los campos: UID, Password, Email, 2FA, etc.</li>
+</ul>
+<h2 id="account-h2">Importar y exportar</h2>
+<ul>
+<li><strong>Export:</strong> exporta el archivo de cuentas en formato XLSX</li>
+<li><strong>Import:</strong> importa un archivo CSV o XLSX. GenFarmer incluye un archivo de plantilla para trabajar a partir de él</li>
+</ul>
+<figure class="fig"><img src="anh/eng-acct-03.jpg" alt="Importar un archivo de cuentas" loading="lazy"></figure>
+<h2 id="account-h3">Las columnas</h2>
+<ul>
+<li><strong>Device:</strong> el dispositivo predeterminado de esa cuenta</li>
+<li><strong>Status:</strong> el estado de la cuenta</li>
+<li><strong>UID:</strong> el nombre de usuario</li>
+<li><strong>Email:</strong> el correo vinculado a la cuenta</li>
+<li><strong>Password:</strong> la contraseña</li>
+<li><strong>Email Password:</strong> la contraseña del correo, que se usa para leer los códigos de verificación</li>
+<li><strong>2FA:</strong> el código de autenticación</li>
+</ul>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Una vez agregada, la cuenta se ejecuta en el dispositivo que seleccionaste, mediante el Module o la App que uses.</p></div>
+</div>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>Asignar un dispositivo a una cuenta es el paso que la gente se salta. Copia el <strong>Device ID</strong> de la pantalla principal en la columna Device ID; de lo contrario, el script no tiene ningún teléfono en el que ejecutarse.</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/cc"><span class="k">Anterior</span><span class="v">Control Center</span></a>
+      <a class="next" href="#/devices"><span class="k">Siguiente</span><span class="v">Dispositivos</span></a>
+    </div>
+    <p class="updated">Última actualización: 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== DEVICES ==================== -->
+<section class="page" id="p-devices" data-title="Dispositivos" data-crumb="Software" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/cc">Software</a></div>
+    <h1 class="title">Dispositivos</h1>
+    <p class="lede">Qué dispositivos puede usar tu cuenta, cuáles están activos y cuántos espacios quedan.</p>
+
+    <div class="doc">
+<p>La pantalla Devices gestiona los dispositivos vinculados a tu cuenta.</p>
+<figure class="fig"><img src="anh/eng-dev-01.jpg" alt="La pantalla Devices" loading="lazy"></figure>
+<h2 id="devices-h1">Resumen de dispositivos</h2>
+<ul>
+<li><strong>Total:</strong> la cantidad de dispositivos que puede usar la cuenta</li>
+<li><strong>Active:</strong> los dispositivos en uso actualmente</li>
+<li><strong>Free Slot:</strong> cuántos más se pueden agregar</li>
+</ul>
+<h2 id="devices-h2">Assigned y Unassigned</h2>
+<ul>
+<li><strong>Assigned:</strong> dispositivos activos y listos para usar</li>
+<li><strong>Unassigned:</strong> dispositivos en espera de activación. Haz clic en <strong>Active</strong> en el que quieras y su estado cambiará a Assigned</li>
+</ul>
+<figure class="fig"><img src="anh/eng-dev-02.jpg" alt="Dispositivos asignados y sin asignar" loading="lazy"></figure>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Si un dispositivo no se valida aquí, la causa suele ser uno de los dos problemas de licencia descritos en <a href="#/err-license">Solución: Not valid device</a>.</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/account"><span class="k">Anterior</span><span class="v">Account Manager</span></a>
+      <a class="next" href="#/apps"><span class="k">Siguiente</span><span class="v">App Manager</span></a>
+    </div>
+    <p class="updated">Última actualización: 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== APPS ==================== -->
+<section class="page" id="p-apps" data-title="App Manager" data-crumb="Software" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/cc">Software</a></div>
+    <h1 class="title">App Manager</h1>
+    <p class="lede">La biblioteca de aplicaciones que envías a los dispositivos, desde un archivo APK o desde la Store integrada en la app.</p>
+
+    <div class="doc">
+<p>App Manager es la biblioteca de aplicaciones que puedes enviar a los dispositivos.</p>
+<figure class="fig"><img src="anh/eng-appmgr-01.jpg" alt="La pantalla App Manager" loading="lazy"></figure>
+<ul>
+<li><strong>Name:</strong> el nombre de las aplicaciones instaladas</li>
+<li><strong>Android Version:</strong> la configuración mínima y la de destino</li>
+<li><strong>Size:</strong> el tamaño del archivo APK</li>
+<li><strong>Create At:</strong> cuándo se agregó el archivo a GenFarmer</li>
+<li><strong>Remove:</strong> elimina el archivo APK de GenFarmer</li>
+<li><strong>LoadAPK:</strong> sube un archivo APK a GenFarmer</li>
+</ul>
+<figure class="fig"><img src="anh/eng-appmgr-02.jpg" alt="Subir un archivo APK" loading="lazy"></figure>
+<div class="video" data-yt="twoKCKesw3o">
+        <img src="anh/yt-twoKCKesw3o.jpg" alt="Cómo cambiar de app con GenFarmer: instalar apps mediante APK o desde la Store" loading="lazy">
+        <button class="vplay" type="button" aria-label="Reproducir el video"><span class="disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button>
+        <span class="vnote">Cómo cambiar de app con GenFarmer: instalar apps mediante APK o desde la Store</span>
+      </div>
+<h2 id="apps-h1">Instalar desde la Store</h2>
+<p>Además de los archivos APK, puedes instalar desde la Store, que ofrece aplicaciones que GenFarmer ha comprobado en cuanto a seguridad y compatibilidad con la mayoría de los dispositivos.</p>
+<figure class="fig"><img src="anh/eng-appmgr-03.jpg" alt="La Store integrada en la app" loading="lazy"></figure>
+<p><strong>Descargar y luego seleccionar la versión</strong>: ese es todo el proceso.</p>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>Elige la versión que coincida con la versión de Android del dispositivo, o la instalación dará errores. Los pasos del lado del dispositivo están en <a href="#/apk">Control sincronizado e instalación de APK</a>.</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/devices"><span class="k">Anterior</span><span class="v">Dispositivos</span></a>
+      <a class="next" href="#/automation"><span class="k">Siguiente</span><span class="v">Automatización</span></a>
+    </div>
+    <p class="updated">Última actualización: 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== AUTOMATION ==================== -->
+<section class="page" id="p-automation" data-title="Automatización" data-crumb="Software" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/cc">Software</a></div>
+    <h1 class="title">Automatización</h1>
+    <p class="lede">Apps, Modules, Tasks y Runs: cómo se crea un script, se guarda, se asigna a dispositivos y se le hace seguimiento.</p>
+
+    <div class="doc">
+<p>La automatización es la forma en que el trabajo repetitivo pasa de tus manos a la máquina, mientras las funciones Antidetect mantienen vivas las cuentas. Sea lo que sea que ejecutes, hay un script para ello: escrito por ti, importado o comprado.</p>
+<p>El día en que empiezas a usarla en el plan es el <a href="#/a6">Día 3</a>, y allí se describen los paquetes listos para usar (Auto Login, Trust, Boost).</p>
+<h2 id="automation-h1">My Apps</h2>
+<figure class="fig"><img src="anh/eng-auto-apps-01.jpg" alt="La pantalla My Apps" loading="lazy"></figure>
+<ol>
+<li><strong>My App:</strong> las automatizaciones de la cuenta: escritas por ti, importadas o compradas en la tienda</li>
+<li><strong>Subscription:</strong> las automatizaciones compradas en la tienda, activas y vencidas</li>
+<li><strong>Import App:</strong> instala una automatización desde un archivo genfarmer. Compra en la tienda o en otra fuente de confianza para evitar perder información</li>
+<li><strong>Create App:</strong> crea y escribe un script nuevo</li>
+</ol>
+<figure class="fig"><img src="anh/eng-auto-apps-02.jpg" alt="Importar una app" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-auto-apps-03.jpg" alt="La interfaz de creación de scripts de automatización" loading="lazy"><figcaption>La interfaz de creación de scripts.</figcaption></figure>
+<ul>
+<li><strong>Select Devices:</strong> el dispositivo en el que quieres hacer pruebas</li>
+<li><strong>Select Node:</strong> los nodos que hacen posible crear scripts sin código</li>
+<li><strong>View Edit:</strong> muestra el script y los nodos que usa</li>
+<li><strong>Top Bar:</strong> las barras de herramientas de apoyo</li>
+<li><strong>Custom View:</strong> una imagen de portada personalizada para la app</li>
+</ul>
+<figure class="fig"><img src="anh/eng-auto-apps-04.jpg" alt="La interfaz de vista del dispositivo" loading="lazy"></figure>
+<ul>
+<li><strong>Device View:</strong> el dispositivo que se va a transmitir</li>
+<li><strong>Table Column:</strong> diseña la tabla de datos con la información que necesita el script</li>
+</ul>
+<figure class="fig"><img src="anh/eng-auto-apps-05.jpg" alt="La tabla de datos" loading="lazy"></figure>
+<ul>
+<li><strong>Save:</strong> guarda la app y sus nodos</li>
+<li><strong>Run:</strong> prueba la app en el dispositivo seleccionado</li>
+<li><strong>Otras funciones:</strong> registros de ejecución, guardar con otro nombre, modo de depuración</li>
+</ul>
+<figure class="fig"><img src="anh/eng-auto-apps-06.jpg" alt="Guardar y ejecutar" loading="lazy"></figure>
+<h2 id="automation-h2">My Modules</h2>
+<p>Un Module es una forma más avanzada de App, capaz de contener varias funciones más pequeñas dentro de un solo Module. La interfaz y las funciones son las mismas que en las Apps, con nodos adicionales para ejecutar varias Apps dentro del Module.</p>
+<figure class="fig"><img src="anh/eng-auto-mod-01.jpg" alt="La interfaz de Module" loading="lazy"><figcaption>La interfaz de Module de GenFarmer.</figcaption></figure>
+<p>Lo que distingue a un Module es el nodo <strong>Context Menu</strong>, que divide las funciones y gestiona varias Apps dentro de un solo Module.</p>
+<figure class="fig"><img src="anh/eng-auto-mod-02.jpg" alt="El nodo Context Menu" loading="lazy"></figure>
+<h2 id="automation-h3">Saved Tasks</h2>
+<p>Saved Tasks guarda las tareas que ya creaste, para que volver a ejecutarlas cueste un solo clic.</p>
+<figure class="fig"><img src="anh/eng-auto-task-01.jpg" alt="La pantalla Saved Tasks" loading="lazy"></figure>
+<ul>
+<li><strong>Name:</strong> el nombre de la tarea</li>
+<li><strong>App:</strong> la app de script que usa la tarea</li>
+<li><strong>Devices:</strong> cuántos dispositivos se ejecutan en la tarea</li>
+<li><strong>Runs:</strong> cuántas veces se ha ejecutado</li>
+<li><strong>Last run started at / Last run status / Last run duration:</strong> la ejecución más reciente</li>
+</ul>
+<p>Para crear una tarea, entra en un módulo o una app y elige <strong>Create Task</strong>.</p>
+<figure class="fig"><img src="anh/eng-auto-task-02.jpg" alt="Create Task" loading="lazy"></figure>
+<p>Ponle nombre a la tarea y luego elige los dispositivos en los que debe ejecutarse.</p>
+<figure class="fig"><img src="anh/eng-auto-task-03.jpg" alt="Seleccionar los dispositivos de una tarea" loading="lazy"></figure>
+<p>Cuando termines, puedes guardarla y ejecutarla de inmediato, o guardarla para más tarde.</p>
+<h2 id="automation-h4">Runs</h2>
+<p>Runs es donde se gestionan varias tareas al mismo tiempo.</p>
+<figure class="fig"><img src="anh/eng-auto-runs-01.jpg" alt="La pantalla Runs" loading="lazy"></figure>
+<ul>
+<li><strong>App:</strong> el nombre de tu app de script</li>
+<li><strong>Task:</strong> el nombre de la tarea</li>
+<li><strong>Result:</strong> la cantidad de ejecuciones</li>
+<li><strong>Started at / Finished at / Duration:</strong> cuándo se ejecutó y durante cuánto tiempo</li>
+<li><strong>Status:</strong> Running, Done o Aborted</li>
+<li><strong>Run:</strong> vuelve a ejecutar la tarea</li>
+</ul>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Las tareas se crean en <strong>Saved Tasks</strong> y aparecen aquí una vez que están en ejecución.</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/apps"><span class="k">Anterior</span><span class="v">App Manager</span></a>
+      <a class="next" href="#/settings"><span class="k">Siguiente</span><span class="v">Ajustes</span></a>
+    </div>
+    <p class="updated">Última actualización: 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== SETTINGS ==================== -->
+<section class="page" id="p-settings" data-title="Ajustes" data-crumb="Software" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/cc">Software</a></div>
+    <h1 class="title">Ajustes</h1>
+    <p class="lede">Idioma, ubicación de almacenamiento y las opciones de automatización, como el modo de depuración.</p>
+
+    <div class="doc">
+<p>Settings contiene la configuración básica del software.</p>
+<h2 id="settings-h1">General</h2>
+<figure class="fig"><img src="anh/eng-set-01.jpg" alt="Ajustes generales" loading="lazy"></figure>
+<p>Elige el idioma y el modo claro u oscuro.</p>
+<h2 id="settings-h2">Almacenamiento</h2>
+<figure class="fig"><img src="anh/eng-set-02.jpg" alt="Ajustes de almacenamiento" loading="lazy"></figure>
+<ul>
+<li><strong>Clear Cache:</strong> elimina los datos en caché y devuelve el almacenamiento a su estado inicial</li>
+<li><strong>Storage Location:</strong> dónde se guardan los archivos en la computadora. Si se deja en blanco, van al directorio de GenFarmer</li>
+<li><strong>Use Selected Path:</strong> usa la ruta que elegiste</li>
+<li><strong>Copy Profiles to Selected Path:</strong> copia los archivos a esa ruta</li>
+<li><strong>Move Profiles to Selected Path:</strong> mueve los archivos a esa ruta</li>
+</ul>
+<h2 id="settings-h3">Automatización</h2>
+<figure class="fig"><img src="anh/eng-set-03.jpg" alt="Ajustes de automatización" loading="lazy"></figure>
+<ul>
+<li><strong>Enable Debug Mode:</strong> activa la depuración</li>
+<li><strong>Tracking Node When Running:</strong> registra los nodos mientras se ejecuta un módulo</li>
+<li><strong>Sync Profiles Data After Running Task:</strong> sincroniza los datos de perfil al terminar una tarea</li>
+</ul>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/automation"><span class="k">Anterior</span><span class="v">Automatización</span></a>
+      <a class="next" href="#/api"><span class="k">Siguiente</span><span class="v">API</span></a>
+    </div>
+    <p class="updated">Última actualización: 09/2026</p>
+  </div>
+</section>

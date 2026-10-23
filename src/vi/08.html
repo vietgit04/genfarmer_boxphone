@@ -1,0 +1,242 @@
+
+<!-- ==================== TROUBLESHOOT ==================== -->
+<section class="page" id="p-troubleshoot" data-title="Xử lý sự cố theo triệu chứng" data-crumb="Tra cứu" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Tra cứu</a></div>
+    <h1 class="title">
+      Xử lý sự cố theo triệu chứng
+    </h1>
+    <p class="lede">Dành cho lần đọc thứ hai - tra cứu theo những gì bạn đang thấy trên màn hình, và biết ngay lớp nào đang hỏng và cần mở trang nào.</p>
+
+    <div class="doc">
+      <p>Lần đầu, bạn đọc tài liệu theo thứ tự. Từ lần thứ hai trở đi, bạn tra cứu theo những gì đang thấy trên màn hình. Bảng này dành cho lần thứ hai đó.</p>
+      <figure class="fig"><img src="anh/15-tra-cuu-giao-dien-phan-mem.jpg" alt="Phần mềm GenFarmer" loading="lazy"></figure>
+
+      <div class="tbl"><table>
+        <thead><tr><th>Triệu chứng</th><th>Lớp</th><th>Xem ở đâu / cần làm gì</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Scan</strong> không tìm thấy điện thoại nào</td><td>1 · THIẾT BỊ</td><td>Kiểm tra hai dải địa chỉ và nút <strong>Activate</strong> - <a href="#/otg">Kết nối qua OTG (LAN)</a>. Nếu dùng USB, kiểm tra đèn có màu xanh dương - <a href="#/usb">Kết nối qua USB</a>. <em>HDSD tr. 4-8</em></td></tr>
+          <tr><td>Tìm thấy điện thoại nhưng màn hình đen</td><td>1 · THIẾT BỊ</td><td>Sắp ra mắt - <a href="#/support">liên hệ hỗ trợ</a> kèm ảnh chụp màn hình</td></tr>
+          <tr><td>Một số điện thoại không bao giờ xuất hiện, <code>adb devices</code> báo <strong>unauthorized</strong></td><td>1 · THIẾT BỊ</td><td><a href="#/err-unauth">Sửa lỗi: Thiết bị không hiển thị (Unauthorized)</a> - bạn cần tệp ADB key cho mẫu box của mình</td></tr>
+          <tr><td>Đèn báo <strong>đỏ</strong> hoặc nhấp nháy, thiết bị bị rớt</td><td>1 · THIẾT BỊ</td><td><a href="#/err-light">Sửa lỗi: Đèn báo lỗi trên Boxphone</a> - chuyển mainboard sang khe khác, rồi cắm lại cáp FPC</td></tr>
+          <tr><td><strong>Not valid device</strong> / lỗi bản quyền trong ứng dụng</td><td>1 · THIẾT BỊ</td><td><a href="#/err-license">Sửa lỗi: Not valid device</a> - một tài khoản chỉ đăng nhập trên một máy tính, và kiểm tra đồng hồ</td></tr>
+          <tr><td>Điện thoại hiện lên nhưng không vào được mạng</td><td>2 · MẠNG</td><td>Kiểm tra proxy trước; nếu proxy ổn, kiểm tra giờ trên điện thoại (<a href="#/a4">Ngày 1 · bước 3</a>). Vẫn không được: kiểm tra Isolate Mode trên GenRouter (<a href="#/a5">Ngày 2 · bước 2</a>) · <a href="https://youtu.be/kGjP-7iqSTI" target="_blank" rel="noopener">video gán proxy</a></td></tr>
+          <tr><td>Chọn router, mua proxy, hoặc bất kỳ câu hỏi nào về mạng</td><td>2 · MẠNG</td><td><a href="#/router">Router &amp; proxy</a> - toàn bộ lớp mạng trong một trang</td></tr>
+          <tr><td>Câu hỏi về một gói: gói làm gì, nuôi bao lâu, thiết lập gì</td><td>4 · KỊCH BẢN</td><td><a href="#/package">Gói tự động hóa</a>, sau đó là trang dành cho nền tảng của bạn</td></tr>
+          <tr><td>Nhiều tài khoản bị khóa cùng lúc</td><td>2 · MẠNG</td><td>Hầu như luôn do nhiều tài khoản dùng chung một địa chỉ - xem <a href="#/a5">Ngày 2</a>. Xem <a href="https://youtu.be/kGjP-7iqSTI" target="_blank" rel="noopener">video về gán proxy và Isolate Mode</a>; hướng dẫn xử lý sự cố chi tiết sắp ra mắt</td></tr>
+          <tr><td>Đăng nhập xong thì bị yêu cầu xác minh</td><td>3 · DANH TÍNH</td><td>Quay lại <a href="#/a5">Ngày 2 ở trang A5</a> - đừng mở rộng; đổi nhà cung cấp tài khoản hoặc proxy, rồi thử lại. Hướng dẫn chi tiết sắp ra mắt</td></tr>
+          <tr><td>Tài khoản vẫn sống nhưng không ai thấy bài đăng</td><td>3 · DANH TÍNH</td><td>Thường do chưa nuôi đủ 2-4 tuần, hoặc chọn sai ngách - xem <a href="#/a7">Ngày 4-5</a></td></tr>
+          <tr><td>Mọi thứ đều chạy nhưng số liệu không nhích</td><td>4 · KỊCH BẢN</td><td><a href="#/a7">Chương nền tảng</a> - phần cấu hình</td></tr>
+          <tr><td>Mở ra một ứng dụng khác sau khi cài</td><td>4 · KỊCH BẢN</td><td>Bạn đang tải từ các link trong HDSD. Hãy dùng thư mục APK chính thức ở <a href="#/a5">Ngày 2 · bước 3</a></td></tr>
+        </tbody>
+      </table></div>
+
+      <div class="hint">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+        <div><p>Không chắc là lớp nào? Đọc lại <a href="#/a1">Bốn lớp của hệ thống</a>. Khi cần trợ giúp, hãy dùng mẫu tin nhắn soạn sẵn ở <a href="#/support">Trước khi liên hệ hỗ trợ</a>.</p></div>
+      </div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/pkg-tidal"><span class="k">Trước</span><span class="v">Gói Tidal</span></a>
+      <a class="next" href="#/err-license"><span class="k">Tiếp</span><span class="v">Sửa lỗi: Not valid device</span></a>
+    </div>
+    <p class="updated">Cập nhật lần cuối 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== GLOSSARY ==================== -->
+<section class="page" id="p-glossary" data-title="Thuật ngữ" data-crumb="Tra cứu" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Tra cứu</a></div>
+    <h1 class="title">
+      Thuật ngữ
+    </h1>
+    <p class="lede">Các thuật ngữ xuất hiện trong khóa học và HDSD, giải thích ngắn gọn theo cách hệ thống GenFarmer sử dụng.</p>
+
+    <div class="doc">
+      <p>Khi đọc mà gặp thuật ngữ chưa biết, hãy tra ở đây rồi quay lại trang bạn đang đọc. Được sắp xếp theo bốn lớp của hệ thống - xem <a href="#/a1">Bốn lớp của hệ thống</a>.</p>
+      <figure class="fig"><img src="anh/16-thuat-ngu-dien-thoai.jpg" alt="GenFarmer" loading="lazy"></figure>
+
+      <h2 id="h-layer1">Lớp 1 · Thiết bị</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>Thuật ngữ</th><th>Ý nghĩa</th><th>Xuất hiện ở</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Box / Boxphone</strong></td><td>Vỏ phần cứng chứa nhiều điện thoại (thường là 20), mua từ GenFarmer.</td><td>Các lớp · Ngày 1</td></tr>
+          <tr><td><strong>GenFarmer Software</strong></td><td>Phần mềm cài trên máy tính để điều khiển mọi điện thoại trong box. Tải tại <a href="https://genfarmer.com/download/" target="_blank" rel="noopener">genfarmer.com/download</a>.</td><td>Ngày 1</td></tr>
+          <tr><td><strong>Control Center</strong></td><td>Màn hình điều khiển thủ công trong phần mềm: chạm, gõ và thao tác trên một hoặc nhiều điện thoại cùng lúc.</td><td>Ngày 1</td></tr>
+          <tr><td><strong>Chế độ USB</strong></td><td>Chế độ kết nối khi dùng 1 box với GenRouter H3000. Cắm vào là được nhận diện tự động.</td><td>Ngày 1</td></tr>
+          <tr><td><strong>Chế độ OTG</strong></td><td>Chế độ kết nối khi dùng mini PC. Bạn phải thêm hai dải địa chỉ, bấm Active, rồi Scan. Ở chế độ này điện thoại đã có internet qua mini PC.</td><td>Ngày 1</td></tr>
+          <tr><td><strong>Dải địa chỉ</strong></td><td>Hai dải địa chỉ mạng <code>192.168.4.1-255</code> và <code>192.168.5.1-255</code> phải khai báo ở chế độ OTG để phần mềm tìm thấy điện thoại.</td><td>Ngày 1</td></tr>
+          <tr><td><strong>Active / Scan</strong></td><td>Active: kích hoạt các dải địa chỉ bạn đã thêm. Scan: tìm điện thoại. Quên bấm Active là lý do phổ biến nhất khiến Scan không tìm thấy điện thoại.</td><td>Ngày 1</td></tr>
+          <tr><td><strong>Device ID</strong></td><td>Mã định danh của từng điện thoại, hiển thị trên màn hình chính; dùng để gán điện thoại cho tài khoản trong Account Manager.</td><td>Ngày 2</td></tr>
+          <tr><td><strong>APK</strong></td><td>Tệp cài đặt ứng dụng Android (TikTok, Facebook…). Cài hàng loạt bằng nút Install APK.</td><td>Ngày 2</td></tr>
+          <tr><td><strong>adb</strong></td><td>Công cụ dòng lệnh của Android để gửi lệnh trực tiếp đến điện thoại. Không bắt buộc, chỉ dành cho người có nền tảng kỹ thuật.</td><td>Ngày 1</td></tr>
+        </tbody>
+      </table></div>
+
+      <h2 id="h-layer2">Lớp 2 · Mạng</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>Thuật ngữ</th><th>Ý nghĩa</th><th>Xuất hiện ở</th></tr></thead>
+        <tbody>
+          <tr><td><strong>GenRouter (H3000)</strong></td><td>Router của GenFarmer, cấp cho mỗi điện thoại một đường internet riêng. H3000 phục vụ 1 box. Bảng điều khiển ở <code>192.168.5.1:9000</code>.</td><td>Các lớp · Ngày 1 · Ngày 2</td></tr>
+          <tr><td><strong>Mini PC</strong></td><td>Máy tính nhỏ dùng thay H3000 khi bạn có từ 2 box trở lên; điện thoại trong box dùng mạng của mini PC (chế độ OTG). Cần cáp LAN Cat5/Cat6.</td><td>Ngày 0 · Ngày 1</td></tr>
+          <tr><td><strong>Proxy</strong></td><td>"Địa chỉ nhà" của tài khoản trên internet. Mỗi điện thoại / mỗi tài khoản cần một proxy riêng; dùng chung chính là nguyên nhân khiến tài khoản bị khóa hàng loạt.</td><td>Ngày 2</td></tr>
+          <tr><td><strong>Isolate Mode</strong></td><td>Một chế độ của GenRouter: nếu proxy của điện thoại chết, mạng của điện thoại đó bị ngắt ngay lập tức để địa chỉ thật không bao giờ bị lộ.</td><td>Ngày 2</td></tr>
+        </tbody>
+      </table></div>
+
+      <h2 id="h-layer3">Lớp 3 · Danh tính</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>Thuật ngữ</th><th>Ý nghĩa</th><th>Xuất hiện ở</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Tài khoản</strong></td><td>Tài khoản trên một nền tảng (TikTok, Facebook…). Trong hệ thống, tài khoản là một danh tính; proxy là địa chỉ nhà của danh tính đó.</td><td>Ngày 2</td></tr>
+          <tr><td><strong>UID | Password | 2FA</strong></td><td>Định dạng mặc định để nhập tài khoản vào bảng: ID tài khoản, mật khẩu và mã xác thực hai lớp, ngăn cách bằng dấu gạch đứng. Có thể đổi trong mục Custom.</td><td>Ngày 2</td></tr>
+          <tr><td><strong>Account Manager</strong></td><td>Màn hình quản lý tài khoản: nơi bạn nhập bảng tài khoản, gán Device ID, và (từ Ngày 3) chọn tài khoản nào chạy kịch bản nào.</td><td>Ngày 2 · Ngày 3</td></tr>
+          <tr><td><strong>Xác minh</strong></td><td>Nền tảng yêu cầu bạn chứng minh tài khoản (mã OTP, ảnh, video…). Bị yêu cầu xác minh thường xuyên hơn bình thường là dấu hiệu cần dừng lại.</td><td>Ngày 2 · Ngày 4-5</td></tr>
+          <tr><td><strong>Nuôi / ổn định tài khoản</strong></td><td>Giai đoạn 2-4 tuần trong đó tài khoản hình thành thói quen như người thật trước khi được dùng cho mục đích chính. Tăng trưởng chậm trong giai đoạn này là bình thường.</td><td>Ngày 2 · Ngày 3 · Ngày 4-5</td></tr>
+        </tbody>
+      </table></div>
+
+      <h2 id="h-layer4">Lớp 4 · Tự động hóa</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>Thuật ngữ</th><th>Ý nghĩa</th><th>Xuất hiện ở</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Kịch bản</strong></td><td>Chuỗi thao tác được ghi lại để điện thoại tự thực hiện, chạy trên nhiều điện thoại cùng lúc. Không cần viết code.</td><td>Ngày 3</td></tr>
+          <tr><td><strong>Gói tự động hóa / Store</strong></td><td>Bộ kịch bản dựng sẵn cho từng nền tảng, tải về từ mục Store của phần mềm.</td><td>Các lớp · Ngày 3</td></tr>
+          <tr><td><strong>Auto Login</strong></td><td>Công cụ đăng nhập / đăng xuất hàng loạt.</td><td>Ngày 3</td></tr>
+          <tr><td><strong>Trust</strong></td><td>Công cụ nuôi tài khoản: điện thoại xem, lướt, like và follow như một người thật có sở thích rõ ràng. Chạy trong 2-4 tuần.</td><td>Ngày 3</td></tr>
+          <tr><td><strong>Boost</strong></td><td>Công cụ đẩy tương tác vào một bài đăng cụ thể. Chỉ dùng sau khi đã nuôi đủ.</td><td>Ngày 3</td></tr>
+          <tr><td><strong>API key vilao.ai</strong></td><td>Key dùng cho bình luận tự động (bình luận do AI viết). Chuẩn bị vào Ngày 0.</td><td>Ngày 0 · Ngày 3</td></tr>
+          <tr><td><strong>Ngách nội dung</strong></td><td>Chủ đề mà tài khoản được nuôi xoay quanh. Chọn sai thì bài đăng của bạn sẽ không đến được đúng đối tượng.</td><td>Ngày 4-5</td></tr>
+        </tbody>
+      </table></div>
+
+      <h2 id="h-general">Chung</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>Thuật ngữ</th><th>Ý nghĩa</th></tr></thead>
+        <tbody>
+          <tr><td><strong>HDSD</strong></td><td>Bộ Hướng dẫn sử dụng GenFarmer đầy đủ (141 trang). Khóa học này chỉ cho bạn đúng trang cần mở. Xem thêm <a href="https://youtu.be/dWUFV9oCnL0" target="_blank" rel="noopener">video hướng dẫn</a>.</td></tr>
+          <tr><td><strong>Gói (package)</strong></td><td>Bộ kịch bản tự động hóa dựng sẵn cho một nền tảng, mua trong Store. Mỗi gói mạng xã hội gồm Auto Login, Trust và Boost.</td><td><a href="#/package">Gói tự động hóa</a></td></tr>
+          <tr><td><strong>Proxy</strong></td><td>Địa chỉ mà tài khoản trông như đang sống ở đó. Mỗi điện thoại một proxy; khi nhiều tài khoản dùng chung một proxy, chúng bị khóa cùng nhau.</td><td><a href="#/router">Router &amp; proxy</a></td></tr>
+          <tr><td><strong>Change</strong></td><td>Công nghệ tích hợp trong ROM của một số mẫu Boxphone, thay đổi fingerprint thiết bị mà ứng dụng nhìn thấy, để một thiết bị trông như nhiều thiết bị. Không phải root.</td><td><a href="#/change">Change</a></td></tr>
+          <tr><td><strong>Super Change</strong></td><td>Dòng nâng cấp: Change cộng thêm giả lập GPS và cảm biến, nguồn cài ứng dụng chính thức, Android 15 với cập nhật OTA và fingerprint phần cứng hiếm hơn.</td><td><a href="#/change">Change</a></td></tr>
+          <tr><td><strong>Backup / Restore App</strong></td><td>Sao lưu và khôi phục dữ liệu của một ứng dụng trên thiết bị, để tài khoản không bị mất khi reset hoặc chuyển máy mà không phải đăng nhập lại.</td><td><a href="#/backup">Backup</a></td></tr>
+          <tr><td><strong>Inspector</strong></td><td>Cửa sổ riêng đọc các phần tử của ứng dụng - XPath, resource id, package - dành cho người viết kịch bản tự động hóa.</td><td><a href="#/cc">Control Center</a></td></tr>
+          <tr><td><strong>Module</strong></td><td>Một App nâng cao chứa nhiều chức năng nhỏ hơn, được liên kết bằng node Context Menu.</td><td><a href="#/automation">Automation</a></td></tr>
+          <tr><td><strong>Task / Run</strong></td><td>Task là một app cùng các thiết bị chạy nó; Run là một lần thực thi Task đó, kèm trạng thái và thời lượng.</td><td><a href="#/automation">Automation</a></td></tr>
+          <tr><td><strong>Đèn báo</strong></td><td>Xanh dương là chế độ USB, xanh lá là chế độ OTG, đỏ hoặc nhấp nháy là lỗi mainboard.</td><td><a href="#/usb">USB</a> · <a href="#/err-light">Đèn báo lỗi</a></td></tr>
+          <tr><td><strong>ADB key</strong></td><td>Tệp cấp quyền cho phép máy tính giao tiếp với các mainboard. Riêng cho từng mẫu box; bộ phận hỗ trợ sẽ cung cấp.</td><td><a href="#/err-unauth">Unauthorized</a></td></tr>
+          <tr><td><strong>Khóa học</strong></td><td>Ngày 0 đến Ngày 4-5: thứ tự đọc trong tuần đầu tiên, khác với các trang tra cứu mà bạn quay lại sau này.</td></tr>
+          <tr><td><strong>Hoàn thành khi</strong></td><td>Tiêu chí hoàn thành của mỗi ngày. Nếu chưa đạt, hãy ở lại ngày đó.</td></tr>
+          <tr><td><strong>Sắp ra mắt</strong></td><td>Hướng dẫn chi tiết cho phần này vẫn đang được biên soạn. Nếu bạn cần ngay, hãy <a href="#/support">liên hệ hỗ trợ</a>.</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/faq"><span class="k">Trước</span><span class="v">Câu hỏi thường gặp</span></a>
+      <a class="next" href="#/support"><span class="k">Tiếp</span><span class="v">Trước khi liên hệ hỗ trợ</span></a>
+    </div>
+    <p class="updated">Cập nhật lần cuối 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== SUPPORT ==================== -->
+<section class="page" id="p-support" data-title="Trước khi liên hệ hỗ trợ" data-crumb="Tra cứu" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Tra cứu</a></div>
+    <h1 class="title">
+      Trước khi liên hệ hỗ trợ
+    </h1>
+    <p class="lede">Các kênh hỗ trợ, 5 thông tin cần gửi kèm, và mẫu tin nhắn soạn sẵn - gửi đúng ngay lần đầu để được hỗ trợ nhanh hơn.</p>
+
+    <div class="doc">
+      <p>Đội ngũ hỗ trợ làm việc nhanh nhất khi ngay tin nhắn đầu tiên đã có đủ mọi thông tin họ cần. Trang này giúp bạn gửi thông tin đúng và đầy đủ trong một phút.</p>
+
+      <h2 id="h-channels">Các kênh hỗ trợ</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>Kênh</th><th>Liên hệ</th><th>Ghi chú</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Hỗ trợ kỹ thuật qua WhatsApp</strong></td><td><a href="https://wa.me/84792432905" target="_blank" rel="noopener">+84 79 243 2905</a></td><td>Giờ hỗ trợ: <em>(sẽ thông báo sau)</em> · GMT+7 (giờ Việt Nam)</td></tr>
+          <tr><td><strong>Email</strong></td><td><a href="mailto:genfarmer.packagee@gmail.com">genfarmer.packagee@gmail.com</a></td><td> - </td></tr>
+          <tr><td><strong>Cộng đồng khách hàng</strong></td><td><a href="https://chat.whatsapp.com/J8bchy0IIwREeAI1z7Jmvo?mode=gi_t" target="_blank" rel="noopener">Nhóm WhatsApp</a></td><td>Hỏi đáp nhanh và kinh nghiệm từ những người dùng khác</td></tr>
+          <tr><td><strong>Kinh doanh - mua gói tự động hóa</strong></td><td><a href="https://wa.me/84971234601" target="_blank" rel="noopener">+84 97 123 46 01</a></td><td>WhatsApp</td></tr>
+          <tr><td><strong>All-in-One Boxphone Solution</strong></td><td><a href="https://chat.whatsapp.com/G45cnUrjeK0EdW0rEb8GDL" target="_blank" rel="noopener">Nhóm WhatsApp</a></td><td>Nhóm sản phẩm do GenFarmer Global quản lý</td></tr>
+          <tr><td><strong>GenFarmer Shop</strong></td><td><a href="https://chat.whatsapp.com/CMWK6LWC2lGBFXk3oNyfQK" target="_blank" rel="noopener">Nhóm WhatsApp</a></td><td>Mua phần cứng và phụ kiện</td></tr>
+          <tr><td><strong>Cộng đồng Telegram</strong></td><td><a href="https://t.me/genfarmer" target="_blank" rel="noopener">t.me/genfarmer</a></td><td>Trò chuyện mở giữa những người dùng GenFarmer</td></tr>
+          <tr><td><strong>Kênh video</strong></td><td><a href="https://www.youtube.com/@GenFarmerGlobal" target="_blank" rel="noopener">YouTube - GenFarmer Global</a></td><td>Video hướng dẫn và khóa học tự động hóa không cần code miễn phí</td></tr>
+          <tr><td><strong>Video hướng dẫn tiếng Tây Ban Nha</strong></td><td><a href="https://www.youtube.com/playlist?list=PLDKj59ZxjjPzvYAxEBUXjYxkUAG624lBu" target="_blank" rel="noopener">Cùng danh sách phát</a></td><td>Kết nối qua OTG, cài đặt ADB, thay đổi thông số thiết bị, sao lưu và khôi phục, GenRouter H3000 và điều khiển thiết bị hàng loạt đều có phiên bản tiếng Tây Ban Nha trên kênh</td></tr>
+          <tr><td><strong>Website</strong></td><td><a href="https://genfarmer.com/" target="_blank" rel="noopener">genfarmer.com</a></td><td>Thông tin sản phẩm và tải về</td></tr>
+        </tbody>
+      </table></div>
+
+      <h2 id="h-selfcheck">Tự kiểm tra 2 phút trước khi nhắn tin</h2>
+      <p>Nhiều trường hợp có thể tự xử lý ngay:</p>
+      <div class="tbl"><table>
+        <thead><tr><th>Bạn đang thấy gì</th><th>Kiểm tra nhanh</th></tr></thead>
+        <tbody>
+          <tr><td>Scan không tìm thấy điện thoại nào</td><td>Bạn đã thêm đủ cả hai dải địa chỉ và bấm <strong>Active</strong> chưa? → <a href="#/a4">Ngày 1 · bước 3</a></td></tr>
+          <tr><td>Điện thoại hiện lên nhưng không có internet</td><td>Proxy còn sống không? Giờ trên điện thoại có đúng không? → <a href="#/a4">Ngày 1 · bước 3</a></td></tr>
+          <tr><td>Nhiều tài khoản bị khóa cùng lúc</td><td>Có tài khoản nào dùng chung proxy không? → <a href="#/a5">Ngày 2</a></td></tr>
+          <tr><td>Mở ra một ứng dụng khác sau khi cài</td><td>Bạn có đang tải từ các link trong bộ Hướng dẫn sử dụng (HDSD) không? Hãy dùng thư mục APK chính thức ở <a href="#/a5">Ngày 2 · bước 3</a></td></tr>
+          <tr><td>Một số điện thoại không bao giờ hiện lên, hoặc đèn báo đỏ</td><td>Kiểm tra <a href="#/err-unauth">Unauthorized</a> và <a href="#/err-light">đèn báo lỗi</a> trước - cả hai đều tự sửa được mà không cần hỗ trợ</td></tr>
+          <tr><td>Số liệu không nhích</td><td>Bạn đã nuôi đủ 2-4 tuần chưa? Đã chọn đúng ngách chưa? → <a href="#/a7">Ngày 4-5</a></td></tr>
+        </tbody>
+      </table></div>
+      <p>Danh sách đầy đủ: <a href="#/troubleshoot">Xử lý sự cố theo triệu chứng</a>.</p>
+
+      <h2 id="h-five">5 thông tin cần gửi kèm</h2>
+      <ol>
+        <li><strong>Số box</strong> đang dùng, và bạn dùng <strong>GenRouter H3000 hay mini PC</strong></li>
+        <li>Bạn đang kết nối qua <strong>USB hay OTG</strong></li>
+        <li>Bạn đang ở <strong>ngày nào</strong> trong lộ trình (Ngày 0-5) và đang làm <strong>bước nào</strong></li>
+        <li><strong>Scan tìm thấy bao nhiêu điện thoại</strong> / bao nhiêu điện thoại đang chạy</li>
+        <li><strong>Ảnh chụp màn hình</strong> phần mềm tại thời điểm lỗi (và ảnh chụp màn hình điện thoại nếu liên quan)</li>
+      </ol>
+
+      <h2 id="h-template">Mẫu tin nhắn - sao chép, điền vào, gửi đi</h2>
+      <pre><code>[Hỗ trợ GenFarmer]
+- Số box: ... (H3000 / mini PC)
+- Kết nối: USB / OTG
+- Đang ở: Ngày ... - bước ...
+- Scan tìm thấy: ... / ... điện thoại
+- Sự cố: (bạn đang làm gì, thấy gì trên màn hình)
+- Đã thử: ...
+- Ảnh chụp màn hình: (đính kèm)</code></pre>
+
+      <div class="hint">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+        <div><p>Tin nhắn có đủ cả 5 mục trên thường được giải quyết chỉ trong một lần trả lời, thay vì phải hỏi qua hỏi lại nhiều lần.</p></div>
+      </div>
+
+      <h2 id="h-warranty">Bảo hành phần cứng</h2>
+      <p>Nếu nghi ngờ lỗi do nhà sản xuất, hãy gửi kèm <strong>video mở hộp</strong> bạn đã quay ở <a href="#/a3">Ngày 0</a> (tem niêm phong còn nguyên). Đây là bằng chứng bảo hành của bạn.</p>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/glossary"><span class="k">Trước</span><span class="v">Thuật ngữ</span></a>
+    </div>
+    <p class="updated">Cập nhật lần cuối 09/2026</p>
+  </div>
+</section>
+
+  </main>
+
+  <aside class="toc">
+    <div class="toc-h">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><use href="#i-list"/></svg>
+      Trên trang này
+    </div>
+    <div id="tocList"></div>
+  </aside>
+
+</div>
+
+<div class="ovl" id="ovl" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-label="Tìm kiếm">
+    <input id="q" type="text" placeholder="Tìm kiếm trong trung tâm hỗ trợ..." autocomplete="off" spellcheck="false">
+    <div class="results" id="results"></div>
+  </div>
+</div>
+

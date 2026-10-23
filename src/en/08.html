@@ -1,0 +1,242 @@
+
+<!-- ==================== TROUBLESHOOT ==================== -->
+<section class="page" id="p-troubleshoot" data-title="Troubleshoot by symptom" data-crumb="Reference" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Reference</a></div>
+    <h1 class="title">
+      Troubleshoot by symptom
+    </h1>
+    <p class="lede">For your second read - look things up by what you are seeing on screen, and know right away which layer is broken and which page to open.</p>
+
+    <div class="doc">
+      <p>The first time, you read the documentation in order. From the second time on, you look things up by what you are seeing on screen. This table is for that second time.</p>
+      <figure class="fig"><img src="anh/15-tra-cuu-giao-dien-phan-mem.jpg" alt="GenFarmer software" loading="lazy"></figure>
+
+      <div class="tbl"><table>
+        <thead><tr><th>Symptom</th><th>Layer</th><th>Where to look / what to do</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Scan</strong> finds no phones</td><td>1 · DEVICE</td><td>Check the two address ranges and the <strong>Activate</strong> button - <a href="#/otg">Connect via OTG (LAN)</a>. On USB, check the light is blue - <a href="#/usb">Connect via USB</a>. <em>HDSD p. 4-8</em></td></tr>
+          <tr><td>Phones are found but the screen is black</td><td>1 · DEVICE</td><td>Coming soon - <a href="#/support">contact support</a> with a screenshot</td></tr>
+          <tr><td>Some phones never appear at all, <code>adb devices</code> says <strong>unauthorized</strong></td><td>1 · DEVICE</td><td><a href="#/err-unauth">Fix: Device not showing (Unauthorized)</a> - you need the ADB key file for your box model</td></tr>
+          <tr><td>The indicator light is <strong>red</strong> or flickering, the device drops out</td><td>1 · DEVICE</td><td><a href="#/err-light">Fix: Boxphone indicator light error</a> - swap the mainboard to another slot, then reseat the FPC cable</td></tr>
+          <tr><td><strong>Not valid device</strong> / licence error in the app</td><td>1 · DEVICE</td><td><a href="#/err-license">Fix: Not valid device</a> - one account signs in on one computer, and check the clock</td></tr>
+          <tr><td>Phones show up but cannot get online</td><td>2 · NETWORK</td><td>Check the proxy first; if the proxy is fine, check the time on the phone (<a href="#/a4">Day 1 · step 3</a>). Still not working: check Isolate Mode on the GenRouter (<a href="#/a5">Day 2 · step 2</a>) · <a href="https://youtu.be/kGjP-7iqSTI" target="_blank" rel="noopener">proxy assignment video</a></td></tr>
+          <tr><td>Choosing a router, buying proxies, or any network question</td><td>2 · NETWORK</td><td><a href="#/router">Router &amp; proxy</a> - the whole network layer in one page</td></tr>
+          <tr><td>Question about a package: what it does, how long to warm up, what to set</td><td>4 · SCRIPTS</td><td><a href="#/package">Automation packages</a>, then the page for your platform</td></tr>
+          <tr><td>Many accounts get banned at the same time</td><td>2 · NETWORK</td><td>Almost always because several accounts share one address - see <a href="#/a5">Day 2</a>. Watch the <a href="https://youtu.be/kGjP-7iqSTI" target="_blank" rel="noopener">video on assigning proxies and Isolate Mode</a>; a detailed troubleshooting guide is coming soon</td></tr>
+          <tr><td>Logged in, then asked for verification</td><td>3 · IDENTITY</td><td>Go back to <a href="#/a5">Day 2 on page A5</a> - do not scale up; change your account supplier or proxies, then try again. A detailed guide is coming soon</td></tr>
+          <tr><td>Accounts are alive but nobody sees the posts</td><td>3 · IDENTITY</td><td>Usually because warming up has not reached 2-4 weeks, or the wrong niche was chosen - see <a href="#/a7">Day 4-5</a></td></tr>
+          <tr><td>Everything runs but the numbers do not move</td><td>4 · SCRIPTS</td><td><a href="#/a7">Platform chapter</a> - configuration section</td></tr>
+          <tr><td>A different app shows up after installing</td><td>4 · SCRIPTS</td><td>You are downloading from the links in the HDSD. Use the official APK folder in <a href="#/a5">Day 2 · step 3</a></td></tr>
+        </tbody>
+      </table></div>
+
+      <div class="hint">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+        <div><p>Not sure which layer? Reread <a href="#/a1">The four layers of the system</a>. When you need help, use the ready-made message template in <a href="#/support">Before you contact support</a>.</p></div>
+      </div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/pkg-tidal"><span class="k">Previous</span><span class="v">Tidal package</span></a>
+      <a class="next" href="#/err-license"><span class="k">Next</span><span class="v">Fix: Not valid device</span></a>
+    </div>
+    <p class="updated">Last updated 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== GLOSSARY ==================== -->
+<section class="page" id="p-glossary" data-title="Glossary" data-crumb="Reference" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Reference</a></div>
+    <h1 class="title">
+      Glossary
+    </h1>
+    <p class="lede">Terms that appear in the course and the HDSD, explained briefly the way the GenFarmer system uses them.</p>
+
+    <div class="doc">
+      <p>When you meet a term you do not know while reading, look it up here and then go back to the page you were on. Organized by the four layers of the system - see <a href="#/a1">The four layers of the system</a>.</p>
+      <figure class="fig"><img src="anh/16-thuat-ngu-dien-thoai.jpg" alt="GenFarmer" loading="lazy"></figure>
+
+      <h2 id="h-layer1">Layer 1 · Device</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>Term</th><th>Meaning</th><th>Found in</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Box / Boxphone</strong></td><td>The hardware enclosure holding many phones (usually 20), bought from GenFarmer.</td><td>Layers · Day 1</td></tr>
+          <tr><td><strong>GenFarmer Software</strong></td><td>The software installed on your computer to control every phone in the box. Download from <a href="https://genfarmer.com/download/" target="_blank" rel="noopener">genfarmer.com/download</a>.</td><td>Day 1</td></tr>
+          <tr><td><strong>Control Center</strong></td><td>The manual control screen in the software: tap, type and act on one phone or many phones at once.</td><td>Day 1</td></tr>
+          <tr><td><strong>USB mode</strong></td><td>The connection mode when using 1 box with a GenRouter H3000. Plug in and it is detected automatically.</td><td>Day 1</td></tr>
+          <tr><td><strong>OTG mode</strong></td><td>The connection mode when using a mini PC. You must add two address ranges, click Active, then Scan. In this mode the phones already have internet through the mini PC.</td><td>Day 1</td></tr>
+          <tr><td><strong>Address range</strong></td><td>The two network address ranges <code>192.168.4.1-255</code> and <code>192.168.5.1-255</code> that must be declared in OTG mode so the software can find the phones.</td><td>Day 1</td></tr>
+          <tr><td><strong>Active / Scan</strong></td><td>Active: activates the address ranges you added. Scan: searches for phones. Forgetting Active is the most common reason Scan finds no phones.</td><td>Day 1</td></tr>
+          <tr><td><strong>Device ID</strong></td><td>The identifier of each phone, shown on the main screen; used to assign a phone to an account in Account Manager.</td><td>Day 2</td></tr>
+          <tr><td><strong>APK</strong></td><td>The Android app installation file (TikTok, Facebook…). Installed in bulk with the Install APK button.</td><td>Day 2</td></tr>
+          <tr><td><strong>adb</strong></td><td>Android's command-line tool for sending commands directly to a phone. Optional, for people with a technical background only.</td><td>Day 1</td></tr>
+        </tbody>
+      </table></div>
+
+      <h2 id="h-layer2">Layer 2 · Network</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>Term</th><th>Meaning</th><th>Found in</th></tr></thead>
+        <tbody>
+          <tr><td><strong>GenRouter (H3000)</strong></td><td>GenFarmer's router, which gives each phone its own internet route. The H3000 serves 1 box. Control panel at <code>192.168.5.1:9000</code>.</td><td>Layers · Day 1 · Day 2</td></tr>
+          <tr><td><strong>Mini PC</strong></td><td>A small computer used instead of the H3000 when you have 2 or more boxes; the phones in the box use the mini PC's network (OTG mode). Needs a Cat5/Cat6 LAN cable.</td><td>Day 0 · Day 1</td></tr>
+          <tr><td><strong>Proxy</strong></td><td>An account's "home address" on the internet. Each phone / each account needs its own proxy; sharing one is what causes accounts to get banned in clusters.</td><td>Day 2</td></tr>
+          <tr><td><strong>Isolate Mode</strong></td><td>A GenRouter mode: if a phone's proxy dies, that phone's network is cut immediately so the real address is never exposed.</td><td>Day 2</td></tr>
+        </tbody>
+      </table></div>
+
+      <h2 id="h-layer3">Layer 3 · Identity</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>Term</th><th>Meaning</th><th>Found in</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Account</strong></td><td>An account on a platform (TikTok, Facebook…). In the system, an account is an identity; the proxy is that identity's home address.</td><td>Day 2</td></tr>
+          <tr><td><strong>UID | Password | 2FA</strong></td><td>The default format for entering accounts into the sheet: account ID, password and two-factor code, separated by vertical bars. Can be changed under Custom.</td><td>Day 2</td></tr>
+          <tr><td><strong>Account Manager</strong></td><td>The account management screen: where you import the account sheet, assign Device IDs, and (from Day 3) choose which account runs which script.</td><td>Day 2 · Day 3</td></tr>
+          <tr><td><strong>Verification</strong></td><td>The platform asks you to prove the account (OTP code, photo, video…). Being asked for verification more often than usual is a sign to stop.</td><td>Day 2 · Day 4-5</td></tr>
+          <tr><td><strong>Warming up / settling accounts</strong></td><td>The 2-4 week phase in which an account builds habits like a real person before being used for its main purpose. Slow growth during this phase is normal.</td><td>Day 2 · Day 3 · Day 4-5</td></tr>
+        </tbody>
+      </table></div>
+
+      <h2 id="h-layer4">Layer 4 · Automation</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>Term</th><th>Meaning</th><th>Found in</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Script</strong></td><td>A recorded sequence of actions the phone performs on its own, running on many phones at once. No coding needed.</td><td>Day 3</td></tr>
+          <tr><td><strong>Automation package / Store</strong></td><td>A ready-made set of scripts for each platform, downloaded from the Store section of the software.</td><td>Layers · Day 3</td></tr>
+          <tr><td><strong>Auto Login</strong></td><td>The bulk log-in / log-out tool.</td><td>Day 3</td></tr>
+          <tr><td><strong>Trust</strong></td><td>The account warming-up tool: the phone watches, scrolls, likes and follows like a real person with clear interests. Runs for 2-4 weeks.</td><td>Day 3</td></tr>
+          <tr><td><strong>Boost</strong></td><td>The tool that pushes engagement onto one specific post. Use only after enough warming up.</td><td>Day 3</td></tr>
+          <tr><td><strong>vilao.ai API key</strong></td><td>The key used for automatic commenting (AI-written comments). Prepare it on Day 0.</td><td>Day 0 · Day 3</td></tr>
+          <tr><td><strong>Content niche</strong></td><td>The topic an account is warmed up around. Pick the wrong one and your posts will not reach the right audience.</td><td>Day 4-5</td></tr>
+        </tbody>
+      </table></div>
+
+      <h2 id="h-general">General</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td><strong>HDSD</strong></td><td>The full GenFarmer User Manual (141 pages). This course points you to the exact page to open. See also the <a href="https://youtu.be/dWUFV9oCnL0" target="_blank" rel="noopener">video tutorial</a>.</td></tr>
+          <tr><td><strong>Package</strong></td><td>A ready-made set of automation scripts for one platform, bought from the Store. Each social platform package holds Auto Login, Trust and Boost.</td><td><a href="#/package">Packages</a></td></tr>
+          <tr><td><strong>Proxy</strong></td><td>The address an account appears to live at. One proxy per phone; when several accounts share one, they get banned together.</td><td><a href="#/router">Router &amp; proxy</a></td></tr>
+          <tr><td><strong>Change</strong></td><td>Technology built into the ROM of some Boxphone models that changes the device fingerprint an app sees, so one device can look like several. Not root.</td><td><a href="#/change">Change</a></td></tr>
+          <tr><td><strong>Super Change</strong></td><td>The upgraded line: Change plus GPS and sensor simulation, official install sources, Android 15 with OTA updates and rarer hardware fingerprints.</td><td><a href="#/change">Change</a></td></tr>
+          <tr><td><strong>Backup / Restore App</strong></td><td>Saving and restoring the data of an app on a device, so an account survives a reset or a move without logging in again.</td><td><a href="#/backup">Backup</a></td></tr>
+          <tr><td><strong>Inspector</strong></td><td>A separate window that reads the elements of an app - XPath, resource id, package - for people writing automation scripts.</td><td><a href="#/cc">Control Center</a></td></tr>
+          <tr><td><strong>Module</strong></td><td>An advanced App that holds several smaller functions, joined by the Context Menu node.</td><td><a href="#/automation">Automation</a></td></tr>
+          <tr><td><strong>Task / Run</strong></td><td>A Task is an app plus the devices it runs on; a Run is one execution of that Task, with its status and duration.</td><td><a href="#/automation">Automation</a></td></tr>
+          <tr><td><strong>Indicator light</strong></td><td>Blue means USB mode, green means OTG mode, red or flickering means a mainboard fault.</td><td><a href="#/usb">USB</a> · <a href="#/err-light">Light error</a></td></tr>
+          <tr><td><strong>ADB key</strong></td><td>The authorisation file that lets your computer talk to the mainboards. Specific to each box model; support provides it.</td><td><a href="#/err-unauth">Unauthorized</a></td></tr>
+          <tr><td><strong>The course</strong></td><td>Day 0 to Day 4-5: the reading order for your first week, as opposed to the reference pages you come back to later.</td></tr>
+          <tr><td><strong>Done when</strong></td><td>The completion criterion for each day. If you have not met it, stay on that day.</td></tr>
+          <tr><td><strong>Coming soon</strong></td><td>A detailed guide for this part is still being written. If you need it right now, <a href="#/support">contact support</a>.</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/faq"><span class="k">Previous</span><span class="v">FAQ</span></a>
+      <a class="next" href="#/support"><span class="k">Next</span><span class="v">Before you contact support</span></a>
+    </div>
+    <p class="updated">Last updated 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== SUPPORT ==================== -->
+<section class="page" id="p-support" data-title="Before you contact support" data-crumb="Reference" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Reference</a></div>
+    <h1 class="title">
+      Before you contact support
+    </h1>
+    <p class="lede">Support channels, the 5 pieces of information to include, and a ready-made message template - send it right the first time and get helped faster.</p>
+
+    <div class="doc">
+      <p>The support team works fastest when the very first message contains everything they need. This page helps you send the right and complete information in one minute.</p>
+
+      <h2 id="h-channels">Support channels</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>Channel</th><th>Contact</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Technical support on WhatsApp</strong></td><td><a href="https://wa.me/84792432905" target="_blank" rel="noopener">+84 79 243 2905</a></td><td>Support hours: <em>(to be announced)</em> · GMT+7 (Vietnam time)</td></tr>
+          <tr><td><strong>Email</strong></td><td><a href="mailto:genfarmer.packagee@gmail.com">genfarmer.packagee@gmail.com</a></td><td> - </td></tr>
+          <tr><td><strong>Customer community</strong></td><td><a href="https://chat.whatsapp.com/J8bchy0IIwREeAI1z7Jmvo?mode=gi_t" target="_blank" rel="noopener">WhatsApp group</a></td><td>Quick Q&amp;A and experience from other users</td></tr>
+          <tr><td><strong>Sales - buying automation packages</strong></td><td><a href="https://wa.me/84971234601" target="_blank" rel="noopener">+84 97 123 46 01</a></td><td>WhatsApp</td></tr>
+          <tr><td><strong>All-in-One Boxphone Solution</strong></td><td><a href="https://chat.whatsapp.com/G45cnUrjeK0EdW0rEb8GDL" target="_blank" rel="noopener">WhatsApp group</a></td><td>The product group run by GenFarmer Global</td></tr>
+          <tr><td><strong>GenFarmer Shop</strong></td><td><a href="https://chat.whatsapp.com/CMWK6LWC2lGBFXk3oNyfQK" target="_blank" rel="noopener">WhatsApp group</a></td><td>Buying hardware and accessories</td></tr>
+          <tr><td><strong>Telegram community</strong></td><td><a href="https://t.me/genfarmer" target="_blank" rel="noopener">t.me/genfarmer</a></td><td>Open chat between GenFarmer users</td></tr>
+          <tr><td><strong>Video channel</strong></td><td><a href="https://www.youtube.com/@GenFarmerGlobal" target="_blank" rel="noopener">YouTube - GenFarmer Global</a></td><td>Walkthroughs and the free no-code automation course</td></tr>
+          <tr><td><strong>Walkthroughs in Spanish</strong></td><td><a href="https://www.youtube.com/playlist?list=PLDKj59ZxjjPzvYAxEBUXjYxkUAG624lBu" target="_blank" rel="noopener">Same playlist</a></td><td>Connecting over OTG, ADB setup, changing device parameters, backup and restore, the GenRouter H3000 and controlling devices in bulk all have a Spanish version on the channel</td></tr>
+          <tr><td><strong>Website</strong></td><td><a href="https://genfarmer.com/" target="_blank" rel="noopener">genfarmer.com</a></td><td>Product information and downloads</td></tr>
+        </tbody>
+      </table></div>
+
+      <h2 id="h-selfcheck">A 2-minute self-check before you message</h2>
+      <p>Many cases can be solved on the spot:</p>
+      <div class="tbl"><table>
+        <thead><tr><th>What you are seeing</th><th>Quick check</th></tr></thead>
+        <tbody>
+          <tr><td>Scan finds no phones</td><td>Did you add both address ranges and click <strong>Active</strong>? → <a href="#/a4">Day 1 · step 3</a></td></tr>
+          <tr><td>Phones show up but have no internet</td><td>Is the proxy still alive? Is the time on the phone correct? → <a href="#/a4">Day 1 · step 3</a></td></tr>
+          <tr><td>Many accounts get banned at the same time</td><td>Are any accounts sharing a proxy? → <a href="#/a5">Day 2</a></td></tr>
+          <tr><td>A different app shows up after installing</td><td>Are you downloading from the links in the User Manual (HDSD)? Use the official APK folder in <a href="#/a5">Day 2 · step 3</a></td></tr>
+          <tr><td>Some phones never show up, or the light is red</td><td>Check <a href="#/err-unauth">Unauthorized</a> and <a href="#/err-light">indicator light error</a> first - both are fixed without support</td></tr>
+          <tr><td>The numbers do not move</td><td>Have you warmed up for the full 2-4 weeks? Did you pick the right niche? → <a href="#/a7">Day 4-5</a></td></tr>
+        </tbody>
+      </table></div>
+      <p>Full list: <a href="#/troubleshoot">Troubleshoot by symptom</a>.</p>
+
+      <h2 id="h-five">The 5 pieces of information to include</h2>
+      <ol>
+        <li><strong>Number of boxes</strong> in use, and whether you use a <strong>GenRouter H3000 or a mini PC</strong></li>
+        <li>Whether you are connected over <strong>USB or OTG</strong></li>
+        <li><strong>Which day</strong> of the roadmap you are on (Day 0-5) and <strong>which step</strong> you are doing</li>
+        <li><strong>How many phones Scan finds</strong> / how many phones are running</li>
+        <li>A <strong>screenshot</strong> of the software at the moment of the error (and a screenshot of the phone if relevant)</li>
+      </ol>
+
+      <h2 id="h-template">Message template - copy, fill in, send</h2>
+      <pre><code>[GenFarmer support]
+- Number of boxes: ... (H3000 / mini PC)
+- Connection: USB / OTG
+- Currently on: Day ... - step ...
+- Scan finds: ... / ... phones
+- Problem: (what you were doing, what you see on screen)
+- Already tried: ...
+- Screenshot: (attached)</code></pre>
+
+      <div class="hint">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+        <div><p>A message with all 5 items above is usually resolved in a single reply, instead of going back and forth several times.</p></div>
+      </div>
+
+      <h2 id="h-warranty">Hardware warranty</h2>
+      <p>If you suspect a manufacturing defect, include the <strong>unboxing video</strong> you filmed on <a href="#/a3">Day 0</a> (seals intact). This is your warranty evidence.</p>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/glossary"><span class="k">Previous</span><span class="v">Glossary</span></a>
+    </div>
+    <p class="updated">Last updated 09/2026</p>
+  </div>
+</section>
+
+  </main>
+
+  <aside class="toc">
+    <div class="toc-h">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><use href="#i-list"/></svg>
+      On this page
+    </div>
+    <div id="tocList"></div>
+  </aside>
+
+</div>
+
+<div class="ovl" id="ovl" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-label="Search">
+    <input id="q" type="text" placeholder="Search the support center..." autocomplete="off" spellcheck="false">
+    <div class="results" id="results"></div>
+  </div>
+</div>
+

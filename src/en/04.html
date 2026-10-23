@@ -1,0 +1,476 @@
+
+<!-- ==================== ADB ==================== -->
+<section class="page" id="p-adb" data-title="ADB commands" data-crumb="Setup" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/req">Setup</a></div>
+    <h1 class="title">ADB commands</h1>
+    <p class="lede">Optional. Run a command across the devices from inside GenFarmer, and set up the ADB environment the Unauthorized fix depends on.</p>
+
+    <div class="doc">
+<p>Optional, and only useful if you are comfortable with a command line. Skipping this page changes nothing in the roadmap - but the <a href="#/err-unauth">Unauthorized device fix</a> needs ADB installed on your PC.</p>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Video guide: <a href="https://youtu.be/uM-Z2nOl63c?si=wa-91Q1dNxnmp9Vi" target="_blank" rel="noopener">How to use ADB commands in GenFarmer</a></p></div>
+</div>
+<div class="video" data-yt="uM-Z2nOl63c">
+        <img src="anh/yt-uM-Z2nOl63c.jpg" alt="How to use ADB commands in GenFarmer" loading="lazy">
+        <button class="vplay" type="button" aria-label="Play the video"><span class="disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button>
+        <span class="vnote">How to use ADB commands in GenFarmer</span>
+      </div>
+<h2 id="adb-h1">Running a command</h2>
+<p>Select <strong>ADB Command</strong> in the toolbar.</p>
+<figure class="fig"><img src="anh/eng-adb-01.jpg" alt="ADB Command in the toolbar" loading="lazy"></figure>
+<p>Paste your command into the input field and click <strong>Execute</strong>.</p>
+<figure class="fig"><img src="anh/eng-adb-02.jpg" alt="Paste the command and click Execute" loading="lazy"></figure>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>You can have an AI tool such as ChatGPT or Gemini write the command for you. For example, to open Chrome everywhere, ask for <em>"ADB command to open Google Chrome on Android devices"</em>, then paste the result into the field and run it.</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/apk"><span class="k">Previous</span><span class="v">Synchronized control and APK installation</span></a>
+      <a class="next" href="#/backup"><span class="k">Next</span><span class="v">Change / Backup / Restore</span></a>
+    </div>
+    <p class="updated">Last updated 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== BACKUP ==================== -->
+<section class="page" id="p-backup" data-title="Change / Backup / Restore" data-crumb="Setup" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/req">Setup</a></div>
+    <h1 class="title">Change / Backup / Restore</h1>
+    <p class="lede">Give each app its own device identity, and keep account data that survives a reset or a swap.</p>
+
+    <div class="doc">
+<p>Change gives a device a new identity for each application. Backup and Restore keep the account data of an app so you do not have to log in again. The technology behind it is explained in <a href="#/change">What is Change / SuperChange</a>.</p>
+<div class="video" data-yt="3laZZD16u9I">
+        <img src="anh/yt-3laZZD16u9I.jpg" alt="Change Device - Back Up - Restore in GenFarmer" loading="lazy">
+        <button class="vplay" type="button" aria-label="Play the video"><span class="disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button>
+        <span class="vnote">Change Device - Back Up - Restore in GenFarmer</span>
+      </div>
+<h2 id="backup-h1">Change device</h2>
+<p>This feature lets you modify the device information seen by each application. In practice you can run two Telegram apps on the same phone and have each app see a different device.</p>
+<ol class="stepper">
+<li class="step">
+<h3>Select the device and open Change device</h3>
+<p>Select the device, then click <strong>Change device</strong> in the side menu. The default identity is <strong>Samsung Galaxy S21 Ultra 5G</strong>.</p>
+<figure class="fig"><img src="anh/eng-chg-01.jpg" alt="Change device in the side menu" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>Randomise or set the parameters by hand</h3>
+<p>Click <strong>Random</strong> to let the system randomise every parameter. To set them yourself, tick <strong>Manual</strong> in the top-right corner and adjust as you like.</p>
+<figure class="fig"><img src="anh/eng-chg-02.jpg" alt="Random or Manual parameters" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>Confirm</h3>
+<p>Click <strong>Change</strong>. The device disconnects and reboots briefly to apply the new settings.</p>
+<figure class="fig"><img src="anh/eng-chg-03.jpg" alt="Confirming the change" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-chg-04.jpg" alt="The device reboots to apply the change" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>Verify</h3>
+<p>Open the <strong>Device Info HW</strong> app to check the new identity - after the change the device may show up as <strong>Realme RMX2030</strong>. The app is a free download from APKPure.</p>
+<figure class="fig"><img src="anh/eng-chg-05.jpg" alt="Verifying the new device identity" loading="lazy"></figure>
+</li>
+</ol>
+<h2 id="backup-h2">Backup: social media account data</h2>
+<ol class="stepper">
+<li class="step">
+<h3>Open the account you want to back up</h3>
+<p>Go to the platform, open the account profile and check that everything is as it should be.</p>
+<figure class="fig"><img src="anh/eng-chg-06.jpg" alt="The account to back up" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>Back up the app</h3>
+<p>Close the app, hover over it (TikTok, for example) and select <strong>Backup App</strong>.</p>
+<figure class="fig"><img src="anh/eng-chg-07.jpg" alt="Backup App" loading="lazy"></figure>
+</li>
+</ol>
+<h2 id="backup-h3">Restore: social media account data</h2>
+<ol class="stepper">
+<li class="step">
+<h3>Choose Restore App</h3>
+<p>With the backup file saved, return to the app and select <strong>Restore App</strong>.</p>
+</li>
+<li class="step">
+<h3>Pick the backup file</h3>
+<p>Choose the file you saved earlier.</p>
+</li>
+<li class="step">
+<h3>Reopen the app</h3>
+<p>Once you see <strong>Restore successful</strong>, close the app and open it again to carry on using it.</p>
+</li>
+</ol>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Backup and Restore are what make a swap painless: when you move an account to another device or reset one, you restore instead of logging in again and going through verification.</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/adb"><span class="k">Previous</span><span class="v">ADB commands</span></a>
+      <a class="next" href="#/cc"><span class="k">Next</span><span class="v">Control Center</span></a>
+    </div>
+    <p class="updated">Last updated 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== CC ==================== -->
+<section class="page" id="p-cc" data-title="Control Center" data-crumb="Software" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/cc">Software</a></div>
+    <h1 class="title">Control Center</h1>
+    <p class="lede">The screen you use every day: the sidebar, the stream view, synchronized control and the Inspector.</p>
+
+    <div class="doc">
+<p>The Control Center is where you spend most of your time: the grid of phones, the toolbar that tunes how they are displayed, the stream view of a single device, synchronized control, and the Inspector for anyone writing scripts.</p>
+<h2 id="cc-h1">Sidebar menu</h2>
+<p>The toolbar on the left of the control panel holds the functions for managing devices and adjusting how they look on screen.</p>
+<figure class="fig"><img src="anh/eng-cc-side-01.jpg" alt="The sidebar menu" loading="lazy"></figure>
+<h3>Adjust device quality</h3>
+<ul>
+<li><strong>Big Screen:</strong> the size of a device's stream window. Minimum 40%, maximum 100%</li>
+<li><strong>Small Screen:</strong> the size of the device tiles inside Control Devices - Thumbnail, Medium, Large or Extra Large</li>
+<li><strong>Big Quality:</strong> the image quality of the stream - Low, Medium, High or Extra (Extra gives the best experience)</li>
+<li><strong>Small Quality:</strong> the image quality of the tiles on the overview screen - Low, Medium, High or Extra</li>
+</ul>
+<figure class="fig"><img src="anh/eng-cc-side-02.jpg" alt="Big Screen" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-cc-side-03.jpg" alt="Small Screen" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-cc-side-04.jpg" alt="Big Quality" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-cc-side-05.jpg" alt="Small Quality" loading="lazy"></figure>
+<h3>Device management</h3>
+<ul>
+<li><strong>Select all:</strong> select every device to install APKs, stop tasks and so on</li>
+<li><strong>Select device:</strong> select individual devices to work on</li>
+</ul>
+<figure class="fig"><img src="anh/eng-cc-side-06.jpg" alt="Select all devices" loading="lazy"></figure>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>To deselect one device while <strong>Select all</strong> is active, hold <strong>Ctrl</strong> and click it.</p></div>
+</div>
+<h2 id="cc-h2">Stream Device</h2>
+<p>Stream Device shows a phone screen at the real size of the device, and streams every action smoothly.</p>
+<figure class="fig"><img src="anh/eng-cc-stream-01.jpg" alt="The Stream Device window" loading="lazy"></figure>
+<ul>
+<li><strong>Vol+ / Vol-:</strong> volume up and down</li>
+<li><strong>Screenshot:</strong> capture the device screen</li>
+<li><strong>Power:</strong> turn the screen off</li>
+<li><strong>Rotate:</strong> rotate the screen</li>
+<li><strong>Install APK:</strong> install an application straight from the stream</li>
+<li><strong>ADB Command:</strong> run additional <a href="#/adb">ADB commands</a></li>
+<li><strong>Reboot:</strong> restart the device</li>
+<li><strong>Switch Keyboard Method:</strong> open the keyboard settings</li>
+<li><strong>Accessibility Settings:</strong> open the settings interface</li>
+<li><strong>Language:</strong> open the language settings</li>
+<li><strong>Connection Setting:</strong> open connection settings such as Wi-Fi and Bluetooth</li>
+<li><strong>Apps:</strong> show the applications installed on the device</li>
+</ul>
+<h2 id="cc-h3">Group Control</h2>
+<p>Group Control synchronizes the devices: you work on one device and the rest repeat the same actions.</p>
+<p>Select the devices you want to synchronize.</p>
+<figure class="fig"><img src="anh/eng-cc-group-01.jpg" alt="Select all devices" loading="lazy"><figcaption>Select the devices to synchronize.</figcaption></figure>
+<p>Then open the stream of any one of them to make it the main device.</p>
+<figure class="fig"><img src="anh/eng-cc-group-02.jpg" alt="The main device stream" loading="lazy"><figcaption>The stream screen used to drive the other devices.</figcaption></figure>
+<p>Work on that device and the others follow identically.</p>
+<figure class="fig"><img src="anh/eng-cc-group-03.jpg" alt="Synchronized action" loading="lazy"><figcaption>Opening settings on the main device opens them everywhere else at the same time.</figcaption></figure>
+<div class="hint ok">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-ok"/></svg>
+<div><p>Group Control is free and has no limit on the number of actions. The step-by-step version of this, together with installing an app on every phone, is on <a href="#/apk">Synchronized control and APK installation</a>.</p></div>
+</div>
+<h2 id="cc-h4">Inspector</h2>
+<p>Inspector retrieves package and element information from an application, for use when writing automation code. It opens as a separate window from the GenFarmer app.</p>
+<figure class="fig"><img src="anh/eng-cc-insp-01.jpg" alt="The Inspector interface" loading="lazy"></figure>
+<h3>Inspector toolbar</h3>
+<figure class="fig"><img src="anh/eng-cc-insp-02.jpg" alt="The Inspector toolbar" loading="lazy"></figure>
+<ul>
+<li><strong>Select Devices:</strong> the dropdown listing every device currently connected to GenFarmer</li>
+<li><strong>Reload:</strong> reload the current screen of the device</li>
+<li><strong>Enable Grid:</strong> show the element grid to identify elements precisely</li>
+<li><strong>Enable Swipe:</strong> swipe the phone directly on the Inspector screen</li>
+<li><strong>Enable Crop:</strong> capture an image and convert it to Base64 for the Image search node</li>
+</ul>
+<figure class="fig"><img src="anh/eng-cc-insp-03.jpg" alt="Elements shown as blocks" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-cc-insp-04.jpg" alt="Crop an image and convert it to Base64" loading="lazy"></figure>
+<h3>What the Inspector view shows</h3>
+<p>Hover the mouse over the device interface to reveal the element blocks. Click an element and the middle column fills with information about that element and the application.</p>
+<figure class="fig"><img src="anh/eng-cc-insp-05.jpg" alt="Selecting an element" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-cc-insp-06.jpg" alt="Element information" loading="lazy"></figure>
+<p>The right-hand column of the stream view shows:</p>
+<ul>
+<li><strong>Activity:</strong> the action of the element</li>
+<li><strong>XPathLite:</strong> the XPath used for scripting</li>
+<li><strong>ClassName:</strong> the class name of the element</li>
+<li><strong>Mouse Pos:</strong> coordinates of the selected position</li>
+<li><strong>Click:</strong> click the element and reload the device screen automatically</li>
+<li><strong>Element Rect:</strong> coordinates of the element</li>
+<li><strong>Index:</strong> the priority order of the element</li>
+<li><strong>Text:</strong> the text the element contains</li>
+<li><strong>Resourceid:</strong> the ID of the element</li>
+<li><strong>Package:</strong> the package ID of the application</li>
+<li><strong>Description:</strong> the description of the element</li>
+</ul>
+<p>You can also select elements through the code view of the application.</p>
+<figure class="fig"><img src="anh/eng-cc-insp-07.jpg" alt="Selecting through the code view" loading="lazy"><figcaption>A selected element turns yellow.</figcaption></figure>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/backup"><span class="k">Previous</span><span class="v">Change / Backup / Restore</span></a>
+      <a class="next" href="#/account"><span class="k">Next</span><span class="v">Account Manager</span></a>
+    </div>
+    <p class="updated">Last updated 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== ACCOUNT ==================== -->
+<section class="page" id="p-account" data-title="Account Manager" data-crumb="Software" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/cc">Software</a></div>
+    <h1 class="title">Account Manager</h1>
+    <p class="lede">The account sheet inside the app: importing accounts, assigning devices, and choosing which account runs which script.</p>
+
+    <div class="doc">
+<p>Account Manager keeps your account sheet inside the GenFarmer app, so you no longer need Excel or Google Sheets. In the roadmap you first use it on <a href="#/a5">Day 2</a>, and from <a href="#/a6">Day 3</a> it is also where you choose which account runs which script.</p>
+<figure class="fig"><img src="anh/eng-acct-01.jpg" alt="The Account Manager screen" loading="lazy"></figure>
+<h2 id="account-h1">Adding accounts</h2>
+<p><strong>Add Accounts</strong> lets you add accounts by hand.</p>
+<figure class="fig"><img src="anh/eng-acct-02.jpg" alt="Adding an account" loading="lazy"></figure>
+<ul>
+<li><strong>Please Input:</strong> the UID or username of the account</li>
+<li><strong>Select Format:</strong> a ready-made template per account type, or a custom one</li>
+<li><strong>Custom Format:</strong> choose the fields yourself - UID, Password, Email, 2FA and so on</li>
+</ul>
+<h2 id="account-h2">Import and export</h2>
+<ul>
+<li><strong>Export:</strong> export the account file in XLSX format</li>
+<li><strong>Import:</strong> import a CSV or XLSX file. GenFarmer ships a template file to work from</li>
+</ul>
+<figure class="fig"><img src="anh/eng-acct-03.jpg" alt="Importing an account file" loading="lazy"></figure>
+<h2 id="account-h3">The columns</h2>
+<ul>
+<li><strong>Device:</strong> the default device for that account</li>
+<li><strong>Status:</strong> the status of the account</li>
+<li><strong>UID:</strong> the username</li>
+<li><strong>Email:</strong> the email tied to the account</li>
+<li><strong>Password:</strong> the password</li>
+<li><strong>Email Password:</strong> the email password, used to read verification codes</li>
+<li><strong>2FA:</strong> the authentication code</li>
+</ul>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Once an account has been added, it runs on the device you selected, through whichever Module or App you use.</p></div>
+</div>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>Assigning a device to an account is the step people skip. Copy the <strong>Device ID</strong> from the main screen into the Device ID column, otherwise the script has no phone to run on.</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/cc"><span class="k">Previous</span><span class="v">Control Center</span></a>
+      <a class="next" href="#/devices"><span class="k">Next</span><span class="v">Devices</span></a>
+    </div>
+    <p class="updated">Last updated 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== DEVICES ==================== -->
+<section class="page" id="p-devices" data-title="Devices" data-crumb="Software" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/cc">Software</a></div>
+    <h1 class="title">Devices</h1>
+    <p class="lede">Which devices your account may use, which are active, and how many slots are left.</p>
+
+    <div class="doc">
+<p>The Devices screen manages the devices attached to your account.</p>
+<figure class="fig"><img src="anh/eng-dev-01.jpg" alt="The Devices screen" loading="lazy"></figure>
+<h2 id="devices-h1">Device overview</h2>
+<ul>
+<li><strong>Total:</strong> the number of devices the account may use</li>
+<li><strong>Active:</strong> the devices currently in use</li>
+<li><strong>Free Slot:</strong> how many more can be added</li>
+</ul>
+<h2 id="devices-h2">Assigned and Unassigned</h2>
+<ul>
+<li><strong>Assigned:</strong> devices that are active and ready to use</li>
+<li><strong>Unassigned:</strong> devices waiting to be activated. Click <strong>Active</strong> on the one you want and its status changes to Assigned</li>
+</ul>
+<figure class="fig"><img src="anh/eng-dev-02.jpg" alt="Assigned and unassigned devices" loading="lazy"></figure>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>If a device refuses to become valid here, the cause is usually one of the two licence problems described in <a href="#/err-license">Fix: Not valid device</a>.</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/account"><span class="k">Previous</span><span class="v">Account Manager</span></a>
+      <a class="next" href="#/apps"><span class="k">Next</span><span class="v">App Manager</span></a>
+    </div>
+    <p class="updated">Last updated 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== APPS ==================== -->
+<section class="page" id="p-apps" data-title="App Manager" data-crumb="Software" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/cc">Software</a></div>
+    <h1 class="title">App Manager</h1>
+    <p class="lede">The library of applications you push to the devices, from an APK file or from the in-app Store.</p>
+
+    <div class="doc">
+<p>App Manager is the library of applications you can push to the devices.</p>
+<figure class="fig"><img src="anh/eng-appmgr-01.jpg" alt="The App Manager screen" loading="lazy"></figure>
+<ul>
+<li><strong>Name:</strong> the name of the installed applications</li>
+<li><strong>Android Version:</strong> the minimum and target configuration</li>
+<li><strong>Size:</strong> the size of the APK file</li>
+<li><strong>Create At:</strong> when the file was added to GenFarmer</li>
+<li><strong>Remove:</strong> delete the APK file from GenFarmer</li>
+<li><strong>LoadAPK:</strong> upload an APK file into GenFarmer</li>
+</ul>
+<figure class="fig"><img src="anh/eng-appmgr-02.jpg" alt="Uploading an APK file" loading="lazy"></figure>
+<div class="video" data-yt="twoKCKesw3o">
+        <img src="anh/yt-twoKCKesw3o.jpg" alt="How to change app with GenFarmer: install apps via APK or Store" loading="lazy">
+        <button class="vplay" type="button" aria-label="Play the video"><span class="disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button>
+        <span class="vnote">How to change app with GenFarmer: install apps via APK or Store</span>
+      </div>
+<h2 id="apps-h1">Installing from the Store</h2>
+<p>Besides APK files, you can install from the Store, which carries applications GenFarmer has checked for safety and compatibility with most devices.</p>
+<figure class="fig"><img src="anh/eng-appmgr-03.jpg" alt="The in-app Store" loading="lazy"></figure>
+<p><strong>Download, then select version</strong> is the whole flow.</p>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>Choose the version that matches the Android version of the device, or the installation will throw errors. The device-side steps are on <a href="#/apk">Synchronized control and APK installation</a>.</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/devices"><span class="k">Previous</span><span class="v">Devices</span></a>
+      <a class="next" href="#/automation"><span class="k">Next</span><span class="v">Automation</span></a>
+    </div>
+    <p class="updated">Last updated 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== AUTOMATION ==================== -->
+<section class="page" id="p-automation" data-title="Automation" data-crumb="Software" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/cc">Software</a></div>
+    <h1 class="title">Automation</h1>
+    <p class="lede">Apps, Modules, Tasks and Runs: how a script is built, stored, assigned to devices and tracked.</p>
+
+    <div class="doc">
+<p>Automation is how the repetitive work moves from your hands to the machine, with the Antidetect features keeping the accounts alive. Whatever you run, there is a script for it: written by you, imported, or bought.</p>
+<p>The day you start using it in the roadmap is <a href="#/a6">Day 3</a>, and the ready-made packages (Auto Login, Trust, Boost) are described there.</p>
+<h2 id="automation-h1">My Apps</h2>
+<figure class="fig"><img src="anh/eng-auto-apps-01.jpg" alt="The My Apps screen" loading="lazy"></figure>
+<ol>
+<li><strong>My App:</strong> the automations belonging to the account - written by you, imported, or bought from the store</li>
+<li><strong>Subscription:</strong> the automations bought from the store, active and expired</li>
+<li><strong>Import App:</strong> install an automation from a genfarmer file. Buy from the store or another source you trust, to avoid losing information</li>
+<li><strong>Create App:</strong> create and write a new script</li>
+</ol>
+<figure class="fig"><img src="anh/eng-auto-apps-02.jpg" alt="Importing an app" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-auto-apps-03.jpg" alt="The automation script building interface" loading="lazy"><figcaption>The script building interface.</figcaption></figure>
+<ul>
+<li><strong>Select Devices:</strong> the device you want to test on</li>
+<li><strong>Select Node:</strong> the nodes that make no-code scripting possible</li>
+<li><strong>View Edit:</strong> shows the script and the nodes it uses</li>
+<li><strong>Top Bar:</strong> the supporting toolbars</li>
+<li><strong>Custom View:</strong> a custom cover image for the app</li>
+</ul>
+<figure class="fig"><img src="anh/eng-auto-apps-04.jpg" alt="The device view interface" loading="lazy"></figure>
+<ul>
+<li><strong>Device View:</strong> the device to stream</li>
+<li><strong>Table Column:</strong> design the data table for the information the script needs</li>
+</ul>
+<figure class="fig"><img src="anh/eng-auto-apps-05.jpg" alt="The data table" loading="lazy"></figure>
+<ul>
+<li><strong>Save:</strong> save the app and its nodes</li>
+<li><strong>Run:</strong> test the app on the selected device</li>
+<li><strong>Other functions:</strong> run logs, save as a different name, debug mode</li>
+</ul>
+<figure class="fig"><img src="anh/eng-auto-apps-06.jpg" alt="Saving and running" loading="lazy"></figure>
+<h2 id="automation-h2">My Modules</h2>
+<p>A Module is a more advanced form of an App, able to hold several smaller functions inside one Module. The interface and the functions are the same as Apps, with extra nodes for running several Apps inside the Module.</p>
+<figure class="fig"><img src="anh/eng-auto-mod-01.jpg" alt="The Module interface" loading="lazy"><figcaption>The GenFarmer Module interface.</figcaption></figure>
+<p>What sets a Module apart is the <strong>Context Menu</strong> node, which divides the functions and manages several Apps inside a single Module.</p>
+<figure class="fig"><img src="anh/eng-auto-mod-02.jpg" alt="The Context Menu node" loading="lazy"></figure>
+<h2 id="automation-h3">Saved Tasks</h2>
+<p>Saved Tasks holds the tasks you have already built, so running them again takes one click.</p>
+<figure class="fig"><img src="anh/eng-auto-task-01.jpg" alt="The Saved Tasks screen" loading="lazy"></figure>
+<ul>
+<li><strong>Name:</strong> the name of the task</li>
+<li><strong>App:</strong> the script app the task uses</li>
+<li><strong>Devices:</strong> how many devices run in the task</li>
+<li><strong>Runs:</strong> how many times it has run</li>
+<li><strong>Last run started at / Last run status / Last run duration:</strong> the most recent run</li>
+</ul>
+<p>To create a task, go into a module or an app and choose <strong>Create Task</strong>.</p>
+<figure class="fig"><img src="anh/eng-auto-task-02.jpg" alt="Create Task" loading="lazy"></figure>
+<p>Name the task, then pick the devices it should run on.</p>
+<figure class="fig"><img src="anh/eng-auto-task-03.jpg" alt="Selecting the devices for a task" loading="lazy"></figure>
+<p>When you are done you can save and run it straight away, or save it for later.</p>
+<h2 id="automation-h4">Runs</h2>
+<p>Runs is where several tasks are managed at the same time.</p>
+<figure class="fig"><img src="anh/eng-auto-runs-01.jpg" alt="The Runs screen" loading="lazy"></figure>
+<ul>
+<li><strong>App:</strong> the name of your script app</li>
+<li><strong>Task:</strong> the name of the task</li>
+<li><strong>Result:</strong> the number of runs</li>
+<li><strong>Started at / Finished at / Duration:</strong> when it ran and for how long</li>
+<li><strong>Status:</strong> Running, Done or Aborted</li>
+<li><strong>Run:</strong> run the task again</li>
+</ul>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Tasks are created in <strong>Saved Tasks</strong>, and appear here once they are running.</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/apps"><span class="k">Previous</span><span class="v">App Manager</span></a>
+      <a class="next" href="#/settings"><span class="k">Next</span><span class="v">Settings</span></a>
+    </div>
+    <p class="updated">Last updated 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== SETTINGS ==================== -->
+<section class="page" id="p-settings" data-title="Settings" data-crumb="Software" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/cc">Software</a></div>
+    <h1 class="title">Settings</h1>
+    <p class="lede">Language, storage location and the automation switches such as debug mode.</p>
+
+    <div class="doc">
+<p>Settings holds the basic configuration of the software.</p>
+<h2 id="settings-h1">General</h2>
+<figure class="fig"><img src="anh/eng-set-01.jpg" alt="General settings" loading="lazy"></figure>
+<p>Choose the language, and light or dark mode.</p>
+<h2 id="settings-h2">Storage</h2>
+<figure class="fig"><img src="anh/eng-set-02.jpg" alt="Storage settings" loading="lazy"></figure>
+<ul>
+<li><strong>Clear Cache:</strong> remove cached data and reset storage to its initial state</li>
+<li><strong>Storage Location:</strong> where files are kept on the computer. Left blank, they go to the GenFarmer directory</li>
+<li><strong>Use Selected Path:</strong> use the path you picked</li>
+<li><strong>Copy Profiles to Selected Path:</strong> copy the files into that path</li>
+<li><strong>Move Profiles to Selected Path:</strong> move the files into that path</li>
+</ul>
+<h2 id="settings-h3">Automation</h2>
+<figure class="fig"><img src="anh/eng-set-03.jpg" alt="Automation settings" loading="lazy"></figure>
+<ul>
+<li><strong>Enable Debug Mode:</strong> turn on debugging</li>
+<li><strong>Tracking Node When Running:</strong> log the nodes while a module runs</li>
+<li><strong>Sync Profiles Data After Running Task:</strong> synchronize profile data after a task finishes</li>
+</ul>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/automation"><span class="k">Previous</span><span class="v">Automation</span></a>
+      <a class="next" href="#/api"><span class="k">Next</span><span class="v">API</span></a>
+    </div>
+    <p class="updated">Last updated 09/2026</p>
+  </div>
+</section>

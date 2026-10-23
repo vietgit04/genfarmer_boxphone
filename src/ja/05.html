@@ -1,0 +1,276 @@
+
+<!-- ==================== API ==================== -->
+<section class="page" id="p-api" data-title="API" data-crumb="ソフトウェア" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/cc">ソフトウェア</a></div>
+    <h1 class="title">API</h1>
+    <p class="lede">開発者向け：同じマシン上の別のプログラムからApps、Tasks、Runsを操作するためのRESTfulエンドポイントです。</p>
+
+    <div class="doc">
+<p>GenFarmerは、<strong>Automation Apps</strong>、<strong>Tasks</strong>、<strong>Runs</strong>を管理するためのRESTfulエンドポイントを公開しており、同じマシン上の別のプログラムから自動化を操作できます。このページは開発者向けで、1週間のロードマップでは必要ありません。</p>
+<h2 id="api-h1">ベースURL</h2>
+<pre><code>http://127.0.0.1:55554/</code></pre>
+<h2 id="api-h2">Automation API</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>機能</th><th>メソッド</th><th>エンドポイント</th></tr></thead>
+<tbody><tr><td>アプリの一覧を取得</td><td><code>GET</code></td><td><code>/automation/apps</code></td></tr><tr><td>アプリの詳細を取得</td><td><code>GET</code></td><td><code>/automation/apps/:id</code></td></tr><tr><td>アプリを更新</td><td><code>PUT</code></td><td><code>/automation/apps</code></td></tr><tr><td>アプリを削除</td><td><code>DELETE</code></td><td><code>/automation/apps</code></td></tr></tbody>
+</table></div>
+<pre><code>curl -X GET 'http://127.0.0.1:55554/automation/apps?userId=3&amp;page=1&amp;limit=25&amp;order=desc&amp;orderBy=updatedAt'
+
+curl -X GET 'http://127.0.0.1:55554/automation/apps/adoFNVNN6Jwl8FlbZCfni'
+
+curl -X PUT 'http://127.0.0.1:55554/automation/apps' \
+  -H 'Content-Type: application/json' \
+  -d '{"id":"adoFNVNN6Jwl8FlbZCfni","userId":3,"name":"New App","description":"","version":"1.0.0","script":{"flow":{"nodes":[],"edges":[]}}}'
+
+curl -X DELETE 'http://127.0.0.1:55554/automation/apps' \
+  -H 'Content-Type: application/json' \
+  -d '{"ids": ["2ykTiCbEOAYC_5_tR5Wp-"]}'</code></pre>
+<h2 id="api-h3">Task API</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>機能</th><th>メソッド</th><th>エンドポイント</th></tr></thead>
+<tbody><tr><td>タスクを作成</td><td><code>POST</code></td><td><code>/automation/tasks</code></td></tr><tr><td>タスクの一覧を取得</td><td><code>GET</code></td><td><code>/automation/runs</code></td></tr><tr><td>タスクを更新</td><td><code>PUT</code></td><td><code>/automation/tasks/:id</code></td></tr><tr><td>タスクにデバイスを割り当て</td><td><code>PUT</code></td><td><code>/automation/tasks/:id/add-devices</code></td></tr><tr><td>タスクからデバイスを削除</td><td><code>PUT</code></td><td><code>/automation/tasks/:id/remove-devices</code></td></tr><tr><td>タスクを削除</td><td><code>DELETE</code></td><td><code>/automation/tasks</code></td></tr></tbody>
+</table></div>
+<pre><code>curl -X POST 'http://127.0.0.1:55554/automation/tasks' \
+  -H 'Content-Type: application/json' \
+  -d '{"appId":"adoFNVNN6Jwl8FlbZCfni","input":[],"userId":3,"name":"test","devices":{"enable":true,"list":[]}}'
+
+curl -X PUT 'http://127.0.0.1:55554/automation/tasks/uNDVKT_VwhEDuXT3PGUUv/add-devices' \
+  -H 'Content-Type: application/json' \
+  -d '{"devices":{"enabled":true,"list":[{"id":"emulator-5554","serialNo":"00f65a5d","name":"SM-G960N"}]}}'
+
+curl -X DELETE 'http://127.0.0.1:55554/automation/tasks' \
+  -H 'Content-Type: application/json' \
+  -d '{"ids": ["uNDVKT_VwhEDuXT3PGUUv"]}'</code></pre>
+<h2 id="api-h4">Run API</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>機能</th><th>メソッド</th><th>エンドポイント</th></tr></thead>
+<tbody><tr><td>実行（Run）を作成</td><td><code>POST</code></td><td><code>/automation/runs</code></td></tr><tr><td>実行（Run）を開始</td><td><code>PUT</code></td><td><code>/automation/runs/:id/run</code></td></tr><tr><td>実行結果を取得</td><td><code>GET</code></td><td><code>/automation/runs/:id/storages</code></td></tr></tbody>
+</table></div>
+<pre><code>curl -X POST 'http://127.0.0.1:55554/automation/runs' \
+  -H 'Content-Type: application/json' \
+  -d '{"userId":3,"taskId":"uNDVKT_VwhEDuXT3PGUUv","appId":"adoFNVNN6Jwl8FlbZCfni","status":0}'
+
+curl -X PUT 'http://127.0.0.1:55554/automation/runs/xhfjAeUOB5SXC8d5RiK_c/run' \
+  -H 'Content-Type: application/json' \
+  -d '{"deviceIds":[]}'
+
+curl -X GET 'http://127.0.0.1:55554/automation/runs/xhfjAeUOB5SXC8d5RiK_c/storages?page=1&amp;limit=25'</code></pre>
+<h2 id="api-h5">Me API</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>機能</th><th>メソッド</th><th>エンドポイント</th></tr></thead>
+<tbody><tr><td>現在のユーザーを取得</td><td><code>GET</code></td><td><code>/backend/auth/me</code></td></tr></tbody>
+</table></div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/settings"><span class="k">前へ</span><span class="v">Settings（設定）</span></a>
+      <a class="next" href="#/router"><span class="k">次へ</span><span class="v">ルーターとプロキシ</span></a>
+    </div>
+    <p class="updated">最終更新 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== ERR-LICENSE ==================== -->
+<section class="page" id="p-err-license" data-title="対処：Not valid device" data-crumb="リファレンス" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">リファレンス</a></div>
+    <h1 class="title">対処：Not valid device</h1>
+    <p class="lede">アプリがライセンスエラーでデバイスを受け付けない場合です。原因は2つあり、そのうち1つは単に時計がずれているだけです。</p>
+
+    <div class="doc">
+<p>GenFarmerアプリで発生する、無効なデバイスのエラーです。症状：アプリがデバイスを受け付けず、ライセンスエラーが表示されます。</p>
+<figure class="fig"><img src="anh/eng-err-license-01.jpg" alt="Not valid deviceエラー" loading="lazy"></figure>
+<h2 id="err-license-h1">発生する理由</h2>
+<ul>
+<li>同じGenFarmerアカウントで<strong>複数のコンピューターに同時に</strong>サインインしている</li>
+<li>あるコンピューターでサインインした後、別のコンピューターでサインインした</li>
+<li>コンピューターの<strong>日付、時刻、またはタイムゾーン</strong>が実際の時刻と一致していない</li>
+</ul>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>GenFarmerアカウントは、<strong>1つのメールアドレスにつき、同時に1台のコンピューターでのサインイン</strong>にのみ対応しています。</p></div>
+</div>
+<h2 id="err-license-h2">対処方法</h2>
+<ol class="stepper">
+<li class="step">
+<h3>すべての場所からサインアウトする</h3>
+<p>すべてのコンピューターでGenFarmerアカウントからサインアウトします。</p>
+<figure class="fig"><img src="anh/eng-err-license-02.jpg" alt="サインアウトする" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>時計を確認する</h3>
+<p>日付、時刻、タイムゾーンがお住まいの地域の実際の時刻と一致しているか確認します。一致していない場合は、<strong>Date and Time Settings</strong>（日付と時刻の設定）を開いて<strong>Sync now</strong>（今すぐ同期）をクリックし、タイムゾーンを再度確認してください。時計が既に正しかった場合は、手順3に進みます。</p>
+<figure class="fig"><img src="anh/eng-err-license-03.jpg" alt="日付と時刻の設定" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>1台のコンピューターだけでサインインする</h3>
+<p>それでもライセンスエラーが表示される場合は、<strong>コントロールパネルに表示されているすべてのデバイスを選択して削除</strong>し、アプリケーションを閉じてから再度開きます。</p>
+<figure class="fig"><img src="anh/eng-err-license-04.jpg" alt="コントロールパネルのデバイスを削除する" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-err-license-05.jpg" alt="再度サインインする" loading="lazy"></figure>
+</li>
+</ol>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>他の場所でサインインしたことがない場合でも、手順2は必ず行ってください。時計のずれだけでもこのエラーが発生します。それでも解決しない場合は、<a href="#/support">サポートに問い合わせて</a>ください。</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/troubleshoot"><span class="k">前へ</span><span class="v">症状別トラブルシューティング</span></a>
+      <a class="next" href="#/err-unauth"><span class="k">次へ</span><span class="v">対処：デバイスが表示されない（Unauthorized）</span></a>
+    </div>
+    <p class="updated">最終更新 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== ERR-UNAUTH ==================== -->
+<section class="page" id="p-err-unauth" data-title="対処：デバイスが表示されない（Unauthorized）" data-crumb="リファレンス" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">リファレンス</a></div>
+    <h1 class="title">対処：デバイスが表示されない（Unauthorized）</h1>
+    <p class="lede">ADBがunauthorizedと報告するため、一部のスマートフォンが画面に表示されない場合です。お使いのボックスモデル用のADBキーファイルで解決します。</p>
+
+    <div class="doc">
+<p>ボックス内の一部のスマートフォンが画面に表示されない主な原因です。デバイスは接続されているものの、ADBが<strong>unauthorized</strong>（未承認）と報告するため、GenFarmerがそれらを使用できません。</p>
+<h2 id="err-unauth-h1">対処方法</h2>
+<ol class="stepper">
+<li class="step">
+<h3>コマンドプロンプトを開く</h3>
+<p><strong>Windows + R</strong>を押し、<strong>cmd</strong>と入力して<strong>Enter</strong>を押します。</p>
+<figure class="fig"><img src="anh/eng-err-unauth-01.jpg" alt="コマンドプロンプトを開く" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>デバイスのステータスを確認する</h3>
+<p><code>adb devices</code>と入力します。<strong>unauthorized</strong>と表示されたデバイスはすべて、この問題が発生しています。</p>
+<figure class="fig"><img src="anh/eng-err-unauth-02.jpg" alt="adb devicesを実行する" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-err-unauth-03.jpg" alt="unauthorizedと表示されたデバイス" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>サポートにADB Keyファイルを依頼する</h3>
+<p>キーはお持ちのBoxphoneのモデルによって異なるため、GenFarmerサポートに連絡して正しいファイルを入手してください。送るべき情報については、<a href="#/support">サポートに問い合わせる前に</a>をご覧ください。</p>
+</li>
+<li class="step">
+<h3>キーを正しいフォルダーに置く</h3>
+<p><strong>Cドライブ → Users → お使いのコンピューター名 → .android</strong>を開きます。</p>
+</li>
+<li class="step">
+<h3>既存のキーを置き換える</h3>
+<p>GenFarmerから受け取ったADB Keyファイルをそのフォルダーにコピーし、確認が表示されたら<strong>Replace</strong>（置き換え）を選択します。</p>
+<figure class="fig"><img src="anh/eng-err-unauth-04.jpg" alt="ADBキーファイルを置き換える" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>ADBサーバーを再起動する</h3>
+<p>コマンドプロンプトに戻り、下記の2つのコマンドを実行します。すべてのデバイスのステータスが<strong>device</strong>と表示されれば、問題は解決しています。</p>
+<figure class="fig"><img src="anh/eng-err-unauth-05.jpg" alt="ADBサーバーの再起動後に承認されたデバイス" loading="lazy"></figure>
+</li>
+</ol>
+<pre><code>adb kill-server
+adb devices</code></pre>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p><code>adb devices</code>で何も認識されない場合は、まだコンピューターにADBがインストールされていません。まずADB環境をセットアップしてください。<a href="#/adb">ADBコマンド</a>と、<a href="#/req">動作要件と安全上の注意</a>の要件をご覧ください。</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/err-license"><span class="k">前へ</span><span class="v">対処：Not valid device</span></a>
+      <a class="next" href="#/err-light"><span class="k">次へ</span><span class="v">対処：Boxphoneのインジケーターランプの異常</span></a>
+    </div>
+    <p class="updated">最終更新 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== ERR-LIGHT ==================== -->
+<section class="page" id="p-err-light" data-title="対処：Boxphoneのインジケーターランプの異常" data-crumb="リファレンス" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">リファレンス</a></div>
+    <h1 class="title">対処：Boxphoneのインジケーターランプの異常</h1>
+    <p class="lede">赤または点滅するランプは、1枚のメインボードのハードウェア故障です。スロットとボードのどちらに原因があるかを見分ける方法を説明します。</p>
+
+    <div class="doc">
+<p>症状：インジケーターランプが<strong>点滅する、または赤く表示され</strong>、デバイスがソフトウェアから<strong>切断されます</strong>。</p>
+<figure class="fig"><img src="anh/eng-err-light-01.jpg" alt="Boxphoneの赤いインジケーターランプ" loading="lazy"></figure>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>正常なランプの表示は、<strong>USBモードでは青</strong>、<strong>OTGモードでは緑</strong>です。赤や点滅は、そのメインボードのハードウェア故障であり、ソフトウェアの問題ではありません。</p></div>
+</div>
+<h2 id="err-light-h1">対処方法</h2>
+<ol class="stepper">
+<li class="step">
+<h3>メインボードを別のスロットに差し替える</h3>
+<p>異常のあるメインボードを取り外し、他のメインボードと<strong>位置を入れ替えます</strong>。これにより、故障が<strong>スロット</strong>と<strong>メインボード</strong>のどちらについて回るかがわかります。</p>
+</li>
+<li class="step">
+<h3>FPCケーブルを挿し直す</h3>
+<p>入れ替えても問題が解決しない場合は、<strong>FPCケーブル</strong>（メインボードに沿って走る長いオレンジ色のリボンケーブル）を調整するか、挿し直してください。</p>
+</li>
+</ol>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>FPCケーブルを挿し直すには、ボックスを開ける必要があります。自信がない場合は、まず<a href="#/support">サポートに問い合わせて</a>ください。<a href="#/req">動作要件と安全上の注意</a>に記載のとおり、指示なく改変されたハードウェアは保証の対象外となります。</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/err-unauth"><span class="k">前へ</span><span class="v">対処：デバイスが表示されない（Unauthorized）</span></a>
+      <a class="next" href="#/faq"><span class="k">次へ</span><span class="v">よくある質問</span></a>
+    </div>
+    <p class="updated">最終更新 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== FAQ ==================== -->
+<section class="page" id="p-faq" data-title="よくある質問" data-crumb="リファレンス" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">リファレンス</a></div>
+    <h1 class="title">よくある質問</h1>
+    <p class="lede">お客様からよく寄せられる質問と、それぞれに詳しく答えているページへのリンクです。</p>
+
+    <div class="doc">
+<p>お客様からよく寄せられる質問です。既に詳しく説明しているページがある場合は、内容を繰り返さずにそのページへのリンクを掲載しています。</p>
+<h2 id="faq-h1">ハードウェアとセットアップ</h2>
+<h3>Boxphoneシステムを運用するには何が必要ですか？</h3>
+<ul>
+<li><strong>ハードウェア：</strong>Boxphoneと、必要に応じてIPのセキュリティとネットワーク管理のためのルーター</li>
+<li><strong>ソフトウェア：</strong>自動化ツールとスクリプト</li>
+<li><strong>リソース：</strong>インターネット接続、SNSアカウント、そしてデバイスに異なるIPアドレスを与えるためのプロキシまたはVPN</li>
+</ul>
+<p>PCの仕様や電圧を含む要件の一覧は、<a href="#/req">動作要件と安全上の注意</a>に掲載しています。</p>
+<h3>Boxphoneの各デバイスに異なるIPアドレスを持たせるにはどうすればよいですか？</h3>
+<p>デバイスごとにプロキシまたはVPNを使用します。GenFarmerでは<strong>GenRouter</strong>も販売しています。GenRouterはプロキシやVPNをすばやく割り当て、MAC、DNS、WebRTCなどのネットワークパラメーターを偽装し、LANスキャンをブロックします。これがアカウントの存続にとってなぜ重要かは<a href="#/a5">2日目</a>で、デバイスやプロキシの選び方については<a href="#/router">ルーターとプロキシ</a>で説明しています。</p>
+<h3>1台のBoxphoneで何個のアカウントを運用できますか？</h3>
+<ul>
+<li><strong>最も安全なのは：</strong>1台のデバイスにつき、1プラットフォームあたり1アカウント</li>
+<li>それ以上に増やすこともできますが、推奨される上限は<strong>1台のデバイスにつき、1プラットフォームあたり3アカウント</strong>です</li>
+</ul>
+<h3>まずBoxphoneをレンタルして試すことはできますか？</h3>
+<p>GenFarmerのCloudphoneサービスをレンタルして、システムを試すことができます。SNS用途には<strong>Cloudphone GenFarmer</strong>、ゲームや放置ゲーム用途には<strong>Genplay.io</strong>をご利用ください。</p>
+<h3>ボックスだけでなくエミュレーターでも動作しますか？</h3>
+<p>はい。GenFarmerは、<strong>スマートフォンファームとエミュレーター</strong>の両方に対応した画面ストリーミングとノーコード自動化のツールです。LDPlayerについては、チャンネルに解説動画があります：<a href="https://youtu.be/wounmepUAe8" target="_blank" rel="noopener">LDPlayerとGenFarmerを接続する方法 - エミュレーターでの自動化</a>。</p>
+<h2 id="faq-h2">できること、できないこと</h2>
+<h3>Boxphoneはゲームや放置ゲームに使えますか？</h3>
+<p>はい。特に、軽量なゲームや放置ゲーム、そして自動チェックイン、ペットの育成、ファーミングシステムなどの簡単な自動化に適しています。対応例としては、Roblox、Play Together、Clash of Clansなどがあります。Lien Quan、Ymir、Raven2などの重いゲームには、それに見合ったハードウェアを持つBoxphoneのモデルが必要です。</p>
+<h3>GenFarmerはBoxphoneで収益を得る方法を教えてくれますか？</h3>
+<p><strong>いいえ。</strong>GenFarmerが提供しているのは、自社エコシステム内のデバイスとソフトウェアの使い方（操作、インストール、最適化、デバイス管理）に関するドキュメントです。これらのツールをご自身の業務に活用していただくためのものです。</p>
+<h3>ノーコード自動化はどこから学び始めればよいですか？</h3>
+<p>GenFarmerは、YouTubeチャンネル「GenFarmer Vietnam」で、初級から上級までのノーコード自動化の無料講座を公開しています。講座で使われている機能については、<a href="#/automation">Automation（自動化）</a>で説明しています。</p>
+<h2 id="faq-h3">他のページで詳しく説明している質問</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>質問</th><th>回答が掲載されているページ</th></tr></thead>
+<tbody><tr><td>Boxphoneとは何ですか？</td><td><a href="#/boxphone">Boxphoneとは</a></td></tr><tr><td>Changeはroot化と同じですか？</td><td><a href="#/change">Change / SuperChangeとは</a></td></tr><tr><td>技術サポートはどこで受けられますか？</td><td><a href="#/support">サポートに問い合わせる前に</a></td></tr><tr><td>システムのどの部分をどのページで説明していますか？</td><td><a href="#/home">トップページ - 各要素の関係</a></td></tr></tbody>
+</table></div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/err-light"><span class="k">前へ</span><span class="v">対処：Boxphoneのインジケーターランプの異常</span></a>
+      <a class="next" href="#/glossary"><span class="k">次へ</span><span class="v">用語集</span></a>
+    </div>
+    <p class="updated">最終更新 09/2026</p>
+  </div>
+</section>

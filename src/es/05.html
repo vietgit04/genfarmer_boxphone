@@ -1,0 +1,276 @@
+
+<!-- ==================== API ==================== -->
+<section class="page" id="p-api" data-title="API" data-crumb="Software" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/cc">Software</a></div>
+    <h1 class="title">API</h1>
+    <p class="lede">Para desarrolladores: endpoints RESTful que controlan Apps, Tasks y Runs desde otro programa en la misma máquina.</p>
+
+    <div class="doc">
+<p>GenFarmer expone endpoints RESTful para gestionar <strong>Automation Apps</strong>, <strong>Tasks</strong> y <strong>Runs</strong>, de modo que otro programa en la misma máquina pueda controlar la automatización. Esta página es para desarrolladores; nada del plan de una semana la necesita.</p>
+<h2 id="api-h1">URL base</h2>
+<pre><code>http://127.0.0.1:55554/</code></pre>
+<h2 id="api-h2">APIs de automatización</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Qué hace</th><th>Método</th><th>Endpoint</th></tr></thead>
+<tbody><tr><td>Listar apps</td><td><code>GET</code></td><td><code>/automation/apps</code></td></tr><tr><td>Obtener detalles de una app</td><td><code>GET</code></td><td><code>/automation/apps/:id</code></td></tr><tr><td>Actualizar una app</td><td><code>PUT</code></td><td><code>/automation/apps</code></td></tr><tr><td>Eliminar una app</td><td><code>DELETE</code></td><td><code>/automation/apps</code></td></tr></tbody>
+</table></div>
+<pre><code>curl -X GET 'http://127.0.0.1:55554/automation/apps?userId=3&amp;page=1&amp;limit=25&amp;order=desc&amp;orderBy=updatedAt'
+
+curl -X GET 'http://127.0.0.1:55554/automation/apps/adoFNVNN6Jwl8FlbZCfni'
+
+curl -X PUT 'http://127.0.0.1:55554/automation/apps' \
+  -H 'Content-Type: application/json' \
+  -d '{"id":"adoFNVNN6Jwl8FlbZCfni","userId":3,"name":"New App","description":"","version":"1.0.0","script":{"flow":{"nodes":[],"edges":[]}}}'
+
+curl -X DELETE 'http://127.0.0.1:55554/automation/apps' \
+  -H 'Content-Type: application/json' \
+  -d '{"ids": ["2ykTiCbEOAYC_5_tR5Wp-"]}'</code></pre>
+<h2 id="api-h3">APIs de tareas</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Qué hace</th><th>Método</th><th>Endpoint</th></tr></thead>
+<tbody><tr><td>Crear una tarea</td><td><code>POST</code></td><td><code>/automation/tasks</code></td></tr><tr><td>Listar tareas</td><td><code>GET</code></td><td><code>/automation/runs</code></td></tr><tr><td>Actualizar una tarea</td><td><code>PUT</code></td><td><code>/automation/tasks/:id</code></td></tr><tr><td>Asignar dispositivos a una tarea</td><td><code>PUT</code></td><td><code>/automation/tasks/:id/add-devices</code></td></tr><tr><td>Quitar dispositivos de una tarea</td><td><code>PUT</code></td><td><code>/automation/tasks/:id/remove-devices</code></td></tr><tr><td>Eliminar una tarea</td><td><code>DELETE</code></td><td><code>/automation/tasks</code></td></tr></tbody>
+</table></div>
+<pre><code>curl -X POST 'http://127.0.0.1:55554/automation/tasks' \
+  -H 'Content-Type: application/json' \
+  -d '{"appId":"adoFNVNN6Jwl8FlbZCfni","input":[],"userId":3,"name":"test","devices":{"enable":true,"list":[]}}'
+
+curl -X PUT 'http://127.0.0.1:55554/automation/tasks/uNDVKT_VwhEDuXT3PGUUv/add-devices' \
+  -H 'Content-Type: application/json' \
+  -d '{"devices":{"enabled":true,"list":[{"id":"emulator-5554","serialNo":"00f65a5d","name":"SM-G960N"}]}}'
+
+curl -X DELETE 'http://127.0.0.1:55554/automation/tasks' \
+  -H 'Content-Type: application/json' \
+  -d '{"ids": ["uNDVKT_VwhEDuXT3PGUUv"]}'</code></pre>
+<h2 id="api-h4">APIs de ejecuciones</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Qué hace</th><th>Método</th><th>Endpoint</th></tr></thead>
+<tbody><tr><td>Crear una ejecución</td><td><code>POST</code></td><td><code>/automation/runs</code></td></tr><tr><td>Lanzar una ejecución</td><td><code>PUT</code></td><td><code>/automation/runs/:id/run</code></td></tr><tr><td>Obtener el resultado de una ejecución</td><td><code>GET</code></td><td><code>/automation/runs/:id/storages</code></td></tr></tbody>
+</table></div>
+<pre><code>curl -X POST 'http://127.0.0.1:55554/automation/runs' \
+  -H 'Content-Type: application/json' \
+  -d '{"userId":3,"taskId":"uNDVKT_VwhEDuXT3PGUUv","appId":"adoFNVNN6Jwl8FlbZCfni","status":0}'
+
+curl -X PUT 'http://127.0.0.1:55554/automation/runs/xhfjAeUOB5SXC8d5RiK_c/run' \
+  -H 'Content-Type: application/json' \
+  -d '{"deviceIds":[]}'
+
+curl -X GET 'http://127.0.0.1:55554/automation/runs/xhfjAeUOB5SXC8d5RiK_c/storages?page=1&amp;limit=25'</code></pre>
+<h2 id="api-h5">API Me</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Qué hace</th><th>Método</th><th>Endpoint</th></tr></thead>
+<tbody><tr><td>Obtener el usuario actual</td><td><code>GET</code></td><td><code>/backend/auth/me</code></td></tr></tbody>
+</table></div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/settings"><span class="k">Anterior</span><span class="v">Ajustes</span></a>
+      <a class="next" href="#/router"><span class="k">Siguiente</span><span class="v">Router y proxy</span></a>
+    </div>
+    <p class="updated">Última actualización: 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== ERR-LICENSE ==================== -->
+<section class="page" id="p-err-license" data-title="Solución: Not valid device" data-crumb="Referencia" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Referencia</a></div>
+    <h1 class="title">Solución: Not valid device</h1>
+    <p class="lede">La app rechaza los dispositivos con un error de licencia. Hay dos causas, y una de ellas es simplemente un reloj mal configurado.</p>
+
+    <div class="doc">
+<p>El error de dispositivo no válido en la app GenFarmer. Síntoma: la app rechaza los dispositivos y muestra un error de licencia.</p>
+<figure class="fig"><img src="anh/eng-err-license-01.jpg" alt="El error Not valid device" loading="lazy"></figure>
+<h2 id="err-license-h1">Por qué ocurre</h2>
+<ul>
+<li>Tienes la sesión iniciada con la misma cuenta de GenFarmer en <strong>más de una computadora a la vez</strong></li>
+<li>Iniciaste sesión en una computadora y luego en otra</li>
+<li>La <strong>fecha, la hora o la zona horaria</strong> de tu computadora no coincide con la hora real</li>
+</ul>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Una cuenta de GenFarmer admite <strong>un correo con sesión iniciada en una sola computadora a la vez</strong>.</p></div>
+</div>
+<h2 id="err-license-h2">Cómo solucionarlo</h2>
+<ol class="stepper">
+<li class="step">
+<h3>Cierra sesión en todas partes</h3>
+<p>Cierra la sesión de la cuenta de GenFarmer en todas las computadoras.</p>
+<figure class="fig"><img src="anh/eng-err-license-02.jpg" alt="Cerrar sesión" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>Revisa el reloj</h3>
+<p>Comprueba que la fecha, la hora y la zona horaria coincidan con la hora real de tu región. Si no coinciden, abre <strong>Date and Time Settings</strong> (configuración de fecha y hora), haz clic en <strong>Sync now</strong> (sincronizar ahora) y vuelve a comprobar la zona horaria. Si tu reloj ya estaba bien, pasa al paso 3.</p>
+<figure class="fig"><img src="anh/eng-err-license-03.jpg" alt="Configuración de fecha y hora" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>Inicia sesión en una sola computadora</h3>
+<p>Si el error de licencia persiste, selecciona y <strong>elimina todos los dispositivos que aparecen en el panel de control</strong>, cierra la aplicación y vuelve a abrirla.</p>
+<figure class="fig"><img src="anh/eng-err-license-04.jpg" alt="Eliminar los dispositivos del panel de control" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-err-license-05.jpg" alt="Volver a iniciar sesión" loading="lazy"></figure>
+</li>
+</ol>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>Aunque nunca hayas iniciado sesión en ningún otro lugar, haz igualmente el paso 2: un reloj mal configurado basta por sí solo para provocar este error. Si persiste, <a href="#/support">contacta con soporte</a>.</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/troubleshoot"><span class="k">Anterior</span><span class="v">Solución de problemas por síntoma</span></a>
+      <a class="next" href="#/err-unauth"><span class="k">Siguiente</span><span class="v">Solución: el dispositivo no aparece (Unauthorized)</span></a>
+    </div>
+    <p class="updated">Última actualización: 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== ERR-UNAUTH ==================== -->
+<section class="page" id="p-err-unauth" data-title="Solución: el dispositivo no aparece (Unauthorized)" data-crumb="Referencia" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Referencia</a></div>
+    <h1 class="title">Solución: el dispositivo no aparece (Unauthorized)</h1>
+    <p class="lede">Algunos teléfonos nunca aparecen en pantalla porque ADB los marca como no autorizados. Se soluciona con el archivo de clave ADB para tu modelo de caja.</p>
+
+    <div class="doc">
+<p>Esta es la principal razón por la que algunos teléfonos de la caja nunca aparecen en pantalla. Los dispositivos están conectados, pero ADB los marca como <strong>unauthorized</strong> (no autorizados), así que GenFarmer no puede usarlos.</p>
+<h2 id="err-unauth-h1">Cómo solucionarlo</h2>
+<ol class="stepper">
+<li class="step">
+<h3>Abre el Símbolo del sistema</h3>
+<p>Pulsa <strong>Windows + R</strong>, escribe <strong>cmd</strong> y pulsa <strong>Enter</strong>.</p>
+<figure class="fig"><img src="anh/eng-err-unauth-01.jpg" alt="Abrir el Símbolo del sistema" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>Comprueba el estado de los dispositivos</h3>
+<p>Escribe <code>adb devices</code>. Todos los dispositivos que aparezcan como <strong>unauthorized</strong> tienen este problema.</p>
+<figure class="fig"><img src="anh/eng-err-unauth-02.jpg" alt="Ejecutar adb devices" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-err-unauth-03.jpg" alt="Dispositivos que aparecen como unauthorized" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>Pide a soporte el archivo ADB Key</h3>
+<p>La clave depende del modelo de Boxphone que tengas, así que contacta con el soporte de GenFarmer para obtener el archivo correcto. Consulta <a href="#/support">Antes de contactar con soporte</a> para saber qué enviarles.</p>
+</li>
+<li class="step">
+<h3>Coloca la clave en la carpeta correcta</h3>
+<p>Ve a <strong>C: drive → Users → el nombre de tu computadora → .android</strong></p>
+</li>
+<li class="step">
+<h3>Reemplaza la clave existente</h3>
+<p>Copia en esa carpeta el archivo ADB Key de GenFarmer y elige <strong>Replace</strong> (reemplazar) si se te pregunta.</p>
+<figure class="fig"><img src="anh/eng-err-unauth-04.jpg" alt="Reemplazar el archivo de clave ADB" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>Reinicia el servidor ADB</h3>
+<p>De vuelta en el Símbolo del sistema, ejecuta los dos comandos de abajo. Cuando todos los dispositivos muestren el estado <strong>device</strong>, el problema estará resuelto.</p>
+<figure class="fig"><img src="anh/eng-err-unauth-05.jpg" alt="Dispositivos autorizados después de reiniciar el servidor ADB" loading="lazy"></figure>
+</li>
+</ol>
+<pre><code>adb kill-server
+adb devices</code></pre>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Si <code>adb devices</code> no reconoce nada en absoluto, ADB todavía no está instalado en tu computadora. Configura primero el entorno ADB: consulta <a href="#/adb">Comandos ADB</a> y los requisitos en <a href="#/req">Requisitos y notas de seguridad</a>.</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/err-license"><span class="k">Anterior</span><span class="v">Solución: Not valid device</span></a>
+      <a class="next" href="#/err-light"><span class="k">Siguiente</span><span class="v">Solución: error de luz indicadora del Boxphone</span></a>
+    </div>
+    <p class="updated">Última actualización: 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== ERR-LIGHT ==================== -->
+<section class="page" id="p-err-light" data-title="Solución: error de luz indicadora del Boxphone" data-crumb="Referencia" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Referencia</a></div>
+    <h1 class="title">Solución: error de luz indicadora del Boxphone</h1>
+    <p class="lede">Una luz roja o parpadeante es una falla de hardware en una placa base. Cómo distinguir si el problema es la ranura o la placa.</p>
+
+    <div class="doc">
+<p>Síntomas: la luz indicadora <strong>parpadea o se pone roja</strong> y el dispositivo <strong>desaparece</strong> del software.</p>
+<figure class="fig"><img src="anh/eng-err-light-01.jpg" alt="Una luz indicadora roja en el Boxphone" loading="lazy"></figure>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>El código de luces normal es <strong>azul para el modo USB</strong> y <strong>verde para el modo OTG</strong>. Roja o parpadeante indica una falla de hardware en esa placa base, no un problema de software.</p></div>
+</div>
+<h2 id="err-light-h1">Cómo solucionarlo</h2>
+<ol class="stepper">
+<li class="step">
+<h3>Cambia la placa base a otra ranura</h3>
+<p>Retira las placas base que fallan e <strong>intercambia su posición</strong> con otras. Así sabrás si la falla sigue a la <strong>ranura</strong> o a la <strong>placa base</strong>.</p>
+</li>
+<li class="step">
+<h3>Vuelve a conectar el cable FPC</h3>
+<p>Si el problema persiste después del intercambio, ajusta o vuelve a conectar el <strong>cable FPC</strong>: la cinta naranja larga que recorre la placa base.</p>
+</li>
+</ol>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>Volver a conectar el cable FPC implica abrir la caja. Si no te sientes seguro haciéndolo, <a href="#/support">contacta con soporte</a> primero: el hardware modificado sin orientación queda fuera de la garantía, como se indica en <a href="#/req">Requisitos y notas de seguridad</a>.</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/err-unauth"><span class="k">Anterior</span><span class="v">Solución: el dispositivo no aparece (Unauthorized)</span></a>
+      <a class="next" href="#/faq"><span class="k">Siguiente</span><span class="v">Preguntas frecuentes</span></a>
+    </div>
+    <p class="updated">Última actualización: 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== FAQ ==================== -->
+<section class="page" id="p-faq" data-title="Preguntas frecuentes" data-crumb="Referencia" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Referencia</a></div>
+    <h1 class="title">Preguntas frecuentes</h1>
+    <p class="lede">Las preguntas que más hacen los clientes, con enlaces a la página que responde cada una en detalle.</p>
+
+    <div class="doc">
+<p>Las preguntas que más hacen los clientes. Cuando ya hay una página completa que responde a una, aquí se enlaza a ella en lugar de repetirla.</p>
+<h2 id="faq-h1">Hardware y configuración</h2>
+<h3>¿Qué necesito para operar un sistema Boxphone?</h3>
+<ul>
+<li><strong>Hardware:</strong> un Boxphone y, opcionalmente, un router para la seguridad de IP y la gestión de red</li>
+<li><strong>Software:</strong> las herramientas y scripts de automatización</li>
+<li><strong>Recursos:</strong> una conexión a internet, cuentas de redes sociales y proxies o una VPN para dar a los dispositivos direcciones IP distintas</li>
+</ul>
+<p>La lista completa de requisitos, incluidas las especificaciones del PC y el voltaje, está en <a href="#/req">Requisitos y notas de seguridad</a>.</p>
+<h3>¿Cómo puede cada dispositivo de un Boxphone tener una dirección IP distinta?</h3>
+<p>Usa un proxy o una VPN por dispositivo. GenFarmer también vende <strong>GenRouter</strong>, que asigna el proxy o la VPN rápidamente, falsea parámetros de red como MAC, DNS y WebRTC, y bloquea el escaneo de la LAN. Por qué esto importa para la supervivencia de las cuentas se explica en el <a href="#/a5">Día 2</a>, y todo lo relativo a elegir el dispositivo y los proxies está en <a href="#/router">Router y proxy</a>.</p>
+<h3>¿Cuántas cuentas puedo usar en un Boxphone?</h3>
+<ul>
+<li><strong>Lo más seguro:</strong> 1 cuenta por plataforma por dispositivo</li>
+<li>Puedes ir más allá, pero el máximo recomendado es <strong>3 cuentas por plataforma por dispositivo</strong></li>
+</ul>
+<h3>¿Puedo alquilar un Boxphone para probarlo primero?</h3>
+<p>Puedes alquilar servicios de Cloudphone de GenFarmer para probar el sistema: <strong>Cloudphone GenFarmer</strong> para uso en redes sociales y <strong>Genplay.io</strong> para juegos o juegos idle.</p>
+<h3>¿Funciona con emuladores además de con cajas?</h3>
+<p>Sí. GenFarmer se describe como una solución de transmisión de pantalla y automatización sin código para <strong>granjas de teléfonos y emuladores</strong>. Hay un tutorial para LDPlayer en el canal: <a href="https://youtu.be/wounmepUAe8" target="_blank" rel="noopener">Cómo conectar LDPlayer con GenFarmer - automatización en emulador</a>.</p>
+<h2 id="faq-h2">Qué puede hacer y qué no</h2>
+<h3>¿Se puede usar un Boxphone para juegos o juegos idle?</h3>
+<p>Sí, sobre todo para juegos ligeros o idle y automatizaciones sencillas como el registro diario automático, la cría de mascotas o los sistemas de cultivo. Algunos ejemplos compatibles son Roblox, Play Together y Clash of Clans. Los juegos exigentes como Lien Quan, Ymir o Raven2 necesitan un modelo de Boxphone con el hardware adecuado.</p>
+<h3>¿GenFarmer enseña a ganar dinero con un Boxphone?</h3>
+<p><strong>No.</strong> GenFarmer documenta cómo usar los dispositivos y el software de su propio ecosistema (operar, instalar, optimizar y gestionar dispositivos) para que puedas aplicar esas herramientas a tu propio trabajo.</p>
+<h3>¿Por dónde empiezo a aprender automatización sin código?</h3>
+<p>GenFarmer ofrece cursos gratuitos de automatización sin código, de nivel básico a avanzado, en el canal de YouTube GenFarmer Vietnam. Las funciones que usan esos cursos se describen en <a href="#/automation">Automatización</a>.</p>
+<h2 id="faq-h3">Ya respondidas en detalle en otro lugar</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Pregunta</th><th>Dónde está la respuesta</th></tr></thead>
+<tbody><tr><td>¿Qué es un Boxphone?</td><td><a href="#/boxphone">¿Qué es Boxphone?</a></td></tr><tr><td>¿Change es lo mismo que root?</td><td><a href="#/change">¿Qué es Change / SuperChange?</a></td></tr><tr><td>¿Dónde obtengo soporte técnico?</td><td><a href="#/support">Antes de contactar con soporte</a></td></tr><tr><td>¿Qué página explica cada parte del sistema?</td><td><a href="#/home">Portada - cómo encajan las piezas</a></td></tr></tbody>
+</table></div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/err-light"><span class="k">Anterior</span><span class="v">Solución: error de luz indicadora del Boxphone</span></a>
+      <a class="next" href="#/glossary"><span class="k">Siguiente</span><span class="v">Glosario</span></a>
+    </div>
+    <p class="updated">Última actualización: 09/2026</p>
+  </div>
+</section>

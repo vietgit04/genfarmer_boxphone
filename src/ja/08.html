@@ -1,0 +1,242 @@
+
+<!-- ==================== TROUBLESHOOT ==================== -->
+<section class="page" id="p-troubleshoot" data-title="症状別トラブルシューティング" data-crumb="リファレンス" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">リファレンス</a></div>
+    <h1 class="title">
+      症状別トラブルシューティング
+    </h1>
+    <p class="lede">2回目以降に読むページです。画面に表示されている内容から調べ、どのレイヤーに問題があり、どのページを開けばよいかをすぐに把握できます。</p>
+
+    <div class="doc">
+      <p>初回は、ドキュメントを順番に読みます。2回目以降は、画面に表示されている内容から調べます。この表は、その2回目以降のためのものです。</p>
+      <figure class="fig"><img src="anh/15-tra-cuu-giao-dien-phan-mem.jpg" alt="GenFarmerソフトウェア" loading="lazy"></figure>
+
+      <div class="tbl"><table>
+        <thead><tr><th>症状</th><th>レイヤー</th><th>確認する場所 / 対処</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Scan</strong>でスマートフォンが見つからない</td><td>1 · デバイス</td><td>2つのアドレス範囲と<strong>Activate</strong>ボタンを確認してください - <a href="#/otg">OTG（LAN）で接続する</a>。USBの場合は、ランプが青か確認してください - <a href="#/usb">USBで接続する</a>。<em>HDSD p. 4-8</em></td></tr>
+          <tr><td>スマートフォンは見つかるが画面が真っ黒</td><td>1 · デバイス</td><td>近日公開 - スクリーンショットを添えて<a href="#/support">サポートに問い合わせて</a>ください</td></tr>
+          <tr><td>一部のスマートフォンがまったく表示されず、<code>adb devices</code>で<strong>unauthorized</strong>と表示される</td><td>1 · デバイス</td><td><a href="#/err-unauth">対処：デバイスが表示されない（Unauthorized）</a> - お使いのボックスモデル用のADBキーファイルが必要です</td></tr>
+          <tr><td>インジケーターランプが<strong>赤</strong>または点滅し、デバイスが切断される</td><td>1 · デバイス</td><td><a href="#/err-light">対処：Boxphoneのインジケーターランプの異常</a> - メインボードを別のスロットに差し替え、FPCケーブルを挿し直してください</td></tr>
+          <tr><td>アプリで<strong>Not valid device</strong> / ライセンスエラーが表示される</td><td>1 · デバイス</td><td><a href="#/err-license">対処：Not valid device</a> - 1つのアカウントでサインインするのは1台のコンピューターのみとし、時計を確認してください</td></tr>
+          <tr><td>スマートフォンは表示されるがインターネットに接続できない</td><td>2 · ネットワーク</td><td>まずプロキシを確認してください。プロキシに問題がなければ、スマートフォンの時刻を確認してください（<a href="#/a4">1日目・手順3</a>）。それでも解決しない場合は、GenRouterのIsolate Modeを確認してください（<a href="#/a5">2日目・手順2</a>） · <a href="https://youtu.be/kGjP-7iqSTI" target="_blank" rel="noopener">プロキシ割り当ての動画</a></td></tr>
+          <tr><td>ルーターの選び方、プロキシの購入、その他ネットワークに関する質問</td><td>2 · ネットワーク</td><td><a href="#/router">ルーターとプロキシ</a> - ネットワークレイヤーのすべてを1ページにまとめています</td></tr>
+          <tr><td>パッケージに関する質問：機能、ウォームアップ期間、設定内容</td><td>4 · スクリプト</td><td><a href="#/package">自動化パッケージ</a>、次にお使いのプラットフォームのページ</td></tr>
+          <tr><td>多数のアカウントが同時にBANされる</td><td>2 · ネットワーク</td><td>ほとんどの場合、複数のアカウントが1つのアドレスを共有していることが原因です。<a href="#/a5">2日目</a>をご覧ください。<a href="https://youtu.be/kGjP-7iqSTI" target="_blank" rel="noopener">プロキシの割り当てとIsolate Modeの動画</a>もご覧ください。詳しいトラブルシューティングガイドは近日公開予定です</td></tr>
+          <tr><td>ログインした後、認証を求められる</td><td>3 · アイデンティティ</td><td><a href="#/a5">A5ページの2日目</a>に戻ってください。規模を拡大せず、アカウントの購入先かプロキシを変更してから再度お試しください。詳しいガイドは近日公開予定です</td></tr>
+          <tr><td>アカウントは生きているが投稿が誰にも表示されない</td><td>3 · アイデンティティ</td><td>多くの場合、ウォームアップが2〜4週間に達していないか、ジャンルの選択が誤っていることが原因です。<a href="#/a7">4〜5日目</a>をご覧ください</td></tr>
+          <tr><td>すべて動いているのに数値が伸びない</td><td>4 · スクリプト</td><td><a href="#/a7">プラットフォームの章</a> - 設定セクション</td></tr>
+          <tr><td>インストール後に別のアプリが表示される</td><td>4 · スクリプト</td><td>HDSD内のリンクからダウンロードしています。<a href="#/a5">2日目・手順3</a>の公式APKフォルダーを使用してください</td></tr>
+        </tbody>
+      </table></div>
+
+      <div class="hint">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+        <div><p>どのレイヤーかわからない場合は、<a href="#/a1">システムを構成する4つのレイヤー</a>を読み直してください。サポートが必要な場合は、<a href="#/support">サポートに問い合わせる前に</a>にあるメッセージテンプレートをご利用ください。</p></div>
+      </div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/pkg-tidal"><span class="k">前へ</span><span class="v">Tidalパッケージ</span></a>
+      <a class="next" href="#/err-license"><span class="k">次へ</span><span class="v">対処：Not valid device</span></a>
+    </div>
+    <p class="updated">最終更新 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== GLOSSARY ==================== -->
+<section class="page" id="p-glossary" data-title="用語集" data-crumb="リファレンス" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">リファレンス</a></div>
+    <h1 class="title">
+      用語集
+    </h1>
+    <p class="lede">コースとHDSDに登場する用語を、GenFarmerシステムでの使われ方に沿って簡潔に説明します。</p>
+
+    <div class="doc">
+      <p>読んでいる途中で知らない用語が出てきたら、ここで調べてから元のページに戻ってください。用語はシステムを構成する4つのレイヤーごとに整理しています。<a href="#/a1">システムを構成する4つのレイヤー</a>をご覧ください。</p>
+      <figure class="fig"><img src="anh/16-thuat-ngu-dien-thoai.jpg" alt="GenFarmer" loading="lazy"></figure>
+
+      <h2 id="h-layer1">レイヤー1 · デバイス</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>用語</th><th>意味</th><th>登場するページ</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Box / Boxphone</strong></td><td>多数のスマートフォン（通常20台）を収めたハードウェアの筐体で、GenFarmerから購入します。</td><td>レイヤー · 1日目</td></tr>
+          <tr><td><strong>GenFarmer Software</strong></td><td>コンピューターにインストールし、ボックス内のすべてのスマートフォンを操作するためのソフトウェアです。<a href="https://genfarmer.com/download/" target="_blank" rel="noopener">genfarmer.com/download</a>からダウンロードします。</td><td>1日目</td></tr>
+          <tr><td><strong>Control Center</strong></td><td>ソフトウェアの手動操作画面です。1台または複数台のスマートフォンを同時にタップ、入力、操作できます。</td><td>1日目</td></tr>
+          <tr><td><strong>USBモード</strong></td><td>1ボックスとGenRouter H3000を使う場合の接続モードです。接続するだけで自動的に検出されます。</td><td>1日目</td></tr>
+          <tr><td><strong>OTGモード</strong></td><td>ミニPCを使う場合の接続モードです。2つのアドレス範囲を追加し、Activeをクリックしてから、Scanを実行する必要があります。このモードでは、スマートフォンはミニPCを経由して既にインターネットに接続されています。</td><td>1日目</td></tr>
+          <tr><td><strong>アドレス範囲</strong></td><td>ソフトウェアがスマートフォンを見つけられるよう、OTGモードで登録する必要がある2つのネットワークアドレス範囲<code>192.168.4.1-255</code>と<code>192.168.5.1-255</code>です。</td><td>1日目</td></tr>
+          <tr><td><strong>Active / Scan</strong></td><td>Active：追加したアドレス範囲を有効にします。Scan：スマートフォンを検索します。Activeのクリック忘れが、Scanでスマートフォンが見つからない最も一般的な原因です。</td><td>1日目</td></tr>
+          <tr><td><strong>Device ID</strong></td><td>メイン画面に表示される各スマートフォンの識別子です。Account Managerでスマートフォンをアカウントに割り当てる際に使用します。</td><td>2日目</td></tr>
+          <tr><td><strong>APK</strong></td><td>Androidアプリのインストールファイル（TikTok、Facebookなど）です。Install APKボタンで一括インストールします。</td><td>2日目</td></tr>
+          <tr><td><strong>adb</strong></td><td>スマートフォンに直接コマンドを送るためのAndroidのコマンドラインツールです。任意で、技術的な知識がある方向けです。</td><td>1日目</td></tr>
+        </tbody>
+      </table></div>
+
+      <h2 id="h-layer2">レイヤー2 · ネットワーク</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>用語</th><th>意味</th><th>登場するページ</th></tr></thead>
+        <tbody>
+          <tr><td><strong>GenRouter (H3000)</strong></td><td>各スマートフォンに専用のインターネット経路を割り当てるGenFarmerのルーターです。H3000は1ボックスに対応します。管理画面は<code>192.168.5.1:9000</code>です。</td><td>レイヤー · 1日目 · 2日目</td></tr>
+          <tr><td><strong>ミニPC</strong></td><td>2ボックス以上の場合にH3000の代わりに使う小型コンピューターです。ボックス内のスマートフォンはミニPCのネットワークを使用します（OTGモード）。Cat5/Cat6のLANケーブルが必要です。</td><td>0日目 · 1日目</td></tr>
+          <tr><td><strong>プロキシ</strong></td><td>インターネット上でのアカウントの「自宅の住所」です。スマートフォン1台・アカウント1つごとに専用のプロキシが必要で、共有するとアカウントがまとめてBANされる原因になります。</td><td>2日目</td></tr>
+          <tr><td><strong>Isolate Mode</strong></td><td>GenRouterのモードです。スマートフォンのプロキシが切断されると、そのスマートフォンのネットワークを直ちに遮断し、実際のアドレスが露出しないようにします。</td><td>2日目</td></tr>
+        </tbody>
+      </table></div>
+
+      <h2 id="h-layer3">レイヤー3 · アイデンティティ</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>用語</th><th>意味</th><th>登場するページ</th></tr></thead>
+        <tbody>
+          <tr><td><strong>アカウント</strong></td><td>プラットフォーム（TikTok、Facebookなど）上のアカウントです。システム上では、アカウントは1つのアイデンティティであり、プロキシはそのアイデンティティの自宅の住所です。</td><td>2日目</td></tr>
+          <tr><td><strong>UID | Password | 2FA</strong></td><td>シートにアカウントを入力する際のデフォルトの形式です。アカウントID、パスワード、二要素認証コードを縦線で区切ります。Customで変更できます。</td><td>2日目</td></tr>
+          <tr><td><strong>Account Manager</strong></td><td>アカウント管理画面です。アカウントシートのインポート、Device IDの割り当て、そして（3日目以降は）どのアカウントでどのスクリプトを実行するかの選択を行います。</td><td>2日目 · 3日目</td></tr>
+          <tr><td><strong>認証</strong></td><td>プラットフォームがアカウントの本人確認（OTPコード、写真、動画など）を求めることです。普段より頻繁に認証を求められるのは、停止すべきサインです。</td><td>2日目 · 4〜5日目</td></tr>
+          <tr><td><strong>アカウントのウォームアップ / 定着</strong></td><td>アカウントを本来の目的に使う前に、実際の人間のような習慣を築かせる2〜4週間の期間です。この期間に成長がゆっくりなのは正常です。</td><td>2日目 · 3日目 · 4〜5日目</td></tr>
+        </tbody>
+      </table></div>
+
+      <h2 id="h-layer4">レイヤー4 · 自動化</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>用語</th><th>意味</th><th>登場するページ</th></tr></thead>
+        <tbody>
+          <tr><td><strong>スクリプト</strong></td><td>スマートフォンが自動で実行する、記録された一連の操作です。多数のスマートフォンで同時に実行されます。コーディングは不要です。</td><td>3日目</td></tr>
+          <tr><td><strong>自動化パッケージ / Store</strong></td><td>プラットフォームごとに用意された既製のスクリプトのセットで、ソフトウェアのStoreセクションからダウンロードします。</td><td>レイヤー · 3日目</td></tr>
+          <tr><td><strong>Auto Login</strong></td><td>一括ログイン・ログアウトのツールです。</td><td>3日目</td></tr>
+          <tr><td><strong>Trust</strong></td><td>アカウントのウォームアップツールです。スマートフォンが、明確な興味を持つ実際の人間のように視聴、スクロール、「いいね」、フォローを行います。2〜4週間実行します。</td><td>3日目</td></tr>
+          <tr><td><strong>Boost</strong></td><td>特定の1つの投稿にエンゲージメントを集中させるツールです。十分にウォームアップした後でのみ使用してください。</td><td>3日目</td></tr>
+          <tr><td><strong>vilao.aiのAPIキー</strong></td><td>自動コメント（AIが書くコメント）に使用するキーです。0日目に準備してください。</td><td>0日目 · 3日目</td></tr>
+          <tr><td><strong>コンテンツのジャンル</strong></td><td>アカウントをウォームアップする際の中心となるトピックです。誤ったジャンルを選ぶと、投稿が適切なユーザーに届きません。</td><td>4〜5日目</td></tr>
+        </tbody>
+      </table></div>
+
+      <h2 id="h-general">一般</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>用語</th><th>意味</th></tr></thead>
+        <tbody>
+          <tr><td><strong>HDSD</strong></td><td>GenFarmerの完全版ユーザーマニュアル（全141ページ）です。このコースでは、開くべきページを具体的に案内します。<a href="https://youtu.be/dWUFV9oCnL0" target="_blank" rel="noopener">動画チュートリアル</a>もご覧ください。</td></tr>
+          <tr><td><strong>パッケージ</strong></td><td>1つのプラットフォーム向けの既製の自動化スクリプトのセットで、Storeで購入します。SNSプラットフォーム向けの各パッケージには、Auto Login、Trust、Boostが含まれています。</td><td><a href="#/package">パッケージ</a></td></tr>
+          <tr><td><strong>プロキシ</strong></td><td>アカウントが住んでいるように見えるアドレスです。スマートフォン1台につき1つ。複数のアカウントで共有すると、まとめてBANされます。</td><td><a href="#/router">ルーターとプロキシ</a></td></tr>
+          <tr><td><strong>Change</strong></td><td>一部のBoxphoneモデルのROMに組み込まれた技術で、アプリから見えるデバイスのフィンガープリントを変更し、1台のデバイスを複数台に見せます。root化ではありません。</td><td><a href="#/change">Change</a></td></tr>
+          <tr><td><strong>Super Change</strong></td><td>上位の製品ラインです。Changeに加えて、GPSとセンサーのシミュレーション、公式のインストール元、OTAアップデート対応のAndroid 15、より珍しいハードウェアフィンガープリントを備えています。</td><td><a href="#/change">Change</a></td></tr>
+          <tr><td><strong>Backup / Restore App</strong></td><td>デバイス上のアプリのデータを保存・復元する機能で、リセットや移行の後も再ログインせずにアカウントを維持できます。</td><td><a href="#/backup">Backup</a></td></tr>
+          <tr><td><strong>Inspector</strong></td><td>自動化スクリプトを書く方向けに、アプリの要素（XPath、resource id、package）を読み取る別ウィンドウのツールです。</td><td><a href="#/cc">Control Center</a></td></tr>
+          <tr><td><strong>Module</strong></td><td>複数の小さな機能をまとめた発展的なAppで、Context Menuノードでつながっています。</td><td><a href="#/automation">Automation</a></td></tr>
+          <tr><td><strong>Task / Run</strong></td><td>Taskは、アプリとそれを実行するデバイスの組み合わせです。Runは、そのTaskの1回の実行で、ステータスと所要時間を持ちます。</td><td><a href="#/automation">Automation</a></td></tr>
+          <tr><td><strong>インジケーターランプ</strong></td><td>青はUSBモード、緑はOTGモード、赤または点滅はメインボードの故障を示します。</td><td><a href="#/usb">USB</a> · <a href="#/err-light">ランプの異常</a></td></tr>
+          <tr><td><strong>ADBキー</strong></td><td>コンピューターがメインボードと通信できるようにするための認証ファイルです。ボックスのモデルごとに異なり、サポートから提供されます。</td><td><a href="#/err-unauth">Unauthorized</a></td></tr>
+          <tr><td><strong>コース</strong></td><td>0日目から4〜5日目まで。後から何度も参照するリファレンスページとは異なり、最初の1週間に読む順序を示したものです。</td></tr>
+          <tr><td><strong>完了の目安</strong></td><td>各日の完了基準です。満たしていない場合は、その日にとどまってください。</td></tr>
+          <tr><td><strong>近日公開</strong></td><td>この部分の詳しいガイドは現在作成中です。今すぐ必要な場合は、<a href="#/support">サポートに問い合わせて</a>ください。</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/faq"><span class="k">前へ</span><span class="v">よくある質問</span></a>
+      <a class="next" href="#/support"><span class="k">次へ</span><span class="v">サポートに問い合わせる前に</span></a>
+    </div>
+    <p class="updated">最終更新 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== SUPPORT ==================== -->
+<section class="page" id="p-support" data-title="サポートに問い合わせる前に" data-crumb="リファレンス" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">リファレンス</a></div>
+    <h1 class="title">
+      サポートに問い合わせる前に
+    </h1>
+    <p class="lede">サポート窓口、伝えるべき5つの情報、そのまま使えるメッセージテンプレートを紹介します。最初から正しく送れば、より早くサポートを受けられます。</p>
+
+    <div class="doc">
+      <p>サポートチームは、最初のメッセージに必要な情報がすべて含まれているときに最も迅速に対応できます。このページを参考に、正しく完全な情報を1分で送りましょう。</p>
+
+      <h2 id="h-channels">サポート窓口</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>窓口</th><th>連絡先</th><th>備考</th></tr></thead>
+        <tbody>
+          <tr><td><strong>WhatsAppでの技術サポート</strong></td><td><a href="https://wa.me/84792432905" target="_blank" rel="noopener">+84 79 243 2905</a></td><td>対応時間：<em>（後日お知らせします）</em> · GMT+7（ベトナム時間）</td></tr>
+          <tr><td><strong>メール</strong></td><td><a href="mailto:genfarmer.packagee@gmail.com">genfarmer.packagee@gmail.com</a></td><td> - </td></tr>
+          <tr><td><strong>ユーザーコミュニティ</strong></td><td><a href="https://chat.whatsapp.com/J8bchy0IIwREeAI1z7Jmvo?mode=gi_t" target="_blank" rel="noopener">WhatsAppグループ</a></td><td>気軽なQ&amp;Aや他のユーザーの経験談</td></tr>
+          <tr><td><strong>営業 - 自動化パッケージの購入</strong></td><td><a href="https://wa.me/84971234601" target="_blank" rel="noopener">+84 97 123 46 01</a></td><td>WhatsApp</td></tr>
+          <tr><td><strong>All-in-One Boxphone Solution</strong></td><td><a href="https://chat.whatsapp.com/G45cnUrjeK0EdW0rEb8GDL" target="_blank" rel="noopener">WhatsAppグループ</a></td><td>GenFarmer Globalが運営する製品グループ</td></tr>
+          <tr><td><strong>GenFarmer Shop</strong></td><td><a href="https://chat.whatsapp.com/CMWK6LWC2lGBFXk3oNyfQK" target="_blank" rel="noopener">WhatsAppグループ</a></td><td>ハードウェアとアクセサリーの購入</td></tr>
+          <tr><td><strong>Telegramコミュニティ</strong></td><td><a href="https://t.me/genfarmer" target="_blank" rel="noopener">t.me/genfarmer</a></td><td>GenFarmerユーザー同士のオープンチャット</td></tr>
+          <tr><td><strong>動画チャンネル</strong></td><td><a href="https://www.youtube.com/@GenFarmerGlobal" target="_blank" rel="noopener">YouTube - GenFarmer Global</a></td><td>解説動画と無料のノーコード自動化講座</td></tr>
+          <tr><td><strong>スペイン語の解説動画</strong></td><td><a href="https://www.youtube.com/playlist?list=PLDKj59ZxjjPzvYAxEBUXjYxkUAG624lBu" target="_blank" rel="noopener">同じプレイリスト</a></td><td>OTGでの接続、ADBのセットアップ、デバイスパラメーターの変更、バックアップとリストア、GenRouter H3000、デバイスの一括操作には、いずれもチャンネル上にスペイン語版があります</td></tr>
+          <tr><td><strong>ウェブサイト</strong></td><td><a href="https://genfarmer.com/" target="_blank" rel="noopener">genfarmer.com</a></td><td>製品情報とダウンロード</td></tr>
+        </tbody>
+      </table></div>
+
+      <h2 id="h-selfcheck">メッセージを送る前の2分間セルフチェック</h2>
+      <p>多くの問題は、その場で解決できます。</p>
+      <div class="tbl"><table>
+        <thead><tr><th>症状</th><th>簡単な確認</th></tr></thead>
+        <tbody>
+          <tr><td>Scanでスマートフォンが見つからない</td><td>2つのアドレス範囲を両方追加し、<strong>Active</strong>をクリックしましたか？ → <a href="#/a4">1日目・手順3</a></td></tr>
+          <tr><td>スマートフォンは表示されるがインターネットに接続できない</td><td>プロキシはまだ有効ですか？スマートフォンの時刻は正しいですか？ → <a href="#/a4">1日目・手順3</a></td></tr>
+          <tr><td>多数のアカウントが同時にBANされる</td><td>プロキシを共有しているアカウントはありませんか？ → <a href="#/a5">2日目</a></td></tr>
+          <tr><td>インストール後に別のアプリが表示される</td><td>ユーザーマニュアル（HDSD）内のリンクからダウンロードしていませんか？<a href="#/a5">2日目・手順3</a>の公式APKフォルダーを使用してください</td></tr>
+          <tr><td>一部のスマートフォンが表示されない、またはランプが赤い</td><td>まず<a href="#/err-unauth">Unauthorized</a>と<a href="#/err-light">インジケーターランプの異常</a>を確認してください。どちらもサポートなしで解決できます</td></tr>
+          <tr><td>数値が伸びない</td><td>2〜4週間のウォームアップを最後まで行いましたか？ジャンルの選択は正しいですか？ → <a href="#/a7">4〜5日目</a></td></tr>
+        </tbody>
+      </table></div>
+      <p>完全な一覧：<a href="#/troubleshoot">症状別トラブルシューティング</a>。</p>
+
+      <h2 id="h-five">伝えるべき5つの情報</h2>
+      <ol>
+        <li>使用している<strong>ボックスの数</strong>と、<strong>GenRouter H3000とミニPCのどちらを使っているか</strong></li>
+        <li><strong>USBとOTGのどちらで</strong>接続しているか</li>
+        <li>ロードマップの<strong>何日目</strong>（0〜5日目）で、<strong>どの手順</strong>を行っているか</li>
+        <li><strong>Scanで見つかるスマートフォンの台数</strong> / 稼働しているスマートフォンの台数</li>
+        <li>エラー発生時のソフトウェアの<strong>スクリーンショット</strong>（必要に応じてスマートフォンのスクリーンショットも）</li>
+      </ol>
+
+      <h2 id="h-template">メッセージテンプレート - コピーして記入し、送信してください</h2>
+      <pre><code>[GenFarmer support]
+- Number of boxes: ... (H3000 / mini PC)
+- Connection: USB / OTG
+- Currently on: Day ... - step ...
+- Scan finds: ... / ... phones
+- Problem: (what you were doing, what you see on screen)
+- Already tried: ...
+- Screenshot: (attached)</code></pre>
+
+      <div class="hint">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+        <div><p>上記の5項目がすべて含まれたメッセージは、何度もやり取りすることなく、通常1回の返信で解決します。</p></div>
+      </div>
+
+      <h2 id="h-warranty">ハードウェアの保証</h2>
+      <p>製造上の欠陥が疑われる場合は、<strong>開封動画</strong>（<a href="#/a3">0日目</a>に撮影したもので、封印シールが剥がされていないもの）を添えてください。これが保証の証拠になります。</p>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/glossary"><span class="k">前へ</span><span class="v">用語集</span></a>
+    </div>
+    <p class="updated">最終更新 09/2026</p>
+  </div>
+</section>
+
+  </main>
+
+  <aside class="toc">
+    <div class="toc-h">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><use href="#i-list"/></svg>
+      このページの内容
+    </div>
+    <div id="tocList"></div>
+  </aside>
+
+</div>
+
+<div class="ovl" id="ovl" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-label="検索">
+    <input id="q" type="text" placeholder="サポートセンターを検索..." autocomplete="off" spellcheck="false">
+    <div class="results" id="results"></div>
+  </div>
+</div>
+

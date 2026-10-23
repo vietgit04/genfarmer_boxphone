@@ -1,0 +1,276 @@
+
+<!-- ==================== API ==================== -->
+<section class="page" id="p-api" data-title="API" data-crumb="Phần mềm" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/cc">Phần mềm</a></div>
+    <h1 class="title">API</h1>
+    <p class="lede">Dành cho lập trình viên: các endpoint RESTful để điều khiển Apps, Tasks và Runs từ một chương trình khác trên cùng máy.</p>
+
+    <div class="doc">
+<p>GenFarmer cung cấp các endpoint RESTful để quản lý <strong>Automation Apps</strong>, <strong>Tasks</strong> và <strong>Runs</strong>, nhờ đó một chương trình khác trên cùng máy có thể điều khiển tự động hóa. Trang này dành cho lập trình viên; lộ trình một tuần không cần đến nó.</p>
+<h2 id="api-h1">Base URL</h2>
+<pre><code>http://127.0.0.1:55554/</code></pre>
+<h2 id="api-h2">API Automation</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Chức năng</th><th>Method</th><th>Endpoint</th></tr></thead>
+<tbody><tr><td>Liệt kê app</td><td><code>GET</code></td><td><code>/automation/apps</code></td></tr><tr><td>Lấy chi tiết app</td><td><code>GET</code></td><td><code>/automation/apps/:id</code></td></tr><tr><td>Cập nhật app</td><td><code>PUT</code></td><td><code>/automation/apps</code></td></tr><tr><td>Xóa app</td><td><code>DELETE</code></td><td><code>/automation/apps</code></td></tr></tbody>
+</table></div>
+<pre><code>curl -X GET 'http://127.0.0.1:55554/automation/apps?userId=3&amp;page=1&amp;limit=25&amp;order=desc&amp;orderBy=updatedAt'
+
+curl -X GET 'http://127.0.0.1:55554/automation/apps/adoFNVNN6Jwl8FlbZCfni'
+
+curl -X PUT 'http://127.0.0.1:55554/automation/apps' \
+  -H 'Content-Type: application/json' \
+  -d '{"id":"adoFNVNN6Jwl8FlbZCfni","userId":3,"name":"New App","description":"","version":"1.0.0","script":{"flow":{"nodes":[],"edges":[]}}}'
+
+curl -X DELETE 'http://127.0.0.1:55554/automation/apps' \
+  -H 'Content-Type: application/json' \
+  -d '{"ids": ["2ykTiCbEOAYC_5_tR5Wp-"]}'</code></pre>
+<h2 id="api-h3">API Task</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Chức năng</th><th>Method</th><th>Endpoint</th></tr></thead>
+<tbody><tr><td>Tạo task</td><td><code>POST</code></td><td><code>/automation/tasks</code></td></tr><tr><td>Liệt kê task</td><td><code>GET</code></td><td><code>/automation/runs</code></td></tr><tr><td>Cập nhật task</td><td><code>PUT</code></td><td><code>/automation/tasks/:id</code></td></tr><tr><td>Gán thiết bị cho task</td><td><code>PUT</code></td><td><code>/automation/tasks/:id/add-devices</code></td></tr><tr><td>Gỡ thiết bị khỏi task</td><td><code>PUT</code></td><td><code>/automation/tasks/:id/remove-devices</code></td></tr><tr><td>Xóa task</td><td><code>DELETE</code></td><td><code>/automation/tasks</code></td></tr></tbody>
+</table></div>
+<pre><code>curl -X POST 'http://127.0.0.1:55554/automation/tasks' \
+  -H 'Content-Type: application/json' \
+  -d '{"appId":"adoFNVNN6Jwl8FlbZCfni","input":[],"userId":3,"name":"test","devices":{"enable":true,"list":[]}}'
+
+curl -X PUT 'http://127.0.0.1:55554/automation/tasks/uNDVKT_VwhEDuXT3PGUUv/add-devices' \
+  -H 'Content-Type: application/json' \
+  -d '{"devices":{"enabled":true,"list":[{"id":"emulator-5554","serialNo":"00f65a5d","name":"SM-G960N"}]}}'
+
+curl -X DELETE 'http://127.0.0.1:55554/automation/tasks' \
+  -H 'Content-Type: application/json' \
+  -d '{"ids": ["uNDVKT_VwhEDuXT3PGUUv"]}'</code></pre>
+<h2 id="api-h4">API Run</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Chức năng</th><th>Method</th><th>Endpoint</th></tr></thead>
+<tbody><tr><td>Tạo run</td><td><code>POST</code></td><td><code>/automation/runs</code></td></tr><tr><td>Thực thi run</td><td><code>PUT</code></td><td><code>/automation/runs/:id/run</code></td></tr><tr><td>Lấy kết quả run</td><td><code>GET</code></td><td><code>/automation/runs/:id/storages</code></td></tr></tbody>
+</table></div>
+<pre><code>curl -X POST 'http://127.0.0.1:55554/automation/runs' \
+  -H 'Content-Type: application/json' \
+  -d '{"userId":3,"taskId":"uNDVKT_VwhEDuXT3PGUUv","appId":"adoFNVNN6Jwl8FlbZCfni","status":0}'
+
+curl -X PUT 'http://127.0.0.1:55554/automation/runs/xhfjAeUOB5SXC8d5RiK_c/run' \
+  -H 'Content-Type: application/json' \
+  -d '{"deviceIds":[]}'
+
+curl -X GET 'http://127.0.0.1:55554/automation/runs/xhfjAeUOB5SXC8d5RiK_c/storages?page=1&amp;limit=25'</code></pre>
+<h2 id="api-h5">API Me</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Chức năng</th><th>Method</th><th>Endpoint</th></tr></thead>
+<tbody><tr><td>Lấy thông tin người dùng hiện tại</td><td><code>GET</code></td><td><code>/backend/auth/me</code></td></tr></tbody>
+</table></div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/settings"><span class="k">Trước</span><span class="v">Settings</span></a>
+      <a class="next" href="#/router"><span class="k">Tiếp</span><span class="v">Router &amp; proxy</span></a>
+    </div>
+    <p class="updated">Cập nhật lần cuối 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== ERR-LICENSE ==================== -->
+<section class="page" id="p-err-license" data-title="Sửa lỗi: Not valid device" data-crumb="Tra cứu" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Tra cứu</a></div>
+    <h1 class="title">Sửa lỗi: Not valid device</h1>
+    <p class="lede">Ứng dụng từ chối thiết bị kèm lỗi bản quyền. Có hai nguyên nhân, một trong số đó chỉ đơn giản là đồng hồ bị sai.</p>
+
+    <div class="doc">
+<p>Lỗi thiết bị không hợp lệ trong ứng dụng GenFarmer. Triệu chứng: ứng dụng từ chối thiết bị và hiển thị lỗi bản quyền.</p>
+<figure class="fig"><img src="anh/eng-err-license-01.jpg" alt="Lỗi Not valid device" loading="lazy"></figure>
+<h2 id="err-license-h1">Vì sao xảy ra</h2>
+<ul>
+<li>Bạn đang đăng nhập cùng một tài khoản GenFarmer trên <strong>nhiều máy tính cùng lúc</strong></li>
+<li>Bạn đã đăng nhập trên một máy tính rồi lại đăng nhập trên máy khác</li>
+<li><strong>Ngày, giờ hoặc múi giờ</strong> trên máy tính không khớp với thời gian thực</li>
+</ul>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Mỗi tài khoản GenFarmer chỉ hỗ trợ <strong>một email đăng nhập trên một máy tính tại một thời điểm</strong>.</p></div>
+</div>
+<h2 id="err-license-h2">Cách sửa</h2>
+<ol class="stepper">
+<li class="step">
+<h3>Đăng xuất ở mọi nơi</h3>
+<p>Đăng xuất tài khoản GenFarmer trên tất cả máy tính.</p>
+<figure class="fig"><img src="anh/eng-err-license-02.jpg" alt="Đăng xuất" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>Kiểm tra đồng hồ</h3>
+<p>Kiểm tra ngày, giờ và múi giờ có khớp với thời gian thực ở khu vực của bạn không. Nếu không, mở <strong>Date and Time Settings</strong>, bấm <strong>Sync now</strong>, rồi kiểm tra lại múi giờ. Nếu đồng hồ vốn đã đúng, chuyển sang bước 3.</p>
+<figure class="fig"><img src="anh/eng-err-license-03.jpg" alt="Cài đặt ngày và giờ" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>Chỉ đăng nhập trên một máy tính</h3>
+<p>Nếu vẫn còn lỗi bản quyền, hãy chọn và <strong>xóa mọi thiết bị đang hiển thị trong bảng điều khiển</strong>, đóng ứng dụng rồi mở lại.</p>
+<figure class="fig"><img src="anh/eng-err-license-04.jpg" alt="Xóa thiết bị trong bảng điều khiển" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-err-license-05.jpg" alt="Đăng nhập lại" loading="lazy"></figure>
+</li>
+</ol>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>Kể cả khi bạn chưa từng đăng nhập ở nơi nào khác, vẫn hãy làm bước 2 - chỉ riêng đồng hồ sai cũng gây ra lỗi này. Nếu lỗi vẫn còn, hãy <a href="#/support">liên hệ hỗ trợ</a>.</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/troubleshoot"><span class="k">Trước</span><span class="v">Xử lý sự cố theo triệu chứng</span></a>
+      <a class="next" href="#/err-unauth"><span class="k">Tiếp</span><span class="v">Sửa lỗi: Thiết bị không hiển thị (Unauthorized)</span></a>
+    </div>
+    <p class="updated">Cập nhật lần cuối 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== ERR-UNAUTH ==================== -->
+<section class="page" id="p-err-unauth" data-title="Sửa lỗi: Thiết bị không hiển thị (Unauthorized)" data-crumb="Tra cứu" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Tra cứu</a></div>
+    <h1 class="title">Sửa lỗi: Thiết bị không hiển thị (Unauthorized)</h1>
+    <p class="lede">Một số điện thoại không bao giờ xuất hiện trên màn hình vì ADB báo chúng ở trạng thái unauthorized. Khắc phục bằng tệp ADB key dành cho mẫu box của bạn.</p>
+
+    <div class="doc">
+<p>Đây là nguyên nhân chính khiến một số điện thoại trong box không bao giờ hiện lên màn hình. Thiết bị đã kết nối, nhưng ADB báo chúng là <strong>unauthorized</strong> (chưa được cấp quyền), nên GenFarmer không thể sử dụng.</p>
+<h2 id="err-unauth-h1">Cách sửa</h2>
+<ol class="stepper">
+<li class="step">
+<h3>Mở Command Prompt</h3>
+<p>Nhấn <strong>Windows + R</strong>, gõ <strong>cmd</strong> và nhấn <strong>Enter</strong>.</p>
+<figure class="fig"><img src="anh/eng-err-unauth-01.jpg" alt="Mở Command Prompt" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>Kiểm tra trạng thái thiết bị</h3>
+<p>Gõ <code>adb devices</code>. Mọi thiết bị hiển thị là <strong>unauthorized</strong> đều đang gặp lỗi này.</p>
+<figure class="fig"><img src="anh/eng-err-unauth-02.jpg" alt="Chạy lệnh adb devices" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-err-unauth-03.jpg" alt="Thiết bị hiển thị là unauthorized" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>Xin bộ phận hỗ trợ tệp ADB Key</h3>
+<p>Key phụ thuộc vào mẫu Boxphone bạn đang sở hữu, nên hãy liên hệ bộ phận hỗ trợ GenFarmer để nhận đúng tệp. Xem <a href="#/support">Trước khi liên hệ hỗ trợ</a> để biết cần gửi những gì.</p>
+</li>
+<li class="step">
+<h3>Đặt key vào đúng thư mục</h3>
+<p>Vào <strong>ổ C: → Users → tên máy tính của bạn → .android</strong></p>
+</li>
+<li class="step">
+<h3>Thay thế key hiện có</h3>
+<p>Sao chép tệp ADB Key từ GenFarmer vào thư mục đó, chọn <strong>Replace</strong> nếu được hỏi.</p>
+<figure class="fig"><img src="anh/eng-err-unauth-04.jpg" alt="Thay thế tệp ADB key" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>Khởi động lại ADB server</h3>
+<p>Quay lại Command Prompt, chạy hai lệnh bên dưới. Khi mọi thiết bị hiển thị trạng thái <strong>device</strong>, lỗi đã được khắc phục.</p>
+<figure class="fig"><img src="anh/eng-err-unauth-05.jpg" alt="Thiết bị được cấp quyền sau khi khởi động lại ADB server" loading="lazy"></figure>
+</li>
+</ol>
+<pre><code>adb kill-server
+adb devices</code></pre>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Nếu <code>adb devices</code> không nhận ra gì cả, nghĩa là máy tính của bạn chưa cài ADB. Hãy cài đặt môi trường ADB trước - xem <a href="#/adb">Lệnh ADB</a> và các yêu cầu ở trang <a href="#/req">Yêu cầu và lưu ý an toàn</a>.</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/err-license"><span class="k">Trước</span><span class="v">Sửa lỗi: Not valid device</span></a>
+      <a class="next" href="#/err-light"><span class="k">Tiếp</span><span class="v">Sửa lỗi: Đèn báo lỗi trên Boxphone</span></a>
+    </div>
+    <p class="updated">Cập nhật lần cuối 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== ERR-LIGHT ==================== -->
+<section class="page" id="p-err-light" data-title="Sửa lỗi: Đèn báo lỗi trên Boxphone" data-crumb="Tra cứu" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Tra cứu</a></div>
+    <h1 class="title">Sửa lỗi: Đèn báo lỗi trên Boxphone</h1>
+    <p class="lede">Đèn đỏ hoặc nhấp nháy là lỗi phần cứng trên một mainboard. Cách phân biệt lỗi do khe cắm hay do mainboard.</p>
+
+    <div class="doc">
+<p>Triệu chứng: đèn báo <strong>nhấp nháy hoặc sáng đỏ</strong>, và thiết bị <strong>bị rớt</strong> khỏi phần mềm.</p>
+<figure class="fig"><img src="anh/eng-err-light-01.jpg" alt="Đèn báo đỏ trên Boxphone" loading="lazy"></figure>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Mã đèn bình thường là <strong>xanh dương cho chế độ USB</strong> và <strong>xanh lá cho chế độ OTG</strong>. Đỏ hoặc nhấp nháy là lỗi phần cứng trên mainboard đó, không phải lỗi phần mềm.</p></div>
+</div>
+<h2 id="err-light-h1">Cách sửa</h2>
+<ol class="stepper">
+<li class="step">
+<h3>Chuyển mainboard sang khe khác</h3>
+<p>Tháo các mainboard đang hoạt động bất thường và <strong>đổi vị trí</strong> với các mainboard khác. Cách này giúp bạn biết lỗi đi theo <strong>khe cắm</strong> hay theo <strong>mainboard</strong>.</p>
+</li>
+<li class="step">
+<h3>Cắm lại cáp FPC</h3>
+<p>Nếu sau khi đổi vị trí mà lỗi vẫn còn, hãy chỉnh lại hoặc cắm lại <strong>cáp FPC</strong> - dải cáp dẹt màu cam dài chạy dọc mainboard.</p>
+</li>
+</ol>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>Cắm lại cáp FPC nghĩa là phải mở box. Nếu bạn không tự tin làm việc này, hãy <a href="#/support">liên hệ hỗ trợ</a> trước: phần cứng bị can thiệp khi không có hướng dẫn sẽ không được bảo hành, như đã nêu ở trang <a href="#/req">Yêu cầu và lưu ý an toàn</a>.</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/err-unauth"><span class="k">Trước</span><span class="v">Sửa lỗi: Thiết bị không hiển thị (Unauthorized)</span></a>
+      <a class="next" href="#/faq"><span class="k">Tiếp</span><span class="v">Câu hỏi thường gặp</span></a>
+    </div>
+    <p class="updated">Cập nhật lần cuối 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== FAQ ==================== -->
+<section class="page" id="p-faq" data-title="Câu hỏi thường gặp" data-crumb="Tra cứu" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Tra cứu</a></div>
+    <h1 class="title">Câu hỏi thường gặp</h1>
+    <p class="lede">Những câu hỏi khách hàng hay hỏi nhất, kèm link đến trang trả lời đầy đủ cho từng câu.</p>
+
+    <div class="doc">
+<p>Những câu hỏi khách hàng hay hỏi nhất. Câu nào đã có trang riêng trả lời đầy đủ, trang này sẽ dẫn link tới đó thay vì nhắc lại.</p>
+<h2 id="faq-h1">Phần cứng và cài đặt</h2>
+<h3>Tôi cần gì để vận hành một hệ thống Boxphone?</h3>
+<ul>
+<li><strong>Phần cứng:</strong> một Boxphone, và tùy chọn thêm router để bảo mật IP và quản lý mạng</li>
+<li><strong>Phần mềm:</strong> các công cụ và kịch bản tự động hóa</li>
+<li><strong>Tài nguyên:</strong> kết nối internet, tài khoản mạng xã hội, và proxy hoặc VPN để cấp cho các thiết bị địa chỉ IP khác nhau</li>
+</ul>
+<p>Danh sách yêu cầu đầy đủ, bao gồm cấu hình PC và điện áp, có ở trang <a href="#/req">Yêu cầu và lưu ý an toàn</a>.</p>
+<h3>Làm sao để mỗi thiết bị trong Boxphone có một địa chỉ IP khác nhau?</h3>
+<p>Dùng mỗi thiết bị một proxy hoặc VPN. GenFarmer cũng bán <strong>GenRouter</strong>, giúp gán proxy hoặc VPN nhanh chóng, giả lập các thông số mạng như MAC, DNS và WebRTC, và chặn quét mạng LAN. Vì sao điều này quan trọng với sự sống còn của tài khoản được giải thích ở <a href="#/a5">Ngày 2</a>, còn mọi thứ về việc chọn thiết bị và proxy có ở trang <a href="#/router">Router &amp; proxy</a>.</p>
+<h3>Tôi có thể chạy bao nhiêu tài khoản trên một Boxphone?</h3>
+<ul>
+<li><strong>An toàn nhất:</strong> 1 tài khoản mỗi nền tảng trên mỗi thiết bị</li>
+<li>Bạn có thể đẩy cao hơn, nhưng mức tối đa khuyến nghị là <strong>3 tài khoản mỗi nền tảng trên mỗi thiết bị</strong></li>
+</ul>
+<h3>Tôi có thể thuê Boxphone để dùng thử trước không?</h3>
+<p>Bạn có thể thuê dịch vụ Cloudphone của GenFarmer để thử hệ thống: <strong>Cloudphone GenFarmer</strong> cho mục đích mạng xã hội, và <strong>Genplay.io</strong> cho chơi game hoặc treo game.</p>
+<h3>Ngoài box, nó có chạy được với giả lập không?</h3>
+<p>Có. GenFarmer hỗ trợ stream màn hình và tự động hóa không cần code cho cả <strong>phone farm và giả lập</strong>. Trên kênh có video hướng dẫn cho LDPlayer: <a href="https://youtu.be/wounmepUAe8" target="_blank" rel="noopener">Cách kết nối LDPlayer với GenFarmer - tự động hóa trên giả lập</a>.</p>
+<h2 id="faq-h2">Làm được gì và không làm được gì</h2>
+<h3>Boxphone có dùng để chơi game hoặc treo game được không?</h3>
+<p>Được, đặc biệt là với các game nhẹ hoặc game treo và các tác vụ tự động đơn giản như tự điểm danh, nuôi thú cưng hay hệ thống farm. Các ví dụ được hỗ trợ gồm Roblox, Play Together và Clash of Clans. Các game nặng như Liên Quân, Ymir hay Raven2 cần mẫu Boxphone có phần cứng tương ứng.</p>
+<h3>GenFarmer có dạy cách kiếm tiền bằng Boxphone không?</h3>
+<p><strong>Không.</strong> GenFarmer hướng dẫn cách sử dụng thiết bị và phần mềm trong hệ sinh thái của mình - vận hành, cài đặt, tối ưu và quản lý thiết bị - để bạn áp dụng các công cụ đó vào công việc của riêng mình.</p>
+<h3>Tôi bắt đầu học tự động hóa không cần code ở đâu?</h3>
+<p>GenFarmer có các khóa học tự động hóa không cần code miễn phí, từ cơ bản đến nâng cao, trên kênh YouTube GenFarmer Vietnam. Các tính năng dùng trong những khóa học đó được mô tả ở trang <a href="#/automation">Automation</a>.</p>
+<h2 id="faq-h3">Đã được trả lời đầy đủ ở trang khác</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Câu hỏi</th><th>Câu trả lời ở đâu</th></tr></thead>
+<tbody><tr><td>Boxphone là gì?</td><td><a href="#/boxphone">Boxphone là gì?</a></td></tr><tr><td>Change có giống root không?</td><td><a href="#/change">Change / SuperChange là gì?</a></td></tr><tr><td>Tôi nhận hỗ trợ kỹ thuật ở đâu?</td><td><a href="#/support">Trước khi liên hệ hỗ trợ</a></td></tr><tr><td>Trang nào hướng dẫn phần nào của hệ thống?</td><td><a href="#/home">Trang đầu - các thành phần ghép lại với nhau ra sao</a></td></tr></tbody>
+</table></div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/err-light"><span class="k">Trước</span><span class="v">Sửa lỗi: Đèn báo lỗi trên Boxphone</span></a>
+      <a class="next" href="#/glossary"><span class="k">Tiếp</span><span class="v">Thuật ngữ</span></a>
+    </div>
+    <p class="updated">Cập nhật lần cuối 09/2026</p>
+  </div>
+</section>

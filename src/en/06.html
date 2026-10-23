@@ -1,0 +1,273 @@
+
+<!-- ==================== ROUTER ==================== -->
+<section class="page" id="p-router" data-title="Router &amp; proxy" data-crumb="Reference" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Reference</a></div>
+    <h1 class="title">Router &amp; proxy</h1>
+    <p class="lede">Choosing between the H3000 and a mini PC, what the network has to provide, preparing proxies, and what to do when the network drops.</p>
+
+    <div class="doc">
+<p>Everything about the network layer in one place. Until now this was spread over three pages: one line in <a href="#/a1">The four layers</a>, the wiring table in <a href="#/a3">Day 0</a>, and step 2 of <a href="#/a5">Day 2</a>.</p>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>The control panel itself - assigning a proxy to each phone and switching on Isolate Mode - is shown in the video below and in <a href="#/a5">Day 2 &middot; step 2</a>. This page does not repeat it; it covers what you decide <strong>before</strong> you open that panel.</p></div>
+</div>
+<div class="video" data-yt="kGjP-7iqSTI">
+<img src="anh/yt-kGjP-7iqSTI.jpg" alt="How to use GenRouter: assign a proxy per device" loading="lazy">
+<button class="vplay" type="button" aria-label="Play the video"><span class="disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button>
+<span class="vnote">How to use GenRouter: assign a proxy per device</span>
+</div>
+<h2 id="router-h1">1. H3000 or mini PC</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>You run</th><th>Device</th><th>Connection mode</th><th>Why</th></tr></thead>
+<tbody><tr><td><strong>1 box</strong> (20 phones)</td><td><strong>GenRouter H3000</strong></td><td><strong>USB</strong></td><td>The H3000 is stable up to <strong>30 connected devices</strong>. One box of 20 phones fits; two boxes is 40 and does not</td></tr><tr><td><strong>2 boxes or more</strong></td><td><strong>Mini PC</strong></td><td><strong>OTG</strong></td><td>The mini PC handles up to <strong>200 devices</strong>, which is exactly 10 boxes, and the phones use its network</td></tr><tr><td>1 box, but you already own a mini PC</td><td>Mini PC</td><td>OTG</td><td>Works the same on a single box</td></tr><tr><td>Neither device</td><td>-</td><td>OTG or Wi-Fi</td><td>Flexible, depending on your needs</td></tr></tbody>
+</table></div>
+<p>This one choice decides the rest of Day 1: the H3000 goes with <a href="#/usb">Connect via USB</a>, the mini PC with <a href="#/otg">Connect via OTG (LAN)</a>. Picking the wrong row is the single most common reason Scan finds no phones.</p>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>Pushing an H3000 past <strong>30 devices</strong> can crash it or disable some of its functions. That is the hard number behind the rule that one H3000 cannot drive two boxes.</p></div>
+</div>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th></th><th>GenRouter H3000</th><th>Mini PC</th></tr></thead>
+<tbody><tr><td>Network ports</td><td>1 x LAN 2.5Gbps + 1 x WAN 1Gbps</td><td>4 x Intel i226 2.5G</td></tr><tr><td>Devices it can hold</td><td><strong>30</strong> (stable limit)</td><td><strong>200</strong></td></tr><tr><td>Built-in Wi-Fi</td><td>Wi-Fi 6, dual band, and it can broadcast 32 separate networks</td><td><strong>None</strong> - needs a separate access point</td></tr><tr><td>Runs off a power bank</td><td>Yes</td><td>No</td></tr><tr><td>Control panel</td><td><code>192.168.5.1:9000</code></td><td><code>192.168.5.1:9000</code></td></tr></tbody>
+</table></div>
+<h2 id="router-h2">2. What the network has to provide</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>You run</th><th>Device</th><th>How the ports are used</th><th>Switch</th></tr></thead>
+<tbody><tr><td><strong>1 box</strong> - 20 phones</td><td>GenRouter H3000</td><td>LAN cable from the modem into the <strong>WAN</strong> port; your PC into the <strong>LAN</strong> port, or onto the <code>GENROUTER-2.4GHz</code> / <code>GENROUTER-5GHz</code> Wi-Fi</td><td>Not needed</td></tr><tr><td><strong>2 to 4 boxes</strong> - 40 to 80 phones</td><td>Mini PC</td><td>Modem into <strong>ETH0</strong>; your PC into <strong>ETH1</strong>, <strong>ETH2</strong> or <strong>ETH3</strong>; the boxes into the remaining ports</td><td>Only if you run out of ports</td></tr><tr><td><strong>Up to 10 boxes</strong> - 200 phones</td><td>Mini PC + switch</td><td>Modem into ETH0, everything else through the switch</td><td><strong>Yes.</strong> The documented stable cluster is <strong>1 PC + 1 mini PC + 1 switch + 10 boxes</strong></td></tr><tr><td><strong>More than 10 boxes</strong></td><td>A second cluster</td><td>Repeat the cluster above</td><td>Yes, one per cluster</td></tr></tbody>
+</table></div>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>GenFarmer's own reference architecture is that cluster of <strong>1 control PC, 1 mini PC, 1 switch and 10 boxes</strong>. A switch is recommended from the point where you are running a large number of boxes, both for stability and to spread the load off the mini PC.</p></div>
+</div>
+<ul>
+<li><strong>One free port on the modem</strong> for the GenRouter</li>
+<li><strong>LAN cable: Cat5 or Cat6, Cat6 preferred</strong>, to keep transmission stable</li>
+<li>The control computer <strong>does not need Wi-Fi</strong> - LAN works just as well, for both the H3000 and the mini PC</li>
+<li><strong>Minimum bandwidth:</strong> around <strong>100 Mbps for the first box</strong> and about <strong>100 Mbps more for each box after it</strong>. TikTok is the heaviest platform, so that is the figure to plan by. Keep it to a <strong>maximum of 5 boxes on one internet line</strong>.</li>
+</ul>
+<div class="hint info">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p><strong>In practice the proxy is the bottleneck, not your home line.</strong> If the line measures fine and the farm still stutters, suspect the proxies before you pay for more bandwidth.</p></div>
+</div>
+<h3>If you need Wi-Fi and you are on a mini PC</h3>
+<p>The mini PC connects by LAN only and cannot broadcast Wi-Fi, so USB Boxphones and ordinary phones need a separate device for that. Use an <strong>access point</strong> - Aruba, Cisco and TP-Link all make them - set to <strong>Access Point mode</strong> so it only broadcasts, while the router keeps control and hands out the IPs. Ask the seller for a model that can handle your number of connections.</p>
+<h2 id="router-h3">3. How it connects to the rest of the system</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>You use</th><th>How to connect</th></tr></thead>
+<tbody><tr><td><strong>GenRouter H3000</strong></td><td>Power first: the router lights up green. Modem to <strong>WAN</strong>, PC to <strong>LAN</strong>. No LAN port on the PC? Join the <code>GENROUTER-2.4GHz</code> or <code>GENROUTER-5GHz</code> network instead. Then open <code>192.168.5.1:9000</code>; if the dashboard appears, you are connected.</td></tr><tr><td><strong>GenRouter H3000 without a LAN cable</strong></td><td>On V3 the router can pick up another Wi-Fi network and rebroadcast it. Join <code>GENROUTER-2.4GHz</code> or <code>GENROUTER-5GHz</code>, choose the network to rebroadcast, enter its password, submit.</td></tr><tr><td><strong>Mini PC</strong></td><td>Power first. Modem into <strong>ETH0</strong>, PC into <strong>ETH1/ETH2/ETH3</strong>, the boxes into the remaining ports, then open <code>192.168.5.1:9000</code>.</td></tr><tr><td><strong>Box to box over LAN</strong></td><td>Boxphones that have a LAN port can be chained to each other and run in OTG mode. If the devices are not detected, connect over USB first so they are picked up, then switch back to OTG.</td></tr></tbody>
+</table></div>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>You use</th><th>How to connect the control computer</th></tr></thead>
+<tbody><tr><td><strong>GenRouter H3000</strong></td><td>If your PC has Wi-Fi, connect over Wi-Fi. If not, use LAN: <strong>H3000 LAN port to PC Ethernet</strong>, or <strong>Boxphone LAN to PC Ethernet</strong> (in this case connect the H3000 LAN port to LAN1 or LAN2 of the Boxphone, then run the remaining LAN port to the PC - this applies to the <strong>P30</strong> box).</td></tr><tr><td><strong>Mini PC</strong></td><td>Connect over LAN. Wi-Fi does not apply. If your laptop has no Ethernet port, get a <strong>USB-to-LAN</strong> or <strong>Type-C-to-LAN</strong> adapter.</td></tr></tbody>
+</table></div>
+<div class="hint danger">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-danger"/></svg>
+<div><p><strong>Never press the physical reset button</strong> on the router unless technical support tells you to, and <strong>do not run ipconfig or change the device IP</strong> on your computer by hand without guidance. Both are quick ways to lose a working setup.</p></div>
+</div>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Put the router in the middle of the room, or as close to the devices as you can. <strong>2.4GHz reaches further but is slower; 5GHz is faster but shorter range.</strong> If you replace the charger or cable, use an Android phone charger with a <strong>Type-C cable</strong> - the router is picky about cables, and an older phone's cable often works when a new one does not.</p></div>
+</div>
+<p>Once it is wired, the software side is on <a href="#/usb">Connect via USB</a> or <a href="#/otg">Connect via OTG (LAN)</a>.</p>
+<h2 id="router-h4">4. Preparing proxies</h2>
+<p><strong>An account is an identity. A proxy is that identity's home address.</strong> If 20 accounts share one address, the platform sees 20 people living in the same house, waking and sleeping at the same time, liking the same kind of content - which is why accounts get banned in clusters rather than one by one.</p>
+<p>What follows from that:</p>
+<ul>
+<li><strong>One proxy per phone.</strong> A full box of 20 phones needs <strong>20 proxies</strong></li>
+<li>For a trial run, 5 accounts over 2-3 proxies is acceptable, but <strong>that is not a production setup</strong></li>
+<li><strong>Isolate Mode</strong> is the safety net: when a proxy dies, expires or errors, that phone is cut off from the internet immediately instead of falling back to your real address</li>
+<li>Besides assigning the proxy, GenRouter also hides <strong>WebRTC, DNS, MAC address, location and timezone</strong>, blocks traceroute and stops LAN scanning</li>
+</ul>
+<h3>Which proxies the router accepts</h3>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Type</th><th>Format and notes</th></tr></thead>
+<tbody><tr><td><strong>SOCKS5</strong></td><td><code>socks5://user:pass@ip:port</code></td></tr><tr><td><strong>HTTP / HTTPS</strong></td><td>Supported, same workflow</td></tr><tr><td><strong>PPPoE</strong></td><td>Builds proxies from a multi-session line. <strong>Vietnam only</strong> - the number of proxies equals the number of sessions on the line, and the IPs come from a real ISP</td></tr><tr><td><strong>DPN</strong></td><td>GenRouter's own network: residential proxies from <strong>10 different countries</strong>, and you can rotate to another country when that country has enough shared supply</td></tr></tbody>
+</table></div>
+<h3>Adding them</h3>
+<ol>
+<li>Prepare the list first, in Notepad or a document, <strong>one proxy per line</strong></li>
+<li>Open <code>192.168.5.1:9000</code>, go to <strong>Proxy Manager</strong>, click <strong>Add proxy</strong></li>
+<li>Pick the format that matches your list, paste it in, click <strong>Add proxy</strong></li>
+<li>To assign: <strong>Devices &rarr; Update proxy</strong>, choose the protocol, then either type the details (<strong>Input Manually</strong>) or pick one already stored (<strong>Select from List</strong>)</li>
+<li>To do the whole box at once, tick the checkbox at the top of the device table, click <strong>Update Proxy</strong> and paste the list - the router hands a different proxy to each device</li>
+</ol>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Buying advice - which provider, residential against datacenter, and whether rotating proxies are safe on a farm - is the one part still open. Ask <a href="#/support">support</a> rather than guessing. If you are in Vietnam, the multi-session PPPoE route means you may not need to buy proxies at all.</p></div>
+</div>
+<h2 id="router-h5">5. When something goes wrong</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>What you see</th><th>Usual cause</th><th>What to do</th></tr></thead>
+<tbody><tr><td>Phones show up but cannot get online</td><td>Proxy is dead, or the time on the phone is wrong</td><td>Check the proxy first; if the proxy is fine, correct the phone's clock to match your PC</td></tr><tr><td>Accounts get banned in clusters</td><td>Several accounts sharing one address</td><td>One proxy per phone, then start again with fresh accounts - see <a href="#/a5">Day 2</a></td></tr><tr><td>The whole box loses internet at once</td><td>Wiring or the shared uplink, not the proxies</td><td>Check the LAN run and the free port on the modem, then re-Scan</td></tr><tr><td>One phone drops off the network on its own</td><td>Isolate Mode cutting that phone because its proxy died</td><td>Replace that proxy; this is the feature working, not a fault</td></tr><tr><td>Connection is unstable once you add more boxes</td><td>The mini PC is carrying every box directly</td><td>Add a <strong>LAN switch</strong> between the mini PC and the boxes</td></tr><tr><td>Devices are not detected in OTG mode</td><td>They were never picked up in the first place</td><td>Connect over USB so they register, then switch back to OTG</td></tr><tr><td>Scan finds no phones</td><td>Both address ranges not added, or Activate never clicked</td><td><a href="#/otg">Connect via OTG (LAN)</a> - on USB, check the light is blue</td></tr><tr><td>The indicator light is red or flickering</td><td>Mainboard or FPC cable, not the network</td><td><a href="#/err-light">Fix: indicator light error</a></td></tr></tbody>
+</table></div>
+<p>More symptoms, including the software-side ones, are in <a href="#/troubleshoot">Troubleshoot by symptom</a>.</p>
+<h2 id="router-h6">Where to go next</h2>
+<ul>
+<li>Watch the walkthrough above to see the panel being used</li>
+<li>If you are following the course, the network work happens on <a href="#/a5">Day 2 - Mastering identity</a></li>
+<li>The per-phone steps - assign proxy, switch on Isolate Mode - are in <a href="#/a5">Day 2 &middot; step 2</a></li>
+</ul>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/api"><span class="k">Previous</span><span class="v">API</span></a>
+      <a class="next" href="#/package"><span class="k">Next</span><span class="v">Automation packages</span></a>
+    </div>
+    <p class="updated">Last updated 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== PACKAGE ==================== -->
+<section class="page" id="p-package" data-title="Automation packages" data-crumb="Reference" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Reference</a></div>
+    <h1 class="title">Automation packages</h1>
+    <p class="lede">What a package is, which ones exist, the three tools inside them and the order you have to keep.</p>
+
+    <div class="doc">
+<p>A package is a ready-made set of automation scripts for one platform. You buy it from the <strong>Store</strong> inside the app; from then on it sits in <strong>Automation &rarr; My Apps</strong> and runs like any other app. If you have not bought one yet, contact GenFarmer sales on WhatsApp <a href="https://wa.me/84971234601" target="_blank" rel="noopener">+84 97 123 46 01</a> or ask in the <a href="https://chat.whatsapp.com/J8bchy0IIwREeAI1z7Jmvo?mode=gi_t" target="_blank" rel="noopener">customer community</a>. Everything here can also be done by hand, just far more slowly.</p>
+<h2 id="package-h1">Packages available today</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Platform</th><th>Package</th><th>What it does</th><th>Detail</th></tr></thead>
+<tbody><tr><td><strong>TikTok</strong></td><td>Trust</td><td>Warms the account up around the keywords of your niche</td><td><a href="#/pkg-tiktok">TikTok</a></td></tr><tr><td></td><td>Boost</td><td>Views, likes, comments and shares on a video you choose</td><td></td></tr><tr><td><strong>Facebook</strong></td><td>Trust</td><td>Warms the account up on one content niche</td><td><a href="#/pkg-facebook">Facebook</a></td></tr><tr><td></td><td>Boost</td><td>Likes, shares and comments on a post or a Reel</td><td></td></tr><tr><td><strong>Instagram</strong></td><td>Trust</td><td>Warms the account up, posts at a basic level</td><td><a href="#/pkg-instagram">Instagram</a></td></tr><tr><td></td><td>Boost</td><td>Likes, comments, views and saves, aimed at non-followers</td><td></td></tr><tr><td><strong>Spotify</strong></td><td>Spotify</td><td>Valid streams for your tracks</td><td><a href="#/pkg-spotify">Spotify</a></td></tr><tr><td><strong>Tidal</strong></td><td>Tidal</td><td>Valid streams for your tracks</td><td><a href="#/pkg-tidal">Tidal</a></td></tr></tbody>
+</table></div>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Packages are updated separately from this documentation. If a package behaves differently from what you read here, the package is the newer one - tell <a href="#/support">support</a> so this page can be corrected.</p></div>
+</div>
+<h2 id="package-h2">Why a phone farm rather than an antidetect browser</h2>
+<p>Social and music platforms have stopped being workable from an antidetect browser: a browser leaks its pattern, checkpoints come fast, engagement gets suppressed, and a browser cannot produce a listening environment that counts as a real stream. Real devices on real IPs are what the packages are built for.</p>
+<h2 id="package-h3">The four steps every package follows</h2>
+<span class="pathline">Warm the account up &rarr; Set its audience &rarr; Trigger engagement &rarr; Push distribution</span>
+<p>Nothing gets pushed on day one, and nothing is spammed. The whole sequence is timed the way a real person behaves.</p>
+<h2 id="package-h4">What the algorithms actually measure</h2>
+<p>The same five signals decide reach on TikTok, Instagram and Facebook, which is why the packages are shaped the way they are.</p>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Signal</th><th>What it means for you</th></tr></thead>
+<tbody><tr><td><strong>Watch time and retention</strong></td><td>The most important one: did the viewer stop, watch to the end, rewatch, or leave early</td></tr><tr><td><strong>Early engagement</strong></td><td>Likes, shares, comments and saves have to appear soon after posting. Dumped all at once looks wrong and gets suppressed; spread out naturally, the data flows in evenly</td></tr><tr><td><strong>Who is engaging</strong></td><td>Not just how many, but whether they match the content. The wrong audience teaches the algorithm the wrong thing and the distribution goes to the wrong people</td></tr><tr><td><strong>The account's history</strong></td><td>An account that has run junk engagement is very hard to recover. <strong>Starting correctly matters more than running hard</strong></td></tr><tr><td><strong>Non-follower response</strong></td><td>The platform is asking whether new people react, not whether your followers do. A post that wakes up non-followers spreads fast even from a small account</td></tr></tbody>
+</table></div>
+<h2 id="package-h5">The three tools, and the order you must keep</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th></th><th><strong>Trust</strong></th><th><strong>Boost</strong></th></tr></thead>
+<tbody><tr><td>Goal</td><td>Warm the account up, build its history</td><td>Amplify a piece of content</td></tr><tr><td>Focus</td><td>Stability and safety</td><td>Performance and growth</td></tr><tr><td>Suits</td><td>New accounts, or accounts being rebuilt</td><td>Accounts that already have a base</td></tr><tr><td>Behaviour</td><td>Watches by topic, follows and likes selectively</td><td>Drives views, likes, streams, trending</td></tr></tbody>
+</table></div>
+<p><strong>Auto Login</strong> sits in front of both: it logs the accounts in and out in bulk instead of you typing on each phone.</p>
+<div class="hint danger">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-danger"/></svg>
+<div><p>Turning on <strong>Boost</strong> for an account that has not been warmed up is the fastest way to lose it, and an account that has once run junk engagement is very hard to recover. This is the most expensive mistake in the whole roadmap.</p></div>
+</div>
+<p>The step-by-step version of running these is on <a href="#/a6">Day 3 - Basic automation</a>.</p>
+<h2 id="package-h6">What keeps it looking human</h2>
+<ul>
+<li><strong>Randomised tasks:</strong> the timing and the type of action - view, like, save, scroll - change from run to run instead of repeating a fixed pattern</li>
+<li><strong>Limits and rest:</strong> the scripts have ceilings, pauses and background behaviour (watch, scroll, skip past), which is what the platform reads as natural</li>
+<li><strong>Built per platform:</strong> each package is shaped around how that platform distributes content and how its users behave in your market</li>
+</ul>
+<h2 id="package-h7">Before you run your first package</h2>
+<ul>
+<li>The 5 trial accounts have <strong>survived the 48-hour hands-off period</strong> without a verification prompt - see <a href="#/a5">Day 2</a></li>
+<li>Every phone has <strong>its own proxy</strong>, and Isolate Mode is on - see <a href="#/router">Router &amp; proxy</a></li>
+<li>The <strong>platform app is installed</strong> on every phone, from the official APK folder rather than the links in the User Manual - see <a href="#/a5">Day 2 &middot; step 3</a></li>
+<li>You have a <strong>vilao.ai API key</strong> if the package comments automatically - this was part of <a href="#/a3">Day 0</a>, and finding out halfway through that you do not have one means stopping halfway</li>
+</ul>
+<h2 id="package-h8">Where to go next</h2>
+<ul>
+<li>The procedure for downloading and running a package is on <a href="#/a6">Day 3 - Basic automation</a></li>
+<li>The Store itself is described in <a href="#/apps">App Manager</a>; Apps, Tasks and Runs in <a href="#/automation">Automation</a></li>
+</ul>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/router"><span class="k">Previous</span><span class="v">Router &amp; proxy</span></a>
+      <a class="next" href="#/pkg-tiktok"><span class="k">Next</span><span class="v">TikTok package</span></a>
+    </div>
+    <p class="updated">Last updated 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== PKG-TIKTOK ==================== -->
+<section class="page" id="p-pkg-tiktok" data-title="TikTok package" data-crumb="Reference" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Reference</a></div>
+    <h1 class="title">TikTok package</h1>
+    <p class="lede">Trust and Boost for TikTok: what is in the package, the figures to run it by, and what to watch for.</p>
+
+    <div class="doc">
+<h2 id="pkg-tiktok-h1">What is in the package</h2>
+<p>TikTok has both halves of the set. <strong>Trust</strong> builds an account with a real activity history so it stops being treated as a throwaway; <strong>Boost</strong> runs the publishing side across the accounts you own.</p>
+<h3>Trust - growing the account</h3>
+<ul>
+<li><strong>Grow by industry keywords.</strong> The system searches out videos around your target keywords and behaves like a real person browsing them, so the account starts being recommended into those keywords and builds a history that makes it look trustworthy.</li>
+<li><strong>Auto-post and comment with AI.</strong> Posting runs on a schedule, and the comments are generated rather than copied, so a large number of accounts never end up writing the same line.</li>
+<li><strong>Manage many accounts at once.</strong> Hundreds of accounts on one screen, synchronised and monitored centrally, with no technical skill required.</li>
+<li><strong>Random follows.</strong> The system picks from the suggested list and follows at random, so the behaviour never looks like a repeated action.</li>
+</ul>
+<h3>Boost - running the channels</h3>
+<ul>
+<li><strong>Contextual AI replies.</strong> AI reads the comments left on your own videos and drafts replies that match the topic and the tone, phrased differently every time.</li>
+<li><strong>Schedule and publish at scale.</strong> Upload and schedule videos in bulk across your account list, publish at the right time for each market, and stagger the publishing so channels are not posting identically.</li>
+<li><strong>One interface for every account</strong>, with per-channel reporting instead of numbers scattered across logins.</li>
+</ul>
+<p>Because it all runs on real handsets, the uploads happen in a native mobile environment rather than a browser.</p>
+<h2 id="pkg-tiktok-h2">Operating figures</h2>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>The last row is still waiting on the technical team. The rest are the recommended settings, not hard limits.</p></div>
+</div>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Question</th><th>Answer</th></tr></thead>
+<tbody><tr><td>How long to warm up before running for real</td><td><strong>2-4 weeks</strong> of Trust</td></tr><tr><td>How many accounts per device</td><td><strong>1 per platform per device</strong> is safest; 3 is the recommended maximum</td></tr><tr><td>Maximum phones on one router</td><td><strong>30</strong> on a GenRouter H3000, <strong>200</strong> on a mini PC - see <a href="#/router">Router &amp; proxy</a></td></tr><tr><td>Maximum boxes on one internet line</td><td><strong>5</strong>, at roughly 100 Mbps per box - see <a href="#/router">Router &amp; proxy</a></td></tr><tr><td>How often to change the information tied to the link</td><td><strong>every 7 to 14 days</strong></td></tr><tr><td>How long to run before resting the accounts</td><td><strong>4-6 hours on, 1-2 hours off</strong>, or several separate windows through the day. <strong>Never 24/7</strong> - no real person scrolls all night</td></tr><tr><td>Suggested settings for a beginner</td><td><span class="todo">To be confirmed</span></td></tr></tbody>
+</table></div>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p><strong>Why change the information tied to the link every week or two.</strong> Change it every day and nobody keeps up; leave it untouched for months and you are hammering the same list of links over and over, which is exactly the pattern the platforms sweep for.</p></div>
+</div>
+<h2 id="pkg-tiktok-h3">Notes specific to TikTok</h2>
+<ul>
+<li>TikTok is the <strong>heaviest platform for bandwidth</strong>, which is why the 100 Mbps per box figure is based on it.</li>
+<li>The APK links for TikTok in the User Manual are the only ones that are correct, but the official folder in <a href="#/a5">Day 2 &middot; step 3</a> is still the safer source.</li>
+<li>Automatic commenting needs a <strong>vilao.ai API key</strong> - get it during <a href="#/a3">Day 0</a>, not on the day you need it.</li>
+</ul>
+<p>The TikTok chapter of the User Manual is <em>p. 17-50, 34 pages - the most complete chapter in the manual</em>.</p>
+<h2 id="pkg-tiktok-h4">Signs that mean stop</h2>
+<ol>
+<li>Accounts are asked for verification more often than usual.</li>
+<li>Posts suddenly lose all their views.</li>
+<li>The number of running phones keeps dropping for no clear reason.</li>
+</ol>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>If any account is banned overnight, <strong>do not scale up</strong>. Go back and check the proxies and the running speed first.</p></div>
+</div>
+<h2 id="pkg-tiktok-h5">Common problems with this package</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>What you see</th><th>Usual cause</th><th>What to do</th></tr></thead>
+<tbody><tr><td>The script runs but the numbers do not move</td><td>Warming up has not reached 2-4 weeks, or the content niche is set wrong</td><td><a href="#/a7">Day 4-5</a>, configuration section</td></tr><tr><td>A different app opens after installing</td><td>The APK came from the User Manual links</td><td>Reinstall from the official folder - <a href="#/a5">Day 2 &middot; step 3</a></td></tr><tr><td>Accounts are asked to verify as soon as the script starts</td><td>The same thing happens when you log in by hand; the script only repeats it faster</td><td>Change account supplier or proxies, then retry - <a href="#/a5">Day 2</a></td></tr><tr><td>Automatic commenting stops halfway</td><td>No vilao.ai API key, or the provider's model is down</td><td><a href="#/a3">Day 0</a> for how to get the key</td></tr><tr><td>Accounts get banned in clusters</td><td>Several accounts sharing one address</td><td><a href="#/router">Router &amp; proxy</a></td></tr><tr><td>Everything is configured right but the farm stutters</td><td>Usually the proxies rather than the line</td><td><a href="#/router">Router &amp; proxy</a></td></tr></tbody>
+</table></div>
+<h2 id="pkg-tiktok-h6">Where to go next</h2>
+<ul>
+<li>The procedure for running it: <a href="#/a6">Day 3 - Basic automation</a></li>
+<li>All packages side by side: <a href="#/package">Automation packages</a></li>
+</ul>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/package"><span class="k">Previous</span><span class="v">Automation packages</span></a>
+      <a class="next" href="#/pkg-facebook"><span class="k">Next</span><span class="v">Facebook package</span></a>
+    </div>
+    <p class="updated">Last updated 09/2026</p>
+  </div>
+</section>

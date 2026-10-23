@@ -1,0 +1,273 @@
+
+<!-- ==================== ROUTER ==================== -->
+<section class="page" id="p-router" data-title="Router &amp; proxy" data-crumb="Tra cứu" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Tra cứu</a></div>
+    <h1 class="title">Router &amp; proxy</h1>
+    <p class="lede">Chọn giữa H3000 và mini PC, mạng cần đáp ứng những gì, chuẩn bị proxy, và cách xử lý khi mất mạng.</p>
+
+    <div class="doc">
+<p>Mọi thứ về lớp mạng gom về một chỗ. Trước đây nội dung này nằm rải rác trên ba trang: một dòng trong <a href="#/a1">Bốn lớp của hệ thống</a>, bảng đấu nối ở <a href="#/a3">Ngày 0</a>, và bước 2 của <a href="#/a5">Ngày 2</a>.</p>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Bản thân bảng điều khiển - gán proxy cho từng điện thoại và bật Isolate Mode - được hướng dẫn trong video bên dưới và ở <a href="#/a5">Ngày 2 &middot; bước 2</a>. Trang này không nhắc lại phần đó; nó đề cập những gì bạn cần quyết định <strong>trước khi</strong> mở bảng điều khiển.</p></div>
+</div>
+<div class="video" data-yt="kGjP-7iqSTI">
+<img src="anh/yt-kGjP-7iqSTI.jpg" alt="Cách dùng GenRouter: gán proxy cho từng thiết bị" loading="lazy">
+<button class="vplay" type="button" aria-label="Phát video"><span class="disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button>
+<span class="vnote">Cách dùng GenRouter: gán proxy cho từng thiết bị</span>
+</div>
+<h2 id="router-h1">1. H3000 hay mini PC</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Bạn chạy</th><th>Thiết bị</th><th>Chế độ kết nối</th><th>Lý do</th></tr></thead>
+<tbody><tr><td><strong>1 box</strong> (20 điện thoại)</td><td><strong>GenRouter H3000</strong></td><td><strong>USB</strong></td><td>H3000 ổn định với tối đa <strong>30 thiết bị kết nối</strong>. Một box 20 điện thoại thì vừa; hai box là 40 thì không</td></tr><tr><td><strong>Từ 2 box trở lên</strong></td><td><strong>Mini PC</strong></td><td><strong>OTG</strong></td><td>Mini PC gánh được tới <strong>200 thiết bị</strong>, đúng bằng 10 box, và điện thoại dùng mạng của nó</td></tr><tr><td>1 box, nhưng bạn đã có sẵn mini PC</td><td>Mini PC</td><td>OTG</td><td>Chạy với một box cũng y như vậy</td></tr><tr><td>Không có thiết bị nào</td><td>-</td><td>OTG hoặc Wi-Fi</td><td>Linh hoạt, tùy nhu cầu của bạn</td></tr></tbody>
+</table></div>
+<p>Lựa chọn này quyết định toàn bộ phần còn lại của Ngày 1: H3000 đi với <a href="#/usb">Kết nối qua USB</a>, mini PC đi với <a href="#/otg">Kết nối qua OTG (LAN)</a>. Chọn sai hàng là lý do phổ biến nhất khiến Scan không tìm thấy điện thoại.</p>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>Cho H3000 gánh quá <strong>30 thiết bị</strong> có thể làm nó bị treo hoặc mất một số chức năng. Đó là con số cứng đằng sau quy tắc một H3000 không thể điều khiển hai box.</p></div>
+</div>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th></th><th>GenRouter H3000</th><th>Mini PC</th></tr></thead>
+<tbody><tr><td>Cổng mạng</td><td>1 x LAN 2.5Gbps + 1 x WAN 1Gbps</td><td>4 x Intel i226 2.5G</td></tr><tr><td>Số thiết bị tối đa</td><td><strong>30</strong> (giới hạn ổn định)</td><td><strong>200</strong></td></tr><tr><td>Wi-Fi tích hợp</td><td>Wi-Fi 6, băng tần kép, và có thể phát 32 mạng riêng biệt</td><td><strong>Không có</strong> - cần một access point riêng</td></tr><tr><td>Chạy bằng sạc dự phòng</td><td>Có</td><td>Không</td></tr><tr><td>Bảng điều khiển</td><td><code>192.168.5.1:9000</code></td><td><code>192.168.5.1:9000</code></td></tr></tbody>
+</table></div>
+<h2 id="router-h2">2. Mạng cần đáp ứng những gì</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Bạn chạy</th><th>Thiết bị</th><th>Cách dùng các cổng</th><th>Switch</th></tr></thead>
+<tbody><tr><td><strong>1 box</strong> - 20 điện thoại</td><td>GenRouter H3000</td><td>Cáp LAN từ modem vào cổng <strong>WAN</strong>; PC cắm vào cổng <strong>LAN</strong>, hoặc kết nối Wi-Fi <code>GENROUTER-2.4GHz</code> / <code>GENROUTER-5GHz</code></td><td>Không cần</td></tr><tr><td><strong>2 đến 4 box</strong> - 40 đến 80 điện thoại</td><td>Mini PC</td><td>Modem vào <strong>ETH0</strong>; PC vào <strong>ETH1</strong>, <strong>ETH2</strong> hoặc <strong>ETH3</strong>; các box vào những cổng còn lại</td><td>Chỉ khi hết cổng</td></tr><tr><td><strong>Tới 10 box</strong> - 200 điện thoại</td><td>Mini PC + switch</td><td>Modem vào ETH0, mọi thứ khác đi qua switch</td><td><strong>Có.</strong> Cụm ổn định đã được kiểm chứng là <strong>1 PC + 1 mini PC + 1 switch + 10 box</strong></td></tr><tr><td><strong>Trên 10 box</strong></td><td>Một cụm thứ hai</td><td>Lặp lại cụm ở trên</td><td>Có, mỗi cụm một switch</td></tr></tbody>
+</table></div>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Kiến trúc tham chiếu của chính GenFarmer là cụm gồm <strong>1 PC điều khiển, 1 mini PC, 1 switch và 10 box</strong>. Nên dùng switch từ khi bạn chạy số lượng box lớn, vừa để ổn định vừa để san tải khỏi mini PC.</p></div>
+</div>
+<ul>
+<li><strong>Một cổng trống trên modem</strong> cho GenRouter</li>
+<li><strong>Cáp LAN: Cat5 hoặc Cat6, ưu tiên Cat6</strong>, để truyền tải ổn định</li>
+<li>Máy tính điều khiển <strong>không cần Wi-Fi</strong> - LAN dùng tốt như nhau, cho cả H3000 lẫn mini PC</li>
+<li><strong>Băng thông tối thiểu:</strong> khoảng <strong>100 Mbps cho box đầu tiên</strong> và thêm khoảng <strong>100 Mbps cho mỗi box tiếp theo</strong>. TikTok là nền tảng nặng nhất, nên hãy lấy con số đó để tính toán. Giữ <strong>tối đa 5 box trên một đường internet</strong>.</li>
+</ul>
+<div class="hint info">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p><strong>Trên thực tế, nút thắt cổ chai là proxy, không phải đường mạng nhà bạn.</strong> Nếu đo đường mạng thấy ổn mà farm vẫn giật, hãy nghi ngờ proxy trước khi trả thêm tiền cho băng thông.</p></div>
+</div>
+<h3>Nếu bạn cần Wi-Fi và đang dùng mini PC</h3>
+<p>Mini PC chỉ kết nối qua LAN và không phát được Wi-Fi, nên Boxphone USB và điện thoại thường cần một thiết bị riêng để làm việc đó. Hãy dùng <strong>access point</strong> - Aruba, Cisco và TP-Link đều có - đặt ở <strong>chế độ Access Point</strong> để nó chỉ phát sóng, còn router vẫn giữ quyền điều khiển và cấp IP. Hãy hỏi người bán mẫu nào đáp ứng được số lượng kết nối của bạn.</p>
+<h2 id="router-h3">3. Kết nối với phần còn lại của hệ thống</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Bạn dùng</th><th>Cách kết nối</th></tr></thead>
+<tbody><tr><td><strong>GenRouter H3000</strong></td><td>Cấp nguồn trước: router sáng đèn xanh lá. Modem vào <strong>WAN</strong>, PC vào <strong>LAN</strong>. PC không có cổng LAN? Hãy kết nối mạng <code>GENROUTER-2.4GHz</code> hoặc <code>GENROUTER-5GHz</code> thay thế. Sau đó mở <code>192.168.5.1:9000</code>; nếu bảng điều khiển hiện ra, bạn đã kết nối thành công.</td></tr><tr><td><strong>GenRouter H3000 không có cáp LAN</strong></td><td>Ở bản V3, router có thể bắt một mạng Wi-Fi khác và phát lại. Kết nối <code>GENROUTER-2.4GHz</code> hoặc <code>GENROUTER-5GHz</code>, chọn mạng cần phát lại, nhập mật khẩu, rồi gửi.</td></tr><tr><td><strong>Mini PC</strong></td><td>Cấp nguồn trước. Modem vào <strong>ETH0</strong>, PC vào <strong>ETH1/ETH2/ETH3</strong>, các box vào những cổng còn lại, rồi mở <code>192.168.5.1:9000</code>.</td></tr><tr><td><strong>Nối box với box qua LAN</strong></td><td>Các Boxphone có cổng LAN có thể nối tiếp với nhau và chạy ở chế độ OTG. Nếu thiết bị không được nhận diện, hãy kết nối qua USB trước để chúng được nhận, rồi chuyển lại sang OTG.</td></tr></tbody>
+</table></div>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Bạn dùng</th><th>Cách kết nối máy tính điều khiển</th></tr></thead>
+<tbody><tr><td><strong>GenRouter H3000</strong></td><td>Nếu PC có Wi-Fi, kết nối qua Wi-Fi. Nếu không, dùng LAN: <strong>cổng LAN của H3000 nối vào cổng Ethernet của PC</strong>, hoặc <strong>LAN của Boxphone nối vào cổng Ethernet của PC</strong> (khi đó nối cổng LAN của H3000 vào LAN1 hoặc LAN2 của Boxphone, rồi kéo cổng LAN còn lại sang PC - áp dụng cho box <strong>P30</strong>).</td></tr><tr><td><strong>Mini PC</strong></td><td>Kết nối qua LAN. Wi-Fi không áp dụng. Nếu laptop không có cổng Ethernet, hãy mua bộ chuyển <strong>USB sang LAN</strong> hoặc <strong>Type-C sang LAN</strong>.</td></tr></tbody>
+</table></div>
+<div class="hint danger">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-danger"/></svg>
+<div><p><strong>Tuyệt đối không nhấn nút reset vật lý</strong> trên router trừ khi bộ phận hỗ trợ kỹ thuật yêu cầu, và <strong>không tự chạy ipconfig hay đổi IP thiết bị</strong> trên máy tính khi chưa có hướng dẫn. Cả hai đều là cách nhanh nhất để làm hỏng một cấu hình đang chạy tốt.</p></div>
+</div>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Đặt router ở giữa phòng, hoặc càng gần các thiết bị càng tốt. <strong>2.4GHz phủ xa hơn nhưng chậm hơn; 5GHz nhanh hơn nhưng phạm vi ngắn hơn.</strong> Nếu thay sạc hoặc cáp, hãy dùng sạc điện thoại Android với <strong>cáp Type-C</strong> - router khá kén cáp, và cáp của điện thoại đời cũ thường dùng được trong khi cáp mới lại không.</p></div>
+</div>
+<p>Khi đã đấu nối xong, phần phần mềm có ở <a href="#/usb">Kết nối qua USB</a> hoặc <a href="#/otg">Kết nối qua OTG (LAN)</a>.</p>
+<h2 id="router-h4">4. Chuẩn bị proxy</h2>
+<p><strong>Tài khoản là một danh tính. Proxy là địa chỉ nhà của danh tính đó.</strong> Nếu 20 tài khoản dùng chung một địa chỉ, nền tảng sẽ thấy 20 người sống chung một nhà, thức dậy và đi ngủ cùng giờ, thích cùng một kiểu nội dung - đó là lý do tài khoản bị khóa theo cụm thay vì từng cái một.</p>
+<p>Từ đó suy ra:</p>
+<ul>
+<li><strong>Mỗi điện thoại một proxy.</strong> Một box đầy đủ 20 điện thoại cần <strong>20 proxy</strong></li>
+<li>Để chạy thử, 5 tài khoản trên 2-3 proxy là chấp nhận được, nhưng <strong>đó không phải cấu hình vận hành thật</strong></li>
+<li><strong>Isolate Mode</strong> là lưới an toàn: khi proxy chết, hết hạn hoặc lỗi, điện thoại đó bị ngắt internet ngay lập tức thay vì quay về dùng địa chỉ thật của bạn</li>
+<li>Ngoài việc gán proxy, GenRouter còn ẩn <strong>WebRTC, DNS, địa chỉ MAC, vị trí và múi giờ</strong>, chặn traceroute và ngăn quét mạng LAN</li>
+</ul>
+<h3>Router chấp nhận những loại proxy nào</h3>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Loại</th><th>Định dạng và ghi chú</th></tr></thead>
+<tbody><tr><td><strong>SOCKS5</strong></td><td><code>socks5://user:pass@ip:port</code></td></tr><tr><td><strong>HTTP / HTTPS</strong></td><td>Được hỗ trợ, quy trình tương tự</td></tr><tr><td><strong>PPPoE</strong></td><td>Tạo proxy từ một đường truyền nhiều phiên. <strong>Chỉ tại Việt Nam</strong> - số proxy bằng số phiên trên đường truyền, và IP đến từ nhà mạng thật</td></tr><tr><td><strong>DPN</strong></td><td>Mạng riêng của GenRouter: proxy dân cư từ <strong>10 quốc gia khác nhau</strong>, và bạn có thể xoay sang quốc gia khác khi quốc gia đó có đủ nguồn chia sẻ</td></tr></tbody>
+</table></div>
+<h3>Thêm proxy</h3>
+<ol>
+<li>Chuẩn bị danh sách trước, trong Notepad hoặc một tài liệu, <strong>mỗi dòng một proxy</strong></li>
+<li>Mở <code>192.168.5.1:9000</code>, vào <strong>Proxy Manager</strong>, bấm <strong>Add proxy</strong></li>
+<li>Chọn định dạng khớp với danh sách của bạn, dán vào, bấm <strong>Add proxy</strong></li>
+<li>Để gán: <strong>Devices &rarr; Update proxy</strong>, chọn giao thức, rồi nhập thông tin (<strong>Input Manually</strong>) hoặc chọn một proxy đã lưu (<strong>Select from List</strong>)</li>
+<li>Để làm cả box một lần, tích ô chọn ở đầu bảng thiết bị, bấm <strong>Update Proxy</strong> và dán danh sách - router sẽ cấp cho mỗi thiết bị một proxy khác nhau</li>
+</ol>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Lời khuyên khi mua - nhà cung cấp nào, proxy dân cư hay datacenter, và proxy xoay có an toàn cho farm hay không - là phần duy nhất còn bỏ ngỏ. Hãy hỏi <a href="#/support">bộ phận hỗ trợ</a> thay vì tự đoán. Nếu bạn ở Việt Nam, với cách dùng PPPoE nhiều phiên, có thể bạn không cần mua proxy chút nào.</p></div>
+</div>
+<h2 id="router-h5">5. Khi có sự cố</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Bạn thấy gì</th><th>Nguyên nhân thường gặp</th><th>Cần làm gì</th></tr></thead>
+<tbody><tr><td>Điện thoại hiện lên nhưng không vào được mạng</td><td>Proxy chết, hoặc giờ trên điện thoại bị sai</td><td>Kiểm tra proxy trước; nếu proxy ổn, chỉnh đồng hồ điện thoại khớp với PC</td></tr><tr><td>Tài khoản bị khóa hàng loạt</td><td>Nhiều tài khoản dùng chung một địa chỉ</td><td>Mỗi điện thoại một proxy, rồi bắt đầu lại với tài khoản mới - xem <a href="#/a5">Ngày 2</a></td></tr><tr><td>Cả box mất internet cùng lúc</td><td>Do đấu nối hoặc đường uplink chung, không phải do proxy</td><td>Kiểm tra đường cáp LAN và cổng trống trên modem, rồi Scan lại</td></tr><tr><td>Một điện thoại tự rớt mạng</td><td>Isolate Mode ngắt điện thoại đó vì proxy của nó đã chết</td><td>Thay proxy đó; đây là tính năng đang hoạt động, không phải lỗi</td></tr><tr><td>Kết nối chập chờn khi thêm box</td><td>Mini PC đang gánh trực tiếp mọi box</td><td>Thêm một <strong>switch LAN</strong> giữa mini PC và các box</td></tr><tr><td>Thiết bị không được nhận diện ở chế độ OTG</td><td>Ngay từ đầu chúng chưa từng được nhận</td><td>Kết nối qua USB để chúng được đăng ký, rồi chuyển lại sang OTG</td></tr><tr><td>Scan không tìm thấy điện thoại nào</td><td>Chưa thêm đủ cả hai dải địa chỉ, hoặc chưa bấm Activate</td><td><a href="#/otg">Kết nối qua OTG (LAN)</a> - nếu dùng USB, kiểm tra đèn có màu xanh dương</td></tr><tr><td>Đèn báo đỏ hoặc nhấp nháy</td><td>Do mainboard hoặc cáp FPC, không phải do mạng</td><td><a href="#/err-light">Sửa lỗi: đèn báo lỗi</a></td></tr></tbody>
+</table></div>
+<p>Các triệu chứng khác, bao gồm cả lỗi phía phần mềm, có ở <a href="#/troubleshoot">Xử lý sự cố theo triệu chứng</a>.</p>
+<h2 id="router-h6">Đọc tiếp ở đâu</h2>
+<ul>
+<li>Xem video hướng dẫn ở trên để thấy cách sử dụng bảng điều khiển</li>
+<li>Nếu bạn đang theo khóa học, phần cấu hình mạng nằm ở <a href="#/a5">Ngày 2 - Làm chủ danh tính</a></li>
+<li>Các bước cho từng điện thoại - gán proxy, bật Isolate Mode - có ở <a href="#/a5">Ngày 2 &middot; bước 2</a></li>
+</ul>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/api"><span class="k">Trước</span><span class="v">API</span></a>
+      <a class="next" href="#/package"><span class="k">Tiếp</span><span class="v">Gói tự động hóa</span></a>
+    </div>
+    <p class="updated">Cập nhật lần cuối 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== PACKAGE ==================== -->
+<section class="page" id="p-package" data-title="Gói tự động hóa" data-crumb="Tra cứu" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Tra cứu</a></div>
+    <h1 class="title">Gói tự động hóa</h1>
+    <p class="lede">Gói là gì, hiện có những gói nào, ba công cụ bên trong và thứ tự bạn phải tuân theo.</p>
+
+    <div class="doc">
+<p>Gói là một bộ kịch bản tự động hóa dựng sẵn cho một nền tảng. Bạn mua gói trong <strong>Store</strong> của ứng dụng; từ đó nó nằm trong <strong>Automation &rarr; My Apps</strong> và chạy như mọi app khác. Nếu bạn chưa mua, hãy liên hệ bộ phận kinh doanh GenFarmer qua WhatsApp <a href="https://wa.me/84971234601" target="_blank" rel="noopener">+84 97 123 46 01</a> hoặc hỏi trong <a href="https://chat.whatsapp.com/J8bchy0IIwREeAI1z7Jmvo?mode=gi_t" target="_blank" rel="noopener">cộng đồng khách hàng</a>. Mọi việc ở đây cũng có thể làm thủ công, chỉ là chậm hơn rất nhiều.</p>
+<h2 id="package-h1">Các gói hiện có</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Nền tảng</th><th>Gói</th><th>Chức năng</th><th>Chi tiết</th></tr></thead>
+<tbody><tr><td><strong>TikTok</strong></td><td>Trust</td><td>Nuôi tài khoản xoay quanh các từ khóa thuộc ngách của bạn</td><td><a href="#/pkg-tiktok">TikTok</a></td></tr><tr><td></td><td>Boost</td><td>View, like, bình luận và share cho video bạn chọn</td><td></td></tr><tr><td><strong>Facebook</strong></td><td>Trust</td><td>Nuôi tài khoản theo một ngách nội dung</td><td><a href="#/pkg-facebook">Facebook</a></td></tr><tr><td></td><td>Boost</td><td>Like, share và bình luận cho bài đăng hoặc Reel</td><td></td></tr><tr><td><strong>Instagram</strong></td><td>Trust</td><td>Nuôi tài khoản, đăng bài ở mức cơ bản</td><td><a href="#/pkg-instagram">Instagram</a></td></tr><tr><td></td><td>Boost</td><td>Like, bình luận, view và lưu bài, nhắm đến người chưa theo dõi</td><td></td></tr><tr><td><strong>Spotify</strong></td><td>Spotify</td><td>Lượt stream hợp lệ cho các bài hát của bạn</td><td><a href="#/pkg-spotify">Spotify</a></td></tr><tr><td><strong>Tidal</strong></td><td>Tidal</td><td>Lượt stream hợp lệ cho các bài hát của bạn</td><td><a href="#/pkg-tidal">Tidal</a></td></tr></tbody>
+</table></div>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Các gói được cập nhật tách biệt với tài liệu này. Nếu một gói hoạt động khác với những gì bạn đọc ở đây, thì gói là phiên bản mới hơn - hãy báo <a href="#/support">bộ phận hỗ trợ</a> để trang này được sửa lại.</p></div>
+</div>
+<h2 id="package-h2">Vì sao dùng phone farm thay vì trình duyệt antidetect</h2>
+<p>Các nền tảng mạng xã hội và âm nhạc không còn chạy được bằng trình duyệt antidetect: trình duyệt để lộ dấu hiệu, checkpoint đến nhanh, tương tác bị bóp, và trình duyệt không thể tạo ra môi trường nghe nhạc được tính là lượt stream thật. Thiết bị thật trên IP thật mới là thứ mà các gói được xây dựng cho.</p>
+<h2 id="package-h3">Bốn bước mà mọi gói đều tuân theo</h2>
+<span class="pathline">Nuôi tài khoản &rarr; Xác định tệp khán giả &rarr; Kích hoạt tương tác &rarr; Đẩy phân phối</span>
+<p>Không có gì được đẩy ngay ngày đầu, và không có gì bị spam. Toàn bộ chuỗi được căn thời gian theo đúng cách một người thật hành xử.</p>
+<h2 id="package-h4">Thuật toán thực sự đo lường gì</h2>
+<p>Cùng năm tín hiệu quyết định độ phủ trên TikTok, Instagram và Facebook, đó là lý do các gói được thiết kế như hiện tại.</p>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Tín hiệu</th><th>Ý nghĩa với bạn</th></tr></thead>
+<tbody><tr><td><strong>Thời gian xem và tỷ lệ giữ chân</strong></td><td>Quan trọng nhất: người xem có dừng lại, xem hết, xem lại, hay rời đi sớm</td></tr><tr><td><strong>Tương tác sớm</strong></td><td>Like, share, bình luận và lưu bài phải xuất hiện ngay sau khi đăng. Dồn hết một lúc trông bất thường và bị bóp; rải ra tự nhiên thì dữ liệu chảy vào đều đặn</td></tr><tr><td><strong>Ai đang tương tác</strong></td><td>Không chỉ là bao nhiêu, mà còn là họ có khớp với nội dung không. Sai khán giả sẽ dạy thuật toán sai điều, và bài được phân phối đến sai người</td></tr><tr><td><strong>Lịch sử của tài khoản</strong></td><td>Tài khoản đã từng chạy tương tác rác thì rất khó cứu lại. <strong>Khởi đầu đúng quan trọng hơn chạy mạnh</strong></td></tr><tr><td><strong>Phản ứng của người chưa theo dõi</strong></td><td>Nền tảng muốn biết người mới có phản ứng không, chứ không phải người theo dõi bạn. Bài đăng khơi dậy được người chưa theo dõi sẽ lan nhanh kể cả từ tài khoản nhỏ</td></tr></tbody>
+</table></div>
+<h2 id="package-h5">Ba công cụ, và thứ tự bạn phải tuân theo</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th></th><th><strong>Trust</strong></th><th><strong>Boost</strong></th></tr></thead>
+<tbody><tr><td>Mục tiêu</td><td>Nuôi tài khoản, xây dựng lịch sử</td><td>Khuếch đại một nội dung</td></tr><tr><td>Trọng tâm</td><td>Ổn định và an toàn</td><td>Hiệu quả và tăng trưởng</td></tr><tr><td>Phù hợp với</td><td>Tài khoản mới, hoặc tài khoản đang được xây lại</td><td>Tài khoản đã có nền tảng</td></tr><tr><td>Hành vi</td><td>Xem theo chủ đề, follow và like có chọn lọc</td><td>Đẩy view, like, stream, trending</td></tr></tbody>
+</table></div>
+<p><strong>Auto Login</strong> đứng trước cả hai: nó đăng nhập và đăng xuất tài khoản hàng loạt thay vì bạn phải gõ trên từng điện thoại.</p>
+<div class="hint danger">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-danger"/></svg>
+<div><p>Bật <strong>Boost</strong> cho tài khoản chưa được nuôi là cách nhanh nhất để mất nó, và một tài khoản đã từng chạy tương tác rác thì rất khó cứu lại. Đây là sai lầm đắt giá nhất trong cả lộ trình.</p></div>
+</div>
+<p>Hướng dẫn từng bước để chạy các công cụ này có ở <a href="#/a6">Ngày 3 - Tự động hóa cơ bản</a>.</p>
+<h2 id="package-h6">Điều gì giúp nó trông giống người thật</h2>
+<ul>
+<li><strong>Tác vụ ngẫu nhiên:</strong> thời điểm và loại thao tác - xem, like, lưu, lướt - thay đổi qua mỗi lần chạy thay vì lặp lại một mẫu cố định</li>
+<li><strong>Giới hạn và nghỉ:</strong> kịch bản có mức trần, các khoảng dừng và hành vi nền (xem, lướt, bỏ qua), đó là những gì nền tảng coi là tự nhiên</li>
+<li><strong>Xây dựng riêng cho từng nền tảng:</strong> mỗi gói được thiết kế theo cách nền tảng đó phân phối nội dung và cách người dùng của nó hành xử tại thị trường của bạn</li>
+</ul>
+<h2 id="package-h7">Trước khi chạy gói đầu tiên</h2>
+<ul>
+<li>5 tài khoản chạy thử đã <strong>trụ được qua 48 giờ để yên</strong> mà không bị yêu cầu xác minh - xem <a href="#/a5">Ngày 2</a></li>
+<li>Mỗi điện thoại có <strong>proxy riêng</strong>, và Isolate Mode đã bật - xem <a href="#/router">Router &amp; proxy</a></li>
+<li><strong>Ứng dụng nền tảng đã được cài</strong> trên mọi điện thoại, từ thư mục APK chính thức chứ không phải từ link trong bộ Hướng dẫn sử dụng - xem <a href="#/a5">Ngày 2 &middot; bước 3</a></li>
+<li>Bạn đã có <strong>API key vilao.ai</strong> nếu gói có bình luận tự động - việc này thuộc <a href="#/a3">Ngày 0</a>, và giữa chừng mới phát hiện ra là chưa có thì sẽ phải dừng giữa chừng</li>
+</ul>
+<h2 id="package-h8">Đọc tiếp ở đâu</h2>
+<ul>
+<li>Quy trình tải và chạy một gói có ở <a href="#/a6">Ngày 3 - Tự động hóa cơ bản</a></li>
+<li>Bản thân Store được mô tả ở <a href="#/apps">App Manager</a>; Apps, Tasks và Runs ở <a href="#/automation">Automation</a></li>
+</ul>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/router"><span class="k">Trước</span><span class="v">Router &amp; proxy</span></a>
+      <a class="next" href="#/pkg-tiktok"><span class="k">Tiếp</span><span class="v">Gói TikTok</span></a>
+    </div>
+    <p class="updated">Cập nhật lần cuối 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== PKG-TIKTOK ==================== -->
+<section class="page" id="p-pkg-tiktok" data-title="Gói TikTok" data-crumb="Tra cứu" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Tra cứu</a></div>
+    <h1 class="title">Gói TikTok</h1>
+    <p class="lede">Trust và Boost cho TikTok: gói có gì, các thông số nên áp dụng, và những điều cần theo dõi.</p>
+
+    <div class="doc">
+<h2 id="pkg-tiktok-h1">Gói có gì</h2>
+<p>TikTok có đủ cả hai nửa của bộ công cụ. <strong>Trust</strong> xây dựng tài khoản có lịch sử hoạt động thật để nó không còn bị coi là tài khoản dùng một lần; <strong>Boost</strong> vận hành phần đăng bài trên các tài khoản bạn sở hữu.</p>
+<h3>Trust - phát triển tài khoản</h3>
+<ul>
+<li><strong>Phát triển theo từ khóa ngành.</strong> Hệ thống tìm các video xoay quanh từ khóa mục tiêu của bạn và hành xử như người thật đang lướt xem, nhờ đó tài khoản bắt đầu được đề xuất vào các từ khóa đó và xây dựng được lịch sử khiến nó trông đáng tin cậy.</li>
+<li><strong>Tự động đăng bài và bình luận bằng AI.</strong> Việc đăng bài chạy theo lịch, và bình luận được tạo mới chứ không sao chép, nên một số lượng lớn tài khoản sẽ không bao giờ viết cùng một câu.</li>
+<li><strong>Quản lý nhiều tài khoản cùng lúc.</strong> Hàng trăm tài khoản trên một màn hình, được đồng bộ và giám sát tập trung, không cần kỹ năng kỹ thuật.</li>
+<li><strong>Follow ngẫu nhiên.</strong> Hệ thống chọn từ danh sách gợi ý và follow ngẫu nhiên, để hành vi không bao giờ trông như một thao tác lặp lại.</li>
+</ul>
+<h3>Boost - vận hành kênh</h3>
+<ul>
+<li><strong>AI trả lời theo ngữ cảnh.</strong> AI đọc các bình luận để lại trên video của chính bạn và soạn câu trả lời phù hợp với chủ đề và giọng điệu, mỗi lần một cách diễn đạt khác.</li>
+<li><strong>Lên lịch và đăng bài quy mô lớn.</strong> Tải lên và lên lịch video hàng loạt trên danh sách tài khoản, đăng vào đúng thời điểm cho từng thị trường, và đăng lệch giờ để các kênh không đăng giống hệt nhau.</li>
+<li><strong>Một giao diện cho mọi tài khoản</strong>, với báo cáo theo từng kênh thay vì số liệu rải rác qua nhiều lần đăng nhập.</li>
+</ul>
+<p>Vì tất cả chạy trên điện thoại thật, việc tải lên diễn ra trong môi trường di động gốc chứ không phải trình duyệt.</p>
+<h2 id="pkg-tiktok-h2">Thông số vận hành</h2>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>Hàng cuối vẫn đang chờ đội ngũ kỹ thuật xác nhận. Các hàng còn lại là thiết lập khuyến nghị, không phải giới hạn cứng.</p></div>
+</div>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Câu hỏi</th><th>Trả lời</th></tr></thead>
+<tbody><tr><td>Nuôi bao lâu trước khi chạy thật</td><td><strong>2-4 tuần</strong> Trust</td></tr><tr><td>Bao nhiêu tài khoản trên mỗi thiết bị</td><td><strong>1 tài khoản mỗi nền tảng trên mỗi thiết bị</strong> là an toàn nhất; 3 là mức tối đa khuyến nghị</td></tr><tr><td>Số điện thoại tối đa trên một router</td><td><strong>30</strong> với GenRouter H3000, <strong>200</strong> với mini PC - xem <a href="#/router">Router &amp; proxy</a></td></tr><tr><td>Số box tối đa trên một đường internet</td><td><strong>5</strong>, khoảng 100 Mbps mỗi box - xem <a href="#/router">Router &amp; proxy</a></td></tr><tr><td>Bao lâu đổi thông tin gắn với link một lần</td><td><strong>7 đến 14 ngày một lần</strong></td></tr><tr><td>Chạy bao lâu thì cho tài khoản nghỉ</td><td><strong>Chạy 4-6 giờ, nghỉ 1-2 giờ</strong>, hoặc chia thành nhiều khung giờ riêng trong ngày. <strong>Không bao giờ chạy 24/7</strong> - không người thật nào lướt suốt đêm</td></tr><tr><td>Thiết lập gợi ý cho người mới</td><td><span class="todo">Đang chờ xác nhận</span></td></tr></tbody>
+</table></div>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p><strong>Vì sao nên đổi thông tin gắn với link mỗi một hai tuần.</strong> Đổi mỗi ngày thì không ai theo kịp; để nguyên hàng tháng thì bạn cứ dội đi dội lại cùng một danh sách link, đúng là kiểu mẫu mà các nền tảng quét tìm.</p></div>
+</div>
+<h2 id="pkg-tiktok-h3">Lưu ý riêng cho TikTok</h2>
+<ul>
+<li>TikTok là <strong>nền tảng tốn băng thông nhất</strong>, đó là lý do con số 100 Mbps mỗi box được tính theo nó.</li>
+<li>Link APK TikTok trong bộ Hướng dẫn sử dụng là link duy nhất đúng, nhưng thư mục chính thức ở <a href="#/a5">Ngày 2 &middot; bước 3</a> vẫn là nguồn an toàn hơn.</li>
+<li>Bình luận tự động cần <strong>API key vilao.ai</strong> - hãy lấy nó trong <a href="#/a3">Ngày 0</a>, đừng đợi đến ngày cần dùng.</li>
+</ul>
+<p>Chương TikTok trong bộ Hướng dẫn sử dụng là <em>tr. 17-50, 34 trang - chương đầy đủ nhất trong bộ hướng dẫn</em>.</p>
+<h2 id="pkg-tiktok-h4">Dấu hiệu cần dừng lại</h2>
+<ol>
+<li>Tài khoản bị yêu cầu xác minh thường xuyên hơn bình thường.</li>
+<li>Bài đăng đột nhiên mất hết lượt xem.</li>
+<li>Số điện thoại đang chạy cứ giảm dần mà không rõ lý do.</li>
+</ol>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>Nếu có tài khoản nào bị khóa qua đêm, <strong>đừng mở rộng</strong>. Hãy quay lại kiểm tra proxy và tốc độ chạy trước.</p></div>
+</div>
+<h2 id="pkg-tiktok-h5">Sự cố thường gặp với gói này</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Bạn thấy gì</th><th>Nguyên nhân thường gặp</th><th>Cần làm gì</th></tr></thead>
+<tbody><tr><td>Kịch bản chạy nhưng số liệu không nhích</td><td>Chưa nuôi đủ 2-4 tuần, hoặc đặt sai ngách nội dung</td><td><a href="#/a7">Ngày 4-5</a>, phần cấu hình</td></tr><tr><td>Mở ra một ứng dụng khác sau khi cài</td><td>APK được tải từ link trong bộ Hướng dẫn sử dụng</td><td>Cài lại từ thư mục chính thức - <a href="#/a5">Ngày 2 &middot; bước 3</a></td></tr><tr><td>Tài khoản bị yêu cầu xác minh ngay khi kịch bản bắt đầu</td><td>Điều tương tự cũng xảy ra khi bạn đăng nhập thủ công; kịch bản chỉ lặp lại nhanh hơn</td><td>Đổi nhà cung cấp tài khoản hoặc proxy, rồi thử lại - <a href="#/a5">Ngày 2</a></td></tr><tr><td>Bình luận tự động dừng giữa chừng</td><td>Chưa có API key vilao.ai, hoặc model của nhà cung cấp đang gặp sự cố</td><td>Xem <a href="#/a3">Ngày 0</a> để biết cách lấy key</td></tr><tr><td>Tài khoản bị khóa hàng loạt</td><td>Nhiều tài khoản dùng chung một địa chỉ</td><td><a href="#/router">Router &amp; proxy</a></td></tr><tr><td>Mọi thứ đã cấu hình đúng nhưng farm vẫn giật</td><td>Thường do proxy chứ không phải đường mạng</td><td><a href="#/router">Router &amp; proxy</a></td></tr></tbody>
+</table></div>
+<h2 id="pkg-tiktok-h6">Đọc tiếp ở đâu</h2>
+<ul>
+<li>Quy trình chạy gói: <a href="#/a6">Ngày 3 - Tự động hóa cơ bản</a></li>
+<li>So sánh tất cả các gói: <a href="#/package">Gói tự động hóa</a></li>
+</ul>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/package"><span class="k">Trước</span><span class="v">Gói tự động hóa</span></a>
+      <a class="next" href="#/pkg-facebook"><span class="k">Tiếp</span><span class="v">Gói Facebook</span></a>
+    </div>
+    <p class="updated">Cập nhật lần cuối 09/2026</p>
+  </div>
+</section>

@@ -1,0 +1,242 @@
+
+<!-- ==================== TROUBLESHOOT ==================== -->
+<section class="page" id="p-troubleshoot" data-title="Solución de problemas por síntoma" data-crumb="Referencia" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Referencia</a></div>
+    <h1 class="title">
+      Solución de problemas por síntoma
+    </h1>
+    <p class="lede">Para tu segunda lectura: busca según lo que ves en pantalla y sabrás de inmediato qué capa está fallando y qué página abrir.</p>
+
+    <div class="doc">
+      <p>La primera vez, lees la documentación en orden. A partir de la segunda, buscas según lo que ves en pantalla. Esta tabla es para esa segunda vez.</p>
+      <figure class="fig"><img src="anh/15-tra-cuu-giao-dien-phan-mem.jpg" alt="Software GenFarmer" loading="lazy"></figure>
+
+      <div class="tbl"><table>
+        <thead><tr><th>Síntoma</th><th>Capa</th><th>Dónde mirar / qué hacer</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Scan</strong> no encuentra teléfonos</td><td>1 · DISPOSITIVO</td><td>Revisa los dos rangos de direcciones y el botón <strong>Activate</strong>: <a href="#/otg">Conectar por OTG (LAN)</a>. En USB, comprueba que la luz sea azul: <a href="#/usb">Conectar por USB</a>. <em>HDSD p. 4-8</em></td></tr>
+          <tr><td>Se encuentran los teléfonos pero la pantalla está negra</td><td>1 · DISPOSITIVO</td><td>Próximamente: <a href="#/support">contacta con soporte</a> con una captura de pantalla</td></tr>
+          <tr><td>Algunos teléfonos nunca aparecen y <code>adb devices</code> dice <strong>unauthorized</strong></td><td>1 · DISPOSITIVO</td><td><a href="#/err-unauth">Solución: el dispositivo no aparece (Unauthorized)</a>: necesitas el archivo de clave ADB para tu modelo de caja</td></tr>
+          <tr><td>La luz indicadora está <strong>roja</strong> o parpadea, y el dispositivo desaparece</td><td>1 · DISPOSITIVO</td><td><a href="#/err-light">Solución: error de luz indicadora del Boxphone</a>: cambia la placa base a otra ranura y luego vuelve a conectar el cable FPC</td></tr>
+          <tr><td><strong>Not valid device</strong> / error de licencia en la app</td><td>1 · DISPOSITIVO</td><td><a href="#/err-license">Solución: Not valid device</a>: una cuenta solo puede tener la sesión iniciada en una computadora, y revisa el reloj</td></tr>
+          <tr><td>Los teléfonos aparecen pero no se conectan a internet</td><td>2 · RED</td><td>Revisa primero el proxy; si está bien, revisa la hora del teléfono (<a href="#/a4">Día 1 · paso 3</a>). Si sigue sin funcionar, revisa Isolate Mode en el GenRouter (<a href="#/a5">Día 2 · paso 2</a>) · <a href="https://youtu.be/kGjP-7iqSTI" target="_blank" rel="noopener">video sobre la asignación de proxies</a></td></tr>
+          <tr><td>Elegir un router, comprar proxies o cualquier pregunta sobre la red</td><td>2 · RED</td><td><a href="#/router">Router y proxy</a>: toda la capa de red en una sola página</td></tr>
+          <tr><td>Preguntas sobre un paquete: qué hace, cuánto tiempo calentar, qué configurar</td><td>4 · SCRIPTS</td><td><a href="#/package">Paquetes de automatización</a> y luego la página de tu plataforma</td></tr>
+          <tr><td>Muchas cuentas se bloquean al mismo tiempo</td><td>2 · RED</td><td>Casi siempre se debe a que varias cuentas comparten una misma dirección: consulta el <a href="#/a5">Día 2</a>. Mira el <a href="https://youtu.be/kGjP-7iqSTI" target="_blank" rel="noopener">video sobre la asignación de proxies e Isolate Mode</a>; pronto habrá una guía detallada de solución de problemas</td></tr>
+          <tr><td>Inicias sesión y luego te piden verificación</td><td>3 · IDENTIDAD</td><td>Vuelve al <a href="#/a5">Día 2 en la página A5</a>: no amplíes la escala; cambia de proveedor de cuentas o de proxies y vuelve a intentarlo. Pronto habrá una guía detallada</td></tr>
+          <tr><td>Las cuentas están activas pero nadie ve las publicaciones</td><td>3 · IDENTIDAD</td><td>Normalmente porque el calentamiento no ha llegado a 2-4 semanas, o se eligió el nicho equivocado: consulta los <a href="#/a7">Días 4-5</a></td></tr>
+          <tr><td>Todo funciona pero las cifras no se mueven</td><td>4 · SCRIPTS</td><td><a href="#/a7">Capítulo de la plataforma</a>: sección de configuración</td></tr>
+          <tr><td>Aparece una app distinta después de instalar</td><td>4 · SCRIPTS</td><td>Estás descargando desde los enlaces del HDSD. Usa la carpeta oficial de APK de <a href="#/a5">Día 2 · paso 3</a></td></tr>
+        </tbody>
+      </table></div>
+
+      <div class="hint">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+        <div><p>¿No sabes qué capa es? Vuelve a leer <a href="#/a1">Las cuatro capas del sistema</a>. Cuando necesites ayuda, usa la plantilla de mensaje lista para usar de <a href="#/support">Antes de contactar con soporte</a>.</p></div>
+      </div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/pkg-tidal"><span class="k">Anterior</span><span class="v">Paquete de Tidal</span></a>
+      <a class="next" href="#/err-license"><span class="k">Siguiente</span><span class="v">Solución: Not valid device</span></a>
+    </div>
+    <p class="updated">Última actualización: 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== GLOSSARY ==================== -->
+<section class="page" id="p-glossary" data-title="Glosario" data-crumb="Referencia" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Referencia</a></div>
+    <h1 class="title">
+      Glosario
+    </h1>
+    <p class="lede">Términos que aparecen en el curso y en el HDSD, explicados brevemente tal como los usa el sistema GenFarmer.</p>
+
+    <div class="doc">
+      <p>Cuando encuentres un término que no conoces mientras lees, búscalo aquí y luego vuelve a la página en la que estabas. Está organizado según las cuatro capas del sistema; consulta <a href="#/a1">Las cuatro capas del sistema</a>.</p>
+      <figure class="fig"><img src="anh/16-thuat-ngu-dien-thoai.jpg" alt="GenFarmer" loading="lazy"></figure>
+
+      <h2 id="h-layer1">Capa 1 · Dispositivo</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>Término</th><th>Significado</th><th>Aparece en</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Box / Boxphone</strong></td><td>La carcasa de hardware que aloja muchos teléfonos (normalmente 20), comprada a GenFarmer.</td><td>Capas · Día 1</td></tr>
+          <tr><td><strong>Software GenFarmer</strong></td><td>El software instalado en tu computadora para controlar todos los teléfonos de la caja. Se descarga desde <a href="https://genfarmer.com/download/" target="_blank" rel="noopener">genfarmer.com/download</a>.</td><td>Día 1</td></tr>
+          <tr><td><strong>Control Center</strong></td><td>La pantalla de control manual del software: tocar, escribir y actuar sobre un teléfono o muchos a la vez.</td><td>Día 1</td></tr>
+          <tr><td><strong>Modo USB</strong></td><td>El modo de conexión cuando usas 1 caja con un GenRouter H3000. Lo conectas y se detecta automáticamente.</td><td>Día 1</td></tr>
+          <tr><td><strong>Modo OTG</strong></td><td>El modo de conexión cuando usas un mini PC. Debes agregar dos rangos de direcciones, hacer clic en Active y luego en Scan. En este modo, los teléfonos ya tienen internet a través del mini PC.</td><td>Día 1</td></tr>
+          <tr><td><strong>Rango de direcciones</strong></td><td>Los dos rangos de direcciones de red <code>192.168.4.1-255</code> y <code>192.168.5.1-255</code> que hay que declarar en modo OTG para que el software encuentre los teléfonos.</td><td>Día 1</td></tr>
+          <tr><td><strong>Active / Scan</strong></td><td>Active: activa los rangos de direcciones que agregaste. Scan: busca los teléfonos. Olvidar Active es la razón más común por la que Scan no encuentra teléfonos.</td><td>Día 1</td></tr>
+          <tr><td><strong>Device ID</strong></td><td>El identificador de cada teléfono, que aparece en la pantalla principal; se usa para asignar un teléfono a una cuenta en Account Manager.</td><td>Día 2</td></tr>
+          <tr><td><strong>APK</strong></td><td>El archivo de instalación de apps de Android (TikTok, Facebook…). Se instala de forma masiva con el botón Install APK.</td><td>Día 2</td></tr>
+          <tr><td><strong>adb</strong></td><td>La herramienta de línea de comandos de Android para enviar comandos directamente a un teléfono. Opcional, solo para personas con conocimientos técnicos.</td><td>Día 1</td></tr>
+        </tbody>
+      </table></div>
+
+      <h2 id="h-layer2">Capa 2 · Red</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>Término</th><th>Significado</th><th>Aparece en</th></tr></thead>
+        <tbody>
+          <tr><td><strong>GenRouter (H3000)</strong></td><td>El router de GenFarmer, que le da a cada teléfono su propia ruta a internet. El H3000 sirve para 1 caja. Panel de control en <code>192.168.5.1:9000</code>.</td><td>Capas · Día 1 · Día 2</td></tr>
+          <tr><td><strong>Mini PC</strong></td><td>Una computadora pequeña que se usa en lugar del H3000 cuando tienes 2 cajas o más; los teléfonos de la caja usan la red del mini PC (modo OTG). Necesita un cable LAN Cat5/Cat6.</td><td>Día 0 · Día 1</td></tr>
+          <tr><td><strong>Proxy</strong></td><td>La "dirección de casa" de una cuenta en internet. Cada teléfono / cada cuenta necesita su propio proxy; compartir uno es lo que hace que las cuentas se bloqueen en grupo.</td><td>Día 2</td></tr>
+          <tr><td><strong>Isolate Mode</strong></td><td>Un modo del GenRouter: si el proxy de un teléfono deja de funcionar, la red de ese teléfono se corta de inmediato para que la dirección real nunca quede expuesta.</td><td>Día 2</td></tr>
+        </tbody>
+      </table></div>
+
+      <h2 id="h-layer3">Capa 3 · Identidad</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>Término</th><th>Significado</th><th>Aparece en</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Cuenta</strong></td><td>Una cuenta en una plataforma (TikTok, Facebook…). En el sistema, una cuenta es una identidad; el proxy es la dirección de casa de esa identidad.</td><td>Día 2</td></tr>
+          <tr><td><strong>UID | Password | 2FA</strong></td><td>El formato predeterminado para introducir cuentas en la hoja: ID de la cuenta, contraseña y código de doble factor, separados por barras verticales. Se puede cambiar en Custom.</td><td>Día 2</td></tr>
+          <tr><td><strong>Account Manager</strong></td><td>La pantalla de gestión de cuentas: donde importas la hoja de cuentas, asignas Device IDs y (desde el Día 3) eliges qué cuenta ejecuta qué script.</td><td>Día 2 · Día 3</td></tr>
+          <tr><td><strong>Verificación</strong></td><td>La plataforma te pide demostrar la titularidad de la cuenta (código OTP, foto, video…). Que te pidan verificación más a menudo de lo normal es una señal para detenerte.</td><td>Día 2 · Días 4-5</td></tr>
+          <tr><td><strong>Calentamiento / asentamiento de cuentas</strong></td><td>La fase de 2-4 semanas en la que una cuenta construye hábitos como una persona real antes de usarse para su propósito principal. Un crecimiento lento durante esta fase es normal.</td><td>Día 2 · Día 3 · Días 4-5</td></tr>
+        </tbody>
+      </table></div>
+
+      <h2 id="h-layer4">Capa 4 · Automatización</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>Término</th><th>Significado</th><th>Aparece en</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Script</strong></td><td>Una secuencia grabada de acciones que el teléfono realiza por sí solo, ejecutándose en muchos teléfonos a la vez. No hace falta programar.</td><td>Día 3</td></tr>
+          <tr><td><strong>Paquete de automatización / Store</strong></td><td>Un conjunto de scripts listo para usar para cada plataforma, que se descarga desde la sección Store del software.</td><td>Capas · Día 3</td></tr>
+          <tr><td><strong>Auto Login</strong></td><td>La herramienta para iniciar y cerrar sesión de forma masiva.</td><td>Día 3</td></tr>
+          <tr><td><strong>Trust</strong></td><td>La herramienta de calentamiento de cuentas: el teléfono mira, se desplaza, da me gusta y sigue cuentas como una persona real con intereses claros. Se ejecuta durante 2-4 semanas.</td><td>Día 3</td></tr>
+          <tr><td><strong>Boost</strong></td><td>La herramienta que concentra la interacción en una publicación concreta. Úsala solo después de un calentamiento suficiente.</td><td>Día 3</td></tr>
+          <tr><td><strong>Clave API de vilao.ai</strong></td><td>La clave que se usa para los comentarios automáticos (comentarios escritos por IA). Prepárala el Día 0.</td><td>Día 0 · Día 3</td></tr>
+          <tr><td><strong>Nicho de contenido</strong></td><td>El tema en torno al cual se calienta una cuenta. Si eliges el equivocado, tus publicaciones no llegarán al público adecuado.</td><td>Días 4-5</td></tr>
+        </tbody>
+      </table></div>
+
+      <h2 id="h-general">General</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>Término</th><th>Significado</th></tr></thead>
+        <tbody>
+          <tr><td><strong>HDSD</strong></td><td>El Manual de usuario completo de GenFarmer (141 páginas). Este curso te indica la página exacta que debes abrir. Consulta también el <a href="https://youtu.be/dWUFV9oCnL0" target="_blank" rel="noopener">video tutorial</a>.</td></tr>
+          <tr><td><strong>Paquete</strong></td><td>Un conjunto de scripts de automatización listo para usar en una plataforma, comprado en la Store. Cada paquete de redes sociales incluye Auto Login, Trust y Boost.</td><td><a href="#/package">Paquetes</a></td></tr>
+          <tr><td><strong>Proxy</strong></td><td>La dirección en la que parece vivir una cuenta. Un proxy por teléfono; cuando varias cuentas comparten uno, se bloquean juntas.</td><td><a href="#/router">Router y proxy</a></td></tr>
+          <tr><td><strong>Change</strong></td><td>Tecnología integrada en la ROM de algunos modelos de Boxphone que cambia la huella digital del dispositivo que ve una app, para que un dispositivo pueda parecer varios. No es root.</td><td><a href="#/change">Change</a></td></tr>
+          <tr><td><strong>Super Change</strong></td><td>La línea mejorada: Change más simulación de GPS y sensores, fuentes de instalación oficiales, Android 15 con actualizaciones OTA y fingerprints de hardware menos comunes.</td><td><a href="#/change">Change</a></td></tr>
+          <tr><td><strong>Backup / Restore App</strong></td><td>Guardar y restaurar los datos de una app en un dispositivo, para que una cuenta sobreviva a un reinicio o a un traslado sin volver a iniciar sesión.</td><td><a href="#/backup">Backup</a></td></tr>
+          <tr><td><strong>Inspector</strong></td><td>Una ventana aparte que lee los elementos de una app (XPath, resource id, package) para quienes escriben scripts de automatización.</td><td><a href="#/cc">Control Center</a></td></tr>
+          <tr><td><strong>Module</strong></td><td>Una App avanzada que contiene varias funciones más pequeñas, unidas mediante el nodo Context Menu.</td><td><a href="#/automation">Automatización</a></td></tr>
+          <tr><td><strong>Task / Run</strong></td><td>Una Task es una app más los dispositivos en los que se ejecuta; un Run es una ejecución de esa Task, con su estado y su duración.</td><td><a href="#/automation">Automatización</a></td></tr>
+          <tr><td><strong>Luz indicadora</strong></td><td>Azul significa modo USB, verde significa modo OTG, y roja o parpadeante significa una falla de la placa base.</td><td><a href="#/usb">USB</a> · <a href="#/err-light">Error de luz</a></td></tr>
+          <tr><td><strong>Clave ADB</strong></td><td>El archivo de autorización que permite que tu computadora se comunique con las placas base. Es específico de cada modelo de caja; lo proporciona soporte.</td><td><a href="#/err-unauth">Unauthorized</a></td></tr>
+          <tr><td><strong>El curso</strong></td><td>Del Día 0 a los Días 4-5: el orden de lectura para tu primera semana, a diferencia de las páginas de referencia a las que vuelves más adelante.</td></tr>
+          <tr><td><strong>Listo cuando</strong></td><td>El criterio de finalización de cada día. Si todavía no lo cumples, quédate en ese día.</td></tr>
+          <tr><td><strong>Próximamente</strong></td><td>La guía detallada de esta parte todavía se está redactando. Si la necesitas ya, <a href="#/support">contacta con soporte</a>.</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/faq"><span class="k">Anterior</span><span class="v">Preguntas frecuentes</span></a>
+      <a class="next" href="#/support"><span class="k">Siguiente</span><span class="v">Antes de contactar con soporte</span></a>
+    </div>
+    <p class="updated">Última actualización: 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== SUPPORT ==================== -->
+<section class="page" id="p-support" data-title="Antes de contactar con soporte" data-crumb="Referencia" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Referencia</a></div>
+    <h1 class="title">
+      Antes de contactar con soporte
+    </h1>
+    <p class="lede">Canales de soporte, los 5 datos que debes incluir y una plantilla de mensaje lista para usar: envíalo bien a la primera y te ayudarán más rápido.</p>
+
+    <div class="doc">
+      <p>El equipo de soporte trabaja más rápido cuando el primer mensaje contiene todo lo que necesita. Esta página te ayuda a enviar la información correcta y completa en un minuto.</p>
+
+      <h2 id="h-channels">Canales de soporte</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>Canal</th><th>Contacto</th><th>Notas</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Soporte técnico por WhatsApp</strong></td><td><a href="https://wa.me/84792432905" target="_blank" rel="noopener">+84 79 243 2905</a></td><td>Horario de soporte: <em>(por anunciar)</em> · GMT+7 (hora de Vietnam)</td></tr>
+          <tr><td><strong>Correo</strong></td><td><a href="mailto:genfarmer.packagee@gmail.com">genfarmer.packagee@gmail.com</a></td><td> - </td></tr>
+          <tr><td><strong>Comunidad de clientes</strong></td><td><a href="https://chat.whatsapp.com/J8bchy0IIwREeAI1z7Jmvo?mode=gi_t" target="_blank" rel="noopener">Grupo de WhatsApp</a></td><td>Preguntas y respuestas rápidas y experiencias de otros usuarios</td></tr>
+          <tr><td><strong>Ventas: compra de paquetes de automatización</strong></td><td><a href="https://wa.me/84971234601" target="_blank" rel="noopener">+84 97 123 46 01</a></td><td>WhatsApp</td></tr>
+          <tr><td><strong>All-in-One Boxphone Solution</strong></td><td><a href="https://chat.whatsapp.com/G45cnUrjeK0EdW0rEb8GDL" target="_blank" rel="noopener">Grupo de WhatsApp</a></td><td>El grupo de producto gestionado por GenFarmer Global</td></tr>
+          <tr><td><strong>GenFarmer Shop</strong></td><td><a href="https://chat.whatsapp.com/CMWK6LWC2lGBFXk3oNyfQK" target="_blank" rel="noopener">Grupo de WhatsApp</a></td><td>Compra de hardware y accesorios</td></tr>
+          <tr><td><strong>Comunidad de Telegram</strong></td><td><a href="https://t.me/genfarmer" target="_blank" rel="noopener">t.me/genfarmer</a></td><td>Chat abierto entre usuarios de GenFarmer</td></tr>
+          <tr><td><strong>Canal de videos</strong></td><td><a href="https://www.youtube.com/@GenFarmerGlobal" target="_blank" rel="noopener">YouTube - GenFarmer Global</a></td><td>Tutoriales y el curso gratuito de automatización sin código</td></tr>
+          <tr><td><strong>Tutoriales en español</strong></td><td><a href="https://www.youtube.com/playlist?list=PLDKj59ZxjjPzvYAxEBUXjYxkUAG624lBu" target="_blank" rel="noopener">Misma lista de reproducción</a></td><td>La conexión por OTG, la configuración de ADB, el cambio de parámetros del dispositivo, la copia de seguridad y la restauración, el GenRouter H3000 y el control masivo de dispositivos tienen todos una versión en español en el canal</td></tr>
+          <tr><td><strong>Sitio web</strong></td><td><a href="https://genfarmer.com/" target="_blank" rel="noopener">genfarmer.com</a></td><td>Información de productos y descargas</td></tr>
+        </tbody>
+      </table></div>
+
+      <h2 id="h-selfcheck">Una autocomprobación de 2 minutos antes de escribir</h2>
+      <p>Muchos casos se pueden resolver en el momento:</p>
+      <div class="tbl"><table>
+        <thead><tr><th>Lo que ves</th><th>Comprobación rápida</th></tr></thead>
+        <tbody>
+          <tr><td>Scan no encuentra teléfonos</td><td>¿Agregaste los dos rangos de direcciones e hiciste clic en <strong>Active</strong>? → <a href="#/a4">Día 1 · paso 3</a></td></tr>
+          <tr><td>Los teléfonos aparecen pero no tienen internet</td><td>¿El proxy sigue funcionando? ¿La hora del teléfono es correcta? → <a href="#/a4">Día 1 · paso 3</a></td></tr>
+          <tr><td>Muchas cuentas se bloquean al mismo tiempo</td><td>¿Hay cuentas que comparten un proxy? → <a href="#/a5">Día 2</a></td></tr>
+          <tr><td>Aparece una app distinta después de instalar</td><td>¿Estás descargando desde los enlaces del Manual de usuario (HDSD)? Usa la carpeta oficial de APK de <a href="#/a5">Día 2 · paso 3</a></td></tr>
+          <tr><td>Algunos teléfonos nunca aparecen, o la luz está roja</td><td>Revisa primero <a href="#/err-unauth">Unauthorized</a> y <a href="#/err-light">error de luz indicadora</a>: ambos se solucionan sin soporte</td></tr>
+          <tr><td>Las cifras no se mueven</td><td>¿Has calentado las cuentas durante las 2-4 semanas completas? ¿Elegiste el nicho correcto? → <a href="#/a7">Días 4-5</a></td></tr>
+        </tbody>
+      </table></div>
+      <p>Lista completa: <a href="#/troubleshoot">Solución de problemas por síntoma</a>.</p>
+
+      <h2 id="h-five">Los 5 datos que debes incluir</h2>
+      <ol>
+        <li><strong>Número de cajas</strong> en uso, y si usas un <strong>GenRouter H3000 o un mini PC</strong></li>
+        <li>Si estás conectado por <strong>USB u OTG</strong></li>
+        <li><strong>En qué día</strong> del plan estás (Día 0-5) y <strong>qué paso</strong> estás haciendo</li>
+        <li><strong>Cuántos teléfonos encuentra Scan</strong> / cuántos teléfonos están funcionando</li>
+        <li>Una <strong>captura de pantalla</strong> del software en el momento del error (y una captura del teléfono si corresponde)</li>
+      </ol>
+
+      <h2 id="h-template">Plantilla de mensaje: copia, completa y envía</h2>
+      <pre><code>[Soporte GenFarmer]
+- Número de cajas: ... (H3000 / mini PC)
+- Conexión: USB / OTG
+- Estoy en: Día ... - paso ...
+- Scan encuentra: ... / ... teléfonos
+- Problema: (qué estabas haciendo, qué ves en pantalla)
+- Ya probé: ...
+- Captura de pantalla: (adjunta)</code></pre>
+
+      <div class="hint">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+        <div><p>Un mensaje con los 5 datos anteriores suele resolverse en una sola respuesta, en lugar de ir y venir varias veces.</p></div>
+      </div>
+
+      <h2 id="h-warranty">Garantía del hardware</h2>
+      <p>Si sospechas de un defecto de fabricación, incluye el <strong>video del desempaquetado</strong> que grabaste el <a href="#/a3">Día 0</a> (con los sellos intactos). Es tu prueba para la garantía.</p>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/glossary"><span class="k">Anterior</span><span class="v">Glosario</span></a>
+    </div>
+    <p class="updated">Última actualización: 09/2026</p>
+  </div>
+</section>
+
+  </main>
+
+  <aside class="toc">
+    <div class="toc-h">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><use href="#i-list"/></svg>
+      En esta página
+    </div>
+    <div id="tocList"></div>
+  </aside>
+
+</div>
+
+<div class="ovl" id="ovl" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-label="Buscar">
+    <input id="q" type="text" placeholder="Buscar en el centro de soporte..." autocomplete="off" spellcheck="false">
+    <div class="results" id="results"></div>
+  </div>
+</div>
+

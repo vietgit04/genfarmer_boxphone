@@ -1,0 +1,476 @@
+
+<!-- ==================== ADB ==================== -->
+<section class="page" id="p-adb" data-title="ADBコマンド" data-crumb="セットアップ" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/req">セットアップ</a></div>
+    <h1 class="title">ADBコマンド</h1>
+    <p class="lede">任意の機能です。GenFarmer内から複数のデバイスにコマンドを実行する方法と、Unauthorizedエラーの対処に必要なADB環境のセットアップについて説明します。</p>
+
+    <div class="doc">
+<p>任意の機能で、コマンドラインの操作に慣れている方にのみ役立ちます。このページを読み飛ばしてもロードマップには何の影響もありません。ただし、<a href="#/err-unauth">Unauthorized deviceの対処</a>には、PCにADBがインストールされている必要があります。</p>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>動画ガイド：<a href="https://youtu.be/uM-Z2nOl63c?si=wa-91Q1dNxnmp9Vi" target="_blank" rel="noopener">GenFarmerでADBコマンドを使う方法</a></p></div>
+</div>
+<div class="video" data-yt="uM-Z2nOl63c">
+        <img src="anh/yt-uM-Z2nOl63c.jpg" alt="GenFarmerでADBコマンドを使う方法" loading="lazy">
+        <button class="vplay" type="button" aria-label="動画を再生する"><span class="disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button>
+        <span class="vnote">GenFarmerでADBコマンドを使う方法</span>
+      </div>
+<h2 id="adb-h1">コマンドの実行</h2>
+<p>ツールバーで<strong>ADB Command</strong>を選択します。</p>
+<figure class="fig"><img src="anh/eng-adb-01.jpg" alt="ツールバーのADB Command" loading="lazy"></figure>
+<p>入力欄にコマンドを貼り付け、<strong>Execute</strong>（実行）をクリックします。</p>
+<figure class="fig"><img src="anh/eng-adb-02.jpg" alt="コマンドを貼り付けてExecuteをクリックする" loading="lazy"></figure>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>ChatGPTやGeminiなどのAIツールにコマンドを書いてもらうこともできます。たとえば、全台でChromeを開きたい場合は、<em>「AndroidデバイスでGoogle Chromeを開くADBコマンド」</em>と依頼し、その結果を入力欄に貼り付けて実行します。</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/apk"><span class="k">前へ</span><span class="v">同期操作とAPKのインストール</span></a>
+      <a class="next" href="#/backup"><span class="k">次へ</span><span class="v">Change / Backup / Restore</span></a>
+    </div>
+    <p class="updated">最終更新 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== BACKUP ==================== -->
+<section class="page" id="p-backup" data-title="Change / Backup / Restore" data-crumb="セットアップ" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/req">セットアップ</a></div>
+    <h1 class="title">Change / Backup / Restore</h1>
+    <p class="lede">アプリごとに専用のデバイスIDを設定し、リセットや交換の後もアカウントデータを保持します。</p>
+
+    <div class="doc">
+<p>Changeは、アプリケーションごとにデバイスに新しいアイデンティティを与えます。BackupとRestoreはアプリのアカウントデータを保持するため、再度ログインする必要がありません。その背景にある技術については、<a href="#/change">Change / SuperChangeとは</a>で説明しています。</p>
+<div class="video" data-yt="3laZZD16u9I">
+        <img src="anh/yt-3laZZD16u9I.jpg" alt="GenFarmerでのChange Device・Back Up・Restore" loading="lazy">
+        <button class="vplay" type="button" aria-label="動画を再生する"><span class="disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button>
+        <span class="vnote">GenFarmerでのChange Device・Back Up・Restore</span>
+      </div>
+<h2 id="backup-h1">Change device</h2>
+<p>この機能を使うと、各アプリケーションから見えるデバイス情報を変更できます。実際には、同じスマートフォンで2つのTelegramアプリを動かし、それぞれのアプリに別のデバイスとして認識させることができます。</p>
+<ol class="stepper">
+<li class="step">
+<h3>デバイスを選択してChange deviceを開く</h3>
+<p>デバイスを選択し、サイドメニューの<strong>Change device</strong>をクリックします。デフォルトのアイデンティティは<strong>Samsung Galaxy S21 Ultra 5G</strong>です。</p>
+<figure class="fig"><img src="anh/eng-chg-01.jpg" alt="サイドメニューのChange device" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>パラメーターをランダムに生成するか、手動で設定する</h3>
+<p><strong>Random</strong>（ランダム）をクリックすると、システムがすべてのパラメーターをランダムに設定します。自分で設定する場合は、右上の<strong>Manual</strong>（手動）にチェックを入れ、自由に調整してください。</p>
+<figure class="fig"><img src="anh/eng-chg-02.jpg" alt="RandomまたはManualのパラメーター" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>確定する</h3>
+<p><strong>Change</strong>をクリックします。新しい設定を適用するため、デバイスの接続が切れ、短時間再起動します。</p>
+<figure class="fig"><img src="anh/eng-chg-03.jpg" alt="変更を確定する" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-chg-04.jpg" alt="変更を適用するためにデバイスが再起動する" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>確認する</h3>
+<p><strong>Device Info HW</strong>アプリを開いて新しいアイデンティティを確認します。変更後、デバイスは<strong>Realme RMX2030</strong>などと表示される場合があります。このアプリはAPKPureから無料でダウンロードできます。</p>
+<figure class="fig"><img src="anh/eng-chg-05.jpg" alt="新しいデバイスのアイデンティティを確認する" loading="lazy"></figure>
+</li>
+</ol>
+<h2 id="backup-h2">Backup：SNSアカウントのデータ</h2>
+<ol class="stepper">
+<li class="step">
+<h3>バックアップしたいアカウントを開く</h3>
+<p>プラットフォームを開いてアカウントのプロフィールを表示し、すべてが正常な状態であることを確認します。</p>
+<figure class="fig"><img src="anh/eng-chg-06.jpg" alt="バックアップするアカウント" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>アプリをバックアップする</h3>
+<p>アプリを閉じ、アプリ（例：TikTok）にマウスを合わせて<strong>Backup App</strong>を選択します。</p>
+<figure class="fig"><img src="anh/eng-chg-07.jpg" alt="Backup App" loading="lazy"></figure>
+</li>
+</ol>
+<h2 id="backup-h3">Restore：SNSアカウントのデータ</h2>
+<ol class="stepper">
+<li class="step">
+<h3>Restore Appを選ぶ</h3>
+<p>バックアップファイルを保存したら、アプリに戻って<strong>Restore App</strong>を選択します。</p>
+</li>
+<li class="step">
+<h3>バックアップファイルを選ぶ</h3>
+<p>先ほど保存したファイルを選択します。</p>
+</li>
+<li class="step">
+<h3>アプリを再度開く</h3>
+<p><strong>Restore successful</strong>と表示されたら、アプリを閉じて再度開き、引き続きご利用ください。</p>
+</li>
+</ol>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>BackupとRestoreがあれば、デバイスの交換も簡単です。アカウントを別のデバイスに移したりデバイスをリセットしたりする際に、再ログインや認証を経ずにリストアするだけで済みます。</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/adb"><span class="k">前へ</span><span class="v">ADBコマンド</span></a>
+      <a class="next" href="#/cc"><span class="k">次へ</span><span class="v">Control Center</span></a>
+    </div>
+    <p class="updated">最終更新 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== CC ==================== -->
+<section class="page" id="p-cc" data-title="Control Center" data-crumb="ソフトウェア" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/cc">ソフトウェア</a></div>
+    <h1 class="title">Control Center</h1>
+    <p class="lede">毎日使う画面です。サイドバー、ストリーム表示、同期操作、Inspectorについて説明します。</p>
+
+    <div class="doc">
+<p>Control Centerは、最も多くの時間を過ごす画面です。スマートフォンのグリッド、表示方法を調整するツールバー、1台のデバイスのストリーム表示、同期操作、そしてスクリプトを書く方向けのInspectorがあります。</p>
+<h2 id="cc-h1">サイドバーメニュー</h2>
+<p>コントロールパネルの左側にあるツールバーには、デバイスを管理し、画面上の表示を調整するための機能がまとめられています。</p>
+<figure class="fig"><img src="anh/eng-cc-side-01.jpg" alt="サイドバーメニュー" loading="lazy"></figure>
+<h3>デバイスの表示品質の調整</h3>
+<ul>
+<li><strong>Big Screen：</strong>デバイスのストリームウィンドウのサイズ。最小40%、最大100%</li>
+<li><strong>Small Screen：</strong>Control Devices内のデバイスタイルのサイズ。Thumbnail、Medium、Large、Extra Large</li>
+<li><strong>Big Quality：</strong>ストリームの画質。Low、Medium、High、Extra（Extraが最も快適です）</li>
+<li><strong>Small Quality：</strong>一覧画面のタイルの画質。Low、Medium、High、Extra</li>
+</ul>
+<figure class="fig"><img src="anh/eng-cc-side-02.jpg" alt="Big Screen" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-cc-side-03.jpg" alt="Small Screen" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-cc-side-04.jpg" alt="Big Quality" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-cc-side-05.jpg" alt="Small Quality" loading="lazy"></figure>
+<h3>デバイスの管理</h3>
+<ul>
+<li><strong>Select all：</strong>APKのインストールやタスクの停止などのため、すべてのデバイスを選択します</li>
+<li><strong>Select device：</strong>作業対象のデバイスを個別に選択します</li>
+</ul>
+<figure class="fig"><img src="anh/eng-cc-side-06.jpg" alt="すべてのデバイスを選択する" loading="lazy"></figure>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p><strong>Select all</strong>が有効な状態で特定のデバイスの選択を解除するには、<strong>Ctrl</strong>を押しながらそのデバイスをクリックします。</p></div>
+</div>
+<h2 id="cc-h2">Stream Device</h2>
+<p>Stream Deviceは、スマートフォンの画面を実際のデバイスと同じサイズで表示し、すべての操作をスムーズにストリーミングします。</p>
+<figure class="fig"><img src="anh/eng-cc-stream-01.jpg" alt="Stream Deviceウィンドウ" loading="lazy"></figure>
+<ul>
+<li><strong>Vol+ / Vol-：</strong>音量を上げる・下げる</li>
+<li><strong>Screenshot：</strong>デバイスの画面をキャプチャする</li>
+<li><strong>Power：</strong>画面をオフにする</li>
+<li><strong>Rotate：</strong>画面を回転する</li>
+<li><strong>Install APK：</strong>ストリームから直接アプリケーションをインストールする</li>
+<li><strong>ADB Command：</strong>追加の<a href="#/adb">ADBコマンド</a>を実行する</li>
+<li><strong>Reboot：</strong>デバイスを再起動する</li>
+<li><strong>Switch Keyboard Method：</strong>キーボードの設定を開く</li>
+<li><strong>Accessibility Settings：</strong>設定画面を開く</li>
+<li><strong>Language：</strong>言語の設定を開く</li>
+<li><strong>Connection Setting：</strong>Wi-FiやBluetoothなどの接続設定を開く</li>
+<li><strong>Apps：</strong>デバイスにインストールされているアプリケーションを表示する</li>
+</ul>
+<h2 id="cc-h3">Group Control</h2>
+<p>Group Controlはデバイスを同期させる機能です。1台のデバイスで操作すると、残りのデバイスが同じ操作を繰り返します。</p>
+<p>同期させたいデバイスを選択します。</p>
+<figure class="fig"><img src="anh/eng-cc-group-01.jpg" alt="すべてのデバイスを選択する" loading="lazy"><figcaption>同期させるデバイスを選択します。</figcaption></figure>
+<p>次に、そのうちいずれか1台のストリームを開き、メインのデバイスにします。</p>
+<figure class="fig"><img src="anh/eng-cc-group-02.jpg" alt="メインのデバイスのストリーム" loading="lazy"><figcaption>他のデバイスを操作するために使うストリーム画面です。</figcaption></figure>
+<p>そのデバイスで操作すると、他のデバイスもまったく同じように動作します。</p>
+<figure class="fig"><img src="anh/eng-cc-group-03.jpg" alt="同期操作" loading="lazy"><figcaption>メインのデバイスで設定を開くと、他のすべてのデバイスでも同時に設定が開きます。</figcaption></figure>
+<div class="hint ok">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-ok"/></svg>
+<div><p>Group Controlは無料で、操作回数の制限もありません。全スマートフォンへのアプリのインストールも含めた手順は、<a href="#/apk">同期操作とAPKのインストール</a>に掲載しています。</p></div>
+</div>
+<h2 id="cc-h4">Inspector</h2>
+<p>Inspectorは、アプリケーションからパッケージや要素の情報を取得し、自動化コードを書く際に利用するためのツールです。GenFarmerアプリとは別のウィンドウで開きます。</p>
+<figure class="fig"><img src="anh/eng-cc-insp-01.jpg" alt="Inspectorの画面" loading="lazy"></figure>
+<h3>Inspectorのツールバー</h3>
+<figure class="fig"><img src="anh/eng-cc-insp-02.jpg" alt="Inspectorのツールバー" loading="lazy"></figure>
+<ul>
+<li><strong>Select Devices：</strong>現在GenFarmerに接続されているすべてのデバイスを一覧表示するドロップダウン</li>
+<li><strong>Reload：</strong>デバイスの現在の画面を再読み込みする</li>
+<li><strong>Enable Grid：</strong>要素のグリッドを表示し、要素を正確に特定する</li>
+<li><strong>Enable Swipe：</strong>Inspectorの画面上で直接スマートフォンをスワイプする</li>
+<li><strong>Enable Crop：</strong>画像をキャプチャしてBase64に変換し、Image searchノードで使用する</li>
+</ul>
+<figure class="fig"><img src="anh/eng-cc-insp-03.jpg" alt="ブロックとして表示された要素" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-cc-insp-04.jpg" alt="画像を切り抜いてBase64に変換する" loading="lazy"></figure>
+<h3>Inspectorの表示内容</h3>
+<p>デバイスの画面にマウスを合わせると、要素のブロックが表示されます。要素をクリックすると、中央の列にその要素とアプリケーションに関する情報が表示されます。</p>
+<figure class="fig"><img src="anh/eng-cc-insp-05.jpg" alt="要素を選択する" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-cc-insp-06.jpg" alt="要素の情報" loading="lazy"></figure>
+<p>ストリーム表示の右側の列には、次の情報が表示されます。</p>
+<ul>
+<li><strong>Activity：</strong>要素のアクション</li>
+<li><strong>XPathLite：</strong>スクリプト作成に使うXPath</li>
+<li><strong>ClassName：</strong>要素のクラス名</li>
+<li><strong>Mouse Pos：</strong>選択した位置の座標</li>
+<li><strong>Click：</strong>要素をクリックし、デバイスの画面を自動的に再読み込みする</li>
+<li><strong>Element Rect：</strong>要素の座標</li>
+<li><strong>Index：</strong>要素の優先順位</li>
+<li><strong>Text：</strong>要素に含まれるテキスト</li>
+<li><strong>Resourceid：</strong>要素のID</li>
+<li><strong>Package：</strong>アプリケーションのパッケージID</li>
+<li><strong>Description：</strong>要素の説明</li>
+</ul>
+<p>アプリケーションのコード表示から要素を選択することもできます。</p>
+<figure class="fig"><img src="anh/eng-cc-insp-07.jpg" alt="コード表示から選択する" loading="lazy"><figcaption>選択された要素は黄色になります。</figcaption></figure>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/backup"><span class="k">前へ</span><span class="v">Change / Backup / Restore</span></a>
+      <a class="next" href="#/account"><span class="k">次へ</span><span class="v">Account Manager</span></a>
+    </div>
+    <p class="updated">最終更新 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== ACCOUNT ==================== -->
+<section class="page" id="p-account" data-title="Account Manager" data-crumb="ソフトウェア" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/cc">ソフトウェア</a></div>
+    <h1 class="title">Account Manager</h1>
+    <p class="lede">アプリ内のアカウントシートです。アカウントのインポート、デバイスの割り当て、どのアカウントでどのスクリプトを実行するかの選択を行います。</p>
+
+    <div class="doc">
+<p>Account ManagerはアカウントシートをGenFarmerアプリ内で管理するため、ExcelやGoogle Sheetsは不要になります。ロードマップでは<a href="#/a5">2日目</a>に初めて使用し、<a href="#/a6">3日目</a>からは、どのアカウントでどのスクリプトを実行するかを選ぶ場所にもなります。</p>
+<figure class="fig"><img src="anh/eng-acct-01.jpg" alt="Account Managerの画面" loading="lazy"></figure>
+<h2 id="account-h1">アカウントの追加</h2>
+<p><strong>Add Accounts</strong>では、アカウントを手動で追加できます。</p>
+<figure class="fig"><img src="anh/eng-acct-02.jpg" alt="アカウントを追加する" loading="lazy"></figure>
+<ul>
+<li><strong>Please Input：</strong>アカウントのUIDまたはユーザー名</li>
+<li><strong>Select Format：</strong>アカウントの種類ごとに用意されたテンプレート、またはカスタムのテンプレート</li>
+<li><strong>Custom Format：</strong>UID、Password、Email、2FAなどの項目を自分で選択します</li>
+</ul>
+<h2 id="account-h2">インポートとエクスポート</h2>
+<ul>
+<li><strong>Export：</strong>アカウントファイルをXLSX形式でエクスポートします</li>
+<li><strong>Import：</strong>CSVまたはXLSXファイルをインポートします。GenFarmerには作業用のテンプレートファイルが付属しています</li>
+</ul>
+<figure class="fig"><img src="anh/eng-acct-03.jpg" alt="アカウントファイルをインポートする" loading="lazy"></figure>
+<h2 id="account-h3">各列の説明</h2>
+<ul>
+<li><strong>Device：</strong>そのアカウントのデフォルトのデバイス</li>
+<li><strong>Status：</strong>アカウントのステータス</li>
+<li><strong>UID：</strong>ユーザー名</li>
+<li><strong>Email：</strong>アカウントに紐づいたメールアドレス</li>
+<li><strong>Password：</strong>パスワード</li>
+<li><strong>Email Password：</strong>メールのパスワード。認証コードの読み取りに使用します</li>
+<li><strong>2FA：</strong>認証コード</li>
+</ul>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>アカウントを追加すると、使用するModuleまたはAppを通じて、選択したデバイス上でそのアカウントが実行されます。</p></div>
+</div>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>アカウントへのデバイスの割り当ては、見落とされがちな手順です。メイン画面から<strong>Device ID</strong>をDevice ID列にコピーしてください。そうしないと、スクリプトを実行するスマートフォンがありません。</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/cc"><span class="k">前へ</span><span class="v">Control Center</span></a>
+      <a class="next" href="#/devices"><span class="k">次へ</span><span class="v">Devices（デバイス）</span></a>
+    </div>
+    <p class="updated">最終更新 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== DEVICES ==================== -->
+<section class="page" id="p-devices" data-title="Devices（デバイス）" data-crumb="ソフトウェア" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/cc">ソフトウェア</a></div>
+    <h1 class="title">Devices（デバイス）</h1>
+    <p class="lede">アカウントで使用できるデバイス、有効なデバイス、残りの枠数を確認します。</p>
+
+    <div class="doc">
+<p>Devices画面では、アカウントに紐づいたデバイスを管理します。</p>
+<figure class="fig"><img src="anh/eng-dev-01.jpg" alt="Devices画面" loading="lazy"></figure>
+<h2 id="devices-h1">デバイスの概要</h2>
+<ul>
+<li><strong>Total：</strong>アカウントで使用できるデバイスの数</li>
+<li><strong>Active：</strong>現在使用中のデバイス</li>
+<li><strong>Free Slot：</strong>あと何台追加できるか</li>
+</ul>
+<h2 id="devices-h2">AssignedとUnassigned</h2>
+<ul>
+<li><strong>Assigned：</strong>有効化済みで使用可能なデバイス</li>
+<li><strong>Unassigned：</strong>有効化待ちのデバイス。対象のデバイスで<strong>Active</strong>をクリックすると、ステータスがAssignedに変わります</li>
+</ul>
+<figure class="fig"><img src="anh/eng-dev-02.jpg" alt="割り当て済みと未割り当てのデバイス" loading="lazy"></figure>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>ここでデバイスが有効にならない場合、原因はたいてい<a href="#/err-license">対処：Not valid device</a>で説明している2つのライセンス問題のいずれかです。</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/account"><span class="k">前へ</span><span class="v">Account Manager</span></a>
+      <a class="next" href="#/apps"><span class="k">次へ</span><span class="v">App Manager</span></a>
+    </div>
+    <p class="updated">最終更新 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== APPS ==================== -->
+<section class="page" id="p-apps" data-title="App Manager" data-crumb="ソフトウェア" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/cc">ソフトウェア</a></div>
+    <h1 class="title">App Manager</h1>
+    <p class="lede">APKファイルまたはアプリ内Storeから、デバイスに配信するアプリケーションのライブラリです。</p>
+
+    <div class="doc">
+<p>App Managerは、デバイスに配信できるアプリケーションのライブラリです。</p>
+<figure class="fig"><img src="anh/eng-appmgr-01.jpg" alt="App Managerの画面" loading="lazy"></figure>
+<ul>
+<li><strong>Name：</strong>インストールされているアプリケーションの名前</li>
+<li><strong>Android Version：</strong>最小構成と対象構成</li>
+<li><strong>Size：</strong>APKファイルのサイズ</li>
+<li><strong>Create At：</strong>ファイルがGenFarmerに追加された日時</li>
+<li><strong>Remove：</strong>GenFarmerからAPKファイルを削除する</li>
+<li><strong>LoadAPK：</strong>GenFarmerにAPKファイルをアップロードする</li>
+</ul>
+<figure class="fig"><img src="anh/eng-appmgr-02.jpg" alt="APKファイルをアップロードする" loading="lazy"></figure>
+<div class="video" data-yt="twoKCKesw3o">
+        <img src="anh/yt-twoKCKesw3o.jpg" alt="GenFarmerでアプリを変更する方法：APKまたはStoreからアプリをインストールする" loading="lazy">
+        <button class="vplay" type="button" aria-label="動画を再生する"><span class="disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button>
+        <span class="vnote">GenFarmerでアプリを変更する方法：APKまたはStoreからアプリをインストールする</span>
+      </div>
+<h2 id="apps-h1">Storeからのインストール</h2>
+<p>APKファイルのほかに、Storeからもインストールできます。Storeには、GenFarmerが安全性とほとんどのデバイスとの互換性を確認したアプリケーションが揃っています。</p>
+<figure class="fig"><img src="anh/eng-appmgr-03.jpg" alt="アプリ内Store" loading="lazy"></figure>
+<p>流れは<strong>ダウンロードしてから、バージョンを選択する</strong>だけです。</p>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>デバイスのAndroidバージョンに合ったバージョンを選んでください。合っていないとインストール時にエラーが発生します。デバイス側の手順は<a href="#/apk">同期操作とAPKのインストール</a>に掲載しています。</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/devices"><span class="k">前へ</span><span class="v">Devices（デバイス）</span></a>
+      <a class="next" href="#/automation"><span class="k">次へ</span><span class="v">Automation（自動化）</span></a>
+    </div>
+    <p class="updated">最終更新 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== AUTOMATION ==================== -->
+<section class="page" id="p-automation" data-title="Automation（自動化）" data-crumb="ソフトウェア" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/cc">ソフトウェア</a></div>
+    <h1 class="title">Automation（自動化）</h1>
+    <p class="lede">Apps、Modules、Tasks、Runs：スクリプトの作成、保存、デバイスへの割り当て、追跡の方法を説明します。</p>
+
+    <div class="doc">
+<p>Automationは、繰り返しの作業を人の手から機械に移す仕組みで、Antidetect機能によってアカウントを守ります。何を実行するにしても、そのためのスクリプトがあります。自分で書いたもの、インポートしたもの、購入したもののいずれかです。</p>
+<p>ロードマップでこの機能を使い始めるのは<a href="#/a6">3日目</a>で、既製のパッケージ（Auto Login、Trust、Boost）についてもそこで説明しています。</p>
+<h2 id="automation-h1">My Apps</h2>
+<figure class="fig"><img src="anh/eng-auto-apps-01.jpg" alt="My Apps画面" loading="lazy"></figure>
+<ol>
+<li><strong>My App：</strong>アカウントに属する自動化。自分で書いたもの、インポートしたもの、ストアで購入したもの</li>
+<li><strong>Subscription：</strong>ストアで購入した自動化（有効なものと期限切れのもの）</li>
+<li><strong>Import App：</strong>genfarmerファイルから自動化をインストールします。情報の流出を避けるため、ストアまたは信頼できる別の入手元から購入してください</li>
+<li><strong>Create App：</strong>新しいスクリプトを作成して書きます</li>
+</ol>
+<figure class="fig"><img src="anh/eng-auto-apps-02.jpg" alt="アプリをインポートする" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-auto-apps-03.jpg" alt="自動化スクリプトの作成画面" loading="lazy"><figcaption>スクリプトの作成画面です。</figcaption></figure>
+<ul>
+<li><strong>Select Devices：</strong>テストに使うデバイス</li>
+<li><strong>Select Node：</strong>ノーコードでのスクリプト作成を可能にするノード</li>
+<li><strong>View Edit：</strong>スクリプトとその中で使われているノードを表示します</li>
+<li><strong>Top Bar：</strong>補助用のツールバー</li>
+<li><strong>Custom View：</strong>アプリのカスタムカバー画像</li>
+</ul>
+<figure class="fig"><img src="anh/eng-auto-apps-04.jpg" alt="デバイス表示の画面" loading="lazy"></figure>
+<ul>
+<li><strong>Device View：</strong>ストリーム表示するデバイス</li>
+<li><strong>Table Column：</strong>スクリプトに必要な情報のためのデータテーブルを設計します</li>
+</ul>
+<figure class="fig"><img src="anh/eng-auto-apps-05.jpg" alt="データテーブル" loading="lazy"></figure>
+<ul>
+<li><strong>Save：</strong>アプリとそのノードを保存します</li>
+<li><strong>Run：</strong>選択したデバイスでアプリをテストします</li>
+<li><strong>その他の機能：</strong>実行ログ、名前を付けて保存、デバッグモード</li>
+</ul>
+<figure class="fig"><img src="anh/eng-auto-apps-06.jpg" alt="保存と実行" loading="lazy"></figure>
+<h2 id="automation-h2">My Modules</h2>
+<p>Moduleは、Appをさらに発展させた形式で、1つのModuleの中に複数の小さな機能をまとめることができます。画面と機能はAppsと同じですが、Module内で複数のAppsを実行するためのノードが追加されています。</p>
+<figure class="fig"><img src="anh/eng-auto-mod-01.jpg" alt="Moduleの画面" loading="lazy"><figcaption>GenFarmerのModule画面です。</figcaption></figure>
+<p>Moduleの特徴は<strong>Context Menu</strong>ノードで、機能を分割し、1つのModule内で複数のAppsを管理します。</p>
+<figure class="fig"><img src="anh/eng-auto-mod-02.jpg" alt="Context Menuノード" loading="lazy"></figure>
+<h2 id="automation-h3">Saved Tasks</h2>
+<p>Saved Tasksには作成済みのタスクが保存されており、ワンクリックで再実行できます。</p>
+<figure class="fig"><img src="anh/eng-auto-task-01.jpg" alt="Saved Tasks画面" loading="lazy"></figure>
+<ul>
+<li><strong>Name：</strong>タスクの名前</li>
+<li><strong>App：</strong>タスクが使用するスクリプトアプリ</li>
+<li><strong>Devices：</strong>タスクで実行されるデバイスの数</li>
+<li><strong>Runs：</strong>実行された回数</li>
+<li><strong>Last run started at / Last run status / Last run duration：</strong>直近の実行</li>
+</ul>
+<p>タスクを作成するには、モジュールまたはアプリを開いて<strong>Create Task</strong>を選択します。</p>
+<figure class="fig"><img src="anh/eng-auto-task-02.jpg" alt="Create Task" loading="lazy"></figure>
+<p>タスクに名前を付け、実行するデバイスを選択します。</p>
+<figure class="fig"><img src="anh/eng-auto-task-03.jpg" alt="タスクのデバイスを選択する" loading="lazy"></figure>
+<p>完了したら、保存してすぐに実行するか、後で使うために保存しておくことができます。</p>
+<h2 id="automation-h4">Runs</h2>
+<p>Runsでは、複数のタスクを同時に管理します。</p>
+<figure class="fig"><img src="anh/eng-auto-runs-01.jpg" alt="Runs画面" loading="lazy"></figure>
+<ul>
+<li><strong>App：</strong>スクリプトアプリの名前</li>
+<li><strong>Task：</strong>タスクの名前</li>
+<li><strong>Result：</strong>実行回数</li>
+<li><strong>Started at / Finished at / Duration：</strong>実行日時と所要時間</li>
+<li><strong>Status：</strong>Running、Done、Aborted</li>
+<li><strong>Run：</strong>タスクを再実行します</li>
+</ul>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>タスクは<strong>Saved Tasks</strong>で作成し、実行中になるとここに表示されます。</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/apps"><span class="k">前へ</span><span class="v">App Manager</span></a>
+      <a class="next" href="#/settings"><span class="k">次へ</span><span class="v">Settings（設定）</span></a>
+    </div>
+    <p class="updated">最終更新 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== SETTINGS ==================== -->
+<section class="page" id="p-settings" data-title="Settings（設定）" data-crumb="ソフトウェア" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/cc">ソフトウェア</a></div>
+    <h1 class="title">Settings（設定）</h1>
+    <p class="lede">言語、保存場所、デバッグモードなどの自動化に関するスイッチを設定します。</p>
+
+    <div class="doc">
+<p>Settingsには、ソフトウェアの基本的な設定がまとめられています。</p>
+<h2 id="settings-h1">General</h2>
+<figure class="fig"><img src="anh/eng-set-01.jpg" alt="一般設定" loading="lazy"></figure>
+<p>言語と、ライトモードまたはダークモードを選択します。</p>
+<h2 id="settings-h2">Storage</h2>
+<figure class="fig"><img src="anh/eng-set-02.jpg" alt="ストレージの設定" loading="lazy"></figure>
+<ul>
+<li><strong>Clear Cache：</strong>キャッシュデータを削除し、ストレージを初期状態に戻します</li>
+<li><strong>Storage Location：</strong>コンピューター上のファイルの保存場所。空欄の場合はGenFarmerのディレクトリに保存されます</li>
+<li><strong>Use Selected Path：</strong>選択したパスを使用します</li>
+<li><strong>Copy Profiles to Selected Path：</strong>選択したパスにファイルをコピーします</li>
+<li><strong>Move Profiles to Selected Path：</strong>選択したパスにファイルを移動します</li>
+</ul>
+<h2 id="settings-h3">Automation</h2>
+<figure class="fig"><img src="anh/eng-set-03.jpg" alt="自動化の設定" loading="lazy"></figure>
+<ul>
+<li><strong>Enable Debug Mode：</strong>デバッグを有効にします</li>
+<li><strong>Tracking Node When Running：</strong>モジュールの実行中にノードを記録します</li>
+<li><strong>Sync Profiles Data After Running Task：</strong>タスクの終了後にプロファイルデータを同期します</li>
+</ul>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/automation"><span class="k">前へ</span><span class="v">Automation（自動化）</span></a>
+      <a class="next" href="#/api"><span class="k">次へ</span><span class="v">API</span></a>
+    </div>
+    <p class="updated">最終更新 09/2026</p>
+  </div>
+</section>

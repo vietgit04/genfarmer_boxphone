@@ -1,0 +1,273 @@
+
+<!-- ==================== ROUTER ==================== -->
+<section class="page" id="p-router" data-title="ルーターとプロキシ" data-crumb="リファレンス" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">リファレンス</a></div>
+    <h1 class="title">ルーターとプロキシ</h1>
+    <p class="lede">H3000とミニPCの選び方、ネットワークに必要な条件、プロキシの準備、ネットワークが切断されたときの対処について説明します。</p>
+
+    <div class="doc">
+<p>ネットワークレイヤーに関するすべての情報を1か所にまとめました。これまでは、<a href="#/a1">4つのレイヤー</a>の1行、<a href="#/a3">0日目</a>の配線表、<a href="#/a5">2日目</a>の手順2という3つのページに分散していました。</p>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>管理画面そのものの操作（各スマートフォンへのプロキシの割り当てとIsolate Modeの有効化）は、下の動画と<a href="#/a5">2日目 &middot; 手順2</a>で説明しています。このページではそれを繰り返さず、管理画面を開く<strong>前に</strong>決めておくべきことを扱います。</p></div>
+</div>
+<div class="video" data-yt="kGjP-7iqSTI">
+<img src="anh/yt-kGjP-7iqSTI.jpg" alt="GenRouterの使い方：デバイスごとにプロキシを割り当てる" loading="lazy">
+<button class="vplay" type="button" aria-label="動画を再生する"><span class="disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button>
+<span class="vnote">GenRouterの使い方：デバイスごとにプロキシを割り当てる</span>
+</div>
+<h2 id="router-h1">1. H3000かミニPCか</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>運用規模</th><th>デバイス</th><th>接続モード</th><th>理由</th></tr></thead>
+<tbody><tr><td><strong>1ボックス</strong>（スマートフォン20台）</td><td><strong>GenRouter H3000</strong></td><td><strong>USB</strong></td><td>H3000が安定して扱えるのは<strong>接続デバイス30台</strong>までです。スマートフォン20台の1ボックスは収まりますが、2ボックスでは40台になり収まりません</td></tr><tr><td><strong>2ボックス以上</strong></td><td><strong>ミニPC</strong></td><td><strong>OTG</strong></td><td>ミニPCは最大<strong>200台</strong>（ちょうど10ボックス分）のデバイスを扱え、スマートフォンはミニPCのネットワークを使用します</td></tr><tr><td>1ボックスだが、既にミニPCを持っている</td><td>ミニPC</td><td>OTG</td><td>1ボックスでも同じように動作します</td></tr><tr><td>どちらのデバイスもない</td><td>-</td><td>OTGまたはWi-Fi</td><td>必要に応じて柔軟に選べます</td></tr></tbody>
+</table></div>
+<p>この1つの選択で、1日目の残りの作業が決まります。H3000なら<a href="#/usb">USBで接続する</a>、ミニPCなら<a href="#/otg">OTG（LAN）で接続する</a>です。行の選択を誤ることが、Scanでスマートフォンが見つからない最も一般的な原因です。</p>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>H3000で<strong>30台</strong>を超えるデバイスを扱うと、クラッシュしたり一部の機能が無効になったりすることがあります。これが、1台のH3000で2ボックスを扱えないというルールの根拠となる明確な数値です。</p></div>
+</div>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th></th><th>GenRouter H3000</th><th>ミニPC</th></tr></thead>
+<tbody><tr><td>ネットワークポート</td><td>1 x LAN 2.5Gbps + 1 x WAN 1Gbps</td><td>4 x Intel i226 2.5G</td></tr><tr><td>接続できるデバイス数</td><td><strong>30</strong>（安定動作の上限）</td><td><strong>200</strong></td></tr><tr><td>内蔵Wi-Fi</td><td>Wi-Fi 6、デュアルバンド。32個の独立したネットワークを発信可能</td><td><strong>なし</strong> - 別途アクセスポイントが必要</td></tr><tr><td>モバイルバッテリーでの動作</td><td>可能</td><td>不可</td></tr><tr><td>管理画面</td><td><code>192.168.5.1:9000</code></td><td><code>192.168.5.1:9000</code></td></tr></tbody>
+</table></div>
+<h2 id="router-h2">2. ネットワークに必要な条件</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>運用規模</th><th>デバイス</th><th>ポートの使い方</th><th>スイッチ</th></tr></thead>
+<tbody><tr><td><strong>1ボックス</strong> - スマートフォン20台</td><td>GenRouter H3000</td><td>モデムからのLANケーブルを<strong>WAN</strong>ポートに接続し、PCを<strong>LAN</strong>ポートに接続するか、<code>GENROUTER-2.4GHz</code> / <code>GENROUTER-5GHz</code>のWi-Fiに接続します</td><td>不要</td></tr><tr><td><strong>2〜4ボックス</strong> - スマートフォン40〜80台</td><td>ミニPC</td><td>モデムを<strong>ETH0</strong>に、PCを<strong>ETH1</strong>、<strong>ETH2</strong>、<strong>ETH3</strong>のいずれかに、ボックスを残りのポートに接続します</td><td>ポートが足りなくなった場合のみ</td></tr><tr><td><strong>最大10ボックス</strong> - スマートフォン200台</td><td>ミニPC + スイッチ</td><td>モデムをETH0に接続し、それ以外はすべてスイッチ経由で接続します</td><td><strong>必要。</strong>安定動作が確認されている構成は<strong>PC 1台 + ミニPC 1台 + スイッチ1台 + ボックス10台</strong>です</td></tr><tr><td><strong>10ボックス超</strong></td><td>2つ目のクラスター</td><td>上記のクラスター構成を繰り返します</td><td>必要（クラスターごとに1台）</td></tr></tbody>
+</table></div>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>GenFarmerの標準的なリファレンス構成は、<strong>操作用PC 1台、ミニPC 1台、スイッチ1台、ボックス10台</strong>のクラスターです。多数のボックスを運用する段階になったら、安定性のため、またミニPCの負荷を分散するために、スイッチの使用をおすすめします。</p></div>
+</div>
+<ul>
+<li>GenRouter用に<strong>モデムの空きポートが1つ</strong></li>
+<li>通信を安定させるための<strong>LANケーブル：Cat5またはCat6（Cat6推奨）</strong></li>
+<li>操作用コンピューターに<strong>Wi-Fiは不要</strong>です。H3000とミニPCのどちらでも、LANで同じように動作します</li>
+<li><strong>最低帯域幅：</strong><strong>最初のボックスで約100 Mbps</strong>、<strong>以降1ボックスごとに約100 Mbps追加</strong>が目安です。TikTokが最も帯域を使うプラットフォームなので、この数値を基準に計画してください。<strong>1本のインターネット回線につき最大5ボックス</strong>までにしてください。</li>
+</ul>
+<div class="hint info">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p><strong>実際には、ボトルネックになるのは自宅の回線ではなくプロキシです。</strong>回線の測定値に問題がないのにファームの動作がもたつく場合は、帯域を増やす前にまずプロキシを疑ってください。</p></div>
+</div>
+<h3>ミニPCを使っていてWi-Fiが必要な場合</h3>
+<p>ミニPCはLANでのみ接続し、Wi-Fiを発信できません。そのため、USB接続のBoxphoneや通常のスマートフォンには別のデバイスが必要です。Aruba、Cisco、TP-Linkなどの<strong>アクセスポイント</strong>を<strong>アクセスポイントモード</strong>に設定して使用してください。こうすればアクセスポイントは電波の発信だけを行い、制御とIPの割り当てはルーターが引き続き担います。接続数に対応できるモデルを販売店にお問い合わせください。</p>
+<h2 id="router-h3">3. システムの他の部分との接続方法</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>使用機器</th><th>接続方法</th></tr></thead>
+<tbody><tr><td><strong>GenRouter H3000</strong></td><td>まず電源を入れます。ルーターが緑色に点灯します。モデムを<strong>WAN</strong>に、PCを<strong>LAN</strong>に接続します。PCにLANポートがない場合は、代わりに<code>GENROUTER-2.4GHz</code>または<code>GENROUTER-5GHz</code>ネットワークに接続します。次に<code>192.168.5.1:9000</code>を開き、ダッシュボードが表示されれば接続完了です。</td></tr><tr><td><strong>LANケーブルなしのGenRouter H3000</strong></td><td>V3では、ルーターが別のWi-Fiネットワークを受信して再発信できます。<code>GENROUTER-2.4GHz</code>または<code>GENROUTER-5GHz</code>に接続し、再発信するネットワークを選んでパスワードを入力し、送信します。</td></tr><tr><td><strong>ミニPC</strong></td><td>まず電源を入れます。モデムを<strong>ETH0</strong>に、PCを<strong>ETH1/ETH2/ETH3</strong>に、ボックスを残りのポートに接続し、<code>192.168.5.1:9000</code>を開きます。</td></tr><tr><td><strong>LANによるボックス間の接続</strong></td><td>LANポートを備えたBoxphoneは、互いに数珠つなぎに接続してOTGモードで運用できます。デバイスが検出されない場合は、まずUSBで接続して認識させてから、OTGに戻してください。</td></tr></tbody>
+</table></div>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>使用機器</th><th>操作用コンピューターの接続方法</th></tr></thead>
+<tbody><tr><td><strong>GenRouter H3000</strong></td><td>PCにWi-Fiがある場合は、Wi-Fiで接続します。ない場合はLANを使用します：<strong>H3000のLANポートからPCのEthernet</strong>、または<strong>BoxphoneのLANからPCのEthernet</strong>（この場合、H3000のLANポートをBoxphoneのLAN1またはLAN2に接続し、残りのLANポートをPCにつなぎます。<strong>P30</strong>ボックスに適用されます）。</td></tr><tr><td><strong>ミニPC</strong></td><td>LANで接続します。Wi-Fiは使用できません。ノートパソコンにEthernetポートがない場合は、<strong>USB-LAN</strong>または<strong>Type-C-LAN</strong>アダプターを用意してください。</td></tr></tbody>
+</table></div>
+<div class="hint danger">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-danger"/></svg>
+<div><p>テクニカルサポートから指示がない限り、ルーターの<strong>物理的なリセットボタンは絶対に押さないでください</strong>。また、指示なくコンピューター上で<strong>ipconfigを実行したり、デバイスのIPを手動で変更したりしないでください</strong>。どちらも、正常に動いている構成を一瞬で失う原因になります。</p></div>
+</div>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>ルーターは部屋の中央、またはできるだけデバイスの近くに置いてください。<strong>2.4GHzは遠くまで届きますが速度は遅く、5GHzは高速ですが届く範囲が短くなります。</strong>充電器やケーブルを交換する場合は、<strong>Type-Cケーブル</strong>付きのAndroidスマートフォン用充電器を使用してください。ルーターはケーブルとの相性に敏感で、新しいケーブルで動かないときに古いスマートフォンのケーブルなら動くこともよくあります。</p></div>
+</div>
+<p>配線が済んだら、ソフトウェア側の設定は<a href="#/usb">USBで接続する</a>または<a href="#/otg">OTG（LAN）で接続する</a>をご覧ください。</p>
+<h2 id="router-h4">4. プロキシの準備</h2>
+<p><strong>アカウントは1つのアイデンティティです。プロキシは、そのアイデンティティの自宅の住所です。</strong>20個のアカウントが1つのアドレスを共有していると、プラットフォームからは、20人が同じ家に住み、同じ時間に起きて寝て、同じような種類のコンテンツに「いいね」しているように見えます。そのため、アカウントは1つずつではなく、まとめてBANされるのです。</p>
+<p>ここから次のことが言えます。</p>
+<ul>
+<li><strong>スマートフォン1台につきプロキシを1つ。</strong>スマートフォン20台のボックス1つには<strong>20個のプロキシ</strong>が必要です</li>
+<li>お試しであれば、5つのアカウントを2〜3個のプロキシで運用しても構いませんが、<strong>これは本番運用の構成ではありません</strong></li>
+<li><strong>Isolate Mode</strong>は安全装置です。プロキシが切断された、期限切れになった、またはエラーが発生した場合、そのスマートフォンは実際のアドレスに切り替わるのではなく、直ちにインターネットから遮断されます</li>
+<li>GenRouterは、プロキシの割り当てに加えて、<strong>WebRTC、DNS、MACアドレス、位置情報、タイムゾーン</strong>も隠し、tracerouteをブロックし、LANスキャンを防ぎます</li>
+</ul>
+<h3>ルーターが対応しているプロキシ</h3>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>種類</th><th>形式と備考</th></tr></thead>
+<tbody><tr><td><strong>SOCKS5</strong></td><td><code>socks5://user:pass@ip:port</code></td></tr><tr><td><strong>HTTP / HTTPS</strong></td><td>対応しています。手順は同じです</td></tr><tr><td><strong>PPPoE</strong></td><td>マルチセッション回線からプロキシを作成します。<strong>ベトナムのみ</strong>対応。プロキシの数は回線のセッション数と同じで、IPは実際のISPから割り当てられます</td></tr><tr><td><strong>DPN</strong></td><td>GenRouter独自のネットワークです。<strong>10か国</strong>のレジデンシャルプロキシを利用でき、その国の共有在庫が十分にあれば別の国にローテーションすることもできます</td></tr></tbody>
+</table></div>
+<h3>プロキシの追加</h3>
+<ol>
+<li>まず、メモ帳や文書に<strong>1行に1つのプロキシ</strong>の形式でリストを準備します</li>
+<li><code>192.168.5.1:9000</code>を開き、<strong>Proxy Manager</strong>に移動して<strong>Add proxy</strong>をクリックします</li>
+<li>リストに合った形式を選び、貼り付けて<strong>Add proxy</strong>をクリックします</li>
+<li>割り当てるには：<strong>Devices &rarr; Update proxy</strong>を開いてプロトコルを選び、詳細を入力する（<strong>Input Manually</strong>）か、保存済みのものを選択します（<strong>Select from List</strong>）</li>
+<li>ボックス全体を一度に設定するには、デバイス表の上部にあるチェックボックスにチェックを入れて<strong>Update Proxy</strong>をクリックし、リストを貼り付けます。ルーターが各デバイスに異なるプロキシを割り当てます</li>
+</ol>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>購入に関するアドバイス（どのプロバイダーを選ぶか、レジデンシャルとデータセンターのどちらにするか、ローテーションプロキシがファームで安全かどうか）は、まだ確定していない唯一の部分です。推測せずに<a href="#/support">サポート</a>にお問い合わせください。ベトナムにお住まいの場合は、マルチセッションのPPPoEを利用すれば、プロキシを購入する必要がないかもしれません。</p></div>
+</div>
+<h2 id="router-h5">5. 問題が起きたとき</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>症状</th><th>よくある原因</th><th>対処</th></tr></thead>
+<tbody><tr><td>スマートフォンは表示されるがインターネットに接続できない</td><td>プロキシが切断されている、またはスマートフォンの時刻がずれている</td><td>まずプロキシを確認してください。プロキシに問題がなければ、スマートフォンの時刻をPCに合わせて修正してください</td></tr><tr><td>アカウントがまとめてBANされる</td><td>複数のアカウントが1つのアドレスを共有している</td><td>スマートフォン1台につきプロキシを1つにし、新しいアカウントでやり直してください。<a href="#/a5">2日目</a>をご覧ください</td></tr><tr><td>ボックス全体のインターネットが一度に切断される</td><td>プロキシではなく、配線または共有のアップリンク</td><td>LANの配線とモデムの空きポートを確認してから、再度Scanしてください</td></tr><tr><td>1台のスマートフォンだけがネットワークから外れる</td><td>プロキシが切断されたため、Isolate Modeがそのスマートフォンを遮断した</td><td>そのプロキシを交換してください。これは機能が正常に働いている状態で、故障ではありません</td></tr><tr><td>ボックスを追加すると接続が不安定になる</td><td>ミニPCがすべてのボックスを直接処理している</td><td>ミニPCとボックスの間に<strong>LANスイッチ</strong>を追加してください</td></tr><tr><td>OTGモードでデバイスが検出されない</td><td>最初の段階で一度も認識されていない</td><td>USBで接続して登録させてから、OTGに戻してください</td></tr><tr><td>Scanでスマートフォンが見つからない</td><td>2つのアドレス範囲の両方が追加されていない、またはActivateをクリックしていない</td><td><a href="#/otg">OTG（LAN）で接続する</a> - USBの場合は、ランプが青か確認してください</td></tr><tr><td>インジケーターランプが赤または点滅している</td><td>ネットワークではなく、メインボードまたはFPCケーブル</td><td><a href="#/err-light">対処：インジケーターランプの異常</a></td></tr></tbody>
+</table></div>
+<p>ソフトウェア側の症状を含むその他の症状は、<a href="#/troubleshoot">症状別トラブルシューティング</a>に掲載しています。</p>
+<h2 id="router-h6">次に読むページ</h2>
+<ul>
+<li>上の解説動画で、管理画面の実際の操作をご覧ください</li>
+<li>コースに沿って進めている場合、ネットワークの作業は<a href="#/a5">2日目 - アイデンティティを使いこなす</a>で行います</li>
+<li>スマートフォンごとの手順（プロキシの割り当て、Isolate Modeの有効化）は<a href="#/a5">2日目 &middot; 手順2</a>に掲載しています</li>
+</ul>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/api"><span class="k">前へ</span><span class="v">API</span></a>
+      <a class="next" href="#/package"><span class="k">次へ</span><span class="v">自動化パッケージ</span></a>
+    </div>
+    <p class="updated">最終更新 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== PACKAGE ==================== -->
+<section class="page" id="p-package" data-title="自動化パッケージ" data-crumb="リファレンス" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">リファレンス</a></div>
+    <h1 class="title">自動化パッケージ</h1>
+    <p class="lede">パッケージとは何か、どんな種類があるか、その中の3つのツールと守るべき実行順序について説明します。</p>
+
+    <div class="doc">
+<p>パッケージは、1つのプラットフォーム向けの既製の自動化スクリプトのセットです。アプリ内の<strong>Store</strong>で購入すると、以降は<strong>Automation &rarr; My Apps</strong>に配置され、他のアプリと同じように実行できます。まだ購入されていない場合は、WhatsApp（<a href="https://wa.me/84971234601" target="_blank" rel="noopener">+84 97 123 46 01</a>）でGenFarmerの営業担当に連絡するか、<a href="https://chat.whatsapp.com/J8bchy0IIwREeAI1z7Jmvo?mode=gi_t" target="_blank" rel="noopener">ユーザーコミュニティ</a>でお問い合わせください。ここで説明する作業はすべて手動でも行えますが、はるかに時間がかかります。</p>
+<h2 id="package-h1">現在利用できるパッケージ</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>プラットフォーム</th><th>パッケージ</th><th>機能</th><th>詳細</th></tr></thead>
+<tbody><tr><td><strong>TikTok</strong></td><td>Trust</td><td>ジャンルのキーワードに沿ってアカウントをウォームアップします</td><td><a href="#/pkg-tiktok">TikTok</a></td></tr><tr><td></td><td>Boost</td><td>選択した動画の再生数、「いいね」、コメント、シェアを増やします</td><td></td></tr><tr><td><strong>Facebook</strong></td><td>Trust</td><td>1つのコンテンツジャンルでアカウントをウォームアップします</td><td><a href="#/pkg-facebook">Facebook</a></td></tr><tr><td></td><td>Boost</td><td>投稿やリールの「いいね」、シェア、コメントを増やします</td><td></td></tr><tr><td><strong>Instagram</strong></td><td>Trust</td><td>アカウントをウォームアップし、基本的な投稿を行います</td><td><a href="#/pkg-instagram">Instagram</a></td></tr><tr><td></td><td>Boost</td><td>フォロワー以外を対象に、「いいね」、コメント、再生数、保存数を増やします</td><td></td></tr><tr><td><strong>Spotify</strong></td><td>Spotify</td><td>楽曲の有効な再生を生み出します</td><td><a href="#/pkg-spotify">Spotify</a></td></tr><tr><td><strong>Tidal</strong></td><td>Tidal</td><td>楽曲の有効な再生を生み出します</td><td><a href="#/pkg-tidal">Tidal</a></td></tr></tbody>
+</table></div>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>パッケージはこのドキュメントとは別に更新されます。パッケージの動作がここに書かれている内容と異なる場合は、パッケージの方が新しい情報です。このページを修正できるよう、<a href="#/support">サポート</a>までお知らせください。</p></div>
+</div>
+<h2 id="package-h2">アンチディテクトブラウザではなくスマートフォンファームを使う理由</h2>
+<p>SNSや音楽のプラットフォームは、もはやアンチディテクトブラウザでは運用できなくなっています。ブラウザはパターンが漏れやすく、すぐにチェックポイントがかかり、エンゲージメントが抑制されます。また、ブラウザでは実際の再生としてカウントされる視聴環境を作れません。パッケージは、実際のIPを持つ実機で動かすことを前提に作られています。</p>
+<h2 id="package-h3">すべてのパッケージに共通する4つのステップ</h2>
+<span class="pathline">アカウントをウォームアップ &rarr; オーディエンスを設定 &rarr; エンゲージメントを発生 &rarr; 配信を後押し</span>
+<p>初日から何かを押し上げることはなく、スパムも行いません。一連の流れはすべて、実際の人間の行動に合わせたタイミングで進みます。</p>
+<h2 id="package-h4">アルゴリズムが実際に測定しているもの</h2>
+<p>TikTok、Instagram、Facebookのリーチは、同じ5つのシグナルで決まります。パッケージがこのような設計になっているのはそのためです。</p>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>シグナル</th><th>あなたにとっての意味</th></tr></thead>
+<tbody><tr><td><strong>視聴時間と視聴維持率</strong></td><td>最も重要なシグナルです。視聴者が手を止めたか、最後まで見たか、繰り返し見たか、途中で離脱したか</td></tr><tr><td><strong>初期のエンゲージメント</strong></td><td>「いいね」、シェア、コメント、保存は、投稿後すぐに発生する必要があります。一度にまとめて発生すると不自然に見えて抑制されますが、自然に分散していればデータが均等に流れ込みます</td></tr><tr><td><strong>誰がエンゲージしているか</strong></td><td>数だけでなく、コンテンツに合った人かどうかが重要です。誤ったオーディエンスはアルゴリズムに誤った学習をさせ、配信が的外れな人に届いてしまいます</td></tr><tr><td><strong>アカウントの履歴</strong></td><td>質の低いエンゲージメントを実行したアカウントを回復させるのは非常に困難です。<strong>激しく運用するより、正しく始めることの方が重要です</strong></td></tr><tr><td><strong>フォロワー以外の反応</strong></td><td>プラットフォームが見ているのは、フォロワーの反応ではなく、新しい人が反応するかどうかです。フォロワー以外の関心を引く投稿は、小さなアカウントからでも急速に拡散します</td></tr></tbody>
+</table></div>
+<h2 id="package-h5">3つのツールと守るべき順序</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th></th><th><strong>Trust</strong></th><th><strong>Boost</strong></th></tr></thead>
+<tbody><tr><td>目的</td><td>アカウントをウォームアップし、履歴を築く</td><td>コンテンツを拡散する</td></tr><tr><td>重点</td><td>安定性と安全性</td><td>パフォーマンスと成長</td></tr><tr><td>適したアカウント</td><td>新規アカウント、または立て直し中のアカウント</td><td>既に基盤のあるアカウント</td></tr><tr><td>動作</td><td>トピックに沿って視聴し、選択的にフォローや「いいね」を行う</td><td>再生数、「いいね」、ストリーム、トレンド入りを後押しする</td></tr></tbody>
+</table></div>
+<p><strong>Auto Login</strong>はこの2つの前段階に位置し、スマートフォン1台ずつ入力する代わりに、アカウントの一括ログイン・ログアウトを行います。</p>
+<div class="hint danger">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-danger"/></svg>
+<div><p>ウォームアップしていないアカウントで<strong>Boost</strong>を有効にするのは、アカウントを失う最も早い方法です。また、一度質の低いエンゲージメントを実行したアカウントを回復させるのは非常に困難です。これはロードマップ全体で最も高くつく間違いです。</p></div>
+</div>
+<p>これらを実行する詳しい手順は、<a href="#/a6">3日目 - 基本的な自動化</a>に掲載しています。</p>
+<h2 id="package-h6">人間らしく見せるための仕組み</h2>
+<ul>
+<li><strong>ランダム化されたタスク：</strong>操作のタイミングと種類（視聴、「いいね」、保存、スクロール）は、決まったパターンを繰り返すのではなく、実行ごとに変わります</li>
+<li><strong>上限と休憩：</strong>スクリプトには上限、一時停止、バックグラウンドでの動作（視聴、スクロール、スキップ）が組み込まれており、プラットフォームはこれを自然な動きとして認識します</li>
+<li><strong>プラットフォームごとの設計：</strong>各パッケージは、そのプラットフォームのコンテンツ配信の仕組みと、あなたの市場のユーザーの行動に合わせて設計されています</li>
+</ul>
+<h2 id="package-h7">最初のパッケージを実行する前に</h2>
+<ul>
+<li>お試し用の5つのアカウントが、認証を求められることなく<strong>48時間の放置期間を乗り越えている</strong>こと。<a href="#/a5">2日目</a>をご覧ください</li>
+<li>すべてのスマートフォンに<strong>専用のプロキシ</strong>があり、Isolate Modeが有効になっていること。<a href="#/router">ルーターとプロキシ</a>をご覧ください</li>
+<li>ユーザーマニュアルのリンクではなく公式APKフォルダーから、すべてのスマートフォンに<strong>プラットフォームのアプリがインストールされている</strong>こと。<a href="#/a5">2日目 &middot; 手順3</a>をご覧ください</li>
+<li>パッケージが自動でコメントする場合は、<strong>vilao.aiのAPIキー</strong>を用意していること。これは<a href="#/a3">0日目</a>で準備すべき項目でした。途中でキーがないことに気づくと、途中で止まらざるを得なくなります</li>
+</ul>
+<h2 id="package-h8">次に読むページ</h2>
+<ul>
+<li>パッケージのダウンロードと実行の手順は<a href="#/a6">3日目 - 基本的な自動化</a>に掲載しています</li>
+<li>Store自体については<a href="#/apps">App Manager</a>、Apps・Tasks・Runsについては<a href="#/automation">Automation（自動化）</a>で説明しています</li>
+</ul>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/router"><span class="k">前へ</span><span class="v">ルーターとプロキシ</span></a>
+      <a class="next" href="#/pkg-tiktok"><span class="k">次へ</span><span class="v">TikTokパッケージ</span></a>
+    </div>
+    <p class="updated">最終更新 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== PKG-TIKTOK ==================== -->
+<section class="page" id="p-pkg-tiktok" data-title="TikTokパッケージ" data-crumb="リファレンス" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">リファレンス</a></div>
+    <h1 class="title">TikTokパッケージ</h1>
+    <p class="lede">TikTok向けのTrustとBoost：パッケージの内容、運用の目安となる数値、注意すべき点を説明します。</p>
+
+    <div class="doc">
+<h2 id="pkg-tiktok-h1">パッケージの内容</h2>
+<p>TikTokには両方のツールが揃っています。<strong>Trust</strong>は実際の活動履歴を持つアカウントを育て、使い捨てのアカウントとして扱われないようにします。<strong>Boost</strong>は、お持ちのアカウント全体で投稿・配信の運用を行います。</p>
+<h3>Trust - アカウントの育成</h3>
+<ul>
+<li><strong>業界のキーワードで育成。</strong>システムがターゲットのキーワードに関連する動画を探し、実際の人間のように閲覧します。これにより、アカウントがそのキーワードでおすすめに表示されるようになり、信頼できるアカウントに見える履歴が築かれます。</li>
+<li><strong>AIによる自動投稿と自動コメント。</strong>投稿はスケジュールに沿って実行され、コメントはコピーではなく生成されるため、多数のアカウントが同じ文面を書き込むことはありません。</li>
+<li><strong>多数のアカウントを一括管理。</strong>数百のアカウントを1つの画面で一元的に同期・監視でき、技術的なスキルは必要ありません。</li>
+<li><strong>ランダムフォロー。</strong>システムがおすすめリストからランダムに選んでフォローするため、繰り返しの動作に見えることはありません。</li>
+</ul>
+<h3>Boost - チャンネルの運用</h3>
+<ul>
+<li><strong>文脈に沿ったAI返信。</strong>AIが自分の動画に寄せられたコメントを読み、トピックとトーンに合った返信の下書きを作成します。表現は毎回異なります。</li>
+<li><strong>大規模なスケジュール設定と公開。</strong>アカウントリスト全体で動画を一括アップロード・スケジュール設定し、市場ごとに適切な時間に公開します。公開タイミングをずらすため、チャンネルが同じように投稿することはありません。</li>
+<li>ログインごとに数値が散らばるのではなく、チャンネル別のレポートを備えた<strong>全アカウント共通の1つの画面</strong>で管理できます。</li>
+</ul>
+<p>すべて実機で動作するため、アップロードはブラウザではなく、ネイティブなモバイル環境で行われます。</p>
+<h2 id="pkg-tiktok-h2">運用の目安となる数値</h2>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>最後の行は、技術チームからの回答を待っている状態です。それ以外は推奨設定であり、厳密な上限ではありません。</p></div>
+</div>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>質問</th><th>回答</th></tr></thead>
+<tbody><tr><td>本格運用の前にウォームアップする期間</td><td><strong>2〜4週間</strong>のTrust</td></tr><tr><td>1台のデバイスあたりのアカウント数</td><td><strong>1台のデバイスにつき、1プラットフォームあたり1アカウント</strong>が最も安全です。推奨される上限は3アカウントです</td></tr><tr><td>1台のルーターに接続できるスマートフォンの上限</td><td>GenRouter H3000で<strong>30台</strong>、ミニPCで<strong>200台</strong>。<a href="#/router">ルーターとプロキシ</a>をご覧ください</td></tr><tr><td>1本のインターネット回線に接続できるボックスの上限</td><td><strong>5ボックス</strong>（1ボックスあたり約100 Mbps）。<a href="#/router">ルーターとプロキシ</a>をご覧ください</td></tr><tr><td>リンクに紐づく情報を変更する頻度</td><td><strong>7〜14日ごと</strong></td></tr><tr><td>アカウントを休ませるまでの稼働時間</td><td><strong>4〜6時間稼働、1〜2時間休止</strong>、または1日の中で複数の時間帯に分けて稼働させます。<strong>24時間365日の稼働は絶対に避けてください</strong>。一晩中スクロールし続ける人はいません</td></tr><tr><td>初心者向けの推奨設定</td><td><span class="todo">確認中</span></td></tr></tbody>
+</table></div>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p><strong>リンクに紐づく情報を1〜2週間ごとに変更する理由。</strong>毎日変更すると誰も管理しきれず、何か月も放置すると同じリンクのリストに何度も繰り返しアクセスすることになります。これこそ、プラットフォームが一斉に取り締まるパターンです。</p></div>
+</div>
+<h2 id="pkg-tiktok-h3">TikTok特有の注意点</h2>
+<ul>
+<li>TikTokは<strong>最も帯域を使うプラットフォーム</strong>です。1ボックスあたり100 Mbpsという数値は、TikTokを基準にしています。</li>
+<li>ユーザーマニュアルに記載されたAPKリンクのうち、正しいのはTikTokのものだけですが、それでも<a href="#/a5">2日目 &middot; 手順3</a>の公式フォルダーの方が安全な入手元です。</li>
+<li>自動コメントには<strong>vilao.aiのAPIキー</strong>が必要です。必要になった日ではなく、<a href="#/a3">0日目</a>のうちに取得してください。</li>
+</ul>
+<p>ユーザーマニュアルのTikTokの章は<em>p. 17-50の34ページで、マニュアルの中で最も充実した章です</em>。</p>
+<h2 id="pkg-tiktok-h4">停止すべきサイン</h2>
+<ol>
+<li>アカウントが普段より頻繁に認証を求められる。</li>
+<li>投稿の再生数が突然まったくなくなる。</li>
+<li>稼働中のスマートフォンの台数が、はっきりした理由もなく減り続ける。</li>
+</ol>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>一晩でBANされたアカウントがある場合は、<strong>規模を拡大しないでください</strong>。まずプロキシと実行速度を確認し直してください。</p></div>
+</div>
+<h2 id="pkg-tiktok-h5">このパッケージでよくある問題</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>症状</th><th>よくある原因</th><th>対処</th></tr></thead>
+<tbody><tr><td>スクリプトは動くのに数値が伸びない</td><td>ウォームアップが2〜4週間に達していない、またはコンテンツのジャンル設定が誤っている</td><td><a href="#/a7">4〜5日目</a>の設定セクション</td></tr><tr><td>インストール後に別のアプリが開く</td><td>APKをユーザーマニュアルのリンクから入手した</td><td>公式フォルダーから再インストールしてください - <a href="#/a5">2日目 &middot; 手順3</a></td></tr><tr><td>スクリプトを開始するとすぐにアカウントが認証を求められる</td><td>手動でログインしても同じことが起こり、スクリプトはそれを速く繰り返しているだけ</td><td>アカウントの購入先かプロキシを変更してやり直してください - <a href="#/a5">2日目</a></td></tr><tr><td>自動コメントが途中で止まる</td><td>vilao.aiのAPIキーがない、またはプロバイダーのモデルに障害が発生している</td><td>キーの取得方法は<a href="#/a3">0日目</a>をご覧ください</td></tr><tr><td>アカウントがまとめてBANされる</td><td>複数のアカウントが1つのアドレスを共有している</td><td><a href="#/router">ルーターとプロキシ</a></td></tr><tr><td>設定はすべて正しいのにファームの動作がもたつく</td><td>多くの場合、回線ではなくプロキシが原因</td><td><a href="#/router">ルーターとプロキシ</a></td></tr></tbody>
+</table></div>
+<h2 id="pkg-tiktok-h6">次に読むページ</h2>
+<ul>
+<li>実行の手順：<a href="#/a6">3日目 - 基本的な自動化</a></li>
+<li>すべてのパッケージの比較：<a href="#/package">自動化パッケージ</a></li>
+</ul>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/package"><span class="k">前へ</span><span class="v">自動化パッケージ</span></a>
+      <a class="next" href="#/pkg-facebook"><span class="k">次へ</span><span class="v">Facebookパッケージ</span></a>
+    </div>
+    <p class="updated">最終更新 09/2026</p>
+  </div>
+</section>

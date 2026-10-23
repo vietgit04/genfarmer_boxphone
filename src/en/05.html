@@ -1,0 +1,276 @@
+
+<!-- ==================== API ==================== -->
+<section class="page" id="p-api" data-title="API" data-crumb="Software" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/cc">Software</a></div>
+    <h1 class="title">API</h1>
+    <p class="lede">For developers: RESTful endpoints that drive Apps, Tasks and Runs from another program on the same machine.</p>
+
+    <div class="doc">
+<p>GenFarmer exposes RESTful endpoints for managing <strong>Automation Apps</strong>, <strong>Tasks</strong> and <strong>Runs</strong>, so another program on the same machine can drive the automation. This page is for developers; nothing in the one-week roadmap needs it.</p>
+<h2 id="api-h1">Base URL</h2>
+<pre><code>http://127.0.0.1:55554/</code></pre>
+<h2 id="api-h2">Automation APIs</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>What it does</th><th>Method</th><th>Endpoint</th></tr></thead>
+<tbody><tr><td>List apps</td><td><code>GET</code></td><td><code>/automation/apps</code></td></tr><tr><td>Get app details</td><td><code>GET</code></td><td><code>/automation/apps/:id</code></td></tr><tr><td>Update app</td><td><code>PUT</code></td><td><code>/automation/apps</code></td></tr><tr><td>Delete app</td><td><code>DELETE</code></td><td><code>/automation/apps</code></td></tr></tbody>
+</table></div>
+<pre><code>curl -X GET 'http://127.0.0.1:55554/automation/apps?userId=3&amp;page=1&amp;limit=25&amp;order=desc&amp;orderBy=updatedAt'
+
+curl -X GET 'http://127.0.0.1:55554/automation/apps/adoFNVNN6Jwl8FlbZCfni'
+
+curl -X PUT 'http://127.0.0.1:55554/automation/apps' \
+  -H 'Content-Type: application/json' \
+  -d '{"id":"adoFNVNN6Jwl8FlbZCfni","userId":3,"name":"New App","description":"","version":"1.0.0","script":{"flow":{"nodes":[],"edges":[]}}}'
+
+curl -X DELETE 'http://127.0.0.1:55554/automation/apps' \
+  -H 'Content-Type: application/json' \
+  -d '{"ids": ["2ykTiCbEOAYC_5_tR5Wp-"]}'</code></pre>
+<h2 id="api-h3">Task APIs</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>What it does</th><th>Method</th><th>Endpoint</th></tr></thead>
+<tbody><tr><td>Create task</td><td><code>POST</code></td><td><code>/automation/tasks</code></td></tr><tr><td>List tasks</td><td><code>GET</code></td><td><code>/automation/runs</code></td></tr><tr><td>Update task</td><td><code>PUT</code></td><td><code>/automation/tasks/:id</code></td></tr><tr><td>Assign devices to task</td><td><code>PUT</code></td><td><code>/automation/tasks/:id/add-devices</code></td></tr><tr><td>Remove devices from task</td><td><code>PUT</code></td><td><code>/automation/tasks/:id/remove-devices</code></td></tr><tr><td>Delete task</td><td><code>DELETE</code></td><td><code>/automation/tasks</code></td></tr></tbody>
+</table></div>
+<pre><code>curl -X POST 'http://127.0.0.1:55554/automation/tasks' \
+  -H 'Content-Type: application/json' \
+  -d '{"appId":"adoFNVNN6Jwl8FlbZCfni","input":[],"userId":3,"name":"test","devices":{"enable":true,"list":[]}}'
+
+curl -X PUT 'http://127.0.0.1:55554/automation/tasks/uNDVKT_VwhEDuXT3PGUUv/add-devices' \
+  -H 'Content-Type: application/json' \
+  -d '{"devices":{"enabled":true,"list":[{"id":"emulator-5554","serialNo":"00f65a5d","name":"SM-G960N"}]}}'
+
+curl -X DELETE 'http://127.0.0.1:55554/automation/tasks' \
+  -H 'Content-Type: application/json' \
+  -d '{"ids": ["uNDVKT_VwhEDuXT3PGUUv"]}'</code></pre>
+<h2 id="api-h4">Run APIs</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>What it does</th><th>Method</th><th>Endpoint</th></tr></thead>
+<tbody><tr><td>Create run</td><td><code>POST</code></td><td><code>/automation/runs</code></td></tr><tr><td>Execute run</td><td><code>PUT</code></td><td><code>/automation/runs/:id/run</code></td></tr><tr><td>Get run output</td><td><code>GET</code></td><td><code>/automation/runs/:id/storages</code></td></tr></tbody>
+</table></div>
+<pre><code>curl -X POST 'http://127.0.0.1:55554/automation/runs' \
+  -H 'Content-Type: application/json' \
+  -d '{"userId":3,"taskId":"uNDVKT_VwhEDuXT3PGUUv","appId":"adoFNVNN6Jwl8FlbZCfni","status":0}'
+
+curl -X PUT 'http://127.0.0.1:55554/automation/runs/xhfjAeUOB5SXC8d5RiK_c/run' \
+  -H 'Content-Type: application/json' \
+  -d '{"deviceIds":[]}'
+
+curl -X GET 'http://127.0.0.1:55554/automation/runs/xhfjAeUOB5SXC8d5RiK_c/storages?page=1&amp;limit=25'</code></pre>
+<h2 id="api-h5">Me API</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>What it does</th><th>Method</th><th>Endpoint</th></tr></thead>
+<tbody><tr><td>Get current user</td><td><code>GET</code></td><td><code>/backend/auth/me</code></td></tr></tbody>
+</table></div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/settings"><span class="k">Previous</span><span class="v">Settings</span></a>
+      <a class="next" href="#/router"><span class="k">Next</span><span class="v">Router &amp; proxy</span></a>
+    </div>
+    <p class="updated">Last updated 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== ERR-LICENSE ==================== -->
+<section class="page" id="p-err-license" data-title="Fix: Not valid device" data-crumb="Reference" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Reference</a></div>
+    <h1 class="title">Fix: Not valid device</h1>
+    <p class="lede">The app refuses the devices with a licence error. Two causes, one of which is simply a wrong clock.</p>
+
+    <div class="doc">
+<p>The invalid device error in the GenFarmer app. Symptom: the app refuses the devices and shows a licence error.</p>
+<figure class="fig"><img src="anh/eng-err-license-01.jpg" alt="The Not valid device error" loading="lazy"></figure>
+<h2 id="err-license-h1">Why it happens</h2>
+<ul>
+<li>You are signed in to the same GenFarmer account on <strong>more than one computer at the same time</strong></li>
+<li>You signed in on one computer and then signed in on another</li>
+<li>The <strong>date, time or time zone</strong> on your computer does not match the real time</li>
+</ul>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>A GenFarmer account supports <strong>one email signed in on one computer at a time</strong>.</p></div>
+</div>
+<h2 id="err-license-h2">How to fix it</h2>
+<ol class="stepper">
+<li class="step">
+<h3>Sign out everywhere</h3>
+<p>Sign out of the GenFarmer account on every computer.</p>
+<figure class="fig"><img src="anh/eng-err-license-02.jpg" alt="Signing out" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>Check the clock</h3>
+<p>Check that the date, time and time zone match the real time in your region. If they do not, open <strong>Date and Time Settings</strong>, click <strong>Sync now</strong>, then check the time zone again. If your clock was already correct, go to step 3.</p>
+<figure class="fig"><img src="anh/eng-err-license-03.jpg" alt="Date and time settings" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>Sign in on one computer only</h3>
+<p>If the licence error is still there, select and <strong>delete every device shown in the control panel</strong>, close the application and open it again.</p>
+<figure class="fig"><img src="anh/eng-err-license-04.jpg" alt="Deleting the devices in the control panel" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-err-license-05.jpg" alt="Signing in again" loading="lazy"></figure>
+</li>
+</ol>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>If you were never signed in anywhere else, do step 2 anyway - a wrong clock alone causes this error. If it persists, <a href="#/support">contact support</a>.</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/troubleshoot"><span class="k">Previous</span><span class="v">Troubleshoot by symptom</span></a>
+      <a class="next" href="#/err-unauth"><span class="k">Next</span><span class="v">Fix: Device not showing (Unauthorized)</span></a>
+    </div>
+    <p class="updated">Last updated 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== ERR-UNAUTH ==================== -->
+<section class="page" id="p-err-unauth" data-title="Fix: Device not showing (Unauthorized)" data-crumb="Reference" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Reference</a></div>
+    <h1 class="title">Fix: Device not showing (Unauthorized)</h1>
+    <p class="lede">Some phones never appear on screen because ADB reports them as unauthorized. Fixed with the ADB key file for your box model.</p>
+
+    <div class="doc">
+<p>This is the main reason some phones in the box never show up on screen. The devices are connected, but ADB reports them as <strong>unauthorized</strong>, so GenFarmer cannot use them.</p>
+<h2 id="err-unauth-h1">How to fix it</h2>
+<ol class="stepper">
+<li class="step">
+<h3>Open Command Prompt</h3>
+<p>Press <strong>Windows + R</strong>, type <strong>cmd</strong> and press <strong>Enter</strong>.</p>
+<figure class="fig"><img src="anh/eng-err-unauth-01.jpg" alt="Opening Command Prompt" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>Check the device status</h3>
+<p>Type <code>adb devices</code>. Every device listed as <strong>unauthorized</strong> has this problem.</p>
+<figure class="fig"><img src="anh/eng-err-unauth-02.jpg" alt="Running adb devices" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-err-unauth-03.jpg" alt="Devices shown as unauthorized" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>Ask support for the ADB Key file</h3>
+<p>The key depends on the Boxphone model you own, so contact GenFarmer support to get the right file. See <a href="#/support">Before you contact support</a> for what to send them.</p>
+</li>
+<li class="step">
+<h3>Put the key in the right folder</h3>
+<p>Go to <strong>C: drive → Users → your computer name → .android</strong></p>
+</li>
+<li class="step">
+<h3>Replace the existing key</h3>
+<p>Copy the ADB Key file from GenFarmer into that folder, choosing <strong>Replace</strong> if prompted.</p>
+<figure class="fig"><img src="anh/eng-err-unauth-04.jpg" alt="Replacing the ADB key file" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>Restart the ADB server</h3>
+<p>Back in Command Prompt, run the two commands below. When every device shows the status <strong>device</strong>, the problem is fixed.</p>
+<figure class="fig"><img src="anh/eng-err-unauth-05.jpg" alt="Devices authorised after restarting the ADB server" loading="lazy"></figure>
+</li>
+</ol>
+<pre><code>adb kill-server
+adb devices</code></pre>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>If <code>adb devices</code> recognises nothing at all, ADB is not installed on your computer yet. Set up the ADB environment first - see <a href="#/adb">ADB commands</a> and the requirements on <a href="#/req">Requirements and safety notes</a>.</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/err-license"><span class="k">Previous</span><span class="v">Fix: Not valid device</span></a>
+      <a class="next" href="#/err-light"><span class="k">Next</span><span class="v">Fix: Boxphone indicator light error</span></a>
+    </div>
+    <p class="updated">Last updated 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== ERR-LIGHT ==================== -->
+<section class="page" id="p-err-light" data-title="Fix: Boxphone indicator light error" data-crumb="Reference" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Reference</a></div>
+    <h1 class="title">Fix: Boxphone indicator light error</h1>
+    <p class="lede">A red or flickering light is a hardware fault on one mainboard. How to tell the slot from the board.</p>
+
+    <div class="doc">
+<p>Symptoms: the indicator light <strong>flickers or shows red</strong>, and the device <strong>drops out</strong> of the software.</p>
+<figure class="fig"><img src="anh/eng-err-light-01.jpg" alt="A red indicator light on the Boxphone" loading="lazy"></figure>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>The normal light code is <strong>blue for USB mode</strong> and <strong>green for OTG mode</strong>. Red or flickering is a hardware fault on that mainboard, not a software problem.</p></div>
+</div>
+<h2 id="err-light-h1">How to fix it</h2>
+<ol class="stepper">
+<li class="step">
+<h3>Swap the mainboard to another slot</h3>
+<p>Remove the mainboards that are misbehaving and <strong>swap their positions</strong> with others. This tells you whether the fault follows the <strong>slot</strong> or the <strong>mainboard</strong>.</p>
+</li>
+<li class="step">
+<h3>Reseat the FPC cable</h3>
+<p>If the problem persists after the swap, adjust or reseat the <strong>FPC cable</strong> - the long orange ribbon running along the mainboard.</p>
+</li>
+</ol>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>Reseating the FPC cable means opening the box. If you are not comfortable doing it, <a href="#/support">contact support</a> first: hardware altered without guidance falls outside the warranty, as noted on <a href="#/req">Requirements and safety notes</a>.</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/err-unauth"><span class="k">Previous</span><span class="v">Fix: Device not showing (Unauthorized)</span></a>
+      <a class="next" href="#/faq"><span class="k">Next</span><span class="v">FAQ</span></a>
+    </div>
+    <p class="updated">Last updated 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== FAQ ==================== -->
+<section class="page" id="p-faq" data-title="FAQ" data-crumb="Reference" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Reference</a></div>
+    <h1 class="title">FAQ</h1>
+    <p class="lede">The questions customers ask most often, with links to the page that answers each one in full.</p>
+
+    <div class="doc">
+<p>The questions customers ask most often. Where a full page already answers one, this page links to it instead of repeating it.</p>
+<h2 id="faq-h1">Hardware and setup</h2>
+<h3>What do I need to run a Boxphone system?</h3>
+<ul>
+<li><strong>Hardware:</strong> a Boxphone, and optionally a router for IP security and network management</li>
+<li><strong>Software:</strong> the automation tools and scripts</li>
+<li><strong>Resources:</strong> an internet connection, social media accounts, and proxies or a VPN to give the devices different IP addresses</li>
+</ul>
+<p>The full requirement list, including PC specification and voltage, is on <a href="#/req">Requirements and safety notes</a>.</p>
+<h3>How can each device in a Boxphone have a different IP address?</h3>
+<p>Use a proxy or VPN per device. GenFarmer also sells <strong>GenRouter</strong>, which assigns the proxy or VPN quickly, spoofs network parameters such as MAC, DNS and WebRTC, and blocks LAN scanning. Why this matters for account survival is explained on <a href="#/a5">Day 2</a>, and everything about choosing the device and the proxies is on <a href="#/router">Router &amp; proxy</a>.</p>
+<h3>How many accounts can I run on one Boxphone?</h3>
+<ul>
+<li><strong>Safest:</strong> 1 account per platform per device</li>
+<li>You can push further, but the recommended maximum is <strong>3 accounts per platform per device</strong></li>
+</ul>
+<h3>Can I rent a Boxphone to try it first?</h3>
+<p>You can rent Cloudphone services from GenFarmer to test the system: <strong>Cloudphone GenFarmer</strong> for social media use, and <strong>Genplay.io</strong> for gaming or idle gaming.</p>
+<h3>Does it work with emulators as well as boxes?</h3>
+<p>Yes. GenFarmer describes itself as covering screen streaming and no-code automation for <strong>phone farms and emulators</strong>. There is a walkthrough for LDPlayer on the channel: <a href="https://youtu.be/wounmepUAe8" target="_blank" rel="noopener">How to connect LDPlayer with GenFarmer - automation on emulator</a>.</p>
+<h2 id="faq-h2">What it can and cannot do</h2>
+<h3>Can a Boxphone be used for gaming or idle gaming?</h3>
+<p>Yes, particularly for lightweight or idle games and simple automation such as auto check-in, pet raising or farming systems. Supported examples include Roblox, Play Together and Clash of Clans. Heavy games such as Lien Quan, Ymir or Raven2 need a Boxphone model with matching hardware.</p>
+<h3>Does GenFarmer teach how to make money with a Boxphone?</h3>
+<p><strong>No.</strong> GenFarmer documents how to use the devices and software in its own ecosystem - operating, installing, optimizing and managing devices - so you can apply those tools to your own work.</p>
+<h3>Where do I start learning no-code automation?</h3>
+<p>GenFarmer runs free no-code automation courses, from basic to advanced, on the GenFarmer Vietnam YouTube channel. The features those courses use are described on <a href="#/automation">Automation</a>.</p>
+<h2 id="faq-h3">Already answered in full elsewhere</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Question</th><th>Where the answer lives</th></tr></thead>
+<tbody><tr><td>What is a Boxphone?</td><td><a href="#/boxphone">What is Boxphone?</a></td></tr><tr><td>Is Change the same as root?</td><td><a href="#/change">What is Change / SuperChange?</a></td></tr><tr><td>Where do I get technical support?</td><td><a href="#/support">Before you contact support</a></td></tr><tr><td>Which page teaches which part of the system?</td><td><a href="#/home">Front page - how the pieces fit together</a></td></tr></tbody>
+</table></div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/err-light"><span class="k">Previous</span><span class="v">Fix: Boxphone indicator light error</span></a>
+      <a class="next" href="#/glossary"><span class="k">Next</span><span class="v">Glossary</span></a>
+    </div>
+    <p class="updated">Last updated 09/2026</p>
+  </div>
+</section>

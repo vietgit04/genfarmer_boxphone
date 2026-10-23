@@ -1,0 +1,476 @@
+
+<!-- ==================== ADB ==================== -->
+<section class="page" id="p-adb" data-title="Lệnh ADB" data-crumb="Cài đặt" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/req">Cài đặt</a></div>
+    <h1 class="title">Lệnh ADB</h1>
+    <p class="lede">Không bắt buộc. Chạy một lệnh trên các thiết bị ngay trong GenFarmer, và cài đặt môi trường ADB mà cách sửa lỗi Unauthorized cần đến.</p>
+
+    <div class="doc">
+<p>Không bắt buộc, và chỉ hữu ích nếu bạn quen dùng dòng lệnh. Bỏ qua trang này không thay đổi gì trong lộ trình - nhưng <a href="#/err-unauth">cách sửa lỗi Unauthorized device</a> cần cài ADB trên PC của bạn.</p>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Video hướng dẫn: <a href="https://youtu.be/uM-Z2nOl63c?si=wa-91Q1dNxnmp9Vi" target="_blank" rel="noopener">Cách dùng lệnh ADB trong GenFarmer</a></p></div>
+</div>
+<div class="video" data-yt="uM-Z2nOl63c">
+        <img src="anh/yt-uM-Z2nOl63c.jpg" alt="Cách dùng lệnh ADB trong GenFarmer" loading="lazy">
+        <button class="vplay" type="button" aria-label="Phát video"><span class="disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button>
+        <span class="vnote">Cách dùng lệnh ADB trong GenFarmer</span>
+      </div>
+<h2 id="adb-h1">Chạy một lệnh</h2>
+<p>Chọn <strong>ADB Command</strong> trên thanh công cụ.</p>
+<figure class="fig"><img src="anh/eng-adb-01.jpg" alt="ADB Command trên thanh công cụ" loading="lazy"></figure>
+<p>Dán lệnh vào ô nhập và bấm <strong>Execute</strong> (Thực thi).</p>
+<figure class="fig"><img src="anh/eng-adb-02.jpg" alt="Dán lệnh và bấm Execute" loading="lazy"></figure>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Bạn có thể nhờ công cụ AI như ChatGPT hoặc Gemini viết lệnh giúp. Ví dụ, để mở Chrome trên tất cả thiết bị, hãy hỏi <em>"Lệnh ADB để mở Google Chrome trên thiết bị Android"</em>, rồi dán kết quả vào ô nhập và chạy.</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/apk"><span class="k">Trước</span><span class="v">Điều khiển đồng bộ và cài APK</span></a>
+      <a class="next" href="#/backup"><span class="k">Tiếp</span><span class="v">Change / Backup / Restore</span></a>
+    </div>
+    <p class="updated">Cập nhật lần cuối 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== BACKUP ==================== -->
+<section class="page" id="p-backup" data-title="Change / Backup / Restore" data-crumb="Cài đặt" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/req">Cài đặt</a></div>
+    <h1 class="title">Change / Backup / Restore</h1>
+    <p class="lede">Cấp cho mỗi ứng dụng một danh tính thiết bị riêng, và giữ dữ liệu tài khoản không bị mất khi reset hay đổi máy.</p>
+
+    <div class="doc">
+<p>Change cấp cho thiết bị một danh tính mới với từng ứng dụng. Backup và Restore giữ lại dữ liệu tài khoản của ứng dụng để bạn không phải đăng nhập lại. Công nghệ đằng sau được giải thích ở <a href="#/change">Change / SuperChange là gì</a>.</p>
+<div class="video" data-yt="3laZZD16u9I">
+        <img src="anh/yt-3laZZD16u9I.jpg" alt="Change Device - Back Up - Restore trong GenFarmer" loading="lazy">
+        <button class="vplay" type="button" aria-label="Phát video"><span class="disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button>
+        <span class="vnote">Change Device - Back Up - Restore trong GenFarmer</span>
+      </div>
+<h2 id="backup-h1">Change device</h2>
+<p>Tính năng này cho phép bạn thay đổi thông tin thiết bị mà từng ứng dụng nhìn thấy. Trên thực tế, bạn có thể chạy hai ứng dụng Telegram trên cùng một điện thoại và mỗi ứng dụng sẽ thấy một thiết bị khác nhau.</p>
+<ol class="stepper">
+<li class="step">
+<h3>Chọn thiết bị và mở Change device</h3>
+<p>Chọn thiết bị, rồi bấm <strong>Change device</strong> trong menu bên. Danh tính mặc định là <strong>Samsung Galaxy S21 Ultra 5G</strong>.</p>
+<figure class="fig"><img src="anh/eng-chg-01.jpg" alt="Change device trong menu bên" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>Tạo ngẫu nhiên hoặc tự đặt thông số</h3>
+<p>Bấm <strong>Random</strong> (Ngẫu nhiên) để hệ thống tạo ngẫu nhiên mọi thông số. Muốn tự đặt, hãy tích <strong>Manual</strong> (Thủ công) ở góc trên bên phải và điều chỉnh theo ý muốn.</p>
+<figure class="fig"><img src="anh/eng-chg-02.jpg" alt="Thông số Random hoặc Manual" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>Xác nhận</h3>
+<p>Bấm <strong>Change</strong>. Thiết bị sẽ ngắt kết nối và khởi động lại trong giây lát để áp dụng thiết lập mới.</p>
+<figure class="fig"><img src="anh/eng-chg-03.jpg" alt="Xác nhận thay đổi" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-chg-04.jpg" alt="Thiết bị khởi động lại để áp dụng thay đổi" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>Kiểm tra</h3>
+<p>Mở ứng dụng <strong>Device Info HW</strong> để kiểm tra danh tính mới - sau khi đổi, thiết bị có thể hiện là <strong>Realme RMX2030</strong>. Ứng dụng này tải miễn phí trên APKPure.</p>
+<figure class="fig"><img src="anh/eng-chg-05.jpg" alt="Kiểm tra danh tính thiết bị mới" loading="lazy"></figure>
+</li>
+</ol>
+<h2 id="backup-h2">Backup: dữ liệu tài khoản mạng xã hội</h2>
+<ol class="stepper">
+<li class="step">
+<h3>Mở tài khoản bạn muốn sao lưu</h3>
+<p>Vào nền tảng, mở trang cá nhân của tài khoản và kiểm tra mọi thứ đều ổn.</p>
+<figure class="fig"><img src="anh/eng-chg-06.jpg" alt="Tài khoản cần sao lưu" loading="lazy"></figure>
+</li>
+<li class="step">
+<h3>Sao lưu ứng dụng</h3>
+<p>Đóng ứng dụng, rê chuột lên ứng dụng đó (ví dụ TikTok) và chọn <strong>Backup App</strong> (Sao lưu ứng dụng).</p>
+<figure class="fig"><img src="anh/eng-chg-07.jpg" alt="Backup App" loading="lazy"></figure>
+</li>
+</ol>
+<h2 id="backup-h3">Restore: dữ liệu tài khoản mạng xã hội</h2>
+<ol class="stepper">
+<li class="step">
+<h3>Chọn Restore App</h3>
+<p>Khi đã có tệp sao lưu, quay lại ứng dụng và chọn <strong>Restore App</strong> (Khôi phục ứng dụng).</p>
+</li>
+<li class="step">
+<h3>Chọn tệp sao lưu</h3>
+<p>Chọn tệp bạn đã lưu trước đó.</p>
+</li>
+<li class="step">
+<h3>Mở lại ứng dụng</h3>
+<p>Khi thấy <strong>Restore successful</strong>, đóng ứng dụng và mở lại để tiếp tục sử dụng.</p>
+</li>
+</ol>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Backup và Restore giúp việc đổi máy trở nên nhẹ nhàng: khi chuyển tài khoản sang thiết bị khác hoặc reset thiết bị, bạn chỉ cần khôi phục thay vì đăng nhập lại và trải qua bước xác minh.</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/adb"><span class="k">Trước</span><span class="v">Lệnh ADB</span></a>
+      <a class="next" href="#/cc"><span class="k">Tiếp</span><span class="v">Control Center</span></a>
+    </div>
+    <p class="updated">Cập nhật lần cuối 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== CC ==================== -->
+<section class="page" id="p-cc" data-title="Control Center" data-crumb="Phần mềm" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/cc">Phần mềm</a></div>
+    <h1 class="title">Control Center</h1>
+    <p class="lede">Màn hình bạn dùng hằng ngày: thanh bên, màn hình stream, điều khiển đồng bộ và Inspector.</p>
+
+    <div class="doc">
+<p>Control Center là nơi bạn dành phần lớn thời gian: lưới điện thoại, thanh công cụ điều chỉnh cách hiển thị, màn hình stream của từng thiết bị, điều khiển đồng bộ, và Inspector dành cho người viết kịch bản.</p>
+<h2 id="cc-h1">Menu thanh bên</h2>
+<p>Thanh công cụ bên trái bảng điều khiển chứa các chức năng quản lý thiết bị và điều chỉnh cách chúng hiển thị trên màn hình.</p>
+<figure class="fig"><img src="anh/eng-cc-side-01.jpg" alt="Menu thanh bên" loading="lazy"></figure>
+<h3>Điều chỉnh chất lượng hiển thị thiết bị</h3>
+<ul>
+<li><strong>Big Screen:</strong> kích thước cửa sổ stream của thiết bị. Tối thiểu 40%, tối đa 100%</li>
+<li><strong>Small Screen:</strong> kích thước các ô thiết bị trong Control Devices - Thumbnail, Medium, Large hoặc Extra Large</li>
+<li><strong>Big Quality:</strong> chất lượng hình ảnh của stream - Low, Medium, High hoặc Extra (Extra cho trải nghiệm tốt nhất)</li>
+<li><strong>Small Quality:</strong> chất lượng hình ảnh của các ô trên màn hình tổng quan - Low, Medium, High hoặc Extra</li>
+</ul>
+<figure class="fig"><img src="anh/eng-cc-side-02.jpg" alt="Big Screen" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-cc-side-03.jpg" alt="Small Screen" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-cc-side-04.jpg" alt="Big Quality" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-cc-side-05.jpg" alt="Small Quality" loading="lazy"></figure>
+<h3>Quản lý thiết bị</h3>
+<ul>
+<li><strong>Select all:</strong> chọn mọi thiết bị để cài APK, dừng tác vụ, v.v.</li>
+<li><strong>Select device:</strong> chọn từng thiết bị riêng để thao tác</li>
+</ul>
+<figure class="fig"><img src="anh/eng-cc-side-06.jpg" alt="Chọn tất cả thiết bị" loading="lazy"></figure>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Để bỏ chọn một thiết bị khi đang bật <strong>Select all</strong>, giữ <strong>Ctrl</strong> và bấm vào thiết bị đó.</p></div>
+</div>
+<h2 id="cc-h2">Stream Device</h2>
+<p>Stream Device hiển thị màn hình điện thoại theo đúng kích thước thật của thiết bị, và truyền mọi thao tác một cách mượt mà.</p>
+<figure class="fig"><img src="anh/eng-cc-stream-01.jpg" alt="Cửa sổ Stream Device" loading="lazy"></figure>
+<ul>
+<li><strong>Vol+ / Vol-:</strong> tăng và giảm âm lượng</li>
+<li><strong>Screenshot:</strong> chụp màn hình thiết bị</li>
+<li><strong>Power:</strong> tắt màn hình</li>
+<li><strong>Rotate:</strong> xoay màn hình</li>
+<li><strong>Install APK:</strong> cài ứng dụng ngay từ màn hình stream</li>
+<li><strong>ADB Command:</strong> chạy thêm các <a href="#/adb">lệnh ADB</a></li>
+<li><strong>Reboot:</strong> khởi động lại thiết bị</li>
+<li><strong>Switch Keyboard Method:</strong> mở cài đặt bàn phím</li>
+<li><strong>Accessibility Settings:</strong> mở giao diện cài đặt</li>
+<li><strong>Language:</strong> mở cài đặt ngôn ngữ</li>
+<li><strong>Connection Setting:</strong> mở cài đặt kết nối như Wi-Fi và Bluetooth</li>
+<li><strong>Apps:</strong> hiển thị các ứng dụng đã cài trên thiết bị</li>
+</ul>
+<h2 id="cc-h3">Group Control</h2>
+<p>Group Control đồng bộ các thiết bị: bạn thao tác trên một thiết bị và các thiết bị còn lại lặp lại đúng các thao tác đó.</p>
+<p>Chọn các thiết bị bạn muốn đồng bộ.</p>
+<figure class="fig"><img src="anh/eng-cc-group-01.jpg" alt="Chọn tất cả thiết bị" loading="lazy"><figcaption>Chọn các thiết bị cần đồng bộ.</figcaption></figure>
+<p>Sau đó mở stream của một thiết bị bất kỳ trong số đó để biến nó thành thiết bị chính.</p>
+<figure class="fig"><img src="anh/eng-cc-group-02.jpg" alt="Stream của thiết bị chính" loading="lazy"><figcaption>Màn hình stream dùng để điều khiển các thiết bị khác.</figcaption></figure>
+<p>Thao tác trên thiết bị đó và các thiết bị khác sẽ làm theo y hệt.</p>
+<figure class="fig"><img src="anh/eng-cc-group-03.jpg" alt="Thao tác đồng bộ" loading="lazy"><figcaption>Mở cài đặt trên thiết bị chính thì cài đặt cũng được mở trên mọi thiết bị khác cùng lúc.</figcaption></figure>
+<div class="hint ok">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-ok"/></svg>
+<div><p>Group Control miễn phí và không giới hạn số thao tác. Hướng dẫn từng bước cho phần này, cùng với cách cài ứng dụng lên mọi điện thoại, có ở trang <a href="#/apk">Điều khiển đồng bộ và cài APK</a>.</p></div>
+</div>
+<h2 id="cc-h4">Inspector</h2>
+<p>Inspector lấy thông tin package và phần tử (element) của ứng dụng, dùng khi viết code tự động hóa. Nó mở ra trong một cửa sổ riêng, tách khỏi ứng dụng GenFarmer.</p>
+<figure class="fig"><img src="anh/eng-cc-insp-01.jpg" alt="Giao diện Inspector" loading="lazy"></figure>
+<h3>Thanh công cụ Inspector</h3>
+<figure class="fig"><img src="anh/eng-cc-insp-02.jpg" alt="Thanh công cụ Inspector" loading="lazy"></figure>
+<ul>
+<li><strong>Select Devices:</strong> danh sách thả xuống liệt kê mọi thiết bị đang kết nối với GenFarmer</li>
+<li><strong>Reload:</strong> tải lại màn hình hiện tại của thiết bị</li>
+<li><strong>Enable Grid:</strong> hiển thị lưới phần tử để xác định phần tử chính xác</li>
+<li><strong>Enable Swipe:</strong> vuốt điện thoại trực tiếp trên màn hình Inspector</li>
+<li><strong>Enable Crop:</strong> chụp một vùng ảnh và chuyển sang Base64 cho node Image search</li>
+</ul>
+<figure class="fig"><img src="anh/eng-cc-insp-03.jpg" alt="Các phần tử hiển thị dạng khối" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-cc-insp-04.jpg" alt="Cắt ảnh và chuyển sang Base64" loading="lazy"></figure>
+<h3>Màn hình Inspector hiển thị gì</h3>
+<p>Rê chuột lên giao diện thiết bị để hiện các khối phần tử. Bấm vào một phần tử và cột giữa sẽ hiện thông tin về phần tử đó và ứng dụng.</p>
+<figure class="fig"><img src="anh/eng-cc-insp-05.jpg" alt="Chọn một phần tử" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-cc-insp-06.jpg" alt="Thông tin phần tử" loading="lazy"></figure>
+<p>Cột bên phải của màn hình stream hiển thị:</p>
+<ul>
+<li><strong>Activity:</strong> hành động của phần tử</li>
+<li><strong>XPathLite:</strong> XPath dùng để viết kịch bản</li>
+<li><strong>ClassName:</strong> tên class của phần tử</li>
+<li><strong>Mouse Pos:</strong> tọa độ của vị trí được chọn</li>
+<li><strong>Click:</strong> bấm vào phần tử và tự động tải lại màn hình thiết bị</li>
+<li><strong>Element Rect:</strong> tọa độ của phần tử</li>
+<li><strong>Index:</strong> thứ tự ưu tiên của phần tử</li>
+<li><strong>Text:</strong> văn bản mà phần tử chứa</li>
+<li><strong>Resourceid:</strong> ID của phần tử</li>
+<li><strong>Package:</strong> package ID của ứng dụng</li>
+<li><strong>Description:</strong> mô tả của phần tử</li>
+</ul>
+<p>Bạn cũng có thể chọn phần tử thông qua màn hình mã nguồn của ứng dụng.</p>
+<figure class="fig"><img src="anh/eng-cc-insp-07.jpg" alt="Chọn thông qua màn hình mã nguồn" loading="lazy"><figcaption>Phần tử được chọn sẽ chuyển sang màu vàng.</figcaption></figure>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/backup"><span class="k">Trước</span><span class="v">Change / Backup / Restore</span></a>
+      <a class="next" href="#/account"><span class="k">Tiếp</span><span class="v">Account Manager</span></a>
+    </div>
+    <p class="updated">Cập nhật lần cuối 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== ACCOUNT ==================== -->
+<section class="page" id="p-account" data-title="Account Manager" data-crumb="Phần mềm" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/cc">Phần mềm</a></div>
+    <h1 class="title">Account Manager</h1>
+    <p class="lede">Bảng tài khoản ngay trong ứng dụng: nhập tài khoản, gán thiết bị, và chọn tài khoản nào chạy kịch bản nào.</p>
+
+    <div class="doc">
+<p>Account Manager lưu bảng tài khoản của bạn ngay trong ứng dụng GenFarmer, nên bạn không còn cần đến Excel hay Google Sheets. Trong lộ trình, bạn dùng nó lần đầu vào <a href="#/a5">Ngày 2</a>, và từ <a href="#/a6">Ngày 3</a> đây cũng là nơi bạn chọn tài khoản nào chạy kịch bản nào.</p>
+<figure class="fig"><img src="anh/eng-acct-01.jpg" alt="Màn hình Account Manager" loading="lazy"></figure>
+<h2 id="account-h1">Thêm tài khoản</h2>
+<p><strong>Add Accounts</strong> cho phép bạn thêm tài khoản thủ công.</p>
+<figure class="fig"><img src="anh/eng-acct-02.jpg" alt="Thêm một tài khoản" loading="lazy"></figure>
+<ul>
+<li><strong>Please Input:</strong> UID hoặc tên người dùng của tài khoản</li>
+<li><strong>Select Format:</strong> mẫu dựng sẵn theo từng loại tài khoản, hoặc mẫu tùy chỉnh</li>
+<li><strong>Custom Format:</strong> tự chọn các trường - UID, Password, Email, 2FA, v.v.</li>
+</ul>
+<h2 id="account-h2">Nhập và xuất</h2>
+<ul>
+<li><strong>Export:</strong> xuất tệp tài khoản dạng XLSX</li>
+<li><strong>Import:</strong> nhập tệp CSV hoặc XLSX. GenFarmer có sẵn tệp mẫu để bạn làm theo</li>
+</ul>
+<figure class="fig"><img src="anh/eng-acct-03.jpg" alt="Nhập tệp tài khoản" loading="lazy"></figure>
+<h2 id="account-h3">Các cột</h2>
+<ul>
+<li><strong>Device:</strong> thiết bị mặc định của tài khoản đó</li>
+<li><strong>Status:</strong> trạng thái của tài khoản</li>
+<li><strong>UID:</strong> tên người dùng</li>
+<li><strong>Email:</strong> email gắn với tài khoản</li>
+<li><strong>Password:</strong> mật khẩu</li>
+<li><strong>Email Password:</strong> mật khẩu email, dùng để đọc mã xác minh</li>
+<li><strong>2FA:</strong> mã xác thực</li>
+</ul>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Khi tài khoản đã được thêm, nó sẽ chạy trên thiết bị bạn đã chọn, thông qua Module hoặc App mà bạn sử dụng.</p></div>
+</div>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>Gán thiết bị cho tài khoản là bước hay bị bỏ qua. Hãy sao chép <strong>Device ID</strong> từ màn hình chính vào cột Device ID, nếu không kịch bản sẽ không có điện thoại nào để chạy.</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/cc"><span class="k">Trước</span><span class="v">Control Center</span></a>
+      <a class="next" href="#/devices"><span class="k">Tiếp</span><span class="v">Devices</span></a>
+    </div>
+    <p class="updated">Cập nhật lần cuối 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== DEVICES ==================== -->
+<section class="page" id="p-devices" data-title="Devices" data-crumb="Phần mềm" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/cc">Phần mềm</a></div>
+    <h1 class="title">Devices</h1>
+    <p class="lede">Tài khoản của bạn được dùng những thiết bị nào, thiết bị nào đang hoạt động, và còn bao nhiêu chỗ trống.</p>
+
+    <div class="doc">
+<p>Màn hình Devices quản lý các thiết bị gắn với tài khoản của bạn.</p>
+<figure class="fig"><img src="anh/eng-dev-01.jpg" alt="Màn hình Devices" loading="lazy"></figure>
+<h2 id="devices-h1">Tổng quan thiết bị</h2>
+<ul>
+<li><strong>Total:</strong> số thiết bị tài khoản được phép dùng</li>
+<li><strong>Active:</strong> các thiết bị đang được sử dụng</li>
+<li><strong>Free Slot:</strong> số thiết bị còn có thể thêm</li>
+</ul>
+<h2 id="devices-h2">Assigned và Unassigned</h2>
+<ul>
+<li><strong>Assigned:</strong> thiết bị đã kích hoạt và sẵn sàng sử dụng</li>
+<li><strong>Unassigned:</strong> thiết bị đang chờ kích hoạt. Bấm <strong>Active</strong> trên thiết bị bạn muốn và trạng thái của nó sẽ chuyển thành Assigned</li>
+</ul>
+<figure class="fig"><img src="anh/eng-dev-02.jpg" alt="Thiết bị đã gán và chưa gán" loading="lazy"></figure>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Nếu một thiết bị không chịu chuyển sang hợp lệ ở đây, nguyên nhân thường là một trong hai vấn đề bản quyền được mô tả ở <a href="#/err-license">Sửa lỗi: Not valid device</a>.</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/account"><span class="k">Trước</span><span class="v">Account Manager</span></a>
+      <a class="next" href="#/apps"><span class="k">Tiếp</span><span class="v">App Manager</span></a>
+    </div>
+    <p class="updated">Cập nhật lần cuối 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== APPS ==================== -->
+<section class="page" id="p-apps" data-title="App Manager" data-crumb="Phần mềm" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/cc">Phần mềm</a></div>
+    <h1 class="title">App Manager</h1>
+    <p class="lede">Thư viện ứng dụng bạn đẩy xuống thiết bị, từ tệp APK hoặc từ Store trong ứng dụng.</p>
+
+    <div class="doc">
+<p>App Manager là thư viện các ứng dụng bạn có thể đẩy xuống thiết bị.</p>
+<figure class="fig"><img src="anh/eng-appmgr-01.jpg" alt="Màn hình App Manager" loading="lazy"></figure>
+<ul>
+<li><strong>Name:</strong> tên các ứng dụng đã cài</li>
+<li><strong>Android Version:</strong> cấu hình tối thiểu và cấu hình mục tiêu</li>
+<li><strong>Size:</strong> dung lượng tệp APK</li>
+<li><strong>Create At:</strong> thời điểm tệp được thêm vào GenFarmer</li>
+<li><strong>Remove:</strong> xóa tệp APK khỏi GenFarmer</li>
+<li><strong>LoadAPK:</strong> tải một tệp APK lên GenFarmer</li>
+</ul>
+<figure class="fig"><img src="anh/eng-appmgr-02.jpg" alt="Tải lên tệp APK" loading="lazy"></figure>
+<div class="video" data-yt="twoKCKesw3o">
+        <img src="anh/yt-twoKCKesw3o.jpg" alt="Cách thay đổi ứng dụng với GenFarmer: cài ứng dụng qua APK hoặc Store" loading="lazy">
+        <button class="vplay" type="button" aria-label="Phát video"><span class="disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button>
+        <span class="vnote">Cách thay đổi ứng dụng với GenFarmer: cài ứng dụng qua APK hoặc Store</span>
+      </div>
+<h2 id="apps-h1">Cài từ Store</h2>
+<p>Ngoài tệp APK, bạn có thể cài từ Store, nơi có các ứng dụng đã được GenFarmer kiểm tra về độ an toàn và khả năng tương thích với phần lớn thiết bị.</p>
+<figure class="fig"><img src="anh/eng-appmgr-03.jpg" alt="Store trong ứng dụng" loading="lazy"></figure>
+<p><strong>Download, rồi select version</strong> - toàn bộ quy trình chỉ có vậy.</p>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>Chọn phiên bản khớp với phiên bản Android của thiết bị, nếu không quá trình cài đặt sẽ báo lỗi. Các bước phía thiết bị có ở trang <a href="#/apk">Điều khiển đồng bộ và cài APK</a>.</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/devices"><span class="k">Trước</span><span class="v">Devices</span></a>
+      <a class="next" href="#/automation"><span class="k">Tiếp</span><span class="v">Automation</span></a>
+    </div>
+    <p class="updated">Cập nhật lần cuối 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== AUTOMATION ==================== -->
+<section class="page" id="p-automation" data-title="Automation" data-crumb="Phần mềm" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/cc">Phần mềm</a></div>
+    <h1 class="title">Automation</h1>
+    <p class="lede">Apps, Modules, Tasks và Runs: cách một kịch bản được xây dựng, lưu trữ, gán cho thiết bị và theo dõi.</p>
+
+    <div class="doc">
+<p>Automation là cách chuyển công việc lặp đi lặp lại từ tay bạn sang máy, với các tính năng Antidetect giúp tài khoản sống sót. Dù bạn chạy gì, đều có kịch bản cho việc đó: do bạn tự viết, nhập vào, hoặc mua.</p>
+<p>Trong lộ trình, bạn bắt đầu dùng nó vào <a href="#/a6">Ngày 3</a>, và các gói dựng sẵn (Auto Login, Trust, Boost) được mô tả ở đó.</p>
+<h2 id="automation-h1">My Apps</h2>
+<figure class="fig"><img src="anh/eng-auto-apps-01.jpg" alt="Màn hình My Apps" loading="lazy"></figure>
+<ol>
+<li><strong>My App:</strong> các bản tự động hóa thuộc tài khoản - do bạn tự viết, nhập vào, hoặc mua từ store</li>
+<li><strong>Subscription:</strong> các bản tự động hóa mua từ store, đang hoạt động và đã hết hạn</li>
+<li><strong>Import App:</strong> cài bản tự động hóa từ tệp genfarmer. Hãy mua từ store hoặc nguồn khác mà bạn tin tưởng, để tránh mất thông tin</li>
+<li><strong>Create App:</strong> tạo và viết một kịch bản mới</li>
+</ol>
+<figure class="fig"><img src="anh/eng-auto-apps-02.jpg" alt="Nhập một app" loading="lazy"></figure>
+<figure class="fig"><img src="anh/eng-auto-apps-03.jpg" alt="Giao diện xây dựng kịch bản tự động hóa" loading="lazy"><figcaption>Giao diện xây dựng kịch bản.</figcaption></figure>
+<ul>
+<li><strong>Select Devices:</strong> thiết bị bạn muốn chạy thử</li>
+<li><strong>Select Node:</strong> các node giúp viết kịch bản không cần code</li>
+<li><strong>View Edit:</strong> hiển thị kịch bản và các node nó sử dụng</li>
+<li><strong>Top Bar:</strong> các thanh công cụ hỗ trợ</li>
+<li><strong>Custom View:</strong> ảnh bìa tùy chỉnh cho app</li>
+</ul>
+<figure class="fig"><img src="anh/eng-auto-apps-04.jpg" alt="Giao diện xem thiết bị" loading="lazy"></figure>
+<ul>
+<li><strong>Device View:</strong> thiết bị cần stream</li>
+<li><strong>Table Column:</strong> thiết kế bảng dữ liệu cho những thông tin mà kịch bản cần</li>
+</ul>
+<figure class="fig"><img src="anh/eng-auto-apps-05.jpg" alt="Bảng dữ liệu" loading="lazy"></figure>
+<ul>
+<li><strong>Save:</strong> lưu app và các node của nó</li>
+<li><strong>Run:</strong> chạy thử app trên thiết bị đã chọn</li>
+<li><strong>Chức năng khác:</strong> nhật ký chạy, lưu với tên khác, chế độ debug</li>
+</ul>
+<figure class="fig"><img src="anh/eng-auto-apps-06.jpg" alt="Lưu và chạy" loading="lazy"></figure>
+<h2 id="automation-h2">My Modules</h2>
+<p>Module là dạng nâng cao hơn của App, có thể chứa nhiều chức năng nhỏ trong một Module. Giao diện và chức năng giống như Apps, kèm thêm các node để chạy nhiều App bên trong Module.</p>
+<figure class="fig"><img src="anh/eng-auto-mod-01.jpg" alt="Giao diện Module" loading="lazy"><figcaption>Giao diện Module của GenFarmer.</figcaption></figure>
+<p>Điểm khác biệt của Module là node <strong>Context Menu</strong>, dùng để phân chia các chức năng và quản lý nhiều App trong một Module duy nhất.</p>
+<figure class="fig"><img src="anh/eng-auto-mod-02.jpg" alt="Node Context Menu" loading="lazy"></figure>
+<h2 id="automation-h3">Saved Tasks</h2>
+<p>Saved Tasks lưu các tác vụ bạn đã tạo, để chạy lại chỉ cần một cú bấm.</p>
+<figure class="fig"><img src="anh/eng-auto-task-01.jpg" alt="Màn hình Saved Tasks" loading="lazy"></figure>
+<ul>
+<li><strong>Name:</strong> tên tác vụ</li>
+<li><strong>App:</strong> app kịch bản mà tác vụ sử dụng</li>
+<li><strong>Devices:</strong> số thiết bị chạy trong tác vụ</li>
+<li><strong>Runs:</strong> số lần đã chạy</li>
+<li><strong>Last run started at / Last run status / Last run duration:</strong> lần chạy gần nhất</li>
+</ul>
+<p>Để tạo tác vụ, vào một module hoặc app và chọn <strong>Create Task</strong>.</p>
+<figure class="fig"><img src="anh/eng-auto-task-02.jpg" alt="Create Task" loading="lazy"></figure>
+<p>Đặt tên cho tác vụ, rồi chọn các thiết bị sẽ chạy tác vụ đó.</p>
+<figure class="fig"><img src="anh/eng-auto-task-03.jpg" alt="Chọn thiết bị cho tác vụ" loading="lazy"></figure>
+<p>Khi xong, bạn có thể lưu và chạy ngay, hoặc lưu lại để dùng sau.</p>
+<h2 id="automation-h4">Runs</h2>
+<p>Runs là nơi quản lý nhiều tác vụ cùng lúc.</p>
+<figure class="fig"><img src="anh/eng-auto-runs-01.jpg" alt="Màn hình Runs" loading="lazy"></figure>
+<ul>
+<li><strong>App:</strong> tên app kịch bản của bạn</li>
+<li><strong>Task:</strong> tên tác vụ</li>
+<li><strong>Result:</strong> số lần chạy</li>
+<li><strong>Started at / Finished at / Duration:</strong> chạy lúc nào và trong bao lâu</li>
+<li><strong>Status:</strong> Running, Done hoặc Aborted</li>
+<li><strong>Run:</strong> chạy lại tác vụ</li>
+</ul>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Tác vụ được tạo trong <strong>Saved Tasks</strong>, và xuất hiện ở đây khi đang chạy.</p></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/apps"><span class="k">Trước</span><span class="v">App Manager</span></a>
+      <a class="next" href="#/settings"><span class="k">Tiếp</span><span class="v">Settings</span></a>
+    </div>
+    <p class="updated">Cập nhật lần cuối 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== SETTINGS ==================== -->
+<section class="page" id="p-settings" data-title="Settings" data-crumb="Phần mềm" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/cc">Phần mềm</a></div>
+    <h1 class="title">Settings</h1>
+    <p class="lede">Ngôn ngữ, vị trí lưu trữ và các công tắc tự động hóa như chế độ debug.</p>
+
+    <div class="doc">
+<p>Settings chứa các cấu hình cơ bản của phần mềm.</p>
+<h2 id="settings-h1">General</h2>
+<figure class="fig"><img src="anh/eng-set-01.jpg" alt="Cài đặt chung" loading="lazy"></figure>
+<p>Chọn ngôn ngữ, và chế độ sáng hoặc tối.</p>
+<h2 id="settings-h2">Storage</h2>
+<figure class="fig"><img src="anh/eng-set-02.jpg" alt="Cài đặt lưu trữ" loading="lazy"></figure>
+<ul>
+<li><strong>Clear Cache:</strong> xóa dữ liệu bộ nhớ đệm và đưa phần lưu trữ về trạng thái ban đầu</li>
+<li><strong>Storage Location:</strong> nơi lưu tệp trên máy tính. Để trống thì tệp được lưu vào thư mục GenFarmer</li>
+<li><strong>Use Selected Path:</strong> dùng đường dẫn bạn đã chọn</li>
+<li><strong>Copy Profiles to Selected Path:</strong> sao chép các tệp vào đường dẫn đó</li>
+<li><strong>Move Profiles to Selected Path:</strong> di chuyển các tệp vào đường dẫn đó</li>
+</ul>
+<h2 id="settings-h3">Automation</h2>
+<figure class="fig"><img src="anh/eng-set-03.jpg" alt="Cài đặt tự động hóa" loading="lazy"></figure>
+<ul>
+<li><strong>Enable Debug Mode:</strong> bật chế độ gỡ lỗi</li>
+<li><strong>Tracking Node When Running:</strong> ghi nhật ký các node trong khi module chạy</li>
+<li><strong>Sync Profiles Data After Running Task:</strong> đồng bộ dữ liệu profile sau khi tác vụ chạy xong</li>
+</ul>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/automation"><span class="k">Trước</span><span class="v">Automation</span></a>
+      <a class="next" href="#/api"><span class="k">Tiếp</span><span class="v">API</span></a>
+    </div>
+    <p class="updated">Cập nhật lần cuối 09/2026</p>
+  </div>
+</section>

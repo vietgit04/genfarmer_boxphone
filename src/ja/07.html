@@ -1,0 +1,324 @@
+
+<!-- ==================== PKG-FACEBOOK ==================== -->
+<section class="page" id="p-pkg-facebook" data-title="Facebookパッケージ" data-crumb="リファレンス" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">リファレンス</a></div>
+    <h1 class="title">Facebookパッケージ</h1>
+    <p class="lede">Facebook向けのTrustとBoost：パッケージの内容、運用の目安となる数値、注意すべき点を説明します。</p>
+
+    <div class="doc">
+<h2 id="pkg-facebook-h1">パッケージの内容</h2>
+<p>Facebookは最も多くの機能をカバーしているプラットフォームです。<strong>Trust</strong>はアカウントそのものを作り込み、<strong>Boost</strong>はシーディング（盛り上げ）を行います。</p>
+<h3>Trust - アカウントの育成</h3>
+<ul>
+<li><strong>実際に使われているように見えるプロフィールを維持。</strong>プロフィール写真とカバー写真、自己紹介、興味・関心と職業、友達リストと友達の自動追加、さらには位置情報や活動地域まで、すべて自動で更新されます。空のプロフィールこそがチェックポイントの対象になるからです。</li>
+<li><strong>AIによる投稿。</strong>多様で自然なコンテンツをスケジュールに沿って投稿し、ページやグループからシェアしてインタラクションを生み出し、コンテンツの形式を組み合わせます。決まったループではなく、実際のユーザーの投稿の仕方から得たパターンに従います。</li>
+</ul>
+<h3>Boost - シーディングとリーチ</h3>
+<ul>
+<li><strong>ページとプロフィール向けのAI自動シーディング。</strong>ターゲットの投稿に対してリアクションとコメントを行います。コメントはAIが文脈から作成し、複数のアカウントでコミュニティ効果を生み出します。表現は変化させるため、同じ内容が繰り返されることはありません。</li>
+<li><strong>キーワードによるグループへの自動参加。</strong>あなたの分野のグループを探し、サブアカウントで参加して、関連するコンテンツを投稿します。</li>
+<li><strong>ライブ配信のエンゲージメント。</strong>ライブ中の視聴者数とリアクションを増やし、ハートを送り、文脈に沿ったコメントを書き込み、配信をプロフィールやグループに再シェアします。</li>
+<li><strong>コンテンツのスピニング。</strong>1つの元となる文章から数十種類のバリエーションを作成し、Facebookに投稿をスパムや重複と判断されないようにします。</li>
+<li>より広いリーチのため、プロフィールやグループへの<strong>自動シェア</strong>を行います。</li>
+</ul>
+<h2 id="pkg-facebook-h2">運用の目安となる数値</h2>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>最後の行は、技術チームからの回答を待っている状態です。それ以外は推奨設定であり、厳密な上限ではありません。</p></div>
+</div>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>質問</th><th>回答</th></tr></thead>
+<tbody><tr><td>本格運用の前にウォームアップする期間</td><td><strong>2〜4週間</strong>のTrust</td></tr><tr><td>1台のデバイスあたりのアカウント数</td><td><strong>1台のデバイスにつき、1プラットフォームあたり1アカウント</strong>が最も安全です。推奨される上限は3アカウントです</td></tr><tr><td>1台のルーターに接続できるスマートフォンの上限</td><td>GenRouter H3000で<strong>30台</strong>、ミニPCで<strong>200台</strong>。<a href="#/router">ルーターとプロキシ</a>をご覧ください</td></tr><tr><td>1本のインターネット回線に接続できるボックスの上限</td><td><strong>5ボックス</strong>（1ボックスあたり約100 Mbps）。<a href="#/router">ルーターとプロキシ</a>をご覧ください</td></tr><tr><td>リンクに紐づく情報を変更する頻度</td><td><strong>7〜14日ごと</strong></td></tr><tr><td>アカウントを休ませるまでの稼働時間</td><td><strong>4〜6時間稼働、1〜2時間休止</strong>、または1日の中で複数の時間帯に分けて稼働させます。<strong>24時間365日の稼働は絶対に避けてください</strong>。一晩中スクロールし続ける人はいません</td></tr><tr><td>初心者向けの推奨設定</td><td><span class="todo">確認中</span></td></tr></tbody>
+</table></div>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p><strong>リンクに紐づく情報を1〜2週間ごとに変更する理由。</strong>毎日変更すると誰も管理しきれず、何か月も放置すると同じリンクのリストに何度も繰り返しアクセスすることになります。これこそ、プラットフォームが一斉に取り締まるパターンです。</p></div>
+</div>
+<h2 id="pkg-facebook-h3">Facebook特有の注意点</h2>
+<ul>
+<li>Facebookは、アカウントが最も早く認証を求められるプラットフォームです。スクリプトに任せる前に、まず手動でログインして何が起こるかを確認してください。<a href="#/a5">2日目</a>をご覧ください。</li>
+<li>自動コメントには<strong>vilao.aiのAPIキー</strong>が必要です。</li>
+</ul>
+<p>ユーザーマニュアルのFacebookの章は<em>p. 51-77の27ページです</em>。</p>
+<div class="hint danger">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-danger"/></svg>
+<div><p><strong>ユーザーマニュアル内のリンクからFacebookのAPKをダウンロードしないでください。</strong>これらのリンクは現在TikTokのファイルを指しています。<a href="#/a5">2日目 &middot; 手順3</a>に記載した公式フォルダーを使用してください。</p></div>
+</div>
+<h2 id="pkg-facebook-h4">停止すべきサイン</h2>
+<ol>
+<li>アカウントが普段より頻繁に認証を求められる。</li>
+<li>投稿の再生数が突然まったくなくなる。</li>
+<li>稼働中のスマートフォンの台数が、はっきりした理由もなく減り続ける。</li>
+</ol>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>一晩でBANされたアカウントがある場合は、<strong>規模を拡大しないでください</strong>。まずプロキシと実行速度を確認し直してください。</p></div>
+</div>
+<h2 id="pkg-facebook-h5">このパッケージでよくある問題</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>症状</th><th>よくある原因</th><th>対処</th></tr></thead>
+<tbody><tr><td>スクリプトは動くのに数値が伸びない</td><td>ウォームアップが2〜4週間に達していない、またはコンテンツのジャンル設定が誤っている</td><td><a href="#/a7">4〜5日目</a>の設定セクション</td></tr><tr><td>インストール後に別のアプリが開く</td><td>APKをユーザーマニュアルのリンクから入手した</td><td>公式フォルダーから再インストールしてください - <a href="#/a5">2日目 &middot; 手順3</a></td></tr><tr><td>スクリプトを開始するとすぐにアカウントが認証を求められる</td><td>手動でログインしても同じことが起こり、スクリプトはそれを速く繰り返しているだけ</td><td>アカウントの購入先かプロキシを変更してやり直してください - <a href="#/a5">2日目</a></td></tr><tr><td>自動コメントが途中で止まる</td><td>vilao.aiのAPIキーがない、またはプロバイダーのモデルに障害が発生している</td><td>キーの取得方法は<a href="#/a3">0日目</a>をご覧ください</td></tr><tr><td>アカウントがまとめてBANされる</td><td>複数のアカウントが1つのアドレスを共有している</td><td><a href="#/router">ルーターとプロキシ</a></td></tr><tr><td>設定はすべて正しいのにファームの動作がもたつく</td><td>多くの場合、回線ではなくプロキシが原因</td><td><a href="#/router">ルーターとプロキシ</a></td></tr></tbody>
+</table></div>
+<h2 id="pkg-facebook-h6">次に読むページ</h2>
+<ul>
+<li>実行の手順：<a href="#/a6">3日目 - 基本的な自動化</a></li>
+<li>すべてのパッケージの比較：<a href="#/package">自動化パッケージ</a></li>
+</ul>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/pkg-tiktok"><span class="k">前へ</span><span class="v">TikTokパッケージ</span></a>
+      <a class="next" href="#/pkg-instagram"><span class="k">次へ</span><span class="v">Instagramパッケージ</span></a>
+    </div>
+    <p class="updated">最終更新 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== PKG-INSTAGRAM ==================== -->
+<section class="page" id="p-pkg-instagram" data-title="Instagramパッケージ" data-crumb="リファレンス" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">リファレンス</a></div>
+    <h1 class="title">Instagramパッケージ</h1>
+    <p class="lede">Instagram向けのTrustとBoost：パッケージの内容、運用の目安となる数値、注意すべき点を説明します。</p>
+
+    <div class="doc">
+<h2 id="pkg-instagram-h1">パッケージの内容</h2>
+<p><strong>Trust</strong>は実機上でアカウントを育て、<strong>Boost</strong>はお持ちのアカウント全体で投稿とコミュニティ管理を行います。</p>
+<h3>Trust - アカウントの育成</h3>
+<ul>
+<li><strong>ログイン、ログアウト、アカウント管理。</strong>多数のアカウントを一度に扱い、それぞれのステータスを確認できるため、手作業によるミスがなくなります。</li>
+<li><strong>キーワード検索とAIによる育成。</strong>システムがキーワードに関連するコンテンツやハッシュタグを探し、アカウントは見つけたコンテンツに実際のユーザーのように反応し、キーワードやリンクに基づいてランダムにフォローします。</li>
+<li><strong>ランダム化された操作。</strong>フィードの閲覧、リールの視聴、関連コンテンツへの「いいね」やコメントを、意図的にランダムな組み合わせで行います。「いいね」、コメント、視聴の比率は成長段階ごとに調整でき、操作を1日の中に分散させてチェックポイントを避けます。</li>
+<li><strong>AIによる投稿。</strong>選んだトピックから画像とキャプションを生成し、アカウントのアクティブで一貫した状態を保ちます。</li>
+</ul>
+<h3>Boost - アカウントの運用</h3>
+<ul>
+<li><strong>手持ちの画像から投稿、リール、ストーリーズを作成</strong>し、AIがキャプションを書いて、毎日決まったスケジュールで一括投稿します。</li>
+<li><strong>自分の投稿のコミュニティ管理。</strong>すべてのアカウントのコメントを1か所に集め、実際の質問にはAIが返信の下書きを作成してあなたが承認します。また、投稿をストーリーズに再シェアします。</li>
+<li><strong>大規模なリール運用。</strong>一括アップロードとスケジュール設定、市場ごとのキャプションとハッシュタグ、現地の適切な時間での公開を行います。</li>
+<li><strong>プロフィールの維持管理。</strong>ブランドアカウント全体で自己紹介、リンク、プロフィール情報を統一し、アバターやハイライトのカバーを一括更新します。ログインの健全性を1つのダッシュボードで確認でき、全アカウントのリールのパフォーマンスを追跡できます。</li>
+</ul>
+<h2 id="pkg-instagram-h2">運用の目安となる数値</h2>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>最後の行は、技術チームからの回答を待っている状態です。それ以外は推奨設定であり、厳密な上限ではありません。</p></div>
+</div>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>質問</th><th>回答</th></tr></thead>
+<tbody><tr><td>本格運用の前にウォームアップする期間</td><td><strong>2〜4週間</strong>のTrust</td></tr><tr><td>1台のデバイスあたりのアカウント数</td><td><strong>1台のデバイスにつき、1プラットフォームあたり1アカウント</strong>が最も安全です。推奨される上限は3アカウントです</td></tr><tr><td>1台のルーターに接続できるスマートフォンの上限</td><td>GenRouter H3000で<strong>30台</strong>、ミニPCで<strong>200台</strong>。<a href="#/router">ルーターとプロキシ</a>をご覧ください</td></tr><tr><td>1本のインターネット回線に接続できるボックスの上限</td><td><strong>5ボックス</strong>（1ボックスあたり約100 Mbps）。<a href="#/router">ルーターとプロキシ</a>をご覧ください</td></tr><tr><td>リンクに紐づく情報を変更する頻度</td><td><strong>7〜14日ごと</strong></td></tr><tr><td>アカウントを休ませるまでの稼働時間</td><td><strong>4〜6時間稼働、1〜2時間休止</strong>、または1日の中で複数の時間帯に分けて稼働させます。<strong>24時間365日の稼働は絶対に避けてください</strong>。一晩中スクロールし続ける人はいません</td></tr><tr><td>初心者向けの推奨設定</td><td><span class="todo">確認中</span></td></tr></tbody>
+</table></div>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p><strong>リンクに紐づく情報を1〜2週間ごとに変更する理由。</strong>毎日変更すると誰も管理しきれず、何か月も放置すると同じリンクのリストに何度も繰り返しアクセスすることになります。これこそ、プラットフォームが一斉に取り締まるパターンです。</p></div>
+</div>
+<h2 id="pkg-instagram-h3">Instagram特有の注意点</h2>
+<ul>
+<li>Instagramはアカウントの履歴を記憶します。質の低いエンゲージメントを実行したアカウントを回復させるのは非常に困難ですが、最初から正しくウォームアップしたアカウントは、まったく同じコンテンツでも目に見えて多くのリーチを得られます。<strong>ここでは、Boostの前にTrustを行うことは必須です。</strong></li>
+<li>Trustには投稿も含まれるため、始める前にコンテンツのジャンルを決めておいてください。ジャンルの設定を誤ると、アカウントが別のことに興味を持つ人としてウォームアップされてしまいます。</li>
+<li>自動コメントには<strong>vilao.aiのAPIキー</strong>が必要です。</li>
+</ul>
+<p>ユーザーマニュアルのInstagramの章は<em>p. 78-101の24ページです</em>。</p>
+<div class="hint danger">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-danger"/></svg>
+<div><p><strong>ユーザーマニュアル内のリンクからInstagramのAPKをダウンロードしないでください。</strong>これらのリンクは現在TikTokのファイルを指しています。<a href="#/a5">2日目 &middot; 手順3</a>に記載した公式フォルダーを使用してください。</p></div>
+</div>
+<h2 id="pkg-instagram-h4">停止すべきサイン</h2>
+<ol>
+<li>アカウントが普段より頻繁に認証を求められる。</li>
+<li>投稿の再生数が突然まったくなくなる。</li>
+<li>稼働中のスマートフォンの台数が、はっきりした理由もなく減り続ける。</li>
+</ol>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>一晩でBANされたアカウントがある場合は、<strong>規模を拡大しないでください</strong>。まずプロキシと実行速度を確認し直してください。</p></div>
+</div>
+<h2 id="pkg-instagram-h5">このパッケージでよくある問題</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>症状</th><th>よくある原因</th><th>対処</th></tr></thead>
+<tbody><tr><td>スクリプトは動くのに数値が伸びない</td><td>ウォームアップが2〜4週間に達していない、またはコンテンツのジャンル設定が誤っている</td><td><a href="#/a7">4〜5日目</a>の設定セクション</td></tr><tr><td>インストール後に別のアプリが開く</td><td>APKをユーザーマニュアルのリンクから入手した</td><td>公式フォルダーから再インストールしてください - <a href="#/a5">2日目 &middot; 手順3</a></td></tr><tr><td>スクリプトを開始するとすぐにアカウントが認証を求められる</td><td>手動でログインしても同じことが起こり、スクリプトはそれを速く繰り返しているだけ</td><td>アカウントの購入先かプロキシを変更してやり直してください - <a href="#/a5">2日目</a></td></tr><tr><td>自動コメントが途中で止まる</td><td>vilao.aiのAPIキーがない、またはプロバイダーのモデルに障害が発生している</td><td>キーの取得方法は<a href="#/a3">0日目</a>をご覧ください</td></tr><tr><td>アカウントがまとめてBANされる</td><td>複数のアカウントが1つのアドレスを共有している</td><td><a href="#/router">ルーターとプロキシ</a></td></tr><tr><td>設定はすべて正しいのにファームの動作がもたつく</td><td>多くの場合、回線ではなくプロキシが原因</td><td><a href="#/router">ルーターとプロキシ</a></td></tr></tbody>
+</table></div>
+<h2 id="pkg-instagram-h6">次に読むページ</h2>
+<ul>
+<li>実行の手順：<a href="#/a6">3日目 - 基本的な自動化</a></li>
+<li>すべてのパッケージの比較：<a href="#/package">自動化パッケージ</a></li>
+</ul>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/pkg-facebook"><span class="k">前へ</span><span class="v">Facebookパッケージ</span></a>
+      <a class="next" href="#/pkg-spotify"><span class="k">次へ</span><span class="v">Spotifyパッケージ</span></a>
+    </div>
+    <p class="updated">最終更新 09/2026</p>
+  </div>
+</section>
+
+
+<!-- ==================== PKG-SPOTIFY ==================== -->
+<section class="page" id="p-pkg-spotify" data-title="Spotifyパッケージ" data-crumb="リファレンス" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">リファレンス</a></div>
+    <h1 class="title">Spotifyパッケージ</h1>
+    <p class="lede">Spotifyパッケージ：再生回数を増やす方法と、最初の実行前に確認すべきチェックリストを説明します。</p>
+
+    <div class="doc">
+<h2 id="pkg-spotify-h1">パッケージの内容</h2>
+<p>SpotifyはTrustとBoostの組み合わせではなく、1つのパッケージです。実際のリスニング履歴を持つアカウントを育て、それを指定した楽曲の再生につなげます。</p>
+<ul>
+<li><strong>24時間の再生。</strong>システムがリスナーのように楽曲やアーティストをランダムに検索し、各楽曲の再生時間を変化させ、プレイリストがまだなければ自分で作成します。そのため、リスニング履歴はスクリプトではなく人間のものに見えます。</li>
+<li><strong>パターンに合わせた選曲。</strong>楽曲はランダムに放り込まれるのではなく、そのアカウントがこれまで聴いてきた傾向に合わせて選ばれます。</li>
+<li><strong>楽曲とプレイリストのシーディング。</strong>「いいね」、最後までの再生、スキップといった、ごく普通の操作の組み合わせを自動で行います。</li>
+<li><strong>パターンを生まない規模の拡大。</strong>数百のアカウントを同時に実行し、それぞれが専用のデバイスとアドレスを持つため、行動がグループ化されることはありません。</li>
+</ul>
+<h2 id="pkg-spotify-h2">有効な再生としてカウントされる条件</h2>
+<p>再生がカウントされるのは、次のすべてを満たす場合のみです。ブラウザではこの作業ができず、スマートフォンファームならできるのはそのためです。</p>
+<ul>
+<li><strong>30秒以上</strong>再生されている</li>
+<li>自然な行動で、同じ操作を繰り返していない</li>
+<li>デバイスが<strong>root化されておらず</strong>、<strong>ADBが隠されている</strong>。<a href="#/change">Change / SuperChangeとは</a>をご覧ください</li>
+<li>IPとネットワークに問題がない。<a href="#/router">ルーターとプロキシ</a>をご覧ください</li>
+<li>アカウントが<strong>Premium</strong>である</li>
+</ul>
+<h2 id="pkg-spotify-h3">運用の目安となる数値</h2>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>最後の行は、技術チームからの回答を待っている状態です。それ以外は推奨設定であり、厳密な上限ではありません。</p></div>
+</div>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>質問</th><th>回答</th></tr></thead>
+<tbody><tr><td>本格運用の前にウォームアップする期間</td><td><strong>2〜4週間</strong>のTrust</td></tr><tr><td>1台のデバイスあたりのアカウント数</td><td><strong>1台のデバイスにつき、1プラットフォームあたり1アカウント</strong>が最も安全です。推奨される上限は3アカウントです</td></tr><tr><td>1台のルーターに接続できるスマートフォンの上限</td><td>GenRouter H3000で<strong>30台</strong>、ミニPCで<strong>200台</strong>。<a href="#/router">ルーターとプロキシ</a>をご覧ください</td></tr><tr><td>1本のインターネット回線に接続できるボックスの上限</td><td><strong>5ボックス</strong>（1ボックスあたり約100 Mbps）。<a href="#/router">ルーターとプロキシ</a>をご覧ください</td></tr><tr><td>再生がカウントされる最低再生時間</td><td><strong>30秒超</strong></td></tr><tr><td>パッケージが想定するアカウントの種類</td><td><strong>Premium</strong></td></tr><tr><td>リンクに紐づく情報を変更する頻度</td><td><strong>7〜14日ごと</strong></td></tr><tr><td>アカウントを休ませるまでの稼働時間</td><td>音楽は例外です。何時間も続けて聴くのは普通の行動なので、SNS向けのパッケージより長く稼働させられます。ただし、24時間365日の稼働は避けてください</td></tr><tr><td>初心者向けの推奨設定</td><td><span class="todo">確認中</span></td></tr></tbody>
+</table></div>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p><strong>リンクに紐づく情報を1〜2週間ごとに変更する理由。</strong>毎日変更すると誰も管理しきれず、何か月も放置すると同じリンクのリストに何度も繰り返しアクセスすることになります。これこそ、プラットフォームが一斉に取り締まるパターンです。</p></div>
+</div>
+<h2 id="pkg-spotify-h4">Spotify特有の注意点</h2>
+<ul>
+<li>マニュアルのSpotifyの章には<strong>実行前チェックリスト</strong>があります。最初の問題が起きてからではなく、最初の実行前に確認してください。</li>
+<li>無料プランでの再生は価値が低く、動作も予測しにくいため、システムは<strong>Premium</strong>アカウントを優先します。</li>
+<li>音楽は、長時間のセッションが普通である唯一の分野です。何時間も続けて聴くのは実際の人間の行動なので、これらのパッケージはSNS向けより長く稼働させられます。ただし、24時間連続での稼働は避けてください。</li>
+</ul>
+<p>ユーザーマニュアルのSpotifyの章は<em>p. 124-134の11ページで、実行前チェックリストを含んでいます</em>。</p>
+<div class="hint danger">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-danger"/></svg>
+<div><p><strong>ユーザーマニュアル内のリンクからSpotifyのAPKをダウンロードしないでください。</strong>これらのリンクは現在TikTokのファイルを指しています。<a href="#/a5">2日目 &middot; 手順3</a>に記載した公式フォルダーを使用してください。</p></div>
+</div>
+<h2 id="pkg-spotify-h5">停止すべきサイン</h2>
+<p>プラットフォームは以下を不正行為とみなします。その場合、再生の削除、アカウントの閉鎖、楽曲の取り下げ、ロイヤリティの支払い保留といったペナルティが科されます。</p>
+<ol>
+<li>再生回数が異常に急増する。</li>
+<li>同じ楽曲が長時間繰り返し再生される、または機械的な速さで操作が次々と実行される。</li>
+<li>複数のアカウントでIPやデバイス情報が重複している。</li>
+</ol>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>一晩でBANされたアカウントがある場合は、<strong>規模を拡大しないでください</strong>。まずプロキシと実行速度を確認し直してください。</p></div>
+</div>
+<h2 id="pkg-spotify-h6">このパッケージでよくある問題</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>症状</th><th>よくある原因</th><th>対処</th></tr></thead>
+<tbody><tr><td>スクリプトは動くのに数値が伸びない</td><td>ウォームアップが2〜4週間に達していない、またはコンテンツのジャンル設定が誤っている</td><td><a href="#/a7">4〜5日目</a>の設定セクション</td></tr><tr><td>インストール後に別のアプリが開く</td><td>APKをユーザーマニュアルのリンクから入手した</td><td>公式フォルダーから再インストールしてください - <a href="#/a5">2日目 &middot; 手順3</a></td></tr><tr><td>スクリプトを開始するとすぐにアカウントが認証を求められる</td><td>手動でログインしても同じことが起こり、スクリプトはそれを速く繰り返しているだけ</td><td>アカウントの購入先かプロキシを変更してやり直してください - <a href="#/a5">2日目</a></td></tr><tr><td>自動コメントが途中で止まる</td><td>vilao.aiのAPIキーがない、またはプロバイダーのモデルに障害が発生している</td><td>キーの取得方法は<a href="#/a3">0日目</a>をご覧ください</td></tr><tr><td>アカウントがまとめてBANされる</td><td>複数のアカウントが1つのアドレスを共有している</td><td><a href="#/router">ルーターとプロキシ</a></td></tr><tr><td>設定はすべて正しいのにファームの動作がもたつく</td><td>多くの場合、回線ではなくプロキシが原因</td><td><a href="#/router">ルーターとプロキシ</a></td></tr></tbody>
+</table></div>
+<h2 id="pkg-spotify-h7">次に読むページ</h2>
+<ul>
+<li>実行の手順：<a href="#/a6">3日目 - 基本的な自動化</a></li>
+<li>すべてのパッケージの比較：<a href="#/package">自動化パッケージ</a></li>
+</ul>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/pkg-instagram"><span class="k">前へ</span><span class="v">Instagramパッケージ</span></a>
+      <a class="next" href="#/pkg-tidal"><span class="k">次へ</span><span class="v">Tidalパッケージ</span></a>
+    </div>
+    <p class="updated">最終更新 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== PKG-TIDAL ==================== -->
+<section class="page" id="p-pkg-tidal" data-title="Tidalパッケージ" data-crumb="リファレンス" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">リファレンス</a></div>
+    <h1 class="title">Tidalパッケージ</h1>
+    <p class="lede">Tidalパッケージ：ユーザーマニュアルでまだ扱われていないプラットフォームで再生回数を増やす方法を説明します。</p>
+
+    <div class="doc">
+<h2 id="pkg-tidal-h1">パッケージの内容</h2>
+<p>TidalはSpotifyパッケージと同じ仕組みで動作し、指定した楽曲の有効な再生を生み出します。</p>
+<ul>
+<li><strong>完全自動化：</strong>検索、クリック、再生、一時停止、ライブラリへの保存。</li>
+<li><strong>人間のような聴き方：</strong>ランダムなプレイリスト、一時停止やスキップを行い、再生をプレイリスト内の他の楽曲にも分散させるため、フラグが立つことはありません。</li>
+<li><strong>一括管理：</strong>ミニアプリで、数回のクリックで多数のデバイスを操作できます。</li>
+<li><strong>複数の国に対応：</strong>GenRouterを通じて、複数の国から再生させることができます。</li>
+</ul>
+<h2 id="pkg-tidal-h2">有効な再生としてカウントされる条件</h2>
+<ul>
+<li><strong>30秒以上</strong>再生されている</li>
+<li>自然な行動で、同じ操作を繰り返していない</li>
+<li>デバイスが<strong>root化されておらず</strong>、<strong>ADBが隠されている</strong>。<a href="#/change">Change / SuperChangeとは</a>をご覧ください</li>
+<li>IPとネットワークに問題がない。<a href="#/router">ルーターとプロキシ</a>をご覧ください</li>
+<li>アカウントが<strong>PremiumまたはHiFi</strong>である</li>
+</ul>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Tidalは、他の音楽プラットフォームよりもデバイスのフィンガープリント、OS、ネットワーク、ユーザーの行動を厳しくチェックします。だからこそ、シミュレーションではなく実機のデバイスファームが必要なのです。</p></div>
+</div>
+<h2 id="pkg-tidal-h3">運用の目安となる数値</h2>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>最後の行は、技術チームからの回答を待っている状態です。それ以外は推奨設定であり、厳密な上限ではありません。</p></div>
+</div>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>質問</th><th>回答</th></tr></thead>
+<tbody><tr><td>本格運用の前にウォームアップする期間</td><td><strong>2〜4週間</strong>のTrust</td></tr><tr><td>1台のデバイスあたりのアカウント数</td><td><strong>1台のデバイスにつき、1プラットフォームあたり1アカウント</strong>が最も安全です。推奨される上限は3アカウントです</td></tr><tr><td>1台のルーターに接続できるスマートフォンの上限</td><td>GenRouter H3000で<strong>30台</strong>、ミニPCで<strong>200台</strong>。<a href="#/router">ルーターとプロキシ</a>をご覧ください</td></tr><tr><td>1本のインターネット回線に接続できるボックスの上限</td><td><strong>5ボックス</strong>（1ボックスあたり約100 Mbps）。<a href="#/router">ルーターとプロキシ</a>をご覧ください</td></tr><tr><td>再生がカウントされる最低再生時間</td><td><strong>30秒超</strong></td></tr><tr><td>パッケージが想定するアカウントの種類</td><td><strong>Premium</strong></td></tr><tr><td>リンクに紐づく情報を変更する頻度</td><td><strong>7〜14日ごと</strong></td></tr><tr><td>アカウントを休ませるまでの稼働時間</td><td>音楽は例外です。何時間も続けて聴くのは普通の行動なので、SNS向けのパッケージより長く稼働させられます。ただし、24時間365日の稼働は避けてください</td></tr><tr><td>初心者向けの推奨設定</td><td><span class="todo">確認中</span></td></tr></tbody>
+</table></div>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p><strong>リンクに紐づく情報を1〜2週間ごとに変更する理由。</strong>毎日変更すると誰も管理しきれず、何か月も放置すると同じリンクのリストに何度も繰り返しアクセスすることになります。これこそ、プラットフォームが一斉に取り締まるパターンです。</p></div>
+</div>
+<h2 id="pkg-tidal-h4">Tidal特有の注意点</h2>
+<ul>
+<li>Tidalは比較的新しいパッケージです。<strong>141ページのユーザーマニュアルでは扱われておらず</strong>、GenFarmerのウェブサイトにもまだ専用のページがありません。不明な点があれば<a href="#/support">サポート</a>にお問い合わせください。</li>
+<li>Spotifyと同様、長時間のリスニングは普通の行動なので、SNS向けのパッケージより長く稼働させられます。</li>
+</ul>
+<div class="hint danger">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-danger"/></svg>
+<div><p><strong>ユーザーマニュアル内のリンクからTidalのAPKをダウンロードしないでください。</strong>これらのリンクは現在TikTokのファイルを指しています。<a href="#/a5">2日目 &middot; 手順3</a>に記載した公式フォルダーを使用してください。</p></div>
+</div>
+<h2 id="pkg-tidal-h5">停止すべきサイン</h2>
+<p>プラットフォームは以下を不正行為とみなします。その場合、再生の削除、アカウントの閉鎖、楽曲の取り下げ、ロイヤリティの支払い保留といったペナルティが科されます。</p>
+<ol>
+<li>再生回数が異常に急増する。</li>
+<li>同じ楽曲が長時間繰り返し再生される、または機械的な速さで操作が次々と実行される。</li>
+<li>複数のアカウントでIPやデバイス情報が重複している。</li>
+</ol>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>一晩でBANされたアカウントがある場合は、<strong>規模を拡大しないでください</strong>。まずプロキシと実行速度を確認し直してください。</p></div>
+</div>
+<h2 id="pkg-tidal-h6">このパッケージでよくある問題</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>症状</th><th>よくある原因</th><th>対処</th></tr></thead>
+<tbody><tr><td>スクリプトは動くのに数値が伸びない</td><td>ウォームアップが2〜4週間に達していない、またはコンテンツのジャンル設定が誤っている</td><td><a href="#/a7">4〜5日目</a>の設定セクション</td></tr><tr><td>インストール後に別のアプリが開く</td><td>APKをユーザーマニュアルのリンクから入手した</td><td>公式フォルダーから再インストールしてください - <a href="#/a5">2日目 &middot; 手順3</a></td></tr><tr><td>スクリプトを開始するとすぐにアカウントが認証を求められる</td><td>手動でログインしても同じことが起こり、スクリプトはそれを速く繰り返しているだけ</td><td>アカウントの購入先かプロキシを変更してやり直してください - <a href="#/a5">2日目</a></td></tr><tr><td>自動コメントが途中で止まる</td><td>vilao.aiのAPIキーがない、またはプロバイダーのモデルに障害が発生している</td><td>キーの取得方法は<a href="#/a3">0日目</a>をご覧ください</td></tr><tr><td>アカウントがまとめてBANされる</td><td>複数のアカウントが1つのアドレスを共有している</td><td><a href="#/router">ルーターとプロキシ</a></td></tr><tr><td>設定はすべて正しいのにファームの動作がもたつく</td><td>多くの場合、回線ではなくプロキシが原因</td><td><a href="#/router">ルーターとプロキシ</a></td></tr></tbody>
+</table></div>
+<h2 id="pkg-tidal-h7">次に読むページ</h2>
+<ul>
+<li>実行の手順：<a href="#/a6">3日目 - 基本的な自動化</a></li>
+<li>すべてのパッケージの比較：<a href="#/package">自動化パッケージ</a></li>
+</ul>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/pkg-spotify"><span class="k">前へ</span><span class="v">Spotifyパッケージ</span></a>
+      <a class="next" href="#/troubleshoot"><span class="k">次へ</span><span class="v">症状別トラブルシューティング</span></a>
+    </div>
+    <p class="updated">最終更新 09/2026</p>
+  </div>
+</section>

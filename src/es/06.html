@@ -1,0 +1,273 @@
+
+<!-- ==================== ROUTER ==================== -->
+<section class="page" id="p-router" data-title="Router y proxy" data-crumb="Referencia" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Referencia</a></div>
+    <h1 class="title">Router y proxy</h1>
+    <p class="lede">Cómo elegir entre el H3000 y un mini PC, qué debe ofrecer la red, cómo preparar los proxies y qué hacer cuando se cae la red.</p>
+
+    <div class="doc">
+<p>Todo lo relativo a la capa de red en un solo lugar. Hasta ahora estaba repartido en tres páginas: una línea en <a href="#/a1">Las cuatro capas</a>, la tabla de cableado del <a href="#/a3">Día 0</a> y el paso 2 del <a href="#/a5">Día 2</a>.</p>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>El panel de control en sí (asignar un proxy a cada teléfono y activar Isolate Mode) se muestra en el video de abajo y en <a href="#/a5">Día 2 &middot; paso 2</a>. Esta página no lo repite; trata lo que decides <strong>antes</strong> de abrir ese panel.</p></div>
+</div>
+<div class="video" data-yt="kGjP-7iqSTI">
+<img src="anh/yt-kGjP-7iqSTI.jpg" alt="Cómo usar GenRouter: asignar un proxy por dispositivo" loading="lazy">
+<button class="vplay" type="button" aria-label="Reproducir el video"><span class="disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button>
+<span class="vnote">Cómo usar GenRouter: asignar un proxy por dispositivo</span>
+</div>
+<h2 id="router-h1">1. H3000 o mini PC</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Si usas</th><th>Dispositivo</th><th>Modo de conexión</th><th>Por qué</th></tr></thead>
+<tbody><tr><td><strong>1 caja</strong> (20 teléfonos)</td><td><strong>GenRouter H3000</strong></td><td><strong>USB</strong></td><td>El H3000 es estable hasta <strong>30 dispositivos conectados</strong>. Una caja de 20 teléfonos cabe; dos cajas son 40 y no caben</td></tr><tr><td><strong>2 cajas o más</strong></td><td><strong>Mini PC</strong></td><td><strong>OTG</strong></td><td>El mini PC admite hasta <strong>200 dispositivos</strong>, es decir, exactamente 10 cajas, y los teléfonos usan su red</td></tr><tr><td>1 caja, pero ya tienes un mini PC</td><td>Mini PC</td><td>OTG</td><td>Funciona igual con una sola caja</td></tr><tr><td>Ninguno de los dos</td><td>-</td><td>OTG o Wi-Fi</td><td>Flexible, según lo que necesites</td></tr></tbody>
+</table></div>
+<p>Esta única elección determina el resto del Día 1: el H3000 va con <a href="#/usb">Conectar por USB</a> y el mini PC con <a href="#/otg">Conectar por OTG (LAN)</a>. Elegir la fila equivocada es la razón más común por la que Scan no encuentra teléfonos.</p>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>Llevar un H3000 más allá de <strong>30 dispositivos</strong> puede hacer que se cuelgue o que algunas de sus funciones dejen de funcionar. Esa es la cifra concreta detrás de la regla de que un H3000 no puede manejar dos cajas.</p></div>
+</div>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th></th><th>GenRouter H3000</th><th>Mini PC</th></tr></thead>
+<tbody><tr><td>Puertos de red</td><td>1 x LAN 2.5Gbps + 1 x WAN 1Gbps</td><td>4 x Intel i226 2.5G</td></tr><tr><td>Dispositivos que admite</td><td><strong>30</strong> (límite estable)</td><td><strong>200</strong></td></tr><tr><td>Wi-Fi integrado</td><td>Wi-Fi 6, doble banda, y puede emitir 32 redes distintas</td><td><strong>No tiene</strong>: necesita un punto de acceso aparte</td></tr><tr><td>Funciona con una batería externa</td><td>Sí</td><td>No</td></tr><tr><td>Panel de control</td><td><code>192.168.5.1:9000</code></td><td><code>192.168.5.1:9000</code></td></tr></tbody>
+</table></div>
+<h2 id="router-h2">2. Qué debe ofrecer la red</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Si usas</th><th>Dispositivo</th><th>Cómo se usan los puertos</th><th>Switch</th></tr></thead>
+<tbody><tr><td><strong>1 caja</strong>: 20 teléfonos</td><td>GenRouter H3000</td><td>Cable LAN del módem al puerto <strong>WAN</strong>; tu PC al puerto <strong>LAN</strong>, o al Wi-Fi <code>GENROUTER-2.4GHz</code> / <code>GENROUTER-5GHz</code></td><td>No se necesita</td></tr><tr><td><strong>De 2 a 4 cajas</strong>: de 40 a 80 teléfonos</td><td>Mini PC</td><td>Módem a <strong>ETH0</strong>; tu PC a <strong>ETH1</strong>, <strong>ETH2</strong> o <strong>ETH3</strong>; las cajas a los puertos restantes</td><td>Solo si te quedas sin puertos</td></tr><tr><td><strong>Hasta 10 cajas</strong>: 200 teléfonos</td><td>Mini PC + switch</td><td>Módem a ETH0 y todo lo demás a través del switch</td><td><strong>Sí.</strong> El clúster estable documentado es <strong>1 PC + 1 mini PC + 1 switch + 10 cajas</strong></td></tr><tr><td><strong>Más de 10 cajas</strong></td><td>Un segundo clúster</td><td>Repite el clúster anterior</td><td>Sí, uno por clúster</td></tr></tbody>
+</table></div>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>La arquitectura de referencia de GenFarmer es ese clúster de <strong>1 PC de control, 1 mini PC, 1 switch y 10 cajas</strong>. Se recomienda un switch a partir del momento en que manejas una gran cantidad de cajas, tanto por estabilidad como para quitarle carga al mini PC.</p></div>
+</div>
+<ul>
+<li><strong>Un puerto libre en el módem</strong> para el GenRouter</li>
+<li><strong>Cable LAN: Cat5 o Cat6, preferiblemente Cat6</strong>, para mantener una transmisión estable</li>
+<li>La computadora de control <strong>no necesita Wi-Fi</strong>: la LAN funciona igual de bien, tanto con el H3000 como con el mini PC</li>
+<li><strong>Ancho de banda mínimo:</strong> unos <strong>100 Mbps para la primera caja</strong> y aproximadamente <strong>100 Mbps más por cada caja adicional</strong>. TikTok es la plataforma más pesada, así que esa es la cifra con la que debes planificar. Mantén un <strong>máximo de 5 cajas por línea de internet</strong>.</li>
+</ul>
+<div class="hint info">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p><strong>En la práctica, el cuello de botella es el proxy, no tu línea de casa.</strong> Si la línea da buenas mediciones y la granja sigue funcionando a tirones, sospecha de los proxies antes de pagar por más ancho de banda.</p></div>
+</div>
+<h3>Si necesitas Wi-Fi y usas un mini PC</h3>
+<p>El mini PC solo se conecta por LAN y no puede emitir Wi-Fi, así que los Boxphones USB y los teléfonos normales necesitan un dispositivo aparte para eso. Usa un <strong>punto de acceso</strong> (Aruba, Cisco y TP-Link los fabrican) configurado en <strong>modo Access Point</strong> para que solo emita, mientras el router mantiene el control y reparte las IP. Pide al vendedor un modelo capaz de soportar tu número de conexiones.</p>
+<h2 id="router-h3">3. Cómo se conecta con el resto del sistema</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Si usas</th><th>Cómo conectarlo</th></tr></thead>
+<tbody><tr><td><strong>GenRouter H3000</strong></td><td>Primero la corriente: el router se ilumina en verde. Módem a <strong>WAN</strong>, PC a <strong>LAN</strong>. ¿El PC no tiene puerto LAN? Conéctate en su lugar a la red <code>GENROUTER-2.4GHz</code> o <code>GENROUTER-5GHz</code>. Luego abre <code>192.168.5.1:9000</code>; si aparece el panel, estás conectado.</td></tr><tr><td><strong>GenRouter H3000 sin cable LAN</strong></td><td>En la V3, el router puede captar otra red Wi-Fi y retransmitirla. Conéctate a <code>GENROUTER-2.4GHz</code> o <code>GENROUTER-5GHz</code>, elige la red que quieres retransmitir, introduce su contraseña y envía.</td></tr><tr><td><strong>Mini PC</strong></td><td>Primero la corriente. Módem a <strong>ETH0</strong>, PC a <strong>ETH1/ETH2/ETH3</strong>, las cajas a los puertos restantes, y luego abre <code>192.168.5.1:9000</code>.</td></tr><tr><td><strong>De caja a caja por LAN</strong></td><td>Los Boxphones con puerto LAN se pueden encadenar entre sí y funcionar en modo OTG. Si no se detectan los dispositivos, conéctalos primero por USB para que se reconozcan y luego vuelve a OTG.</td></tr></tbody>
+</table></div>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Si usas</th><th>Cómo conectar la computadora de control</th></tr></thead>
+<tbody><tr><td><strong>GenRouter H3000</strong></td><td>Si tu PC tiene Wi-Fi, conéctate por Wi-Fi. Si no, usa LAN: <strong>puerto LAN del H3000 a Ethernet del PC</strong>, o <strong>LAN del Boxphone a Ethernet del PC</strong> (en este caso, conecta el puerto LAN del H3000 a LAN1 o LAN2 del Boxphone y luego lleva el puerto LAN restante al PC; esto aplica a la caja <strong>P30</strong>).</td></tr><tr><td><strong>Mini PC</strong></td><td>Conéctate por LAN. El Wi-Fi no aplica. Si tu laptop no tiene puerto Ethernet, consigue un adaptador <strong>USB a LAN</strong> o <strong>Type-C a LAN</strong>.</td></tr></tbody>
+</table></div>
+<div class="hint danger">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-danger"/></svg>
+<div><p><strong>Nunca pulses el botón físico de reinicio</strong> del router a menos que el soporte técnico te lo indique, y <strong>no ejecutes ipconfig ni cambies la IP del dispositivo</strong> a mano en tu computadora sin orientación. Ambas cosas son formas rápidas de perder una configuración que funciona.</p></div>
+</div>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Coloca el router en el centro de la habitación, o lo más cerca posible de los dispositivos. <strong>2.4GHz llega más lejos pero es más lento; 5GHz es más rápido pero tiene menos alcance.</strong> Si cambias el cargador o el cable, usa un cargador de teléfono Android con <strong>cable Type-C</strong>: el router es exigente con los cables, y a menudo el cable de un teléfono más antiguo funciona cuando uno nuevo no.</p></div>
+</div>
+<p>Una vez cableado, la parte de software está en <a href="#/usb">Conectar por USB</a> o <a href="#/otg">Conectar por OTG (LAN)</a>.</p>
+<h2 id="router-h4">4. Preparar los proxies</h2>
+<p><strong>Una cuenta es una identidad. Un proxy es la dirección de casa de esa identidad.</strong> Si 20 cuentas comparten una misma dirección, la plataforma ve a 20 personas que viven en la misma casa, se despiertan y se duermen a la misma hora y dan me gusta al mismo tipo de contenido; por eso las cuentas se bloquean en grupo y no de una en una.</p>
+<p>De ahí se deduce lo siguiente:</p>
+<ul>
+<li><strong>Un proxy por teléfono.</strong> Una caja completa de 20 teléfonos necesita <strong>20 proxies</strong></li>
+<li>Para una prueba, 5 cuentas en 2-3 proxies es aceptable, pero <strong>no es una configuración de producción</strong></li>
+<li><strong>Isolate Mode</strong> es la red de seguridad: cuando un proxy deja de funcionar, vence o da error, ese teléfono se queda sin internet de inmediato en lugar de recurrir a tu dirección real</li>
+<li>Además de asignar el proxy, GenRouter también oculta <strong>WebRTC, DNS, dirección MAC, ubicación y zona horaria</strong>, bloquea traceroute e impide el escaneo de la LAN</li>
+</ul>
+<h3>Qué proxies acepta el router</h3>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Tipo</th><th>Formato y notas</th></tr></thead>
+<tbody><tr><td><strong>SOCKS5</strong></td><td><code>socks5://user:pass@ip:port</code></td></tr><tr><td><strong>HTTP / HTTPS</strong></td><td>Compatible, mismo procedimiento</td></tr><tr><td><strong>PPPoE</strong></td><td>Crea proxies a partir de una línea multisesión. <strong>Solo en Vietnam</strong>: la cantidad de proxies es igual a la cantidad de sesiones de la línea, y las IP provienen de un ISP real</td></tr><tr><td><strong>DPN</strong></td><td>La red propia de GenRouter: proxies residenciales de <strong>10 países distintos</strong>, y puedes rotar a otro país cuando ese país tenga suficiente oferta compartida</td></tr></tbody>
+</table></div>
+<h3>Cómo agregarlos</h3>
+<ol>
+<li>Prepara primero la lista, en el Bloc de notas o en un documento, <strong>un proxy por línea</strong></li>
+<li>Abre <code>192.168.5.1:9000</code>, ve a <strong>Proxy Manager</strong> y haz clic en <strong>Add proxy</strong></li>
+<li>Elige el formato que coincide con tu lista, pégala y haz clic en <strong>Add proxy</strong></li>
+<li>Para asignar: <strong>Devices &rarr; Update proxy</strong>, elige el protocolo y luego escribe los datos (<strong>Input Manually</strong>) o elige uno ya guardado (<strong>Select from List</strong>)</li>
+<li>Para hacer toda la caja a la vez, marca la casilla de la parte superior de la tabla de dispositivos, haz clic en <strong>Update Proxy</strong> y pega la lista: el router asigna un proxy distinto a cada dispositivo</li>
+</ol>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Los consejos de compra (qué proveedor, residencial frente a datacenter, y si los proxies rotativos son seguros en una granja) son la única parte que sigue abierta. Pregunta a <a href="#/support">soporte</a> en lugar de adivinar. Si estás en Vietnam, la opción PPPoE multisesión puede hacer que no necesites comprar proxies en absoluto.</p></div>
+</div>
+<h2 id="router-h5">5. Cuando algo sale mal</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Lo que ves</th><th>Causa habitual</th><th>Qué hacer</th></tr></thead>
+<tbody><tr><td>Los teléfonos aparecen pero no se conectan a internet</td><td>El proxy no funciona, o la hora del teléfono está mal</td><td>Revisa primero el proxy; si está bien, corrige el reloj del teléfono para que coincida con tu PC</td></tr><tr><td>Las cuentas se bloquean en grupo</td><td>Varias cuentas comparten una misma dirección</td><td>Un proxy por teléfono, y luego empieza de nuevo con cuentas nuevas: consulta el <a href="#/a5">Día 2</a></td></tr><tr><td>Toda la caja pierde internet a la vez</td><td>El cableado o el enlace de subida compartido, no los proxies</td><td>Revisa el tendido LAN y el puerto libre del módem, y luego vuelve a hacer Scan</td></tr><tr><td>Un teléfono se cae de la red por sí solo</td><td>Isolate Mode corta ese teléfono porque su proxy dejó de funcionar</td><td>Reemplaza ese proxy; es la función haciendo su trabajo, no una falla</td></tr><tr><td>La conexión se vuelve inestable al agregar más cajas</td><td>El mini PC soporta todas las cajas directamente</td><td>Agrega un <strong>switch LAN</strong> entre el mini PC y las cajas</td></tr><tr><td>Los dispositivos no se detectan en modo OTG</td><td>Nunca llegaron a reconocerse</td><td>Conéctalos por USB para que se registren y luego vuelve a OTG</td></tr><tr><td>Scan no encuentra teléfonos</td><td>No se agregaron los dos rangos de direcciones, o nunca se hizo clic en Activate</td><td><a href="#/otg">Conectar por OTG (LAN)</a>; en USB, comprueba que la luz sea azul</td></tr><tr><td>La luz indicadora está roja o parpadea</td><td>La placa base o el cable FPC, no la red</td><td><a href="#/err-light">Solución: error de luz indicadora</a></td></tr></tbody>
+</table></div>
+<p>Hay más síntomas, incluidos los del lado del software, en <a href="#/troubleshoot">Solución de problemas por síntoma</a>.</p>
+<h2 id="router-h6">Adónde ir después</h2>
+<ul>
+<li>Mira el tutorial de arriba para ver cómo se usa el panel</li>
+<li>Si sigues el curso, el trabajo de red se hace en <a href="#/a5">Día 2 - Dominar la identidad</a></li>
+<li>Los pasos por teléfono (asignar el proxy, activar Isolate Mode) están en <a href="#/a5">Día 2 &middot; paso 2</a></li>
+</ul>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/api"><span class="k">Anterior</span><span class="v">API</span></a>
+      <a class="next" href="#/package"><span class="k">Siguiente</span><span class="v">Paquetes de automatización</span></a>
+    </div>
+    <p class="updated">Última actualización: 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== PACKAGE ==================== -->
+<section class="page" id="p-package" data-title="Paquetes de automatización" data-crumb="Referencia" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Referencia</a></div>
+    <h1 class="title">Paquetes de automatización</h1>
+    <p class="lede">Qué es un paquete, cuáles existen, las tres herramientas que incluyen y el orden que debes respetar.</p>
+
+    <div class="doc">
+<p>Un paquete es un conjunto de scripts de automatización listo para usar en una plataforma. Lo compras en la <strong>Store</strong> dentro de la app; a partir de ahí queda en <strong>Automation &rarr; My Apps</strong> y se ejecuta como cualquier otra app. Si todavía no compraste uno, contacta con el equipo de ventas de GenFarmer por WhatsApp <a href="https://wa.me/84971234601" target="_blank" rel="noopener">+84 97 123 46 01</a> o pregunta en la <a href="https://chat.whatsapp.com/J8bchy0IIwREeAI1z7Jmvo?mode=gi_t" target="_blank" rel="noopener">comunidad de clientes</a>. Todo lo de aquí también se puede hacer a mano, solo que mucho más despacio.</p>
+<h2 id="package-h1">Paquetes disponibles hoy</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Plataforma</th><th>Paquete</th><th>Qué hace</th><th>Detalle</th></tr></thead>
+<tbody><tr><td><strong>TikTok</strong></td><td>Trust</td><td>Calienta la cuenta en torno a las palabras clave de tu nicho</td><td><a href="#/pkg-tiktok">TikTok</a></td></tr><tr><td></td><td>Boost</td><td>Visualizaciones, me gusta, comentarios y compartidos en el video que elijas</td><td></td></tr><tr><td><strong>Facebook</strong></td><td>Trust</td><td>Calienta la cuenta en un nicho de contenido</td><td><a href="#/pkg-facebook">Facebook</a></td></tr><tr><td></td><td>Boost</td><td>Me gusta, compartidos y comentarios en una publicación o un Reel</td><td></td></tr><tr><td><strong>Instagram</strong></td><td>Trust</td><td>Calienta la cuenta y publica a nivel básico</td><td><a href="#/pkg-instagram">Instagram</a></td></tr><tr><td></td><td>Boost</td><td>Me gusta, comentarios, visualizaciones y guardados, dirigidos a no seguidores</td><td></td></tr><tr><td><strong>Spotify</strong></td><td>Spotify</td><td>Reproducciones válidas para tus pistas</td><td><a href="#/pkg-spotify">Spotify</a></td></tr><tr><td><strong>Tidal</strong></td><td>Tidal</td><td>Reproducciones válidas para tus pistas</td><td><a href="#/pkg-tidal">Tidal</a></td></tr></tbody>
+</table></div>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p>Los paquetes se actualizan por separado de esta documentación. Si un paquete se comporta de forma distinta a lo que lees aquí, el paquete es el más reciente: avisa a <a href="#/support">soporte</a> para que se pueda corregir esta página.</p></div>
+</div>
+<h2 id="package-h2">Por qué una granja de teléfonos y no un navegador antidetect</h2>
+<p>Las plataformas sociales y de música ya no se pueden trabajar desde un navegador antidetect: un navegador deja ver su patrón, los checkpoints llegan rápido, la interacción se suprime y un navegador no puede crear un entorno de escucha que cuente como una reproducción real. Los paquetes están hechos para dispositivos reales con IP reales.</p>
+<h2 id="package-h3">Los cuatro pasos que sigue cada paquete</h2>
+<span class="pathline">Calentar la cuenta &rarr; Definir su audiencia &rarr; Generar interacción &rarr; Impulsar la distribución</span>
+<p>Nada se impulsa el primer día y nada se hace en forma de spam. Toda la secuencia sigue los tiempos de una persona real.</p>
+<h2 id="package-h4">Qué miden realmente los algoritmos</h2>
+<p>Las mismas cinco señales deciden el alcance en TikTok, Instagram y Facebook, y por eso los paquetes tienen la forma que tienen.</p>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Señal</th><th>Qué significa para ti</th></tr></thead>
+<tbody><tr><td><strong>Tiempo de visualización y retención</strong></td><td>La más importante: si el espectador se detuvo, lo vio hasta el final, lo volvió a ver o se fue antes</td></tr><tr><td><strong>Interacción temprana</strong></td><td>Los me gusta, compartidos, comentarios y guardados tienen que aparecer poco después de publicar. Si llegan todos de golpe, parece falso y se suprime; si se reparten de forma natural, los datos fluyen de manera uniforme</td></tr><tr><td><strong>Quién interactúa</strong></td><td>No solo cuántos, sino si encajan con el contenido. Una audiencia equivocada le enseña al algoritmo lo que no es, y la distribución llega a las personas equivocadas</td></tr><tr><td><strong>El historial de la cuenta</strong></td><td>Una cuenta que ha recibido interacción basura es muy difícil de recuperar. <strong>Empezar bien importa más que ejecutar a fondo</strong></td></tr><tr><td><strong>Respuesta de no seguidores</strong></td><td>La plataforma se pregunta si reaccionan personas nuevas, no si lo hacen tus seguidores. Una publicación que despierta a no seguidores se difunde rápido incluso desde una cuenta pequeña</td></tr></tbody>
+</table></div>
+<h2 id="package-h5">Las tres herramientas y el orden que debes respetar</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th></th><th><strong>Trust</strong></th><th><strong>Boost</strong></th></tr></thead>
+<tbody><tr><td>Objetivo</td><td>Calentar la cuenta y construir su historial</td><td>Amplificar un contenido</td></tr><tr><td>Enfoque</td><td>Estabilidad y seguridad</td><td>Rendimiento y crecimiento</td></tr><tr><td>Ideal para</td><td>Cuentas nuevas o en reconstrucción</td><td>Cuentas que ya tienen una base</td></tr><tr><td>Comportamiento</td><td>Mira contenido por tema, sigue y da me gusta de forma selectiva</td><td>Impulsa visualizaciones, me gusta, reproducciones, tendencias</td></tr></tbody>
+</table></div>
+<p><strong>Auto Login</strong> va antes que ambas: inicia y cierra sesión en las cuentas de forma masiva en lugar de que tengas que escribir en cada teléfono.</p>
+<div class="hint danger">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-danger"/></svg>
+<div><p>Activar <strong>Boost</strong> en una cuenta que no se ha calentado es la forma más rápida de perderla, y una cuenta que alguna vez recibió interacción basura es muy difícil de recuperar. Es el error más caro de todo el plan.</p></div>
+</div>
+<p>La versión paso a paso para ejecutarlos está en <a href="#/a6">Día 3 - Automatización básica</a>.</p>
+<h2 id="package-h6">Qué hace que parezca humano</h2>
+<ul>
+<li><strong>Tareas aleatorias:</strong> el momento y el tipo de acción (ver, dar me gusta, guardar, desplazarse) cambian de una ejecución a otra en lugar de repetir un patrón fijo</li>
+<li><strong>Límites y descansos:</strong> los scripts tienen topes, pausas y comportamiento de fondo (mirar, desplazarse, pasar de largo), que es lo que la plataforma interpreta como natural</li>
+<li><strong>Hechos para cada plataforma:</strong> cada paquete está diseñado en función de cómo distribuye el contenido esa plataforma y cómo se comportan sus usuarios en tu mercado</li>
+</ul>
+<h2 id="package-h7">Antes de ejecutar tu primer paquete</h2>
+<ul>
+<li>Las 5 cuentas de prueba han <strong>superado el periodo de 48 horas sin tocarlas</strong> sin que se les pida verificación: consulta el <a href="#/a5">Día 2</a></li>
+<li>Cada teléfono tiene <strong>su propio proxy</strong> e Isolate Mode está activado: consulta <a href="#/router">Router y proxy</a></li>
+<li>La <strong>app de la plataforma está instalada</strong> en todos los teléfonos, desde la carpeta oficial de APK y no desde los enlaces del Manual de usuario: consulta <a href="#/a5">Día 2 &middot; paso 3</a></li>
+<li>Tienes una <strong>clave API de vilao.ai</strong> si el paquete comenta automáticamente: esto formaba parte del <a href="#/a3">Día 0</a>, y descubrir a medias que no la tienes significa detenerte a medias</li>
+</ul>
+<h2 id="package-h8">Adónde ir después</h2>
+<ul>
+<li>El procedimiento para descargar y ejecutar un paquete está en <a href="#/a6">Día 3 - Automatización básica</a></li>
+<li>La Store se describe en <a href="#/apps">App Manager</a>; Apps, Tasks y Runs en <a href="#/automation">Automatización</a></li>
+</ul>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/router"><span class="k">Anterior</span><span class="v">Router y proxy</span></a>
+      <a class="next" href="#/pkg-tiktok"><span class="k">Siguiente</span><span class="v">Paquete de TikTok</span></a>
+    </div>
+    <p class="updated">Última actualización: 09/2026</p>
+  </div>
+</section>
+
+<!-- ==================== PKG-TIKTOK ==================== -->
+<section class="page" id="p-pkg-tiktok" data-title="Paquete de TikTok" data-crumb="Referencia" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Referencia</a></div>
+    <h1 class="title">Paquete de TikTok</h1>
+    <p class="lede">Trust y Boost para TikTok: qué incluye el paquete, las cifras de referencia para ejecutarlo y a qué prestar atención.</p>
+
+    <div class="doc">
+<h2 id="pkg-tiktok-h1">Qué incluye el paquete</h2>
+<p>TikTok tiene las dos mitades del conjunto. <strong>Trust</strong> construye una cuenta con un historial de actividad real para que deje de tratarse como desechable; <strong>Boost</strong> se encarga de la parte de publicación en las cuentas que tienes.</p>
+<h3>Trust: hacer crecer la cuenta</h3>
+<ul>
+<li><strong>Crecimiento por palabras clave del sector.</strong> El sistema busca videos relacionados con tus palabras clave objetivo y se comporta como una persona real que los explora, de modo que la cuenta empieza a recomendarse en esas palabras clave y construye un historial que la hace parecer fiable.</li>
+<li><strong>Publicación y comentarios automáticos con IA.</strong> Las publicaciones se hacen según una programación y los comentarios se generan en lugar de copiarse, así que un gran número de cuentas nunca termina escribiendo la misma frase.</li>
+<li><strong>Gestión de muchas cuentas a la vez.</strong> Cientos de cuentas en una sola pantalla, sincronizadas y supervisadas de forma centralizada, sin necesidad de conocimientos técnicos.</li>
+<li><strong>Seguimientos aleatorios.</strong> El sistema elige de la lista de sugerencias y sigue cuentas al azar, para que el comportamiento nunca parezca una acción repetida.</li>
+</ul>
+<h3>Boost: gestionar los canales</h3>
+<ul>
+<li><strong>Respuestas con IA según el contexto.</strong> La IA lee los comentarios dejados en tus propios videos y redacta respuestas que encajan con el tema y el tono, formuladas de manera distinta cada vez.</li>
+<li><strong>Programación y publicación a escala.</strong> Sube y programa videos en masa en tu lista de cuentas, publica en el momento adecuado para cada mercado y escalona las publicaciones para que los canales no publiquen de forma idéntica.</li>
+<li><strong>Una sola interfaz para todas las cuentas</strong>, con informes por canal en lugar de cifras dispersas entre distintos inicios de sesión.</li>
+</ul>
+<p>Como todo funciona en teléfonos reales, las subidas se hacen en un entorno móvil nativo y no en un navegador.</p>
+<h2 id="pkg-tiktok-h2">Cifras de operación</h2>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>La última fila sigue pendiente del equipo técnico. El resto son ajustes recomendados, no límites estrictos.</p></div>
+</div>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Pregunta</th><th>Respuesta</th></tr></thead>
+<tbody><tr><td>Cuánto tiempo calentar antes de operar de verdad</td><td><strong>2-4 semanas</strong> de Trust</td></tr><tr><td>Cuántas cuentas por dispositivo</td><td><strong>1 por plataforma por dispositivo</strong> es lo más seguro; 3 es el máximo recomendado</td></tr><tr><td>Máximo de teléfonos por router</td><td><strong>30</strong> en un GenRouter H3000, <strong>200</strong> en un mini PC: consulta <a href="#/router">Router y proxy</a></td></tr><tr><td>Máximo de cajas por línea de internet</td><td><strong>5</strong>, a unos 100 Mbps por caja: consulta <a href="#/router">Router y proxy</a></td></tr><tr><td>Cada cuánto cambiar la información vinculada al enlace</td><td><strong>cada 7 a 14 días</strong></td></tr><tr><td>Cuánto tiempo ejecutar antes de dejar descansar las cuentas</td><td><strong>4-6 horas activas, 1-2 horas de descanso</strong>, o varias franjas separadas a lo largo del día. <strong>Nunca 24/7</strong>: ninguna persona real se pasa la noche desplazándose por la pantalla</td></tr><tr><td>Ajustes sugeridos para principiantes</td><td><span class="todo">Pendiente de confirmar</span></td></tr></tbody>
+</table></div>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg>
+<div><p><strong>Por qué cambiar la información vinculada al enlace cada una o dos semanas.</strong> Si la cambias todos los días, nadie puede seguir el ritmo; si la dejas igual durante meses, estás machacando la misma lista de enlaces una y otra vez, que es justo el patrón que las plataformas rastrean.</p></div>
+</div>
+<h2 id="pkg-tiktok-h3">Notas específicas de TikTok</h2>
+<ul>
+<li>TikTok es la <strong>plataforma que más ancho de banda consume</strong>, y por eso la cifra de 100 Mbps por caja se basa en ella.</li>
+<li>Los enlaces de APK de TikTok del Manual de usuario son los únicos correctos, pero la carpeta oficial de <a href="#/a5">Día 2 &middot; paso 3</a> sigue siendo la fuente más segura.</li>
+<li>Los comentarios automáticos necesitan una <strong>clave API de vilao.ai</strong>: consíguela durante el <a href="#/a3">Día 0</a>, no el día que la necesites.</li>
+</ul>
+<p>El capítulo de TikTok del Manual de usuario es <em>p. 17-50, 34 páginas: el capítulo más completo del manual</em>.</p>
+<h2 id="pkg-tiktok-h4">Señales de que debes detenerte</h2>
+<ol>
+<li>A las cuentas se les pide verificación más a menudo de lo normal.</li>
+<li>Las publicaciones pierden de repente todas sus visualizaciones.</li>
+<li>El número de teléfonos en ejecución sigue bajando sin un motivo claro.</li>
+</ol>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><p>Si alguna cuenta se bloquea durante la noche, <strong>no amplíes la escala</strong>. Vuelve atrás y revisa primero los proxies y la velocidad de ejecución.</p></div>
+</div>
+<h2 id="pkg-tiktok-h5">Problemas comunes con este paquete</h2>
+<tbody>
+<div class="tbl"><table>
+<thead><tr><th>Lo que ves</th><th>Causa habitual</th><th>Qué hacer</th></tr></thead>
+<tbody><tr><td>El script se ejecuta pero las cifras no se mueven</td><td>El calentamiento no ha llegado a 2-4 semanas, o el nicho de contenido está mal configurado</td><td><a href="#/a7">Días 4-5</a>, sección de configuración</td></tr><tr><td>Se abre una app distinta después de instalar</td><td>El APK vino de los enlaces del Manual de usuario</td><td>Reinstala desde la carpeta oficial: <a href="#/a5">Día 2 &middot; paso 3</a></td></tr><tr><td>A las cuentas se les pide verificación en cuanto arranca el script</td><td>Lo mismo pasa cuando inicias sesión a mano; el script solo lo repite más rápido</td><td>Cambia de proveedor de cuentas o de proxies y vuelve a intentarlo: <a href="#/a5">Día 2</a></td></tr><tr><td>Los comentarios automáticos se detienen a medias</td><td>No hay clave API de vilao.ai, o el modelo del proveedor está caído</td><td><a href="#/a3">Día 0</a> para saber cómo obtener la clave</td></tr><tr><td>Las cuentas se bloquean en grupo</td><td>Varias cuentas comparten una misma dirección</td><td><a href="#/router">Router y proxy</a></td></tr><tr><td>Todo está bien configurado pero la granja funciona a tirones</td><td>Normalmente son los proxies y no la línea</td><td><a href="#/router">Router y proxy</a></td></tr></tbody>
+</table></div>
+<h2 id="pkg-tiktok-h6">Adónde ir después</h2>
+<ul>
+<li>El procedimiento para ejecutarlo: <a href="#/a6">Día 3 - Automatización básica</a></li>
+<li>Todos los paquetes comparados: <a href="#/package">Paquetes de automatización</a></li>
+</ul>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/package"><span class="k">Anterior</span><span class="v">Paquetes de automatización</span></a>
+      <a class="next" href="#/pkg-facebook"><span class="k">Siguiente</span><span class="v">Paquete de Facebook</span></a>
+    </div>
+    <p class="updated">Última actualización: 09/2026</p>
+  </div>
+</section>
