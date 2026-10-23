@@ -1,18 +1,27 @@
+<div class="lbox" id="lbox" hidden><img alt=""></div>
+<button class="totop" id="toTop" type="button" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg></button>
+
 <script>
 (function(){
   "use strict";
 
-  var PAGES = ["home","contents","a1","boxphone","change","a2","a3","a4","a5","a6","a7","req","buttons","usb","otg","apk","adb","backup","cc","account","devices","apps","automation","settings","api","router","package","pkg-tiktok","pkg-facebook","pkg-instagram","pkg-spotify","pkg-tidal","troubleshoot","err-license","err-unauth","err-light","faq","glossary","support"];
-  var TABOF = {"home":"start","contents":"start","a1":"start","boxphone":"start","change":"start","a2":"roadmap","a3":"roadmap","a4":"roadmap","a5":"roadmap","a6":"roadmap","a7":"roadmap","req":"setup","buttons":"setup","usb":"setup","otg":"setup","apk":"setup","adb":"setup","backup":"setup","cc":"software","account":"software","devices":"software","apps":"software","automation":"software","settings":"software","api":"software","router":"reference","package":"reference","pkg-tiktok":"reference","pkg-facebook":"reference","pkg-instagram":"reference","pkg-spotify":"reference","pkg-tidal":"reference","troubleshoot":"reference","err-license":"reference","err-unauth":"reference","err-light":"reference","faq":"reference","glossary":"reference","support":"reference"};
+  /* PAGES, TABOF, LANGS, STR, ATTRS are injected by tools/build.py */
+  var root = document.documentElement;
+
+  /* chuyen canh mem (View Transitions) khi doi theme / ngon ngu, neu trinh duyet ho tro */
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function smooth(fn){
+    if(document.startViewTransition && !reduce) document.startViewTransition(fn);
+    else fn();
+  }
 
   /* ---------- theme ---------- */
-  var root = document.documentElement;
   var sun = document.querySelector("#themeBtn .ic-sun");
   var moon = document.querySelector("#themeBtn .ic-moon");
   function paintTheme(){
     var dark = root.getAttribute("data-theme") !== "light";
-    sun.hidden = !dark ? true : false;
-    moon.hidden = dark ? true : false;
+    sun.hidden = !dark;
+    moon.hidden = dark;
   }
   try{
     var saved = localStorage.getItem("gf-theme");
@@ -21,9 +30,8 @@
   paintTheme();
   document.getElementById("themeBtn").addEventListener("click", function(){
     var next = root.getAttribute("data-theme") === "light" ? "dark" : "light";
-    root.setAttribute("data-theme", next);
+    smooth(function(){ root.setAttribute("data-theme", next); paintTheme(); });
     try{ localStorage.setItem("gf-theme", next); }catch(e){}
-    paintTheme();
   });
 
   /* ---------- mobile drawer ---------- */
@@ -45,6 +53,59 @@
     });
   });
 
+  /* ---------- language ---------- */
+  function pickLang(){
+    try{
+      var s = localStorage.getItem("gf-lang");
+      if(LANGS.indexOf(s) !== -1) return s;
+    }catch(e){}
+    var nav = (navigator.languages || [navigator.language || ""]);
+    for(var i = 0; i < nav.length; i++){
+      var c = String(nav[i]).slice(0, 2).toLowerCase();
+      if(LANGS.indexOf(c) !== -1) return c;
+    }
+    return "en";
+  }
+  var lang = pickLang();
+  var langBtn = document.getElementById("langBtn");
+  var langWrap = langBtn.parentNode;
+  var langMenu = document.getElementById("langMenu");
+  var q = document.getElementById("q");
+
+  function paintLang(){
+    root.setAttribute("lang", lang);
+    Array.prototype.forEach.call(document.querySelectorAll("[data-l]"), function(el){
+      el.hidden = el.getAttribute("data-l") !== lang;
+    });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-i18n-attr]"), function(el){
+      var spec = ATTRS[el.getAttribute("data-i18n-attr")];
+      for(var a in spec) el.setAttribute(a, spec[a][lang]);
+    });
+    Array.prototype.forEach.call(langMenu.querySelectorAll("[data-set-lang]"), function(b){
+      b.setAttribute("aria-checked", b.getAttribute("data-set-lang") === lang ? "true" : "false");
+    });
+    document.getElementById("langCode").textContent = lang.toUpperCase();
+    langBtn.setAttribute("aria-label", STR.lang[lang]);
+    document.getElementById("toTop").setAttribute("aria-label", STR.totop[lang]);
+  }
+  function setLang(next){
+    closeLangMenu();
+    if(LANGS.indexOf(next) === -1 || next === lang) return;
+    try{ localStorage.setItem("gf-lang", next); }catch(e){}
+    location.hash = "#/" + next + "/" + parseHash().id;
+  }
+  function openLangMenu(){ langWrap.classList.add("open"); langBtn.setAttribute("aria-expanded", "true"); }
+  function closeLangMenu(){ langWrap.classList.remove("open"); langBtn.setAttribute("aria-expanded", "false"); }
+  langBtn.addEventListener("click", function(e){
+    e.stopPropagation();
+    if(langWrap.classList.contains("open")) closeLangMenu(); else openLangMenu();
+  });
+  langMenu.addEventListener("click", function(e){
+    var b = e.target.closest("[data-set-lang]");
+    if(b) setLang(b.getAttribute("data-set-lang"));
+  });
+  document.addEventListener("click", function(e){ if(!e.target.closest(".langwrap")) closeLangMenu(); });
+
   /* ---------- toc ---------- */
   var tocList = document.getElementById("tocList");
   var tocHead = document.querySelector(".toc-h");
@@ -60,8 +121,7 @@
       a.textContent = h.textContent;
       a.addEventListener("click", function(ev){
         ev.preventDefault();
-        h.scrollIntoView({behavior:"smooth", block:"start"});
-        history.replaceState(null, "", location.hash.split("#")[1] ? location.hash : location.hash);
+        h.scrollIntoView({behavior: reduce ? "auto" : "smooth", block:"start"});
       });
       tocList.appendChild(a);
       tocLinks.push({a:a, h:h});
@@ -76,112 +136,133 @@
     }
     for(var j=0;j<tocLinks.length;j++) tocLinks[j].a.classList.toggle("on", j === best);
   }
+
+  /* ---------- reading progress + back to top ---------- */
+  var bar = document.getElementById("progress");
+  var toTop = document.getElementById("toTop");
+  function onScroll(){
+    spy();
+    var max = document.documentElement.scrollHeight - innerHeight;
+    var p = max > 0 ? Math.min(1, scrollY / max) : 0;
+    bar.style.transform = "scaleX(" + p + ")";
+    toTop.classList.toggle("show", scrollY > 600);
+  }
   var ticking = false;
   window.addEventListener("scroll", function(){
     if(ticking) return;
     ticking = true;
-    requestAnimationFrame(function(){ spy(); ticking = false; });
+    requestAnimationFrame(function(){ onScroll(); ticking = false; });
   }, {passive:true});
+  toTop.addEventListener("click", function(){ window.scrollTo({top:0, behavior: reduce ? "auto" : "smooth"}); });
 
-  /* ---------- router ---------- */
-  function currentId(){
-    var h = location.hash || "";
-    var m = h.match(/^#\/([a-z0-9-]+)/i);
-    var id = m ? m[1].toLowerCase() : "home";
-    return PAGES.indexOf(id) === -1 ? "home" : id;
+  /* ---------- router: #/[lang/]page ---------- */
+  function parseHash(){
+    var segs = (location.hash || "").replace(/^#\/?/, "").split("/").filter(Boolean);
+    var l = null;
+    if(segs.length && LANGS.indexOf(segs[0]) !== -1) l = segs.shift();
+    var id = (segs[0] || "home").toLowerCase();
+    if(PAGES.indexOf(id) === -1) id = "home";
+    return {lang:l, id:id};
   }
+  var shown = null;
   function route(){
-    var id = currentId();
-    var active = null;
-    PAGES.forEach(function(p){
-      var el = document.getElementById("p-" + p);
-      if(!el) return;
-      var on = p === id;
-      el.hidden = !on;
-      if(on) active = el;
-    });
-    Array.prototype.forEach.call(document.querySelectorAll(".nav-a[data-nav]"), function(a){
-      a.classList.toggle("on", a.getAttribute("data-nav") === id);
-    });
-    var tab = TABOF[id] || "start";
-    Array.prototype.forEach.call(document.querySelectorAll(".tab-l"), function(t){
-      t.classList.toggle("on", t.getAttribute("data-tab") === tab);
-    });
-    if(active){
-      buildToc(active);
-      document.title = active.getAttribute("data-title") + " | GenFarmer Support Center";
+    var r = parseHash();
+    var langChanged = false;
+    if(r.lang && r.lang !== lang){
+      lang = r.lang;
+      langChanged = true;
+      try{ localStorage.setItem("gf-lang", lang); }catch(e){}
     }
-    closeNav();
-    window.scrollTo(0, 0);
+    var active = document.getElementById("p-" + lang + "-" + r.id);
+    function swap(){
+      if(langChanged || !shown) paintLang();
+      if(shown && shown !== active) shown.hidden = true;
+      active.hidden = false;
+      Array.prototype.forEach.call(document.querySelectorAll(".nav-a[data-nav]"), function(a){
+        a.classList.toggle("on", a.getAttribute("data-nav") === r.id);
+      });
+      var tab = TABOF[r.id] || "start";
+      Array.prototype.forEach.call(document.querySelectorAll(".tab-l"), function(t){
+        t.classList.toggle("on", t.getAttribute("data-tab") === tab);
+      });
+      buildToc(active);
+      document.title = active.getAttribute("data-title") + " | " + STR.site[lang];
+      closeNav();
+      window.scrollTo({top:0, behavior:"instant"});
+      shown = active;
+      onScroll();
+    }
+    if(langChanged && shown) smooth(swap); else swap();
   }
   window.addEventListener("hashchange", route);
 
-  /* ---------- search ---------- */
-  var INDEX = [];
-  PAGES.forEach(function(p){
-    var el = document.getElementById("p-" + p);
-    if(!el) return;
-    var title = el.getAttribute("data-title");
-    var crumb = el.getAttribute("data-crumb");
-    var doc = el.querySelector(".doc");
-    var lede = el.querySelector(".lede");
-    INDEX.push({
-      href:"#/" + p,
-      title:title,
-      path:crumb,
-      text:((lede ? lede.textContent : "") + " " + (doc ? doc.textContent : "")).replace(/\s+/g," ").trim()
-    });
-    if(doc){
-      Array.prototype.forEach.call(doc.querySelectorAll("h2[id]"), function(h){
-        var buf = [];
-        var n = h.nextElementSibling;
-        while(n && n.tagName !== "H2"){ buf.push(n.textContent); n = n.nextElementSibling; }
-        INDEX.push({
-          href:"#/" + p,
-          title:h.textContent,
-          path:crumb + " · " + title,
-          text:buf.join(" ").replace(/\s+/g," ").trim()
+  /* ---------- search (index per language, built on first use) ---------- */
+  var index = {lang:null, items:[]};
+  function buildIndex(){
+    var items = [];
+    PAGES.forEach(function(p){
+      var el = document.getElementById("p-" + lang + "-" + p);
+      if(!el) return;
+      var title = el.getAttribute("data-title");
+      var crumb = el.getAttribute("data-crumb");
+      var doc = el.querySelector(".doc");
+      var lede = el.querySelector(".lede");
+      items.push({href:"#/" + p, title:title, path:crumb,
+        text:((lede ? lede.textContent : "") + " " + (doc ? doc.textContent : "")).replace(/\s+/g," ").trim()});
+      if(doc){
+        Array.prototype.forEach.call(doc.querySelectorAll("h2[id]"), function(h){
+          var buf = [];
+          var n = h.nextElementSibling;
+          while(n && n.tagName !== "H2"){ buf.push(n.textContent); n = n.nextElementSibling; }
+          items.push({href:"#/" + p, title:h.textContent, path:crumb + " · " + title,
+            text:buf.join(" ").replace(/\s+/g," ").trim()});
         });
-      });
-    }
-  });
+      }
+    });
+    index = {lang:lang, items:items};
+  }
+  /* bo dau de go "cai dat" van ra "cài đặt" */
+  function fold(s){ return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").normalize("NFC").replace(/đ/g, "d"); }
 
   var ovl = document.getElementById("ovl");
-  var q = document.getElementById("q");
   var results = document.getElementById("results");
   var sel = 0;
 
   function esc(s){ return s.replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]; }); }
+  /* tim tren chuoi da bo dau nhung to sang tren chuoi goc: chi dung khi do dai khong doi */
   function hl(s, term){
     if(!term) return esc(s);
-    var i = s.toLowerCase().indexOf(term);
-    if(i === -1) return esc(s);
+    var f = fold(s);
+    var i = f.indexOf(term);
+    if(i === -1 || f.length !== s.length) return esc(s);
     return esc(s.slice(0,i)) + "<mark>" + esc(s.slice(i, i+term.length)) + "</mark>" + esc(s.slice(i+term.length));
   }
   function snippet(text, term){
-    var i = text.toLowerCase().indexOf(term);
+    var f = fold(text);
+    var i = f.length === text.length ? f.indexOf(term) : -1;
     if(i === -1) return text.slice(0,150);
     var from = Math.max(0, i - 55);
     return (from > 0 ? "…" : "") + text.slice(from, from + 170);
   }
   function render(term){
+    if(index.lang !== lang) buildIndex();
     results.innerHTML = "";
     sel = 0;
-    var t = term.trim().toLowerCase();
+    var t = fold(term.trim());
     var hits;
     if(!t){
-      hits = INDEX.filter(function(e){ return e.path.indexOf("·") === -1; }).slice(0, 11);
+      hits = index.items.filter(function(e){ return e.path.indexOf("·") === -1; }).slice(0, 11);
     }else{
-      hits = INDEX.filter(function(e){
-        return e.title.toLowerCase().indexOf(t) !== -1 || e.text.toLowerCase().indexOf(t) !== -1;
+      hits = index.items.filter(function(e){
+        return fold(e.title).indexOf(t) !== -1 || fold(e.text).indexOf(t) !== -1;
       }).sort(function(a,b){
-        var at = a.title.toLowerCase().indexOf(t) !== -1 ? 0 : 1;
-        var bt = b.title.toLowerCase().indexOf(t) !== -1 ? 0 : 1;
+        var at = fold(a.title).indexOf(t) !== -1 ? 0 : 1;
+        var bt = fold(b.title).indexOf(t) !== -1 ? 0 : 1;
         return at - bt;
       }).slice(0, 24);
     }
     if(!hits.length){
-      results.innerHTML = '<div class="res-empty">No result for &ldquo;' + esc(term) + '&rdquo;</div>';
+      results.innerHTML = '<div class="res-empty">' + esc(STR.no_result[lang]) + ' &ldquo;' + esc(term) + '&rdquo;</div>';
       return;
     }
     hits.forEach(function(e, i){
@@ -223,9 +304,33 @@
       if(items[sel]){ e.preventDefault(); items[sel].click(); }
     }
   });
+
+  /* ---------- phong to anh chup man hinh ---------- */
+  var lbox = document.getElementById("lbox");
+  var limg = lbox.querySelector("img");
+  document.addEventListener("click", function(e){
+    var img = e.target.closest(".fig img");
+    if(!img) return;
+    limg.src = img.currentSrc || img.src;
+    limg.alt = img.alt;
+    lbox.hidden = false;
+  });
+  lbox.addEventListener("click", function(){ lbox.hidden = true; });
+
   document.addEventListener("keydown", function(e){
     if((e.ctrlKey || e.metaKey) && (e.key === "k" || e.key === "K")){ e.preventDefault(); openSearch(); }
-    else if(e.key === "Escape" && !ovl.hidden){ closeSearch(); }
+    else if(e.key === "Escape"){
+      if(!lbox.hidden) lbox.hidden = true;
+      else if(!ovl.hidden) closeSearch();
+      else closeLangMenu();
+    }
+  });
+
+  /* ---------- anh hien dan khi tai xong ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll("main img"), function(img){
+    if(img.complete) return;
+    img.classList.add("fade");
+    img.addEventListener("load", function(){ img.classList.add("in"); }, {once:true});
   });
 
   /* ---------- video ---------- */
@@ -237,7 +342,7 @@
         window.open("https://www.youtube.com/watch?v=" + id, "_blank", "noopener");
         return;
       }
-      vid.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1" title="GenFarmer video tutorial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
+      vid.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1" title="' + esc(STR.video[lang]) + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
     });
   });
 

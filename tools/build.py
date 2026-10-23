@@ -1,92 +1,156 @@
-"""Assemble the published pages from src/: index.html (en), vi.html, es.html, ja.html.
+"""Assemble index.html: one page holding all four languages, switched in place.
 
-usage: python3 tools/build.py   (BUILD_LANGS=en,vi to build only some pages)
+usage: python3 tools/build.py
+
+- Pages of each language become <section id="p-<lang>-<page>" lang="<lang>">; other ids inside
+  them get a "<lang>--" prefix so they stay unique.
+- Header, sidebar, table-of-contents label and search box are shared: text that differs between
+  languages becomes <span data-l="..."> siblings, attributes that differ are listed in ATTRS.
+- vi.html / es.html / ja.html are kept as redirects to index.html#/<lang>/... for old links.
 """
-import os
+import json, os, re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-LANGS = [
-    # code, output file, label in the switcher, "No result for", video iframe title
-    ("en", "index.html", "English", "No result for", "GenFarmer video tutorial"),
-    ("vi", "vi.html", "Tiếng Việt", "Không có kết quả cho", "Video hướng dẫn GenFarmer"),
-    ("es", "es.html", "Español", "No hay resultados para", "Videotutorial de GenFarmer"),
-    ("ja", "ja.html", "日本語", "検索結果がありません:", "GenFarmer 動画チュートリアル"),
-]
+LANGS = [("en", "English"), ("vi", "Tiếng Việt"), ("es", "Español"), ("ja", "日本語")]
+CODES = [c for c, _ in LANGS]
 
-SWITCH_CSS = """
-/* ---------- chon ngon ngu: nhan hien thi + select trong suot de dung menu goc cua he dieu hanh ---------- */
-.langsw{
-  position:relative;height:36px;display:inline-flex;align-items:center;flex-shrink:0;
-  padding:0 28px 0 10px;border:1px solid var(--line);border-radius:var(--r);
-  background:var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2398a0ad' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 10px center;
-  color:var(--text);font-size:14px;font-weight:500;white-space:nowrap;
+STR = {
+    "site": {"en": "GenFarmer Support Center", "vi": "Trung tâm hỗ trợ GenFarmer",
+             "es": "Centro de soporte GenFarmer", "ja": "GenFarmer サポートセンター"},
+    "lang": {"en": "Language", "vi": "Ngôn ngữ", "es": "Idioma", "ja": "言語"},
+    "totop": {"en": "Back to top", "vi": "Lên đầu trang", "es": "Volver arriba", "ja": "ページの先頭へ"},
+    "no_result": {"en": "No result for", "vi": "Không có kết quả cho", "es": "No hay resultados para",
+                  "ja": "検索結果がありません:"},
+    "video": {"en": "GenFarmer video tutorial", "vi": "Video hướng dẫn GenFarmer",
+              "es": "Videotutorial de GenFarmer", "ja": "GenFarmer 動画チュートリアル"},
 }
-.langsw:hover{border-color:var(--line-strong)}
-.langsw:focus-within{outline:2px solid var(--blue);outline-offset:1px}
-.langsw select{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;font-size:16px}
-.langsw .code{display:none}
-@media (max-width:560px){
-  .langsw{padding:0 22px 0 8px;font-size:13px;background-position:right 7px center}
-  .langsw .full{display:none}
-  .langsw .code{display:inline}
-}
-"""
 
-JA_CSS = """
-:root{--font:Inter,"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
-"""
-
-SWITCH_JS = """
-<script>
-(function(){
-  /* doi ngon ngu nhung giu nguyen trang dang xem */
-  var sel = document.getElementById("langSel");
-  sel.addEventListener("change", function(){ location.href = sel.value + location.hash; });
-})();
-</script>
-"""
+MAIN_OPEN = '<main class="main" id="main">'
+MAIN_CLOSE = "</main>"
+TAG_SPLIT = re.compile(r"(<[^>]+>)")
+ATTR_RE = re.compile(r'\s([a-zA-Z-]+)="([^"]*)"')
 
 
 def read(*p):
     return open(os.path.join(ROOT, *p), encoding="utf-8").read()
 
 
+def merge_shell(parts, attrs):
+    """Merge the same shell markup in every language into one, tagging text/attrs that differ."""
+    toks = {c: TAG_SPLIT.split(parts[c]) for c in CODES}
+    n = len(toks["en"])
+    assert all(len(t) == n for t in toks.values()), "shell token count differs"
+    out = []
+    for i in range(n):
+        vals = {c: toks[c][i] for c in CODES}
+        en = vals["en"]
+        if i % 2:  # tag
+            if len(set(vals.values())) == 1:
+                out.append(en)
+                continue
+            per = {c: dict(ATTR_RE.findall(vals[c])) for c in CODES}
+            diff = {a: {c: per[c].get(a, "") for c in CODES} for a in per["en"]
+                    if len({per[c].get(a) for c in CODES}) > 1}
+            key = str(len(attrs))
+            attrs[key] = diff
+            out.append(re.sub(r"\s*(/?>)$", ' data-i18n-attr="%s"\\1' % key, en, count=1))
+        else:  # text
+            if len(set(vals.values())) == 1 or not en.strip():
+                out.append(en)
+                continue
+            lead = en[: len(en) - len(en.lstrip())]
+            trail = en[len(en.rstrip()):]
+            spans = "".join(
+                '<span data-l="%s"%s>%s</span>' % (c, "" if c == "en" else " hidden", vals[c].strip()) for c in CODES
+            )
+            out.append(lead + spans + trail)
+    return "".join(out)
+
+
+def localise_pages(html, code):
+    def ids(m):
+        v = m.group(1)
+        return ' id="p-%s-%s"' % (code, v[2:]) if v.startswith("p-") else ' id="%s--%s"' % (code, v)
+
+    html = re.sub(r'\sid="([^"]+)"', ids, html)
+    return html.replace('<section class="page" ', '<section class="page" lang="%s" ' % code)
+
+
+def lang_menu():
+    items = "".join(
+        '<button type="button" role="menuitemradio" data-set-lang="%s" aria-checked="false">'
+        '<span class="code">%s</span><span class="nm">%s</span>'
+        '<svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" '
+        'stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></button>' % (c, c.upper(), name)
+        for c, name in LANGS
+    )
+    return (
+        '<div class="langwrap">\n'
+        '      <button class="langbtn" id="langBtn" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Language">\n'
+        '        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" '
+        'stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/>'
+        '<path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z"/></svg>\n'
+        '        <span id="langCode">EN</span>\n'
+        '        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" '
+        'stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>\n'
+        '      </button>\n'
+        '      <div class="langmenu" id="langMenu" role="menu">%s</div>\n'
+        '    </div>\n    ' % items
+    )
+
+
+def redirect(code):
+    return (
+        '<!doctype html>\n<html lang="%(c)s">\n<head>\n<meta charset="utf-8">\n'
+        '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
+        '<title>GenFarmer Support Center</title>\n'
+        '<meta http-equiv="refresh" content="0; url=./#/%(c)s/home">\n'
+        '<script>location.replace("./#/%(c)s/" + (location.hash.replace(/^#\\/?/, "") || "home"));</script>\n'
+        '</head>\n<body><a href="./#/%(c)s/home">GenFarmer Support Center</a></body>\n</html>\n' % {"c": code}
+    )
+
+
 def main():
     head, tail = read("src", "head.html"), read("src", "tail.html")
     chunks = sorted(os.listdir(os.path.join(ROOT, "src", "en")))
-    alternates = "".join('<link rel="alternate" hreflang="%s" href="%s">\n' % (c, f) for c, f, *_ in LANGS)
-    only = os.environ.get("BUILD_LANGS")
-    for code, out, _label, noresult, vtitle in LANGS:
-        if only and code not in only.split(","):
-            continue
-        body = "".join(read("src", code, n) for n in chunks)
-        options = "".join(
-            '<option value="%s"%s>%s</option>' % (f, " selected" if c == code else "", lbl) for c, f, lbl, *_ in LANGS
-        )
-        switch = (
-            '<label class="langsw"><span class="full">%s</span><span class="code">%s</span>'
-            '<select id="langSel" aria-label="Language">%s</select></label>\n    ' % (_label, code.upper(), options)
-        )
-        anchor = '<button class="iconbtn" id="themeBtn"'
-        assert body.count(anchor) == 1, (code, "theme button anchor")
-        body = body.replace(anchor, switch + anchor)
+    pre, pages, post = {}, {}, {}
+    for c in CODES:
+        body = "".join(read("src", c, n) for n in chunks)
+        a = body.index(MAIN_OPEN) + len(MAIN_OPEN)
+        b = body.index(MAIN_CLOSE)
+        pre[c], pages[c], post[c] = body[:a], body[a:b], body[b:]
 
-        h = head.replace('<html lang="en"', '<html lang="%s"' % code)
-        extra_css = SWITCH_CSS + (JA_CSS if code == "ja" else "")
-        h = h.replace("</style>", extra_css + "</style>", 1)
-        fonts = "family=Inter:wght@400;500;600;700;800"
-        if code == "ja":
-            h = h.replace(fonts, fonts + "&family=Noto+Sans+JP:wght@400;500;700")
-        h = h.replace("</head>", alternates + "</head>", 1)
+    # tab cua tung trang lay tu nhom sidebar chua no
+    tabof = {}
+    for tab, grp in re.findall(r'<div class="side-grp" data-tab="([a-z]+)">(.*?)\n      </div>', pre["en"], re.S):
+        for page in re.findall(r'data-nav="([a-z0-9-]+)"', grp):
+            tabof[page] = tab
+    page_ids = re.findall(r'<section class="page" id="p-([a-z0-9-]+)"', pages["en"])
+    assert set(page_ids) == set(tabof), set(page_ids) ^ set(tabof)
 
-        t = tail.replace("No result for &ldquo;", noresult + " &ldquo;")
-        t = t.replace('title="GenFarmer video tutorial"', 'title="%s"' % vtitle)
-        t = t.replace("</body>", SWITCH_JS + "</body>", 1)
+    attrs = {}
+    shell_pre = merge_shell(pre, attrs)
+    shell_post = merge_shell(post, attrs)
+    anchor = '<button class="iconbtn" id="themeBtn"'
+    assert shell_pre.count(anchor) == 1
+    shell_pre = shell_pre.replace(anchor, lang_menu() + anchor)
 
-        with open(os.path.join(ROOT, out), "w", encoding="utf-8") as f:
-            f.write(h + body + t)
-        print(out, len(h + body + t))
+    data = "".join(
+        "  var %s = %s;\n" % (k, json.dumps(v, ensure_ascii=False))
+        for k, v in (("PAGES", page_ids), ("TABOF", tabof), ("LANGS", CODES), ("STR", STR), ("ATTRS", attrs))
+    )
+    marker = "  /* PAGES, TABOF, LANGS, STR, ATTRS are injected by tools/build.py */\n"
+    assert tail.count(marker) == 1
+    body = shell_pre + "".join(localise_pages(pages[c], c) for c in CODES) + shell_post
+    html = head + body + tail.replace(marker, marker + data)
+
+    with open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8") as f:
+        f.write(html)
+    print("index.html", len(html), "bytes,", len(page_ids), "pages x", len(CODES), "languages")
+    for c in CODES[1:]:
+        with open(os.path.join(ROOT, c + ".html"), "w", encoding="utf-8") as f:
+            f.write(redirect(c))
 
 
 main()
