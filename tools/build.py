@@ -116,7 +116,13 @@ def main():
     chunks = sorted(os.listdir(os.path.join(ROOT, "src", "en")))
     pre, pages, post = {}, {}, {}
     for c in CODES:
-        body = "".join(read("src", c, n) for n in chunks)
+        body = ""
+        for n in chunks:
+            if os.path.exists(os.path.join(ROOT, "src", c, n)):
+                body += read("src", c, n)
+            else:  # chua dich: tam dung ban tieng Anh, khong duoc deploy
+                print("WARNING: src/%s/%s missing, using English" % (c, n))
+                body += read("src", "en", n)
         a = body.index(MAIN_OPEN) + len(MAIN_OPEN)
         b = body.index(MAIN_CLOSE)
         pre[c], pages[c], post[c] = body[:a], body[a:b], body[b:]

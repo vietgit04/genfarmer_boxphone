@@ -1,0 +1,390 @@
+
+<!-- ==================== ERR-PARTIAL ==================== -->
+<section class="page" id="p-err-partial" data-title="Fix: Only some phones are found" data-crumb="Reference" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Reference</a></div>
+    <h1 class="title">Fix: Only some phones are found</h1>
+    <p class="lede">GenFarmer shows 18 or 19 phones out of 20, or Scan finds none. Check the mode first, then the light, then the slot.</p>
+
+    <div class="doc">
+<h2 id="err-partial-h1">You see this</h2>
+<div class="says"><span>"Only 19/20 phones show"</span><span>"Scan finds 0 devices"</span><span>"Device 4 is missing"</span><span>"Earlier it was 16, now 19"</span></div>
+<h2 id="err-partial-h2">Check in this order</h2>
+<ol class="stepper">
+<li class="step">
+<h3>Mode and lights</h3>
+<p>Use <strong>USB</strong> for 1 box + H3000 and <strong>OTG</strong> for a Mini PC or 2+ boxes. The light tells you the mode: <strong>blue = USB</strong>, <strong>green = OTG</strong>, red or flickering = mainboard fault.</p>
+<p class="fix"><strong>Fix:</strong> press the Boxphone power button twice to switch mode, as in <a href="#/otg">Connect via OTG (LAN)</a>. A red light: go to step 5.</p>
+</li>
+<li class="step">
+<h3>OTG: both address ranges and Activate</h3>
+<p>In the GenFarmer OTG section, add <code>192.168.4.1-255</code> and <code>192.168.5.1-255</code>, select the devices, click <strong>Activate</strong>, wait until every light is green, then click <strong>Scan</strong>.</p>
+<p class="fix"><strong>Fix:</strong> if phones are not found in OTG, connect them by USB once so they are picked up, then switch back to OTG.</p>
+</li>
+<li class="step">
+<h3>Other software holding the phones</h3>
+<p>Another phone-control program running at the same time can keep some phones away from GenFarmer.</p>
+<p class="fix"><strong>Fix:</strong> close every other phone-control program, restart the Boxphone, then open only GenFarmer.</p>
+</li>
+<li class="step">
+<h3>ADB status</h3>
+<p>Press <strong>Windows + R</strong>, type <code>cmd</code>, then run <code>adb devices</code>.</p>
+<p class="fix"><strong>Fix:</strong> phones listed as <strong>unauthorized</strong> need the ADB key file for your box model - follow <a href="#/err-unauth">Fix: Device not showing (Unauthorized)</a>.</p>
+</li>
+<li class="step">
+<h3>Slot or mainboard</h3>
+<p>A red or flickering light is hardware. Swap the mainboard into another slot: if the fault follows the mainboard, it is the mainboard; if it stays, it is the slot. Then reseat the FPC cable.</p>
+<p class="fix"><strong>Fix:</strong> see <a href="#/err-light">Fix: Boxphone indicator light error</a>. If you are not comfortable opening the box, contact support first.</p>
+</li>
+<li class="step">
+<h3>Did it start after a factory reset or a PC format?</h3>
+<p>A reset can remove the activation or the ADB setup. Developer Mode and USB Debugging are already enabled on GenFarmer phones - do not change these settings yourself.</p>
+<p class="fix"><strong>Fix:</strong> contact support to restore the ROM.</p>
+</li>
+</ol>
+<h2 id="err-partial-h3">Contact support when</h2>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-headset"/></svg>
+<div><p>The light stays red after the slot and cable checks, ADB stays <strong>unauthorized</strong>, or phones are still missing in the correct mode after an OTG scan.</p></div>
+</div>
+<h2 id="err-partial-h4">Send us</h2>
+<ul class="chk">
+<li>Number of boxes, and H3000 or Mini PC</li>
+<li>USB or OTG</li>
+<li>Phones found vs total</li>
+<li>A photo of the lights</li>
+<li>Boxphone model and the Device IDs of the missing phones</li>
+</ul>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/err-light"><span class="k">Previous</span><span class="v">Fix: Boxphone indicator light error</span></a>
+      <a class="next" href="#/err-disconnect"><span class="k">Next</span><span class="v">Fix: Phones disconnect or stay in Starting</span></a>
+    </div>
+    <p class="updated">Last updated 11/2026</p>
+  </div>
+</section>
+
+<!-- ==================== ERR-DISCONNECT ==================== -->
+<section class="page" id="p-err-disconnect" data-title="Fix: Phones disconnect or stay in Starting" data-crumb="Reference" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Reference</a></div>
+    <h1 class="title">Fix: Phones disconnect or stay in Starting</h1>
+    <p class="lede">Phones drop out while a task is running, or never get past Starting. Restart, cable, settings - in that order.</p>
+
+    <div class="doc">
+<h2 id="err-disconnect-h1">You see this</h2>
+<div class="says"><span>"Phones keep disconnecting"</span><span>"A phone appears for a few seconds and disappears"</span><span>"Phones stay in Starting"</span></div>
+<h2 id="err-disconnect-h2">Check in this order</h2>
+<ol class="stepper">
+<li class="step">
+<h3>Restart the phone</h3>
+<p>In the GenFarmer toolbar click <strong>Restart</strong> (or <strong>Reboot</strong> on the device) and wait for it to come back.</p>
+</li>
+<li class="step">
+<h3>USB cable and port</h3>
+<p class="fix"><strong>Fix:</strong> replace the USB cable and try another port on the computer.</p>
+</li>
+<li class="step">
+<h3>Devices Disconnect setting</h3>
+<p>Open <strong>Settings</strong>: turn off <strong>Devices Disconnect</strong> and check that <strong>Device Threads</strong> includes every device ID.</p>
+</li>
+<li class="step">
+<h3>Restart GenFarmer</h3>
+<p>If phones stay disconnected, restart the app. If it keeps happening, stop the automation and contact support.</p>
+</li>
+</ol>
+<h2 id="err-disconnect-h3">Contact support when</h2>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-headset"/></svg>
+<div><p>A phone keeps disconnecting after a new cable and a restart.</p></div>
+</div>
+<h2 id="err-disconnect-h4">Send us</h2>
+<ul class="chk">
+<li>Which device numbers</li>
+<li>USB or OTG</li>
+<li>Boxphone model</li>
+<li>A screen recording of the disconnect</li>
+</ul>
+<h2 id="err-disconnect-h5">Known issues</h2>
+<div class="hint warn">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg>
+<div><ul>
+<li>Some devices reconnect repeatedly. A different GenFarmer version is being tested for this - ask support for it.</li>
+<li>Tecno LH7n disconnects when the server aborts.</li>
+</ul></div>
+</div>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/err-partial"><span class="k">Previous</span><span class="v">Fix: Only some phones are found</span></a>
+      <a class="next" href="#/err-automation"><span class="k">Next</span><span class="v">Fix: Automation stops or shows no results</span></a>
+    </div>
+    <p class="updated">Last updated 11/2026</p>
+  </div>
+</section>
+
+<!-- ==================== ERR-AUTOMATION ==================== -->
+<section class="page" id="p-err-automation" data-title="Fix: Automation stops or shows no results" data-crumb="Reference" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Reference</a></div>
+    <h1 class="title">Fix: Automation stops or shows no results</h1>
+    <p class="lede">The task stops early, finishes with 0 results, or says Success with nothing posted. Seven checks, most common cause first.</p>
+
+    <div class="doc">
+<h2 id="err-automation-h1">You see this</h2>
+<div class="says"><span>"The automation keeps stopping"</span><span>"0 results"</span><span>"It only runs for 1-3 minutes"</span><span>"It says Success but nothing was uploaded"</span><span>"GenFarmer crashes after a few hours"</span></div>
+<h2 id="err-automation-h2">Check in this order</h2>
+<ol class="stepper">
+<li class="step">
+<h3>Are the platform app and the package installed?</h3>
+<p>Open <strong>App Manager</strong> and check the platform app. Open the <strong>Store</strong>, check the correct package is downloaded, then check <strong>Automation → My Apps</strong>.</p>
+<p class="fix"><strong>Fix:</strong> install the missing app from the official APK folder (<a href="#/a5">Day 2 · step 3</a>); download the correct package from the Store.</p>
+</li>
+<li class="step">
+<h3>Is the account assigned to the right device?</h3>
+<p>Open <strong>Account Manager</strong>: every account needs a <strong>Device ID</strong> and must be assigned to the device you run. In <strong>Automation</strong>, check the task's device list.</p>
+<p class="fix"><strong>Fix:</strong> copy the Device ID from the main screen into the Device ID column, select the right devices and run again.</p>
+</li>
+<li class="step">
+<h3>What does the run say?</h3>
+<p>Open <strong>Automation → Runs</strong> and check Result, Status (<strong>Running</strong> / <strong>Done</strong> / <strong>Aborted</strong>), Started at, Finished at and Duration.</p>
+<p class="fix"><strong>Fix:</strong> <strong>Aborted</strong> - fix the missing setup and run again. <strong>Done</strong> but 0 results - go to step 4.</p>
+</li>
+<li class="step">
+<h3>Can the account and the phone get online?</h3>
+<p>Log in to the account by hand. Each phone needs its own proxy with <strong>Isolate Mode</strong> on.</p>
+<p class="fix"><strong>Fix:</strong> replace a dead proxy (see <a href="#/err-proxy-net">Fix: No internet after assigning a proxy</a>) and correct the phone time. Do not scale up if accounts ask for verification or get banned.</p>
+</li>
+<li class="step">
+<h3>Is the account warmed up?</h3>
+<p>For TikTok, Facebook and Instagram, run <strong>Auto Login</strong> first, and <strong>Trust</strong> before <strong>Boost</strong>. Trust needs 2-4 weeks before real results.</p>
+<p class="fix"><strong>Fix:</strong> do not run Boost on a new account.</p>
+</li>
+<li class="step">
+<h3>Is it the right APK and package version?</h3>
+<p>If a different app opens, or the script cannot find a button, the APK is probably wrong.</p>
+<p class="fix"><strong>Fix:</strong> remove it and reinstall from the official APK folder. For Store packages, delete and download the latest version.</p>
+</li>
+<li class="step">
+<h3>Are the computer and the connection OK?</h3>
+<p>Windows 10 64-bit with a dedicated NVIDIA GTX 1050 or better. Phones must appear in GenFarmer in the right mode: USB for 1 box + H3000, OTG for a Mini PC.</p>
+<p class="fix"><strong>Fix:</strong> update GenFarmer to the latest version and restart it before testing again.</p>
+</li>
+</ol>
+<h2 id="err-automation-h3">Special cases</h2>
+<h3>Stops after about 12 minutes</h3>
+<p>Restart the device and run GenFarmer as administrator. Still stops: contact support with a screen recording.</p>
+<h3>Spotify stops after about 30 seconds or shows Aborted</h3>
+<p>Log out of Spotify and log in again. A stream must last over 30 seconds on a Premium account.</p>
+<h3>Only 19 of 20 phones run, or some are paused</h3>
+<p>Open <strong>Settings</strong>: turn off <strong>Devices Disconnect</strong>, check <strong>Device Threads</strong> and enter all 20 device IDs again. If the phones are not even found, see <a href="#/err-partial">Fix: Only some phones are found</a>.</p>
+<h3>Success but no post appears</h3>
+<p>Record the whole run - account, device, package and the final screen - and send it to support.</p>
+<h2 id="err-automation-h4">Contact support when</h2>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-headset"/></svg>
+<div><p>Package, account assignment, devices, proxies, app version and connection mode are all checked and the run still stops.</p></div>
+</div>
+<h2 id="err-automation-h5">Send us</h2>
+<ul class="chk">
+<li>Number of boxes, and H3000 or Mini PC</li>
+<li>USB or OTG</li>
+<li>GenFarmer version, package name and package version</li>
+<li>Phones found vs phones running</li>
+<li>A screenshot of <strong>Automation → Runs</strong> or a screen recording</li>
+</ul>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/err-disconnect"><span class="k">Previous</span><span class="v">Fix: Phones disconnect or stay in Starting</span></a>
+      <a class="next" href="#/err-proxy-net"><span class="k">Next</span><span class="v">Fix: No internet after assigning a proxy</span></a>
+    </div>
+    <p class="updated">Last updated 11/2026</p>
+  </div>
+</section>
+
+<!-- ==================== ERR-PROXY-NET ==================== -->
+<section class="page" id="p-err-proxy-net" data-title="Fix: No internet after assigning a proxy" data-crumb="Reference" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Reference</a></div>
+    <h1 class="title">Fix: No internet after assigning a proxy</h1>
+    <p class="lede">The proxy is added but the phone cannot get online. Check the proxy itself before anything else.</p>
+
+    <div class="doc">
+<h2 id="err-proxy-net-h1">You see this</h2>
+<div class="says"><span>"Proxy configured but no internet"</span><span>"I added the proxy but it's not working"</span><span>"Proxy shows red"</span><span>"Instagram says no internet"</span></div>
+<h2 id="err-proxy-net-h2">Check in this order</h2>
+<ol class="stepper">
+<li class="step">
+<h3>Is the proxy alive and in the right format?</h3>
+<p>Test it on <a href="https://checkproxy.vip" target="_blank" rel="noopener">checkproxy.vip</a> and check it has not expired. SOCKS5 is <code>socks5://user:pass@ip:port</code>; HTTP/HTTPS uses the HTTP format.</p>
+<p class="fix"><strong>Fix:</strong> replace a dead or expired proxy. Put one proxy per line in Notepad before adding them.</p>
+</li>
+<li class="step">
+<h3>Is the protocol right?</h3>
+<p>In the GenRouter panel (<code>192.168.5.1:9000</code>) open <strong>Proxy Manager</strong> → <strong>Add proxy</strong> and pick the format that matches your list.</p>
+<p class="fix"><strong>Fix:</strong> if HTTP does not work, try SOCKS5.</p>
+</li>
+<li class="step">
+<h3>Was it added in the right place?</h3>
+<p>GenRouter or Mini PC: in the router panel. Cloudphone: on each device in GenFarmer, not on the router page.</p>
+<p class="fix"><strong>Fix:</strong> add it again in the right place.</p>
+</li>
+<li class="step">
+<h3>Is it assigned to the phone?</h3>
+<p>Router panel → <strong>Devices</strong> → <strong>Update proxy</strong> → <strong>Input Manually</strong> or <strong>Select from List</strong>. One proxy per phone. For a whole box, tick the top checkbox, click <strong>Update Proxy</strong> and paste the list.</p>
+</li>
+<li class="step">
+<h3>Isolate Mode and the phone time</h3>
+<p>Turn <strong>Isolate Mode</strong> on, then check the date, time and time zone on the phone.</p>
+<p class="fix"><strong>Fix:</strong> correct the time. With Isolate Mode on, a dead proxy cuts that phone's internet on purpose - that is what protects your accounts.</p>
+</li>
+<li class="step">
+<h3>Is the proxy too slow?</h3>
+<p>Test the response time on checkproxy.vip.</p>
+<p class="fix"><strong>Fix:</strong> replace proxies with a very high ping.</p>
+</li>
+<li class="step">
+<h3>One phone or all phones?</h3>
+<p>One phone: check that phone's proxy. A whole box: check the LAN cable and the modem port, then <strong>Scan</strong> again - see <a href="#/err-router">Fix: No internet on GenRouter or Mini PC</a>.</p>
+</li>
+</ol>
+<h2 id="err-proxy-net-h3">Special cases</h2>
+<h3>All proxies show Inactive</h3>
+<p>Test them on checkproxy.vip, note the error shown after <strong>Update Proxy</strong> and send it to support.</p>
+<h3>Content still comes from your real country</h3>
+<p>Match the phone time zone and language to the proxy country.</p>
+<h2 id="err-proxy-net-h4">Contact support when</h2>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-headset"/></svg>
+<div><p>The proxy is live, correctly formatted and assigned, the time is right, and the phone still has no internet.</p></div>
+</div>
+<h2 id="err-proxy-net-h5">Send us</h2>
+<ul class="chk">
+<li>H3000 or Mini PC</li>
+<li>Proxy format and protocol</li>
+<li>The checkproxy.vip result</li>
+<li>A screenshot of the router device list</li>
+</ul>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/err-automation"><span class="k">Previous</span><span class="v">Fix: Automation stops or shows no results</span></a>
+      <a class="next" href="#/err-proxy-lost"><span class="k">Next</span><span class="v">Fix: Proxy is lost or the IP changes back</span></a>
+    </div>
+    <p class="updated">Last updated 11/2026</p>
+  </div>
+</section>
+
+<!-- ==================== ERR-PROXY-LOST ==================== -->
+<section class="page" id="p-err-proxy-lost" data-title="Fix: Proxy is lost or the IP changes back" data-crumb="Reference" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Reference</a></div>
+    <h1 class="title">Fix: Proxy is lost or the IP changes back</h1>
+    <p class="lede">The proxy disappears after a restart, or the IP drifts back to your own country. Almost always the phone's random MAC address.</p>
+
+    <div class="doc">
+<h2 id="err-proxy-lost-h1">You see this</h2>
+<div class="says"><span>"After restarting the phone the proxy is gone"</span><span>"After a power cut all proxies are lost"</span><span>"After a few minutes the IP goes back to my country"</span><span>Many red Offline devices in GenRouter</span></div>
+<h2 id="err-proxy-lost-h2">Check in this order</h2>
+<ol class="stepper">
+<li class="step">
+<h3>Is the phone using a random MAC? <em>(most common)</em></h3>
+<p>Android changes its Wi-Fi MAC on every reconnect, and GenRouter assigns proxies by MAC - so after a restart the phone looks like a new device.</p>
+<p class="fix"><strong>Fix:</strong> on every phone open <strong>Settings → Wi-Fi → GENROUTER-2.4GHz → Privacy → Use device MAC</strong>, then assign the proxy again. Do this on all phones before you assign proxies.</p>
+</li>
+<li class="step">
+<h3>Old red Offline devices?</h3>
+<p>They are old identities left by the random MAC. They do not affect anything and are removed automatically - use the filter to hide them.</p>
+</li>
+<li class="step">
+<h3>Does the IP go back after a few minutes?</h3>
+<p>Check the proxy itself on a computer first: is it a rotating proxy, and is it still alive? Also check the protocol did not switch from SOCKS5 to HTTP after a reboot.</p>
+</li>
+</ol>
+<h2 id="err-proxy-lost-h3">Contact support when</h2>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-headset"/></svg>
+<div><p>Every phone uses its device MAC, the proxy is live, and it is still lost.</p></div>
+</div>
+<h2 id="err-proxy-lost-h4">Send us</h2>
+<ul class="chk">
+<li>A screenshot of the device list</li>
+<li>The MAC of the affected phone</li>
+<li>Proxy type: static or rotating, SOCKS5 or HTTP</li>
+<li>What happened just before: a restart, a power cut, or nothing</li>
+</ul>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/err-proxy-net"><span class="k">Previous</span><span class="v">Fix: No internet after assigning a proxy</span></a>
+      <a class="next" href="#/err-router"><span class="k">Next</span><span class="v">Fix: No internet on GenRouter or Mini PC</span></a>
+    </div>
+    <p class="updated">Last updated 11/2026</p>
+  </div>
+</section>
+
+<!-- ==================== ERR-ROUTER ==================== -->
+<section class="page" id="p-err-router" data-title="Fix: No internet on GenRouter or Mini PC" data-crumb="Reference" hidden>
+  <div class="wrap">
+    <div class="crumb"><a href="#/troubleshoot">Reference</a></div>
+    <h1 class="title">Fix: No internet on GenRouter or Mini PC</h1>
+    <p class="lede">No internet, DNS errors, or a connection that keeps dropping. Check that the device fits your setup, then the cables.</p>
+
+    <div class="doc">
+<h2 id="err-router-h1">You see this</h2>
+<div class="says"><span>"No internet connection"</span><span>"Can't reach DNS server"</span><span>"Mini PC connection drops in and out"</span><span>"I can only open 192.168.5.1"</span><span>Several phones show "Try again"</span></div>
+<h2 id="err-router-h2">Check in this order</h2>
+<ol class="stepper">
+<li class="step">
+<h3>The right device for your setup</h3>
+<p><strong>H3000</strong> = 1 box, USB mode. <strong>Mini PC</strong> = 2 boxes or more, OTG mode + LAN. Do not run 2 boxes on an H3000.</p>
+</li>
+<li class="step">
+<h3>Wiring</h3>
+<p><strong>H3000:</strong> modem → WAN; computer → LAN, or Wi-Fi GENROUTER-2.4GHz / 5GHz. <strong>Mini PC:</strong> modem → ETH0; computer → ETH1, ETH2 or ETH3; boxes → the remaining ports. Use Cat6 cable.</p>
+<p class="fix"><strong>Fix:</strong> correct the ports, and replace a cable if the speed drops - one customer went from 94 Mbps back to full speed with a new cable.</p>
+</li>
+<li class="step">
+<h3>Can you open the panel?</h3>
+<p>Open <code>192.168.5.1:9000</code>. The Mini PC needs a LAN cable - it has no Wi-Fi.</p>
+<p class="fix"><strong>Fix:</strong> if it does not open, recheck the cable and the network. Do not press reset or change the computer IP by hand without support.</p>
+</li>
+<li class="step">
+<h3>Only some phones offline?</h3>
+<p>Check their proxies first - see <a href="#/err-proxy-net">Fix: No internet after assigning a proxy</a>. Isolate Mode cuts a phone whose proxy died.</p>
+</li>
+<li class="step">
+<h3>Phone time and Airplane Mode</h3>
+<p>The time and time zone must match the computer, and Airplane Mode must be off.</p>
+</li>
+<li class="step">
+<h3>Whole box offline or unstable after adding boxes?</h3>
+<p>Check the shared LAN cable and the modem port, then <strong>Scan</strong>. Plan at most 5 boxes per internet line and about 100 Mbps per box. Add a LAN switch if the Mini PC carries every box directly.</p>
+</li>
+</ol>
+<h2 id="err-router-h3">Special cases</h2>
+<h3>The Mini PC gets no DHCP, no panel or no internet after all checks</h3>
+<p>Collect the <code>ipconfig</code> and <code>ping</code> results and contact support. Do not factory reset or reinstall the image yourself.</p>
+<h2 id="err-router-h4">Contact support when</h2>
+<div class="hint">
+<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-headset"/></svg>
+<div><p>The panel still does not open, or the Mini PC has no DHCP or internet after the wiring checks.</p></div>
+</div>
+<h2 id="err-router-h5">Send us</h2>
+<ul class="chk">
+<li>H3000 or Mini PC, and the number of boxes</li>
+<li>A screenshot of <code>192.168.5.1:9000</code></li>
+<li>The <code>ipconfig</code> and <code>ping</code> results</li>
+<li>A photo of the full cable setup</li>
+</ul>
+    </div>
+
+    <div class="pagenav">
+      <a href="#/err-proxy-lost"><span class="k">Previous</span><span class="v">Fix: Proxy is lost or the IP changes back</span></a>
+      <a class="next" href="#/faq"><span class="k">Next</span><span class="v">FAQ</span></a>
+    </div>
+    <p class="updated">Last updated 11/2026</p>
+  </div>
+</section>

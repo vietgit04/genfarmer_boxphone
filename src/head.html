@@ -551,6 +551,30 @@ a.card:hover{text-decoration:none;border-color:var(--blue-bright);background:var
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 
+
+/* ---------- khuon trang loi: You see this / Fix / Send us ---------- */
+.says{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 4px}
+.says span{
+  padding:7px 13px;border-radius:999px;border:1px solid var(--line);background:var(--surface);
+  font-size:14px;line-height:1.45;color:var(--ink);box-shadow:var(--shadow-sm);
+}
+.doc p.fix{
+  margin:10px 0 2px;padding:9px 13px;border-radius:var(--r);
+  background:var(--i-ok-bg);border-left:3px solid var(--i-ok);font-size:15px;
+}
+.doc p.fix strong:first-child{color:var(--i-ok)}
+.doc ul.chk{list-style:none;padding:14px 16px;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface)}
+.doc ul.chk li{position:relative;padding-left:28px;margin:6px 0}
+.doc ul.chk li::before{
+  content:"";position:absolute;left:2px;top:5px;width:16px;height:16px;border-radius:4px;
+  border:1.5px solid var(--blue);background:var(--blue-soft);
+}
+.doc ul.chk li::after{
+  content:"";position:absolute;left:7px;top:8px;width:5px;height:8px;
+  border:solid var(--blue);border-width:0 2px 2px 0;transform:rotate(45deg);
+}
+.hint ul{margin:4px 0;padding-left:20px}
+
 /* ============================================================
    Chon ngon ngu, chuyen dong va cac chi tiet hoan thien
    ============================================================ */

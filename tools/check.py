@@ -35,10 +35,10 @@ def skel(path):
 
 
 lang = sys.argv[1]
-names = sys.argv[2:] or sorted(n[:2] for n in os.listdir(os.path.join(ROOT, "src", "en")))
+names = sys.argv[2:] or sorted(n[:-5] for n in os.listdir(os.path.join(ROOT, "src", "en")))
 bad = 0
 for n in names:
-    n = n[:2]
+    n = n[:-5] if n.endswith(".html") else n
     src = os.path.join(ROOT, "src", "en", n + ".html")
     dst = os.path.join(ROOT, "src", lang, n + ".html")
     if not os.path.exists(dst):
